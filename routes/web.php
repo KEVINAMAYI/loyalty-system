@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// cooperate customer routes
 Route::get('/cooperate-customer-dashboard', function () {
     return view('cooperate-customer.dashboard');
 });
@@ -29,3 +30,14 @@ Route::get('/cooperate-customer-vehicles', function () {
 Route::get('/cooperate-customer-rewards', function () {
     return view('cooperate-customer.rewards');
 });
+Route::get('/login', function () {
+    return view('cooperate-customer.index');
+});
+
+//staff routes
+Route::get('/authorized-purchases', function () {
+    return view('staff.authorized-purchases');
+});
+
+
+
