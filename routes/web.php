@@ -17,7 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cooperate-dashboard', function () {
+Route::get('/cooperate-customer-dashboard', function () {
     return view('cooperate-customer.dashboard');
 });
-
+Route::get('/cooperate-customer-employees', function () {
+    return view('cooperate-customer.employees');
+});
+Route::get('/cooperate-customer-vehicles', function () {
+    return view('cooperate-customer.vehicles');
+});
+Route::get('/cooperate-customer-rewards', function () {
+    return view('cooperate-customer.rewards');
+});

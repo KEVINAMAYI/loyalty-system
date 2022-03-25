@@ -5,32 +5,32 @@
         <span style="margin-right:5px;" class="login100-form-logo">
           <img src="assets/img/logo.jpg" style="border-radius:100%;" width="70" height="70">
         </span>
-        <span class="ms-1 font-weight-bold">OLA</span>      
+        <span class="ms-1 font-weight-bold">OLA</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard">
+          <a class="nav-link" href="/cooperate-customer-dashboard">
             <i class="fa-solid fa-house"></i>
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="/employees">
+          <a class="nav-link  " href="/cooperate-customer-employees">
             <i class="fa-solid fa-person"></i>
             <span class="nav-link-text ms-1">Employees</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="/vehicles">
+          <a class="nav-link  " href="/cooperate-customer-vehicles">
             <i class="fa-solid fa-car"></i>
             <span class="nav-link-text ms-1">Vehicle</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="rewards.html">
+          <a class="nav-link  " href="/cooperate-customer-rewards">
             <i class="fa-solid fa-lock-open"></i>
             <span class="nav-link-text ms-1">Authorize Fuel Purchase</span>
           </a>
