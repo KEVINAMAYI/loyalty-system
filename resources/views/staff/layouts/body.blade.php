@@ -24,6 +24,8 @@
     <title>
         Soft UI Dashboard by Creative Tim
     </title>
+    <base href="{{ URL::to('/') }}">
+
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->

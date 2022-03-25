@@ -34,7 +34,9 @@ Route::get('/login', function () {
     return view('cooperate-customer.index');
 });
 
-//staff routes
+
+
+//staff dashboard routes
 Route::get('/authorized-purchases', function () {
     return view('staff.authorized-purchases');
 });
@@ -49,6 +51,24 @@ Route::get('/ordinary-customers', function () {
 });
 Route::get('/sales', function () {
     return view('staff.sales');
+});
+
+
+//front end routes
+Route::get('/index', function () {
+    return view('index');
+});
+Route::get('/choose-option', function () {
+    return view('choose-option');
+});
+Route::get('/enroll-customer', function () {
+    return view('enroll-customer');
+});
+Route::get('/password-reset', function () {
+    return view('password-reset');
+});
+Route::get('/make-sale', function () {
+    return view('make-sale');
 });
 
 
