@@ -12,31 +12,31 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="dashboard.html">
+          <a class="nav-link" href="/staff-dashboard">
             <i class="fa-solid fa-house"></i>
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="users.html">
+          <a class="nav-link  " href="/users">
             <i class="fa-solid fa-users"></i>
             <span class="nav-link-text ms-1">Users</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="normal-customer.html">
+          <a class="nav-link  " href="/ordinary-customers">
             <i class="fa-solid fa-person"></i>
-            <span class="nav-link-text ms-1">Normal Customer</span>
+            <span class="nav-link-text ms-1">Ordinary Customers</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="cooperate-customer.html">
+          <a class="nav-link  " href="/authorized-purchases">
             <i class="fa-solid fa-building"></i>
             <span class="nav-link-text ms-1">Authorized Purchases</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="sales.html">
+          <a class="nav-link  " href="/sales">
             <i class="fa-solid fa-dollar"></i>
             <span class="nav-link-text ms-1">Sales</span>
           </a>

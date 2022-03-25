@@ -4,7 +4,7 @@
 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
     <div class="container-fluid py-1 px-3">
       <nav aria-label="breadcrumb">
-        <h6 class="font-weight-bolder mb-0">Sales</h6>
+        <h6 class="font-weight-bolder mb-0">Normal Customers</h6>
       </nav>
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -39,7 +39,7 @@
       <div class="col-12">
         <div class="card mb-4">
           <div class="card-header pb-0">
-            <h6>Sales</h6>
+            <h6>Normal Customers</h6>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
@@ -49,8 +49,8 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Number</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </thead>
@@ -67,14 +67,15 @@
                       <span class="text-secondary text-xs font-weight-bold">0795704301</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">100045</span>
+                      <span class="text-secondary text-xs font-weight-bold">34643511</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">15th Feb 2022</span>
+                      <span class="text-secondary text-xs font-weight-bold">kevinamayi@gmail.com</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
+                      <span class="badge badge-sm bg-gradient-secondary">more info</span>
+                      <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
+                      <span class="badge badge-sm bg-gradient-danger">delete</span>
                     </td>
                   </tr>
 
@@ -89,14 +90,15 @@
                       <span class="text-secondary text-xs font-weight-bold">0795704301</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">800</span>
+                      <span class="text-secondary text-xs font-weight-bold">34643511</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">17th Feb 2022</span>
+                      <span class="text-secondary text-xs font-weight-bold">kevinmusungu@gmail.com</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
+                      <span class="badge badge-sm bg-gradient-secondary">more info</span>
+                      <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
+                      <span class="badge badge-sm bg-gradient-danger">delete</span>
                     </td>
                   </tr>
 
@@ -111,14 +113,15 @@
                       <span class="text-secondary text-xs font-weight-bold">0795704301</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">180000</span>
+                      <span class="text-secondary text-xs font-weight-bold">34643511</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">27th Feb 2022</span>
+                      <span class="text-secondary text-xs font-weight-bold">kevinotwane@gmail.com</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
+                      <span class="badge badge-sm bg-gradient-secondary">more info</span>
+                      <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
+                      <span class="badge badge-sm bg-gradient-danger">delete</span>
                     </td>
                   </tr>
 
@@ -133,14 +136,15 @@
                       <span class="text-secondary text-xs font-weight-bold">0795704301</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">15000</span>
+                      <span class="text-secondary text-xs font-weight-bold">34643511</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">14th Feb 2022</span>
+                      <span class="text-secondary text-xs font-weight-bold">kevinuonqqdi@gmail.com</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
+                      <span class="badge badge-sm bg-gradient-secondary">more info</span>
+                      <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
+                      <span class="badge badge-sm bg-gradient-danger">delete</span>
                     </td>
                   </tr>
 
@@ -155,14 +159,15 @@
                       <span class="text-secondary text-xs font-weight-bold">0795704301</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">10000</span>
+                      <span class="text-secondary text-xs font-weight-bold">34643511</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">16th Feb 2022</span>
+                      <span class="text-secondary text-xs font-weight-bold">kevinfidqqqqe@gmail.com</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
+                      <span class="badge badge-sm bg-gradient-secondary">more info</span>
+                      <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
+                      <span class="badge badge-sm bg-gradient-danger">delete</span>
                     </td>
                   </tr>
 
@@ -177,14 +182,15 @@
                       <span class="text-secondary text-xs font-weight-bold">0795704301</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">1000</span>
+                      <span class="text-secondary text-xs font-weight-bold">34643511</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">17th Feb 2022</span>
+                      <span class="text-secondary text-xs font-weight-bold">donaldqqqqq@gmail.com</span>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
+                      <span class="badge badge-sm bg-gradient-secondary">more info</span>
+                      <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
+                      <span class="badge badge-sm bg-gradient-danger">delete</span>
                     </td>
                   </tr>
                 </tbody>

@@ -38,6 +38,17 @@ Route::get('/login', function () {
 Route::get('/authorized-purchases', function () {
     return view('staff.authorized-purchases');
 });
-
+Route::get('/staff-dashboard', function () {
+    return view('staff.dashboard');
+});
+Route::get('/users', function () {
+    return view('staff.users');
+});
+Route::get('/ordinary-customers', function () {
+    return view('staff.ordinary-customers');
+});
+Route::get('/sales', function () {
+    return view('staff.sales');
+});
 
 
