@@ -30,9 +30,11 @@ Route::get('/cooperate-customer-vehicles', function () {
 Route::get('/cooperate-customer-rewards', function () {
     return view('cooperate-customer.rewards');
 });
-Route::get('/login', function () {
-    return view('cooperate-customer.index');
+
+Route::get('/register', function () {
+    return view('auth.register');
 });
+
 
 
 
@@ -56,7 +58,7 @@ Route::get('/sales', function () {
 
 //front end routes
 Route::get('/index', function () {
-    return view('index');
+    return view('auth.login');
 });
 Route::get('/choose-option', function () {
     return view('choose-option');
@@ -72,3 +74,7 @@ Route::get('/make-sale', function () {
 });
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

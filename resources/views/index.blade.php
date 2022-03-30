@@ -34,7 +34,7 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form">
 					<span class="login100-form-logo">
-						<img src="images/logo.jpg" width="70" height="70">
+						<img src="front-end/images/logo.jpg" width="70" height="70">
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
@@ -59,13 +59,13 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<a href="choose_option.html" class="login100-form-btn">
+						<a href="/choose-option" class="login100-form-btn">
 							Login
 						</a>
 					</div>
 
 					<div class="text-center p-t-20">
-						<a class="txt1" href="password_reset.html">
+						<a class="txt1" href="/password-reset">
 							Forgot Password?
 						</a>
 					</div>

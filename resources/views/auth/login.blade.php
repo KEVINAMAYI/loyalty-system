@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
 	<title>Login V3</title>
-	<base href="{{ URL::to('/') }}">
-
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -32,28 +30,73 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('front-end/images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
-					<span class="login100-form-logo">
+
+			{{-- display error on top of the form --}}
+                @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    <ul class="list-group">
+                        @foreach ($errors->all() as $error )
+                        <li class="list-group-item">
+                            {{ $error }}  
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
+				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+					@csrf
+
+                    <span class="login100-form-logo">
 						<img src="front-end/images/logo.jpg" width="70" height="70">
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
+						SIGN IN 
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="kevinamayi20@gmail.com">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					<div  class="wrap-input100 validate-input" data-validate = "Enter username">
+						<input id="email" type="email" class="input100  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                    </div>
+
+                   
+
+					<div  class="wrap-input100 validate-input" data-validate="Enter password">
+						<input id="password" type="password" class="input100  @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+                    </div>
+
+
+
+                    <div style="margin-top:20px;" class="contact100-form-checkbox">
+						<input class="input-checkbox100" id="ckb1" type="checkbox"  class="form-check-input"  name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+						<label class="label-checkbox100" for="ckb1">
+							Remember me
+						</label>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<a href="#" class="login100-form-btn">
-							Send Reset Link
+						<button type="submit" class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+					<div class="text-center p-t-20">
+						<a class="txt1" href="/register">
+							Register as a Cooperate Customer
 						</a>
 					</div>
 
+                    @if (Route::has('password.request'))
+					<div class="text-center p-t-20">
+						<a class="txt1" href="/password-reset">
+							Forgot Password?
+						</a>
+					</div>
+                    @endif
 				</form>
 			</div>
 		</div>
@@ -77,7 +120,12 @@
 <!--===============================================================================================-->
 	<script src="/front-end/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="/front-end/assets/js/main.js"></script>
+	<script src="/front-end/js/index.js"></script>
 
 </body>
 </html>
+
+
+
+
+

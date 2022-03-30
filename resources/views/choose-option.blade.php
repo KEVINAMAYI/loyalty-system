@@ -33,7 +33,6 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
 					<span class="login100-form-logo">
 						<img src="front-end/images/logo.jpg" width="70" height="70">
 					</span>
@@ -84,11 +83,15 @@
                      </div>
 
 					<div class="container-login100-form-btn mt-4">
-						<a href="index.html" class="login100-form-btn">
+						
+						<a class="login100-form-btn" href="{{ route('logout') }}"  onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
 							Log Out
 						</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+						@csrf
+						</form>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>
