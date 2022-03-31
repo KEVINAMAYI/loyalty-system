@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -21,12 +22,14 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = "/choose-option";
+    // protected $redirectTo = "/choose-option";
 
     /**
      * Create a new controller instance.
@@ -37,4 +40,23 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    //method called when user is authenticated
+    protected function authenticated()
+    {
+        $role = Auth::user()->role;
+
+        if($role == "Corperate")
+        {
+            return redirect("/cooperate-customer-dashboard");
+
+        }
+        else
+        {
+            return redirect("/choose-option");
+
+
+        }
+    }
 }
+

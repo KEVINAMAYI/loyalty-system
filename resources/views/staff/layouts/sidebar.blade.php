@@ -41,10 +41,14 @@
             <span class="nav-link-text ms-1">Sales</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link  " href="staff/loyalty-service-station-app/index.html">
+         <li class="nav-item">
+          <a class="nav-link" href="{{ route('logout') }}"  onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span class="nav-link-text ms-1">Logout</span>
           </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+						@csrf
+						</form>
         </li>
   </aside>

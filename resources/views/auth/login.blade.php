@@ -30,7 +30,7 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('front-end/images/bg-01.jpg');">
 			<div class="wrap-login100">
 
 			{{-- display error on top of the form --}}

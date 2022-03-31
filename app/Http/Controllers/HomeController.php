@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Http\Request;
 
@@ -22,7 +24,28 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {   
+        if(Auth::user())
+        {
+            $role = Auth::user()->role;
+
+            if($role == "Corperate")
+            {
+                return view("cooperate-customer.dashboard");
+    
+            }
+            else
+            {
+                return view("choose-option");
+    
+    
+            }
+
+        }
+        else
+        {
+            return redirect("/login");
+        }
+       
     }
 }
