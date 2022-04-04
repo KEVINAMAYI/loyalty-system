@@ -1,6 +1,18 @@
 body {
 	margin:  0;
 }
+
+/* hide incrementors in input with integer */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
 .page-content {
 	width: 100%;
 	margin:  0 auto;

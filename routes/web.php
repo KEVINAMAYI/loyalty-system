@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\CustomerController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +40,7 @@ Route::group(['middleware' => 'staff'], function()
         return view('staff.sales');
     });
 
+
     //front end routes
     Route::get('/choose-option', function () {
         return view('choose-option');
@@ -48,6 +52,14 @@ Route::group(['middleware' => 'staff'], function()
     Route::get('/make-sale', function () {
         return view('make-sale');
     });
+
+    Route::post('/customer-enrollment',  [CustomerController::class,'enrollCustomer']);
+    Route::post('/upload-vehicle-image', [VehicleController::class,'uploadCarImage']);
+    Route::post('/customer-data', [CustomerController::class,'getCustomerData']);
+
+
+
+
 
 
 });

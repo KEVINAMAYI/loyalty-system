@@ -106,7 +106,7 @@
             <div class="card-header pb-0">
               <h6>Normal Customer</h6>
               <div style="text-align:right;">
-                <a style="background-color:#f9a14d;" href="normal-customer.html" type="button" class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i>
+                <a style="background-color:#f9a14d;" href="/ordinary-customers" type="button" class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i>
                   <span style="margin-left:5px;">View More</span></a>
               </div>
             </div>

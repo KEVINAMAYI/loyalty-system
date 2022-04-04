@@ -1,4 +1,11 @@
 $(function(){
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+     });
+
     $("#form-register").validate({
         rules: {
             password : {
@@ -28,7 +35,6 @@ $(function(){
         headerTag: "h2",
         bodyTag: "section",
         transitionEffect: "fade",
-        // enableAllSteps: true,
         autoFocus: true,
         transitionEffectSpeed: 500,
         titleTemplate : '<div class="title">#title#</div>',
@@ -45,9 +51,31 @@ $(function(){
             var phonenumber = $('#phonenumber').val();
             var idnumber = $('#idnumber').val();
             var email = $('#email').val();
-            var make = $('#make').val();
-            var model = $('#model').val();
+            var category = $('#category').val();
             var regno = $('#regno').val();
+
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+
+
+            $('#image').on('change',function(){
+           
+                let reader = new FileReader();
+            
+                reader.onload = (e) => { 
+            
+                  $('#vehicle_image').attr('src', e.target.result); 
+                  $('#confirm-vehicle-image').attr('src', e.target.result); 
+
+                }
+            
+                reader.readAsDataURL(this.files[0]); 
+              
+               });
 
 
             $('#firstname-val').text(firstname);
@@ -56,8 +84,7 @@ $(function(){
             $('#phonenumber-val').text(phonenumber);
             $('#idnumber-val').text(idnumber);
             $('#email-val').text(email);
-            $('#make-val').text(make);
-            $('#model-val').text(model);
+            $('#category-val').text(category);
             $('#regno-val').text(regno);
 
 
@@ -65,8 +92,45 @@ $(function(){
             return $("#form-register").valid();
         }
     });
-
+    
+    //submit enrollment details
     $("#completed").on('click',function(){
-        location.href = "/choose-option";
-    });
-});
+
+        const selectedFile = document.getElementById('image').files[0];
+        console.log(selectedFile);
+
+        formData = new FormData();
+        formData.append('vehicle_image',selectedFile);
+        formData.append('first_name',$('#firstname').val());
+        formData.append('last_name',$('#lastname').val());
+        formData.append('gender',$('#gender').val());
+        formData.append('phone_number',$('#phonenumber').val());
+        formData.append('id_number',$('#idnumber').val());
+        formData.append('email',$('#email').val());
+        formData.append('category',$('#category').val());
+        formData.append('regno',$('#regno').val());
+
+        $.ajax({
+            type:'post',
+            url: "/customer-enrollment",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: (data) => {
+               console.log(data);
+            },
+            error: function(data){
+               console.log(data);
+             }
+           });
+
+     //display an alert message redirect user back to choose-option page 
+     swal("Good job!", "Enrollment completed successfully !", "success")
+        .then(() => {
+            location.href = "/choose-option";
+        });
+
+    })
+
+
+})

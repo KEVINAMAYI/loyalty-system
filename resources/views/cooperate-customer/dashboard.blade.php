@@ -114,7 +114,7 @@
                         <div class="card-header pb-0">
                             <h6>Employees</h6>
                             <div style="text-align:right;">
-                                <a href="employees.html" style="background-color:#f9a14d;" type="button"
+                                <a href="/cooperate-customer-employees" style="background-color:#f9a14d;" type="button"
                                     class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i>
                                     <span style="margin-left:5px;">View More</span></a>
                             </div>

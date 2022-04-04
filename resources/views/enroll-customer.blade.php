@@ -7,6 +7,7 @@
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- Font-->
 	<link rel="stylesheet" type="text/css" href="/front-end/css/raleway-font.css">
 	<link rel="stylesheet" type="text/css" href="/front-end/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
@@ -67,11 +68,11 @@
 								<div class="form-row">
 									<div class="form-holder">
 										<label for="password">Phone Number*</label>
-										<input type="text" placeholder="0722428401" class="form-control" id="phonenumber" name="phonenumber" required >
+										<input type="number" placeholder="0722428401" class="form-control" id="phonenumber" name="phonenumber" required >
 									</div>
 									<div class="form-holder">
 										<label for="confirm_password">ID Number*</label>
-										<input type="text" placeholder="34643511" class="form-control" id="idnumber" name="idnumber" required>
+										<input type="number" placeholder="34643511" class="form-control" id="idnumber" name="idnumber" required>
 									</div>
 								</div>
 								<div class="form-row">
@@ -93,23 +94,13 @@
 			                <div class="inner">
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
-										<label for="card-type">Vehicle Make</label>
-										<select name="make" id="make" class="form-control">
+										<label for="card-type">Vehicle Category</label>
+										<select name="category" id="category" class="form-control">
 											<option value="" selected>Toyota</option>
 											<option value="Honda">Honda</option>
 											<option value="Mitsubishi">Mitsubishi</option>
 											<option value="Isuzu">Isuzu</option>
 											<option value="Ford">Ford</option>
-										</select>
-									</div>
-									<div class="form-holder form-holder-2">
-										<label for="card-type">Vehicle Model</label>
-										<select name="model" id="model" class="form-control">
-											<option value="" selected>Toyota 345</option>
-											<option value="CRV">CRV</option>
-											<option value="Fit">Fit</option>
-											<option value="D-MAX">D-MAX</option>
-											<option value="Ranger">Ranger</option>
 										</select>
 									</div>
 								</div>
@@ -120,16 +111,15 @@
 								<div class="form-row row mt-3">
 									<div class="col-lg-12 col-md-12 col-sm-12">
 										<p style="color:white; font-weight:bold; margin-bottom:30px;">Vehicle Picture</p>
-                                        <img src="images/car.jpg" style="max-width:100%; max-height:500px;" alt="">									
+                                        <img id="vehicle_image" src="front-end/images/car.jpg" style="max-width:100%; max-height:500px;" alt="">									
 									</div>
 								</div>
 								<div class="form-row" style="margin-top:30px;">
 									<div class="form-holder">
-										<input type="file" class="btn btn-md btn-success">
-									</div>
-									<div class="form-holder">
-										<button type="button" style="width:100%; height:55px;" class="btn btn-primary btn-lg btn-block">Take Picture </button>
-									</div>
+										<input type="file" id="image" name="uploader" id="uploader"                               
+										accept="image/*" 
+										capture="camera" />
+										</div>
 								</div>
 							</div>
 			            </section>
@@ -170,12 +160,8 @@
 												<td id="email-val"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Vehicle Make:</th>
-												<td id="make-val"></td>
-											</tr>
-											<tr class="space-row">
-												<th>Vehicle Model:</th>
-												<td id="model-val"></td>
+												<th>Vehicle Category:</th>
+												<td id="category-val"></td>
 											</tr>
 											<tr class="space-row">
 												<th>Vehicle Registration Number:</th>
@@ -186,7 +172,7 @@
 								</div>
 								<div class="col-lg-12 col-md-12 col-sm-12">
 									<p style="color:white; font-weight:bold; margin-bottom:15px;">Vehicle Picture</p>
-									<img src="images/car.jpg" style="max-width:100%; max-height:500px;" alt="">									
+									<img id="confirm-vehicle-image" src="front-end/images/car.jpg" style="max-width:100%; max-height:500px;" alt="">									
 								</div>
 							</div>
 			            </section>
@@ -197,6 +183,7 @@
 		</div>
 	</div>
 	<script src="/front-end/js/jquery-3.3.1.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 	<script src="/front-end/js/jquery.steps.js"></script>

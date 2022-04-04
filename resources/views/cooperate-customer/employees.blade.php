@@ -246,4 +246,113 @@
                     </div>
                 </div>
             </div>
+
+            <!--  Add employees modal -->
+<!-- Modal -->
+<div class="modal fade" id="employees" tabindex="-1" aria-labelledby="employees" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form class="form-register" id="form-register" action="#" method="post">
+        <div class="form-holder form-holder-2 mb-2">
+          <label for="regno">First Name</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="Kevin">
+        </div>
+
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">Last Name</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="Amayi">
+        </div>
+
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">Phone Number</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="0795704301">
+        </div>
+
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">ID Number</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="34643511">
+        </div>
+
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">Email</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="kevinamayi20@gmail.com">
+        </div>
+
+        <div class="form-holder form-holder-2">
+          <label for="card-type">Gender</label>
+          <select name="make" id="make" class="form-control">
+            <option value="" selected>Male</option>
+            <option value="Honda">Female</option>
+          </select>
+        </div>
+
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button style="background-color:#f9a14d; color:white;" type="button" class="btn">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Edit employees modal -->
+<!-- Modal -->
+<div class="modal fade" id="employeesedit" tabindex="-1" aria-labelledby="employeesedit" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form class="form-register" id="form-register" action="#" method="post">
+        <div class="form-holder form-holder-2 mb-2">
+          <label for="regno">First Name</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="Kevin">
+        </div>
+
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">Last Name</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="Amayi">
+        </div>
+
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">Phone Number</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="0795704301">
+        </div>
+
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">ID Number</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="34643511">
+        </div>
+
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">Email</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="kevinamayi20@gmail.com">
+        </div>
+
+        <div class="form-holder form-holder-2">
+          <label for="card-type">Gender</label>
+          <select name="make" id="make" class="form-control">
+            <option value="" selected>Male</option>
+            <option value="Honda">Female</option>
+          </select>
+        </div>
+
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button style="background-color:#f9a14d; color:white;" type="button" class="btn">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection

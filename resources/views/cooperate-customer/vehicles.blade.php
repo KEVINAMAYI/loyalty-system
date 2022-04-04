@@ -183,4 +183,102 @@
                 </div>
             </div>
         </div>
+
+        <!-- vehicle modal -->
+<!-- Modal -->
+<div class="modal fade" id="vehicles" tabindex="-1" aria-labelledby="vehicles" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Vehicle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form class="form-register" id="form-register" action="#" method="post">
+        <div class="form-holder form-holder-2">
+          <label for="card-type">Vehicle Make</label>
+          <select name="make" id="make" class="form-control">
+            <option value="" selected>Toyota</option>
+            <option value="Honda">Ford</option>
+            <option value="Honda">Isuzu</option>
+            <option value="Honda">Mark</option>
+            <option value="Honda">Honda</option>
+          </select>
+        </div>
+
+        <div class="form-holder form-holder-2">
+          <label for="card-type">Vehicle Model</label>
+          <select name="make" id="make" class="form-control">
+            <option value="" selected>Fit</option>
+            <option value="Honda">Morano</option>
+            <option value="Honda">Corolla</option>
+            <option value="Honda">Subaru</option>
+            <option value="Honda">Macnitosh</option>
+            <option value="Honda">Viral</option>
+          </select>
+        </div>
+
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">Vehicle Registration</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="KAG 445">
+        </div>
+
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button style="background-color:#f9a14d; color:white;" type="button" class="btn">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edit vehicle modal -->
+<!-- Modal -->
+<div class="modal fade" id="vehiclesedit" tabindex="-1" aria-labelledby="vehiclesedit" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Vehicle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form class="form-register" id="form-register" action="#" method="post">
+        <div class="form-holder form-holder-2">
+          <label for="card-type">Vehicle Make</label>
+          <select name="make" id="make" class="form-control">
+            <option value="" selected>Toyota</option>
+            <option value="Honda">Ford</option>
+            <option value="Honda">Isuzu</option>
+            <option value="Honda">Mark</option>
+            <option value="Honda">Honda</option>
+          </select>
+        </div>
+
+        <div class="form-holder form-holder-2">
+          <label for="card-type">Vehicle Model</label>
+          <select name="make" id="make" class="form-control">
+            <option value="" selected>Fit</option>
+            <option value="Honda">Morano</option>
+            <option value="Honda">Corolla</option>
+            <option value="Honda">Subaru</option>
+            <option value="Honda">Macnitosh</option>
+            <option value="Honda">Viral</option>
+          </select>
+        </div>
+
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">Vehicle Registration</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="KAG 445">
+        </div>
+
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button style="background-color:#f9a14d; color:white;" type="button" class="btn">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     @endsection
