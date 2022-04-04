@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use Twilio\Rest\Client;
 use App\Models\Customer;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
@@ -12,6 +14,35 @@ class CustomerController extends Controller
 {
     
 
+    public function sendConfirmationSMS(Request $request)
+    {
+        $receiverNumber = "+254".substr($request->phone_number,1);
+        $message = "Sales Completes successfully, Thanks and shop with us again";
+  
+        try {
+            
+            $twilio = new Client("AC8c2b5689cdba26cc2f64572c6af30c54", "9cbc54dfff1e0dfab344fbc571995486");             
+            $message = $twilio->messages->create( $receiverNumber, // to 
+                                                    array(  
+                                                        "messagingServiceSid" => "MGa35420a48487485b2f663daf4a7e9033",      
+                                                        "body" => $message 
+                                                    ) 
+                                                 ); 
+        return  response()->json([
+           'data' => "success",
+        ]);
+
+        } catch (Exception $e) {
+
+            return  response()->json([
+                'data' => $e->getMessage(),
+             ]);
+        }
+    }
+
+
+
+    
     /**
      * ennroll a customer and redirect to chose option page.
      *

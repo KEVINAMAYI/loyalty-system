@@ -105,6 +105,9 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::post('/send-sms', [CustomerController::class,'sendConfirmationSMS']);
+
+
 
 
 Auth::routes();

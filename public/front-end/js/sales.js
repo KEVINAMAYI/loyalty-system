@@ -183,8 +183,7 @@ $(function(){
                    `
                );
 
-               console.log(data.vehicle);
-               console.log(data.customer);
+               phone_number = localStorage.setItem('phone_number',customer[0].phone_number);
 
 
             },
@@ -246,10 +245,33 @@ $(function(){
      //display an alert message redirect user back to choose-option page 
      $("#completed").on('click',function(){
 
-        swal("Good job!", "Sale completed successfully !", "success")
-        .then(() => {
-            location.href = "/choose-option";
-        });
+
+        const phone_number = localStorage.getItem('phone_number');
+        console.log(phone_number);
+
+        formData = new FormData();
+        formData.append('phone_number',phone_number);
+
+        $.ajax({
+            type:'post',
+            url: "/send-sms",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: (data) => {
+                swal("Good job!", "Sale completed successfully, A confirmation message was sent!", "success")
+                .then(() => {
+                    location.href = "/choose-option";
+                });
+            },
+            error: function(data){
+
+                swal("Error!", "An eror Occured!", "error")
+                .then(() => {
+                    location.href = "/choose-option";
+                });             }
+           });
+
     });
      
 });

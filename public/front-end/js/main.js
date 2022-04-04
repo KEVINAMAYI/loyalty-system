@@ -86,7 +86,7 @@ $(function(){
             $('#email-val').text(email);
             $('#category-val').text(category);
             $('#regno-val').text(regno);
-
+            
 
             $("#form-register").validate().settings.ignore = ":disabled,:hidden";
             return $("#form-register").valid();
@@ -99,21 +99,21 @@ $(function(){
         const selectedFile = document.getElementById('image').files[0];
         console.log(selectedFile);
 
-        formData = new FormData();
-        formData.append('vehicle_image',selectedFile);
-        formData.append('first_name',$('#firstname').val());
-        formData.append('last_name',$('#lastname').val());
-        formData.append('gender',$('#gender').val());
-        formData.append('phone_number',$('#phonenumber').val());
-        formData.append('id_number',$('#idnumber').val());
-        formData.append('email',$('#email').val());
-        formData.append('category',$('#category').val());
-        formData.append('regno',$('#regno').val());
+        formData1 = new FormData();
+        formData1.append('vehicle_image',selectedFile);
+        formData1.append('first_name',$('#firstname').val());
+        formData1.append('last_name',$('#lastname').val());
+        formData1.append('gender',$('#gender').val());
+        formData1.append('phone_number',$('#phonenumber').val());
+        formData1.append('id_number',$('#idnumber').val());
+        formData1.append('email',$('#email').val());
+        formData1.append('category',$('#category').val());
+        formData1.append('regno',$('#regno').val());
 
         $.ajax({
             type:'post',
             url: "/customer-enrollment",
-            data: formData,
+            data: formData1,
             processData: false,
             contentType: false,
             success: (data) => {
@@ -122,15 +122,45 @@ $(function(){
             error: function(data){
                console.log(data);
              }
-           });
+           }).then( function(){
 
-     //display an alert message redirect user back to choose-option page 
-     swal("Good job!", "Enrollment completed successfully !", "success")
-        .then(() => {
-            location.href = "/choose-option";
-        });
+            //store phone number to form data and use to send sms
+           formData = new FormData();
+           formData.append('phone_number',$('#phonenumber').val());
+   
+           $.ajax({
+               type:'post',
+               url: "/send-sms",
+               data: formData,
+               processData: false,
+               contentType: false,
+               success: (data) => {
+                
+                //display an alert message redirect user back to choose-option page 
+                swal("Success !", "Enrollment completed successfully, A Confirmation message was sent !", "success")
+                .then(() => {
+                    location.href = "/choose-option";
+                });
 
-    })
+               },
+               error: function(data){
+   
+                //display an alert message redirect user back to choose-option page 
+                swal("Error !", "Enrollment completed successfully, Confirmation message failed !", "error")
+                    .then(() => {
+                        location.href = "/choose-option";
+                    });            }
+              });
+
+
+            });
+
+
+        
+           
+
+
+         })
 
 
 })
