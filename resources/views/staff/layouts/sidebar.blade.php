@@ -24,9 +24,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="/ordinary-customers">
+          <a class="nav-link  " href="/customers">
             <i class="fa-solid fa-person"></i>
-            <span class="nav-link-text ms-1">Ordinary Customers</span>
+            <span class="nav-link-text ms-1">Customers</span>
           </a>
         </li>
         <li class="nav-item">
@@ -39,6 +39,12 @@
           <a class="nav-link  " href="/sales">
             <i class="fa-solid fa-dollar"></i>
             <span class="nav-link-text ms-1">Sales</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  " href="/rewards">
+            <i class="fa-solid fa-trophy"></i>
+            <span class="nav-link-text ms-1">Rewards</span>
           </a>
         </li>
          <li class="nav-item">

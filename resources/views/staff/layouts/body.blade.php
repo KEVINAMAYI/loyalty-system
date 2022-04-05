@@ -31,13 +31,17 @@
     <!-- Nucleo Icons -->
     <link href="staff/assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="staff/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="staff/assets/css/toggleswitch.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="staff/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="staff/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="staff/assets/js/main.js"></script>
+
 
 </head>
 
@@ -56,8 +60,8 @@
                                 document.write(new Date().getFullYear())
                             </script>,
                             made with <i class="fa fa-heart"></i> by
-                            <a href="#" class="font-weight-bold" target="_blank">MasterClass</a>
-                            for a better web.
+                            <a href="#" class="font-weight-bold" target="_blank">OLA PETROL PREMIUM</a>
+                            for a better petrol servive.
                         </div>
                     </div>
                 </div>
@@ -397,6 +401,8 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="staff/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+    <script src="staff/assets/js/staff.js"></script>
+
 </body>
 
 </html>

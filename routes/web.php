@@ -30,16 +30,18 @@ Route::group(['middleware' => 'staff'], function()
     Route::get('/staff-dashboard', function () {
         return view('staff.dashboard');
     });
-    Route::get('/users', function () {
-        return view('staff.users');
-    });
-    Route::get('/ordinary-customers', function () {
-        return view('staff.ordinary-customers');
-    });
+    Route::get('/users', [CustomerController::class,'showStaffs']);
+
+    Route::get('/customers', [CustomerController::class,'showCustomers']);
+    Route::get('/customers/{customer}', [CustomerController::class,'deleteCustomer']);
+
+
     Route::get('/sales', function () {
         return view('staff.sales');
     });
-
+    Route::get('/rewards', function () {
+        return view('staff.rewards');
+    });
 
     //front end routes
     Route::get('/choose-option', function () {
@@ -56,6 +58,10 @@ Route::group(['middleware' => 'staff'], function()
     Route::post('/customer-enrollment',  [CustomerController::class,'enrollCustomer']);
     Route::post('/upload-vehicle-image', [VehicleController::class,'uploadCarImage']);
     Route::post('/customer-data', [CustomerController::class,'getCustomerData']);
+    Route::post('/add-staff', [CustomerController::class,'addNewStaff']);
+    Route::get('/delete-staff/{user}', [CustomerController::class,'deleteStaff']);
+
+
 
 
 

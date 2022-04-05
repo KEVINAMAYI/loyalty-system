@@ -150,17 +150,9 @@ $(function(){
                     .then(() => {
                         location.href = "/choose-option";
                     });            }
-              });
+                });
 
-
-            });
-
-
-        
-           
-
+             });
 
          })
-
-
 })

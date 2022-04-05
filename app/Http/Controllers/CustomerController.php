@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\User;
 use Twilio\Rest\Client;
 use App\Models\Customer;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -21,7 +23,7 @@ class CustomerController extends Controller
   
         try {
             
-            $twilio = new Client("AC8c2b5689cdba26cc2f64572c6af30c54", "9cbc54dfff1e0dfab344fbc571995486");             
+            $twilio = new Client("AC8c2b5689cdba26cc2f64572c6af30c54", "174622fda8c3e01753fede3ca61a77e6");             
             $message = $twilio->messages->create( $receiverNumber, // to 
                                                     array(  
                                                         "messagingServiceSid" => "MGa35420a48487485b2f663daf4a7e9033",      
@@ -41,8 +43,102 @@ class CustomerController extends Controller
     }
 
 
+     /**
+     * add a new staff and staff dashboard.
+     *
+     * @return "view"
+     */
+    public function addNewStaff(Request $request)
+    {          
+        //validate new staff details
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            
+         ]);
+         
+         $data = $request->all();
+
+         User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => 'Staff'
+        ]);
+
+
+        session()->flash('success','Staff Added Successfully');
+        return redirect()->back();
+
+     
+    }
+
 
     
+    
+
+     /**
+     * delet a staff.
+     *
+     * @return "view"
+     */
+    public function deleteStaff(User $user)
+    {          
+        
+        $user->delete();
+        session()->flash('success','Staff Deleted Successfully');
+        return redirect()->back();
+
+    }
+
+     /**
+     * add a new staff and staff dashboard.
+     *
+     * @return "view"
+     */
+    public function showStaffs()
+    {          
+        
+        $staffs = User::where('role','=','Staff')->get();
+        return view('staff.users')->with(['staffs' => $staffs]);
+     
+    }
+
+
+
+     /**
+     * add a new staff and staff dashboard.
+     *
+     * @return "view"
+     */
+    public function showCustomers()
+    {          
+        
+        $customers = Customer::all();
+        return view('staff.customers')->with(['customers' => $customers]);
+     
+    }
+
+
+     /**
+     * add a new staff and staff dashboard.
+     *
+     * @return "view"
+     */
+    public function deleteCustomer(Customer $customer)
+    {          
+        
+        $customer->delete();
+        session()->flash('success','Staff Deleted Successfully');
+        return redirect()->back();
+     
+    }
+
+
+
+
+
     /**
      * ennroll a customer and redirect to chose option page.
      *

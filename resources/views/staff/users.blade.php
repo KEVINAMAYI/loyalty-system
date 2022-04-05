@@ -36,8 +36,29 @@
   <!-- End Navbar -->
   <div class="container-fluid py-4">
 
+    {{-- display success message on a successful action --}}
+    @if(Session::has('success'))
+    <div class="alert alert-success" role="alert">
+      {{ Session::get('success') }}
+    </div>
+    @endif
+
+    {{-- display error on top of the form --}}
+    @if ($errors->any())
+    <div class="alert alert-danger" role="alert">
+        <ul class="list-group">
+            @foreach ($errors->all() as $error )
+            <li class="list-group-item">
+              {{ $error }}  
+            </li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
       <button type="button" style="background-color:#f9a14d;" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#employees"><i class="fa-solid fa-plus"></i>
-          <span style="margin-left:5px;">Add User</span></button>
+          <span style="margin-left:5px;">Add Staff</span>
+      </button>
 
     <div class="container-fluid py-4">
     <div class="row">
@@ -51,115 +72,30 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </thead>
                 <tbody>
 
-                  <tr>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">kevinamayi@gmail.com</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                      <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
-                      <span class="badge badge-sm bg-gradient-danger">delete</span>
-                    </td>
-                  </tr>
-
-                  <tr>
-                      <td class="align-middle text-center text-sm">
-                        <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">kevinamayi@gmail.com</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                        <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
-                        <span class="badge badge-sm bg-gradient-danger">delete</span>
-                      </td>
-                    </tr>
+                  @foreach ($staffs as $staff)
 
                     <tr>
-                      <td class="align-middle text-center text-sm">
-                        <p class="text-xs font-weight-bold mb-0">Kevin</p>
+                      <td class="align-middle text-left text-sm">
+                        <p class="text-xs font-weight-bold mb-0">{{ $staff->name }}</p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">Amayi</span>
+                        <span class="text-secondary text-xs font-weight-bold">{{ $staff->email }}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">kevinamayi@gmail.com</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-secondary">more info</span>
                         <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
-                        <span class="badge badge-sm bg-gradient-danger">delete</span>
+                        <a href="/delete-staff/{{ $staff->id }}" class="badge badge-sm bg-gradient-danger">delete</a>
                       </td>
                     </tr>
 
-                    <tr>
-                      <td class="align-middle text-center text-sm">
-                        <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">kevinamayi@gmail.com</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                        <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
-                        <span class="badge badge-sm bg-gradient-danger">delete</span>
-                      </td>
-                    </tr>
-
-                   <tr>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">kevinamayi@gmail.com</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                      <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
-                      <span class="badge badge-sm bg-gradient-danger">delete</span>
-                    </td>
-                  </tr>
-
-                  <tr>
-                      <td class="align-middle text-center text-sm">
-                        <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">kevinamayi@gmail.com</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                        <span style="background-color:#4881c0" class="badge badge-sm">edit</span>
-                        <span class="badge badge-sm bg-gradient-danger">delete</span>
-                      </td>
-                    </tr>
+                  @endforeach
+                  
                 </tbody>
               </table>
             </div>
@@ -168,4 +104,45 @@
       </div>
     </div>
  </div>
+
+<!--  Add employees modal -->
+<!-- Modal -->
+<form class="form-register" action="/add-staff" method="post">
+@csrf
+<div class="modal fade" id="employees" tabindex="-1" aria-labelledby="employees" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Staff</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-holder form-holder-2 mb-2">
+            <label for="regno">Name</label></br>
+            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="name"  id="name" placeholder="Kevin">
+          </div>  
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label for="regno">Email</label></br>
+            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="email" id="email"  placeholder="kevinamayi20@gmail.com">
+          </div>
+          
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label for="regno">Password</label></br>
+            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="password" id="password" id="password" placeholder="......">
+          </div>
+
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label for="regno">Confirm Password</label></br>
+            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="password_confirmation" id="password_confirmation" id="password_confirmation" placeholder="......">
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" style="background-color:#f9a14d; color:white;" type="button" class="btn">Add Staff</button>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+ 
 @endsection
