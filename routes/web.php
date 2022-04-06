@@ -17,12 +17,9 @@ use App\Http\Controllers\CustomerController;
 */
 
 
-
-
 //Staff middleware --> can only be acccessed by users with the role of Staff
 Route::group(['middleware' => 'staff'], function()
 {
-
     //staff dashboard routes
     Route::get('/authorized-purchases', function () {
         return view('staff.authorized-purchases');
@@ -60,13 +57,6 @@ Route::group(['middleware' => 'staff'], function()
     Route::post('/customer-data', [CustomerController::class,'getCustomerData']);
     Route::post('/add-staff', [CustomerController::class,'addNewStaff']);
     Route::get('/delete-staff/{user}', [CustomerController::class,'deleteStaff']);
-
-
-
-
-
-
-
 
 });
 
@@ -112,9 +102,6 @@ Route::get('/login', function () {
 });
 
 Route::post('/send-sms', [CustomerController::class,'sendConfirmationSMS']);
-
-
-
 
 Auth::routes();
 

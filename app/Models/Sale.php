@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Sale extends Model
 {
     use HasFactory;
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -18,10 +18,11 @@ class Customer extends Model
         'first_name',
         'last_name',
         'phone_number',
-        'id_number',
-        'email',
-        'gender',
-        'rewards'
+        'vehicle_registration',
+        'product',
+        'rewards_used',
+        'amount_payable',
+        'amount_paid'
+      
     ];
-
 }

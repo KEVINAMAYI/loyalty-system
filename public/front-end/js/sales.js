@@ -78,6 +78,12 @@ $(function(){
                     $('#sales-amount-paid').text(amount_paid);
                     $('#sales-reward').text(rewards_used);
                     $('#sales-reward-balance').text(rewards_balance);
+
+                    localStorage.setItem('amount_paid',amount_paid);
+                    localStorage.setItem('amount_payable',amount_payable);
+                    localStorage.setItem('product',"petrol");
+
+
                 },
                 error: function(data){
                    console.log(data);
@@ -182,8 +188,11 @@ $(function(){
 
                    `
                );
-
-               phone_number = localStorage.setItem('phone_number',customer[0].phone_number);
+               localStorage.setItem('first_name',customer[0].first_name);
+               localStorage.setItem('last_name',customer[0].last_name);
+               localStorage.setItem('phone_number',customer[0].phone_number);
+               localStorage.setItem('vehicle_registration',vehicle[0].vehicle_registration);
+               localStorage.setItem('rewards_used',customer[0].rewards);
 
 
             },
@@ -245,12 +254,25 @@ $(function(){
      //display an alert message redirect user back to choose-option page 
      $("#completed").on('click',function(){
 
-
-        const phone_number = localStorage.getItem('phone_number');
-        console.log(phone_number);
+         const product = localStorage.getItem('product');
+         const last_name = localStorage.getItem('last_name');
+         const first_name = localStorage.getItem('first_name');
+         const amount_paid = localStorage.getItem('amount_paid');
+         const phone_number = localStorage.getItem('phone_number');
+         const rewards_used = localStorage.getItem('rewards_used');
+         const amount_payable = localStorage.getItem('amount_payable');
+         const vehicle_registration = localStorage.getItem('vehicle_registration');
 
         formData = new FormData();
+        formData.append('product',product);
+        formData.append('last_name',last_name);
+        formData.append('first_name',first_name);
+        formData.append('amount_paid',amount_paid);
+        formData.append('rewards_used',rewards_used);
         formData.append('phone_number',phone_number);
+        formData.append('amount_payable',amount_payable);
+        formData.append('vehicle_registration',vehicle_registration);
+
 
         $.ajax({
             type:'post',
@@ -259,6 +281,7 @@ $(function(){
             processData: false,
             contentType: false,
             success: (data) => {
+                console.log(data);
                 swal("Good job!", "Sale completed successfully, A confirmation message was sent!", "success")
                 .then(() => {
                     location.href = "/choose-option";
@@ -266,6 +289,7 @@ $(function(){
             },
             error: function(data){
 
+                console.log(data);
                 swal("Error!", "An eror Occured!", "error")
                 .then(() => {
                     location.href = "/choose-option";

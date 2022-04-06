@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Sale;
 use App\Models\User;
+use App\Models\Vehicle;
 use Twilio\Rest\Client;
 use App\Models\Customer;
-use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,25 @@ class CustomerController extends Controller
 
     public function sendConfirmationSMS(Request $request)
     {
+
+        
         $receiverNumber = "+254".substr($request->phone_number,1);
         $message = "Sales Completes successfully, Thanks and shop with us again";
-  
+        $data = $request->all();
+
+        //store sales details 
+        Sale::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone_number' => $data['phone_number'],
+            'vehicle_registration' => $data['vehicle_registration'],
+            'product' => $data['product'],
+            'rewards_used' => $data['rewards_used'],
+            'amount_payable' => $data['amount_payable'],
+            'amount_paid' => $data['amount_paid']
+        ]);
+        
+        //send a confirmation SMS 
         try {
             
             $twilio = new Client("AC8c2b5689cdba26cc2f64572c6af30c54", "174622fda8c3e01753fede3ca61a77e6");             
@@ -31,7 +48,7 @@ class CustomerController extends Controller
                                                     ) 
                                                  ); 
         return  response()->json([
-           'data' => "success",
+           'data' => 'success',
         ]);
 
         } catch (Exception $e) {
