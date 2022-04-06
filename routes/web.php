@@ -15,17 +15,9 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-<<<<<<< Updated upstream
-
-//Staff middleware --> can only be acccessed by users with the role of Staff
-Route::group(['middleware' => 'staff'], function()
-{
-=======
 //Staff middleware --> can only be acccessed by users with the role of Staff
 Route::group(['middleware' => 'staff'], function () {
 
->>>>>>> Stashed changes
     //staff dashboard routes
     Route::get('/authorized-purchases', function () {
         return view('staff.authorized-purchases');
@@ -33,10 +25,10 @@ Route::group(['middleware' => 'staff'], function () {
     Route::get('/staff-dashboard', function () {
         return view('staff.dashboard');
     });
-    Route::get('/users', [CustomerController::class,'showStaffs']);
+    Route::get('/users', [CustomerController::class, 'showStaffs']);
 
-    Route::get('/customers', [CustomerController::class,'showCustomers']);
-    Route::get('/customers/{customer}', [CustomerController::class,'deleteCustomer']);
+    Route::get('/customers', [CustomerController::class, 'showCustomers']);
+    Route::get('/customers/{customer}', [CustomerController::class, 'deleteCustomer']);
 
 
     Route::get('/sales', function () {
@@ -58,18 +50,17 @@ Route::group(['middleware' => 'staff'], function () {
         return view('make-sale');
     });
 
-<<<<<<< Updated upstream
-    Route::post('/customer-enrollment',  [CustomerController::class,'enrollCustomer']);
-    Route::post('/upload-vehicle-image', [VehicleController::class,'uploadCarImage']);
-    Route::post('/customer-data', [CustomerController::class,'getCustomerData']);
-    Route::post('/add-staff', [CustomerController::class,'addNewStaff']);
-    Route::get('/delete-staff/{user}', [CustomerController::class,'deleteStaff']);
 
-=======
     Route::post('/customer-enrollment',  [CustomerController::class, 'enrollCustomer']);
     Route::post('/upload-vehicle-image', [VehicleController::class, 'uploadCarImage']);
     Route::post('/customer-data', [CustomerController::class, 'getCustomerData']);
->>>>>>> Stashed changes
+    Route::post('/add-staff', [CustomerController::class, 'addNewStaff']);
+    Route::get('/delete-staff/{user}', [CustomerController::class, 'deleteStaff']);
+
+
+    Route::post('/customer-enrollment',  [CustomerController::class, 'enrollCustomer']);
+    Route::post('/upload-vehicle-image', [VehicleController::class, 'uploadCarImage']);
+    Route::post('/customer-data', [CustomerController::class, 'getCustomerData']);
 });
 
 //Corporate Customer middleware --> can only be acccessed by users with the role of Corporate
@@ -111,11 +102,10 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-<<<<<<< Updated upstream
-Route::post('/send-sms', [CustomerController::class,'sendConfirmationSMS']);
-=======
+
 Route::post('/send-sms', [CustomerController::class, 'sendConfirmationSMS']);
->>>>>>> Stashed changes
+
+Route::post('/send-sms', [CustomerController::class, 'sendConfirmationSMS']);
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
