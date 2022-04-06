@@ -16,12 +16,11 @@ class VehicleController extends Controller
      * 
      */
     public function uploadCarImage(Request $request)
-    {   
+    {
         dd($request);
         $image = $request->file('uploader');
-        $name=$image->getClientOriginalName();
-        $image->move(public_path().'/vehicle_images/', $name);  
-                
+        $name = $image->getClientOriginalName();
+        $image->move(public_path() . '/vehicle_images/', $name);
     }
 
     /**

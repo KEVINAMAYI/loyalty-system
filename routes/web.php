@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CustomerController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +16,16 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
+<<<<<<< Updated upstream
 
 //Staff middleware --> can only be acccessed by users with the role of Staff
 Route::group(['middleware' => 'staff'], function()
 {
+=======
+//Staff middleware --> can only be acccessed by users with the role of Staff
+Route::group(['middleware' => 'staff'], function () {
+
+>>>>>>> Stashed changes
     //staff dashboard routes
     Route::get('/authorized-purchases', function () {
         return view('staff.authorized-purchases');
@@ -52,18 +58,23 @@ Route::group(['middleware' => 'staff'], function()
         return view('make-sale');
     });
 
+<<<<<<< Updated upstream
     Route::post('/customer-enrollment',  [CustomerController::class,'enrollCustomer']);
     Route::post('/upload-vehicle-image', [VehicleController::class,'uploadCarImage']);
     Route::post('/customer-data', [CustomerController::class,'getCustomerData']);
     Route::post('/add-staff', [CustomerController::class,'addNewStaff']);
     Route::get('/delete-staff/{user}', [CustomerController::class,'deleteStaff']);
 
+=======
+    Route::post('/customer-enrollment',  [CustomerController::class, 'enrollCustomer']);
+    Route::post('/upload-vehicle-image', [VehicleController::class, 'uploadCarImage']);
+    Route::post('/customer-data', [CustomerController::class, 'getCustomerData']);
+>>>>>>> Stashed changes
 });
 
 //Corporate Customer middleware --> can only be acccessed by users with the role of Corporate
-Route::group(['middleware' => 'corporate'], function()
-{
-   // cooperate customer routes
+Route::group(['middleware' => 'corporate'], function () {
+    // cooperate customer routes
     Route::get('/cooperate-customer-dashboard', function () {
         return view('cooperate-customer.dashboard');
     });
@@ -76,7 +87,6 @@ Route::group(['middleware' => 'corporate'], function()
     Route::get('/cooperate-customer-rewards', function () {
         return view('cooperate-customer.rewards');
     });
-
 });
 
 
@@ -101,8 +111,11 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+<<<<<<< Updated upstream
 Route::post('/send-sms', [CustomerController::class,'sendConfirmationSMS']);
+=======
+Route::post('/send-sms', [CustomerController::class, 'sendConfirmationSMS']);
+>>>>>>> Stashed changes
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

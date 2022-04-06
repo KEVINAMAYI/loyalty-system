@@ -15,10 +15,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
-    
+
 
     public function sendConfirmationSMS(Request $request)
     {
+<<<<<<< Updated upstream
 
         
         $receiverNumber = "+254".substr($request->phone_number,1);
@@ -50,12 +51,29 @@ class CustomerController extends Controller
         return  response()->json([
            'data' => 'success',
         ]);
+=======
+        $receiverNumber = "+254" . substr($request->phone_number, 1);
+        $message = "Sales Completes successfully, Thanks and shop with us again";
 
+        try {
+>>>>>>> Stashed changes
+
+            $twilio = new Client("AC8c2b5689cdba26cc2f64572c6af30c54", "9cbc54dfff1e0dfab344fbc571995486");
+            $message = $twilio->messages->create(
+                $receiverNumber, // to 
+                array(
+                    "messagingServiceSid" => "MGa35420a48487485b2f663daf4a7e9033",
+                    "body" => $message
+                )
+            );
+            return  response()->json([
+                'data' => "success",
+            ]);
         } catch (Exception $e) {
 
             return  response()->json([
                 'data' => $e->getMessage(),
-             ]);
+            ]);
         }
     }
 
@@ -77,6 +95,7 @@ class CustomerController extends Controller
          
          $data = $request->all();
 
+<<<<<<< Updated upstream
          User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -155,6 +174,8 @@ class CustomerController extends Controller
 
 
 
+=======
+>>>>>>> Stashed changes
 
     /**
      * ennroll a customer and redirect to chose option page.
@@ -162,10 +183,10 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function enrollCustomer(Request $request)
-    {   
+    {
 
-         //validate customer enrollment details
-         $request->validate([
+        //validate customer enrollment details
+        $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
@@ -174,43 +195,40 @@ class CustomerController extends Controller
             'id_number' => 'required|min:7|max:8',
             'category' => ['required', 'string', 'max:255'],
             'regno' => ['required', 'string', 'max:255'],
-         ]);
+        ]);
 
-         $data = $request->all();
+        $data = $request->all();
 
 
-         //create a new customer
-         Customer::create([
-             'first_name' => $data['first_name'],
-             'last_name' => $data['last_name'],
-             'gender' => $data['gender'],
-             'email' => $data['email'],
-             'phone_number' => $data['phone_number'],
-             'id_number' => $data['id_number'],
-             'rewards' => 0
-         ]);
+        //create a new customer
+        Customer::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'gender' => $data['gender'],
+            'email' => $data['email'],
+            'phone_number' => $data['phone_number'],
+            'id_number' => $data['id_number'],
+            'rewards' => 0
+        ]);
 
-        
+
         //upload vehicle image
-        $fileName =  "image-".time().'.'.$request->vehicle_image->getClientOriginalExtension();
+        $fileName =  "image-" . time() . '.' . $request->vehicle_image->getClientOriginalExtension();
         $request->vehicle_image->move(public_path('images'), $fileName);
 
 
         //update customer vehicle image
         Vehicle::create([
-        'customer_id' =>  1,
-        'vehicle_category' => $data['category'],
-        'vehicle_registration' => $data['regno'],
-        'image_url' => $fileName
+            'customer_id' =>  1,
+            'vehicle_category' => $data['category'],
+            'vehicle_registration' => $data['regno'],
+            'image_url' => $fileName
 
-         ]);
+        ]);
 
         return  response()->json([
             'data' => $data,
         ]);
-
-
-   
     }
 
 
@@ -228,7 +246,7 @@ class CustomerController extends Controller
     }
 
 
-   /**
+    /**
      * Get customer data to be used in sales.
      *
      * @param  \App\Models\Request  $request
@@ -236,22 +254,21 @@ class CustomerController extends Controller
      */
     public function getCustomerData(Request  $request)
     {
-         //validate customer id and vehicle number details
-         $request->validate([
+        //validate customer id and vehicle number details
+        $request->validate([
             'id_number' => 'min:7|max:8',
             'vehicle_reg' => ['string', 'max:255'],
-         ]);
+        ]);
 
-         $data = $request->all();
-         $customer = Customer::where('id_number','=',$data['id_number'])->get();
-         $vehicle =  Vehicle::where('vehicle_registration','=',$data['vehicle_reg'])->get();
+        $data = $request->all();
+        $customer = Customer::where('id_number', '=', $data['id_number'])->get();
+        $vehicle =  Vehicle::where('vehicle_registration', '=', $data['vehicle_reg'])->get();
 
-         return  response()->json([
+        return  response()->json([
 
             'customer' =>  $customer,
             'vehicle' =>   $vehicle
         ]);
-
     }
 
     /**

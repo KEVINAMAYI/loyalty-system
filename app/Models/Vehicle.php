@@ -9,7 +9,7 @@ class Vehicle extends Model
 {
     use HasFactory;
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -19,5 +19,5 @@ class Vehicle extends Model
         'vehicle_category',
         'vehicle_registration',
         'image_url'
-       ];
+    ];
 }

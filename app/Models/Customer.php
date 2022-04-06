@@ -9,7 +9,7 @@ class Customer extends Model
 {
     use HasFactory;
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -23,5 +23,4 @@ class Customer extends Model
         'gender',
         'rewards'
     ];
-
 }
