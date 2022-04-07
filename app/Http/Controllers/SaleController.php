@@ -3,18 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
+use App\Models\Reward;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 
      *
-     * @return \Illuminate\Http\Response
+     * @return vkiew
      */
-    public function index()
+    public function makeSale()
+    {   
+
+        $reward_details = Reward::all();
+        return view('make-sale')->with(['rewards_details' => $reward_details]);
+
+    }
+
+
+    /**
+     * Get all sales from the database.
+     *
+     * @return view
+     */
+    public function getSales()
     {
-        //
+        $sales = Sale::all();
+        return view('staff.sales')->with(['sales' => $sales]);
+
     }
 
     /**

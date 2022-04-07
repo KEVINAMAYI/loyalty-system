@@ -45,15 +45,16 @@
             <p style="margin-bottom:5px; font-weight:bold; font-size:24px;">Enable/Disable Using Rewards</p>
             <!-- Rounded switch -->
             <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" id="rewards_checkbox">
                  <span class="slider round"></span>
             </label>
-            <form style="margin-top:20px;">
+            <form style="margin-top:20px;"> 
                     <div class="form-group">
                         <label for="exampleInputEmail1"  style="margin-bottom:10px; font-weight:bold; font-size:24px;" >Set Reward percentage</label>
-                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter reward percentage">
+                        <input type="number" class="form-control"  id="reward_percentage" step="any" placeholder="Enter reward percentage">
                     </div>
-                    <button style="background-color:#f9a14d;" class="btn btn-primary btn-md" type="submit">Submit</button>
+                    <button style="background-color:#f9a14d;" class="btn btn-primary btn-md"  id="rewardpass" type="submit">Set Reward Percentage </button>
+                    <span style="color:rgb(46, 42, 42); font-weight:bold; font-size:25px; margin-left:20px;">  Current Percentage: {{ ($rewards[0]->percentage)*100 }}%</span>
             </form>
            </div>
           </div>

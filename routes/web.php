@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\RewardController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CustomerController;
 
@@ -32,14 +34,7 @@ Route::group(['middleware' => 'staff'], function()
     Route::get('/customers', [CustomerController::class,'showCustomers']);
     Route::get('/customers/{customer}', [CustomerController::class,'deleteCustomer']);
 
-
-    Route::get('/sales', function () {
-        return view('staff.sales');
-    });
-    Route::get('/rewards', function () {
-        return view('staff.rewards');
-    });
-
+    
     //front end routes
     Route::get('/choose-option', function () {
         return view('choose-option');
@@ -47,16 +42,21 @@ Route::group(['middleware' => 'staff'], function()
     Route::get('/enroll-customer', function () {
         return view('enroll-customer');
     });
-
-    Route::get('/make-sale', function () {
-        return view('make-sale');
-    });
-
-    Route::post('/customer-enrollment',  [CustomerController::class,'enrollCustomer']);
-    Route::post('/upload-vehicle-image', [VehicleController::class,'uploadCarImage']);
-    Route::post('/customer-data', [CustomerController::class,'getCustomerData']);
+    
+    Route::get('/sales', [SaleController::class,'getSales']);
+    Route::get('/make-sale',[SaleController::class,'makeSale']);
+    Route::post('/set-status', [RewardController::class,'setStatus']);
+    Route::get('/get-status', [RewardController::class,'getStatus']);
+    Route::get('/rewards', [RewardController::class,'getRewardDetails']);
     Route::post('/add-staff', [CustomerController::class,'addNewStaff']);
+    Route::post('/set-reward', [RewardController::class,'setRewardPercentage']);
+    Route::post('/customer-data', [CustomerController::class,'getCustomerData']);
     Route::get('/delete-staff/{user}', [CustomerController::class,'deleteStaff']);
+    Route::post('/upload-vehicle-image', [VehicleController::class,'uploadCarImage']);
+    Route::post('/customer-enrollment',  [CustomerController::class,'enrollCustomer']);
+
+
+
 
 });
 

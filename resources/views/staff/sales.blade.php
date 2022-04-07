@@ -48,7 +48,7 @@
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Used</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
@@ -56,137 +56,30 @@
                 </thead>
                 <tbody>
 
-                  <tr>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">100045</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">15th Feb 2022</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
+                @foreach ( $sales as $sale )
+                <tr>
+                  <td class="align-middle text-center text-sm">
+                    <p class="text-xs font-weight-bold mb-0">{{ $sale->first_name }}</p>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="text-secondary text-xs font-weight-bold">{{ $sale->last_name }}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_used }}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="text-secondary text-xs font-weight-bold">{{ $sale->amount_paid }}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
 
-                    </td>
-                  </tr>
+                  </td>
+                </tr>
+                @endforeach
 
-                  <tr>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">Musungu</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">800</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">17th Feb 2022</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">Otwane</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">180000</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">27th Feb 2022</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">Mundoi</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">15000</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">14th Feb 2022</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs font-weight-bold mb-0">Fidel</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">10000</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">16th Feb 2022</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td class="align-middle text-center text-sm">
-                      <p class="text-xs font-weight-bold mb-0">Donald</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">Kipkoech</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">1000</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">17th Feb 2022</span>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span style="background-color:#4881c0;" class="badge badge-sm">more info</span>
-
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>

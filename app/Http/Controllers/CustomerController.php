@@ -25,6 +25,10 @@ class CustomerController extends Controller
         $message = "Sales Completes successfully, Thanks and shop with us again";
         $data = $request->all();
 
+        Customer::where('id_number','=',$data['customer_id'])->update([
+            'rewards' => $data['new_cutomer_rewards']
+        ]);
+
         //store sales details 
         Sale::create([
             'first_name' => $data['first_name'],
@@ -32,7 +36,7 @@ class CustomerController extends Controller
             'phone_number' => $data['phone_number'],
             'vehicle_registration' => $data['vehicle_registration'],
             'product' => $data['product'],
-            'rewards_used' => $data['rewards_used'],
+            'rewards_used' => $data['used_rewards'],
             'amount_payable' => $data['amount_payable'],
             'amount_paid' => $data['amount_paid']
         ]);
@@ -91,9 +95,6 @@ class CustomerController extends Controller
      
     }
 
-
-    
-    
 
      /**
      * delet a staff.

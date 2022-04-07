@@ -128,6 +128,7 @@
 										<input type="number" id="total_amount" placeholder="40000" class="form-control" id="firstname" name="firstname">
 									</div>
 								</div>
+								@if($rewards_details[0]->status == 'enabled')
 								<p style="color:white; ">Use Rewards*</p>
 								<div class="form-row" style="padding-left:20px; margin-bottom:30px; margin-top:10px;">
 									<div class="form-check" style="margin-right:20px;">
@@ -149,7 +150,29 @@
 										<input type="number"  placeholder="40000" class="form-control" id="rewards" name="firstname">
 									</div>
 								</div>
-								
+								@else
+								<p style="color:white; display:none; ">Use Rewards*</p>
+								<div class="form-row" style="display:none; padding-left:20px; margin-bottom:30px; margin-top:10px;">
+									<div class="form-check" style="margin-right:20px;">
+										<input class="usereward form-check-input" type="radio"  value="yes" name="usereward" checked>
+										<label style="color:white; font-weight:bold;" class="form-check-label" for="gender">
+											Yes
+										</label>
+									  </div>
+									  <div class="form-check">
+										<input class="usereward form-check-input" value="no"  type="radio" name="usereward"  >
+										<label style="color:white; font-weight:bold;" class="form-check-label" for="gender">
+										  No
+										</label>
+									  </div>
+								</div>
+								<div class="form-row" style="display:none;">
+									<div class="form-holder form-holder-2">
+										<label for="firstname">Reward to Use in Kenyan Shillings*</label>
+										<input type="number"  placeholder="40000" class="form-control" id="rewards" name="firstname">
+									</div>
+								</div>
+								@endif
 								<p style="margin-left:10px; margin-bottom:20px; margin-top:20px; font-weight:bold; color:white;">Total Amount - Rewards ( KSH 400 ) </p>
                                 <div class="form-row" style="text-align:center;">
 									<div class="form-holder">
@@ -166,6 +189,7 @@
 										<input type="text" placeholder="0722428401" class="form-control" id="amount_paid" name="phonenumber"  >
 									</div>
 								</div>
+								<input type="hidden" name="reward_percentage" id="reward_percentage" value={{ $rewards_details[0]->percentage }}>
 							</div>
 			            </section>
 			            <!-- SECTION 3 -->

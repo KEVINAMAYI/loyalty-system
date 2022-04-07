@@ -59,25 +59,12 @@ $(function(){
                     var amount_payable = $('#amount_payable').val();
                     var amount_paid = $('#amount_paid').val();
                     var rewards_used = $('#rewards').val();
-                    var rewards_balance = myrewards- parseInt($('#rewards').val());
 
-                    //if reward balance is a negative value set rewards to 0 otherwise use the rewards
-                    if(rewards_balance < 0)
-                    {
-
-                        rewards_balance = 0;
-
-                    }
-                    else
-                    {
-                        rewards_balance = rewards_balance;
-
-                    }
+                
 
                     $('#sales-amount-payable').text(amount_payable);
                     $('#sales-amount-paid').text(amount_paid);
                     $('#sales-reward').text(rewards_used);
-                    $('#sales-reward-balance').text(rewards_balance);
 
                     localStorage.setItem('amount_paid',amount_paid);
                     localStorage.setItem('amount_payable',amount_payable);
@@ -192,7 +179,10 @@ $(function(){
                localStorage.setItem('last_name',customer[0].last_name);
                localStorage.setItem('phone_number',customer[0].phone_number);
                localStorage.setItem('vehicle_registration',vehicle[0].vehicle_registration);
-               localStorage.setItem('rewards_used',customer[0].rewards);
+               localStorage.setItem('customer_id',customer[0].id_number);
+               localStorage.setItem('cutomer_rewards',customer[0].rewards);
+
+
 
 
             },
@@ -234,9 +224,37 @@ $(function(){
             if(rewards != null)
             {
 
-                //calculate amount payable with the rewards set only when the reward option is enabled
-                const amount_to_pay = total_amount - rewards;
-                $('#amount_payable').val(amount_to_pay);
+                //get  customer rewards
+                const customer_rewards = localStorage.getItem('cutomer_rewards');
+
+                // check if the rewards entered is not less than the customer reward value
+                if(rewards > customer_rewards)
+                {
+                   
+                    swal("Error!", "Please Input less reward value, your rewards are less than the rewards set!", "error");
+                }
+                else
+                {
+
+                     //calculate amount payable with the rewards set only when the reward option is enabled
+                     const amount_to_pay = total_amount - rewards;
+                     $('#amount_payable').val(amount_to_pay);
+ 
+                     //calculate new reward value
+                     reward_percentage = parseFloat($('#reward_percentage').val());
+                     console.log(reward_percentage);
+                     new_cutomer_rewards = (customer_rewards - rewards) + (reward_percentage * amount_to_pay);
+                     $('#sales-reward-balance').text(new_cutomer_rewards);
+                     console.log(customer_rewards);
+                     console.log(rewards);
+
+
+                     localStorage.setItem('new_cutomer_rewards',new_cutomer_rewards);
+                     localStorage.setItem('used_rewards',rewards);
+
+                }
+
+                
             }
             else
             {
@@ -258,20 +276,29 @@ $(function(){
          const last_name = localStorage.getItem('last_name');
          const first_name = localStorage.getItem('first_name');
          const amount_paid = localStorage.getItem('amount_paid');
+         const customer_id = localStorage.getItem('customer_id');
          const phone_number = localStorage.getItem('phone_number');
-         const rewards_used = localStorage.getItem('rewards_used');
+         const used_rewards = localStorage.getItem('used_rewards');
          const amount_payable = localStorage.getItem('amount_payable');
+         const new_cutomer_rewards = localStorage.getItem('new_cutomer_rewards');
          const vehicle_registration = localStorage.getItem('vehicle_registration');
+
+
+        console.log(customer_id);
 
         formData = new FormData();
         formData.append('product',product);
         formData.append('last_name',last_name);
         formData.append('first_name',first_name);
         formData.append('amount_paid',amount_paid);
-        formData.append('rewards_used',rewards_used);
+        formData.append('customer_id',customer_id);
+        formData.append('used_rewards',used_rewards);
         formData.append('phone_number',phone_number);
         formData.append('amount_payable',amount_payable);
         formData.append('vehicle_registration',vehicle_registration);
+        formData.append('new_cutomer_rewards',new_cutomer_rewards);
+
+
 
 
         $.ajax({

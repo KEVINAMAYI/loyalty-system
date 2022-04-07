@@ -19,6 +19,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="76x76" href="staff/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="staff/assets/img/favicon.png">
     <title>
@@ -213,6 +214,8 @@
 
 
     <!--   Core JS Files   -->
+    <script src="/front-end/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="staff/assets/js/core/popper.min.js"></script>
     <script src="staff/assets/js/core/bootstrap.min.js"></script>
     <script src="staff/assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -401,7 +404,136 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="staff/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
-    <script src="staff/assets/js/staff.js"></script>
+    <script>
+
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+        //jQuery listen for checkbox change
+        $("#rewards_checkbox").change(function() {
+            if(this.checked) {
+
+               status = "enabled";
+               formData = new FormData();
+               formData.append('status',status);
+
+               $.ajax({
+               type:'post',
+               url: "set-status",
+               data: formData,
+               processData: false,
+               contentType: false,
+               success: (data) => {
+
+                     swal("Good job!", "You have enabled using reward", "success");
+
+
+               },
+               error: function(data){
+                
+                    swal("Error!", "There was an error while performing the operstion", "error");
+                
+                }
+                });
+
+            }else{
+
+               status = "disabled";
+               formData = new FormData();
+               formData.append('status',status);
+                
+                $.ajax({
+                type:'post',
+                url: "/set-status",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: (data) => {
+
+                    swal("Good job!", "You have disabled using reward", "success");
+
+                },
+                error: function(data){
+            
+                    swal("Error!", "There was an error while performing the operstion", "error");
+
+                    
+                    }
+                });
+
+            }
+        });
+
+
+        //when the reward button is clicked
+        $('#rewardpass').on('click',function(event){
+            event.preventDefault()
+            reward_percentage = $('#reward_percentage').val()
+
+            formData = new FormData();
+            formData.append('reward_percentage',reward_percentage);
+
+            $.ajax({
+               type:'post',
+               url: "set-reward",
+               data: formData,
+               processData: false,
+               contentType: false,
+               success: (data) => {
+
+                    swal("Good job!", "Reward percentage set successfully", "success").then(() => {
+                          location.reload()
+                        });
+               },
+               error: function(data){
+                
+                    swal("Error!", "Setting Reward percentage failed", "error").then(() => {
+                        location.reload();
+                    });
+
+                   }
+
+                });
+
+        });
+
+
+        //retain the reward status when loading the page
+        (function(){
+                $.ajax({
+                type:'get',
+                url: "get-status",
+                success: (data) => {
+
+                       
+                    if(data.reward[0].status == 'enabled')
+                    {
+
+                        $('#rewards_checkbox').prop('checked',true);
+                    }
+                    else
+                    {
+
+                        $('#rewards_checkbox').prop('checked',false);
+
+
+                    }
+
+
+                },
+                error: function(data){
+                    
+                      console.log(data);
+                                       
+                    }
+                    });
+        })();
+
+    </script>
 
 </body>
 
