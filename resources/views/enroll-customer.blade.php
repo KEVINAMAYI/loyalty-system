@@ -53,13 +53,13 @@
 								<p style="color:white; ">Gender*</p>
 								<div class="form-row" style="padding-left:20px; margin-bottom:50px; margin-top:10px;">
 									<div class="form-check" style="margin-right:20px;">
-										<input class="form-check-input" type="radio" value="male" name="gender" id="gender">
+										<input class="form-check-input" type="radio" value="male" name="gender" id="gender" checked>
 										<label style="color:white; font-weight:bold;" class="form-check-label" for="gender">
 											Male
 										</label>
 									  </div>
 									  <div class="form-check">
-										<input class="form-check-input" value="female" type="radio" name="gender" id="gender" checked>
+										<input class="form-check-input" value="female" type="radio" name="gender" id="gender">
 										<label style="color:white; font-weight:bold;" class="form-check-label" for="gender">
 										  Female
 										</label>
@@ -68,17 +68,17 @@
 								<div class="form-row">
 									<div class="form-holder">
 										<label for="password">Phone Number*</label>
-										<input type="number" placeholder="0722428401" class="form-control" id="phonenumber" name="phonenumber" required >
+										<input type="number" placeholder="input phone number" class="form-control" id="phonenumber" name="phonenumber" required >
 									</div>
 									<div class="form-holder">
-										<label for="confirm_password">ID Number*</label>
-										<input type="number" placeholder="34643511" class="form-control" id="idnumber" name="idnumber" required>
+										<label for="confirm_password">Natioanal ID*</label>
+										<input type="number" placeholder="Enter ID Number" class="form-control" id="idnumber" name="idnumber" required>
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label for="email">Email Address*</label>
-										<input type="email" placeholder="Your Email" class="form-control" id="email" name="email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+										<input type="email" placeholder="Enter Email" class="form-control" id="email" name="email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
 									</div>
 								</div>
 								
@@ -96,7 +96,22 @@
 									<div class="form-holder form-holder-2">
 										<label for="card-type">Vehicle Category</label>
 										<select name="category" id="category" class="form-control">
-											<option value="" selected>Toyota</option>
+											<option value="private-saloon" selected>Private - Saloon</option>
+											<option value="private-station-wagon">Private - Station Wagon</option>
+											<option value="pickup">Pickup</option>
+											<option value="light-commercial">Light Commercial</option>
+											<option value="truck">Truck</option>
+											<option value="heavy-commercial">Heavy Commercial</option>
+											<option value="motorcycle">Motorcycle</option>
+											<option value="tuktuk">Tuktuk</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<label for="card-type">Vehicle Type</label>
+										<select name="type" id="type" class="form-control">
+											<option value="Toyota" selected>Toyota</option>
 											<option value="Honda">Honda</option>
 											<option value="Mitsubishi">Mitsubishi</option>
 											<option value="Isuzu">Isuzu</option>
@@ -105,8 +120,8 @@
 									</div>
 								</div>
 								<div class="form-holder form-holder-2">
-									<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Vehicle Reg*</label>
-									<input type="text" placeholder="KAG 445" class="form-control" id="regno" name="regno" required>
+									<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Vehicle Registration Number*</label>
+									<input type="text" placeholder="Enter Number Plate No." class="form-control" id="regno" name="regno" required>
 								</div>
 								<div class="form-row row mt-3">
 									<div class="col-lg-12 col-md-12 col-sm-12">
@@ -162,6 +177,10 @@
 											<tr class="space-row">
 												<th>Vehicle Category:</th>
 												<td id="category-val"></td>
+											</tr>
+											<tr class="space-row">
+												<th>Vehicle Type:</th>
+												<td id="type-val"></td>
 											</tr>
 											<tr class="space-row">
 												<th>Vehicle Registration Number:</th>

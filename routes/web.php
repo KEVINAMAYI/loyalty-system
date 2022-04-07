@@ -58,9 +58,9 @@ Route::group(['middleware' => 'staff'], function () {
     Route::get('/delete-staff/{user}', [CustomerController::class, 'deleteStaff']);
 
 
-    Route::post('/customer-enrollment',  [CustomerController::class, 'enrollCustomer']);
+    /* Route::post('/customer-enrollment',  [CustomerController::class, 'enrollCustomer']);
     Route::post('/upload-vehicle-image', [VehicleController::class, 'uploadCarImage']);
-    Route::post('/customer-data', [CustomerController::class, 'getCustomerData']);
+    Route::post('/customer-data', [CustomerController::class, 'getCustomerData']); */
 });
 
 //Corporate Customer middleware --> can only be acccessed by users with the role of Corporate

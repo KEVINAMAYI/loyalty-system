@@ -159,6 +159,7 @@ class CustomerController extends Controller
      */
     public function enrollCustomer(Request $request)
     {
+        // dd($request->all);
 
         //validate customer enrollment details
         $request->validate([
@@ -169,6 +170,7 @@ class CustomerController extends Controller
             'phone_number' => 'required|regex:(^07)|digits:10',
             'id_number' => 'required|min:7|max:8',
             'category' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'string', 'max:255'],
             'regno' => ['required', 'string', 'max:255'],
         ]);
 
@@ -197,6 +199,7 @@ class CustomerController extends Controller
             'customer_id' =>  1,
             'vehicle_category' => $data['category'],
             'vehicle_registration' => $data['regno'],
+            'vehicle_type' => $data['type'],
             'image_url' => $fileName
 
         ]);

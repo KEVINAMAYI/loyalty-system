@@ -14,10 +14,6 @@ class Vehicle extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'customer_id',
-        'vehicle_category',
-        'vehicle_registration',
-        'image_url'
-    ];
+    protected $table = 'vehicles';
+    protected $guarded = ['id'];
 }
