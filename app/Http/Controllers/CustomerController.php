@@ -19,10 +19,9 @@ class CustomerController extends Controller
 
     public function sendConfirmationSMS(Request $request)
     {
-<<<<<<< Updated upstream
 
-        
-        $receiverNumber = "+254".substr($request->phone_number,1);
+
+        $receiverNumber = "+254" . substr($request->phone_number, 1);
         $message = "Sales Completes successfully, Thanks and shop with us again";
         $data = $request->all();
 
@@ -37,26 +36,13 @@ class CustomerController extends Controller
             'amount_payable' => $data['amount_payable'],
             'amount_paid' => $data['amount_paid']
         ]);
-        
+
         //send a confirmation SMS 
-        try {
-            
-            $twilio = new Client("AC8c2b5689cdba26cc2f64572c6af30c54", "174622fda8c3e01753fede3ca61a77e6");             
-            $message = $twilio->messages->create( $receiverNumber, // to 
-                                                    array(  
-                                                        "messagingServiceSid" => "MGa35420a48487485b2f663daf4a7e9033",      
-                                                        "body" => $message 
-                                                    ) 
-                                                 ); 
-        return  response()->json([
-           'data' => 'success',
-        ]);
-=======
         $receiverNumber = "+254" . substr($request->phone_number, 1);
         $message = "Sales Completes successfully, Thanks and shop with us again";
 
+
         try {
->>>>>>> Stashed changes
 
             $twilio = new Client("AC8c2b5689cdba26cc2f64572c6af30c54", "9cbc54dfff1e0dfab344fbc571995486");
             $message = $twilio->messages->create(
@@ -78,25 +64,26 @@ class CustomerController extends Controller
     }
 
 
-     /**
+
+    /**
      * add a new staff and staff dashboard.
      *
      * @return "view"
      */
     public function addNewStaff(Request $request)
-    {          
+    {
         //validate new staff details
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            
-         ]);
-         
-         $data = $request->all();
 
-<<<<<<< Updated upstream
-         User::create([
+        ]);
+
+        $data = $request->all();
+
+
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -104,78 +91,66 @@ class CustomerController extends Controller
         ]);
 
 
-        session()->flash('success','Staff Added Successfully');
+        session()->flash('success', 'Staff Added Successfully');
         return redirect()->back();
-
-     
     }
 
 
-    
-    
 
-     /**
+
+
+    /**
      * delet a staff.
      *
      * @return "view"
      */
     public function deleteStaff(User $user)
-    {          
-        
-        $user->delete();
-        session()->flash('success','Staff Deleted Successfully');
-        return redirect()->back();
+    {
 
+        $user->delete();
+        session()->flash('success', 'Staff Deleted Successfully');
+        return redirect()->back();
     }
 
-     /**
+    /**
      * add a new staff and staff dashboard.
      *
      * @return "view"
      */
     public function showStaffs()
-    {          
-        
-        $staffs = User::where('role','=','Staff')->get();
+    {
+
+        $staffs = User::where('role', '=', 'Staff')->get();
         return view('staff.users')->with(['staffs' => $staffs]);
-     
     }
 
 
 
-     /**
+    /**
      * add a new staff and staff dashboard.
      *
      * @return "view"
      */
     public function showCustomers()
-    {          
-        
+    {
+
         $customers = Customer::all();
         return view('staff.customers')->with(['customers' => $customers]);
-     
     }
 
 
-     /**
+    /**
      * add a new staff and staff dashboard.
      *
      * @return "view"
      */
     public function deleteCustomer(Customer $customer)
-    {          
-        
+    {
+
         $customer->delete();
-        session()->flash('success','Staff Deleted Successfully');
+        session()->flash('success', 'Staff Deleted Successfully');
         return redirect()->back();
-     
     }
-
-
-
-
-=======
->>>>>>> Stashed changes
 
     /**
      * ennroll a customer and redirect to chose option page.
