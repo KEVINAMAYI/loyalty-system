@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Wizard-v1</title>
+	<title>Make Sale</title>
     <base href="{{ URL::to('/') }}">
 
 	<!-- Mobile Specific Metas -->
@@ -18,19 +18,25 @@
 	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
 	<!-- Main Style Css -->
     <link rel="stylesheet" href="/front-end/css/style.css"/>
-
+	<link rel="icon"  href="front-end/images/logo.jpg">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-	<div style=" text-align:center; padding-top:50px; width:100%; height:300px;">
-		<img src="front-end/images/logo.jpg" width="200" height="200" alt="">
+	 <div style="padding-left:20px; padding-top:20px;">		<img src="front-end/images/logo.jpg" width="50" height="50" alt="">
+    </div>
+	<div style="margin-top:-50px; text-align:center; padding-top:50px; width:100%; margin-bottom:20px;">
+						<h3>Reedem Rewards and Enjoy Purchase</h3>
+
 	</div>
     <div style="margin-top:-170px;" class="page-content">
 		<div class="wizard-v1-content" style="border:solid #f9a14d 2px;">
 			<div class="wizard-form">
 		        <form class="form-register" id="form-register" action="#" method="post">
 					<div style="text-align:center; margin-bottom:30px; margin-top:30px;">
-						<h1>Reedem Rewards and Enjoy Purchase</h2>
+						<div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
+							<ul class="list-group" id="errorsul">
+							</ul>
+						</div>  
 					</div>
 		        	<div  id="form-total">
 		        		 <!-- SECTION 1 -->
@@ -45,62 +51,48 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Customer ID/Phone*</label>
-										<input type="text" id="id-number" style="height:55px;" placeholder="34643511" class="form-control">
-									</div>
-									<div class="form-holder form-holder-2">
-										<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Vehicle Reg*</label>
-										<input type="text" id="vehicle-reg" style="height:55px;" placeholder="KAG 445W" class="form-control">
+										<input type="text" id="id-number" style="height:55px;" placeholder="34643511" class="form-control" required>
 									</div>
 									<div class="form-holder form-holder-2">
 										<button type="button" id="databtn" style="background-color:#f9a14d; border:0px; width:100%; height:55px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">Get Info</button>
 									</div>
 								</div>
-								<div class="form-row table-responsive">
+								<div id="cutomer-details" class="form-row table-responsive">
 									<table class="table">
 										<tbody>
 											<tr class="space-row">
-												<th>First Name:</th>
-												<td id="firstname-val">Kevin</td>
+									
 											</tr>
 											<tr class="space-row">
-												<th>Last Name:</th>
-												<td id="lastname-val">Amayi</td>
+											
 											</tr>
 										
 											<tr class="space-row">
-												<th>Phone Number:</th>
-												<td id="phonenumber-val">0795704301</td>
+											
 											</tr>
 											<tr class="space-row">
-												<th>ID Number:</th>
-												<td id="idnumber-val">34643511</td>
+											
 											</tr>
 											<tr class="space-row">
-												<th>Email:</th>
-												<td id="email-val">kevinamayi20@gmail.com</td>
+												
 											</tr>
 											<tr class="space-row">
-												<th>Vehicle Make:</th>
-												<td id="make-val">Toyota</td>
+												
 											</tr>
 											<tr class="space-row">
-												<th>Vehicle Model:</th>
-												<td id="model-val">Morano</td>
+												
 											</tr>
 											<tr class="space-row">
-												<th>Vehicle Registration Number:</th>
-												<td id="regno-val">KAG 453</td>
+												
 											</tr>
                                             <tr class="space-row">
-												<th>Rewards Available</th>
-												<td id="intial-rewards-val">KSH 5000</td>
+											
 											</tr>
 										</tbody>
 									</table>
 								</div>
 								<div class="col-lg-12 col-md-12 col-sm-12">
-									<p style="color:white; font-weight:bold; margin-bottom:15px;">Vehicle Picture</p>
-									<img src="front-end/images/car.jpg" style="max-width:100%; max-height:500px;" alt="">									
+																	
 								</div>
 							</div>
 			            </section>
@@ -116,16 +108,16 @@
 									<div class="form-holder form-holder-2">
 										<label for="card-type">Product</label>
 										<select name="make" id="product" class="form-control">
-											<option value="" selected>Diesel</option>
-											<option value="Honda">Petrol</option>
-											<option value="Mitsubishi">Lead</option>
+											<option value="Diesel" selected>Diesel</option>
+											<option value="Petrol">Petrol</option>
+											
 										</select>
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
-										<label for="firstname">Total Amount in Kenyan Shillings*</label>
-										<input type="number" id="total_amount" placeholder="40000" class="form-control" id="firstname" name="firstname">
+										<label for="firstname">Enter Amount (KES)</label>
+										<input type="number" id="total_amount" placeholder="Enter Amount" class="form-control" id="firstname" name="firstname">
 									</div>
 								</div>
 								@if($rewards_details[0]->status == 'enabled')
@@ -146,8 +138,8 @@
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
-										<label for="firstname">Reward to Use in Kenyan Shillings*</label>
-										<input type="number"  placeholder="40000" class="form-control" id="rewards" name="firstname">
+										<label for="firstname">Reward to Use (Ksh)</label>
+										<input type="number"  placeholder="Enter Amount" class="form-control" id="rewards" name="firstname">
 									</div>
 								</div>
 								@else
@@ -168,25 +160,25 @@
 								</div>
 								<div class="form-row" style="display:none;">
 									<div class="form-holder form-holder-2">
-										<label for="firstname">Reward to Use in Kenyan Shillings*</label>
-										<input type="number"  placeholder="40000" class="form-control" id="rewards" name="firstname">
+										<label for="firstname">Reward to Use(Ksh)</label>
+										<input type="number"  placeholder="Enter Amount" class="form-control" id="rewards" name="firstname">
 									</div>
 								</div>
 								@endif
-								<p style="margin-left:10px; margin-bottom:20px; margin-top:20px; font-weight:bold; color:white;">Total Amount - Rewards ( KSH 400 ) </p>
+								<p style="margin-left:10px; margin-bottom:20px; margin-top:20px; font-weight:bold; color:white;">Amount Payable </p>
                                 <div class="form-row" style="text-align:center;">
 									<div class="form-holder">
-									<button id="amountpayablebtn" type="button" style="background-color:#f9a14d; border:0px; width:100%; height:55px;" class="btn btn-primary btn-lg btn-block">Calculate Amount Payable</button>
+									<button id="amountpayablebtn" type="button" style="font-size:16px; background-color:#f9a14d; border:0px; width:100%;  padding-top:20px; padding-bottom:20px;" class="btn btn-primary btn-lg btn-block">Calculate Amount Payable</button>
 									</div>
 								</div>
 								<div class="form-row" style="margin-top:30px;">
 									<div class="form-holder">
-										<label for="password">Amount Payable*</label>
-										<input type="text" placeholder="0722428401" class="form-control" id="amount_payable" name="phonenumber"  >
+										<label for="password">Amount Payable (KSH)*</label>
+										<input type="text" placeholder="Enter Amount" class="form-control" id="amount_payable" name="phonenumber"  >
 									</div>
 									<div class="form-holder">
-										<label for="password">Amount Paid*</label>
-										<input type="text" placeholder="0722428401" class="form-control" id="amount_paid" name="phonenumber"  >
+										<label for="password">Amount Paid (KSH)*</label>
+										<input type="text" placeholder="Enter Amount" class="form-control" id="amount_paid" name="phonenumber"  >
 									</div>
 								</div>
 								<input type="hidden" name="reward_percentage" id="reward_percentage" value={{ $rewards_details[0]->percentage }}>
@@ -205,48 +197,48 @@
 									<table class="table">
 										<tbody>
 											<tr class="space-row">
-												<th>First Name:</th>
-												<td id="sales-firstname-val"></td>
+												<th style="border:0px;">First Name:</th>
+												<td id="sales-firstname-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Last Name:</th>
-												<td id="sales-lastname-val"></td>
+												<th style="border:0px;">Last Name:</th>
+												<td id="sales-lastname-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Phone Number:</th>
-												<td id="sales-phonenumber-val"></td>
+												<th style="border:0px;">Phone Number:</th>
+												<td id="sales-phonenumber-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>ID Number:</th>
-												<td id="sales-idnumber-val"></td>
+												<th style="border:0px;">ID Number:</th>
+												<td id="sales-idnumber-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Email:</th>
-												<td id="sales-email-val"></td>
+												<th style="border:0px;">Email:</th>
+												<td id="sales-email-val" style="border:0px;"></td>
 											</tr> 
 											<tr class="space-row">
-												<th>Vehicle Category:</th>
-												<td id="sales-vehicle-category"></td>
+												<th style="border:0px;">Vehicle Category:</th>
+												<td id="sales-vehicle-category" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Vehicle Registration:</th>
-												<td id="sales-vehicle-registration"></td>
+												<th style="border:0px;">Vehicle Registration:</th>
+												<td id="sales-vehicle-registration" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Amount Payable:</th>
-												<td id="sales-amount-payable"></td>
+												<th style="border:0px;">Amount Payable:</th>
+												<td id="sales-amount-payable" style="border:0px;"></td>
 											</tr>
                                             <tr class="space-row">
-												<th>Amount Paid:</th>
-												<td id="sales-amount-paid"></td>
+												<th style="border:0px;">Amount Paid:</th>
+												<td id="sales-amount-paid" style="border:0px;"></td>
 											</tr>
                                             <tr class="space-row">
-												<th>Rewards Used:</th>
-												<td id="sales-reward"></td>
+												<th style="border:0px;">Rewards Used:</th>
+												<td id="sales-reward" style="border:0px;"></td>
 											</tr>
                                             <tr class="space-row">
-												<th>Rewards Balance:</th>
-												<td id="sales-reward-balance"></td>
+												<th style="border:0px;">Rewards Balance:</th>
+												<td id="sales-reward-balance" style="border:0px;"></td>
 											</tr>
 										</tbody>
 									</table>

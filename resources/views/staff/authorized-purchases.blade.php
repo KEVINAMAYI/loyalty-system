@@ -6,7 +6,7 @@
         navbar-scroll="true">
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
-                <h6 class="font-weight-bolder mb-0">Cooperate Customer</h6>
+                <h6 class="font-weight-bolder mb-0">Cooperate Customers</h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -49,175 +49,74 @@
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                First Name</th>
+                                                Name</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Last Name</th>
+                                                Id Number</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Phonenumber</th>
+                                                Vehicle</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                ID Number</th>
+                                                Amount</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Action</th>
+                                                Receipt Number
+                                            </th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Gender</th>
+                                                Company Name</th>
+                                             <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Status
+                                            </th>
+   
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        <tr>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">34643511</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">kevinamayi@gmail.com</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                                                <span style="background-color:green;" class="badge badge-sm">complete</span>
-                                                <span style="background-color: #4881c0;" class="badge badge-sm">edit</span>
-                                                <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                            </td>
-                                        </tr>
+                                        @foreach( $authorized_purchases as $authorized_purchase) 
 
-                                        <tr>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">Musungu</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">34643511</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">kevinmusungu@gmail.com</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                                                <span class="badge badge-sm bg-primary">uncomplete</span>
-                                                <span style="background-color: #4881c0;" class="badge badge-sm">edit</span>
-                                                <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $authorized_purchase[0][0]->first_name }}   {{ $authorized_purchase[0][0]->last_name }}</p>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <span class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[0][0]->id_number }}</span>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <span class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[1][0]->vehicle_type }}  {{ $authorized_purchase[1][0]->vehicle_registration }}</span>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->amount }}</span>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->receipt_number }}
+                                                    </span>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->name }}
+                                                    </span>                                                
+                                                </td>
+                                                @if( $authorized_purchase[2]->status == 'complete' )
 
-                                        <tr>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">Otwane</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">34643511</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">kevinotwane@gmail.com</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                                                <span class="badge badge-sm bg-primary">uncomplete</span>
-                                                <span style="background-color: #4881c0;" class="badge badge-sm">edit</span>
-                                                <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                            </td>
-                                        </tr>
+                                                <td class="align-middle text-center text-sm">
+                                                  <span class="badge badge-sm bg-gradient-success">{{ $authorized_purchase[2]->status }}</span>
+                                                </td>
 
-                                        <tr>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">Mundoi</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">34643511</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">kevinuonqqdi@gmail.com</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                                                <span style="background-color:green;" class="badge badge-sm">complete</span>
-                                                <span style="background-color: #4881c0;" class="badge badge-sm">edit</span>
-                                                <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                            </td>
-                                        </tr>
+                                                @else
 
-                                        <tr>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Fidel</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">34643511</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">kevinfidqqqqe@gmail.com</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                                                <span class="badge badge-sm bg-primary">uncomplete</span>
-                                                <span style="background-color: #4881c0;" class="badge badge-sm">edit</span>
-                                                <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                            </td>
-                                        </tr>
+                                                <td class="align-middle text-center text-sm">
+                                                  <span class="badge badge-sm bg-gradient-warning">{{ $authorized_purchase[2]->status }}</span>
+                                                </td>
 
-                                        <tr>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Donald</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">Kipkoech</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="text-secondary text-xs font-weight-bold">34643511</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">donaldqqqqq@gmail.com</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-secondary">more info</span>
-                                                <span class="badge badge-sm bg-primary">uncomplete</span>
-                                                <span style="background-color: #4881c0;" class="badge badge-sm">edit</span>
-                                                <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                            </td>
-                                        </tr>
+                                                @endif
+                                            </tr>
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

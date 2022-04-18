@@ -21,6 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('id_number');
             $table->string('email');
             $table->string('gender');
+            $table->string('type')->nullable();
             $table->integer('rewards');
             $table->timestamps();
         });

@@ -20,7 +20,7 @@
         <li class="nav-item">
           <a class="nav-link  " href="/users">
             <i class="fa-solid fa-users"></i>
-            <span class="nav-link-text ms-1">Users</span>
+            <span class="nav-link-text ms-1">Staff</span>
           </a>
         </li>
         <li class="nav-item">
@@ -45,6 +45,12 @@
           <a class="nav-link  " href="/rewards">
             <i class="fa-solid fa-trophy"></i>
             <span class="nav-link-text ms-1">Rewards</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  " href="/choose-option">
+            <i class="fa-solid fa-hand"></i>
+            <span class="nav-link-text ms-1">Choose Option</span>
           </a>
         </li>
          <li class="nav-item">

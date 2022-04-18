@@ -30,7 +30,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="/cooperate-customer-rewards">
+          <a class="nav-link  " href="/cooperate-customer-authorizepurchase">
             <i class="fa-solid fa-lock-open"></i>
             <span class="nav-link-text ms-1">Authorize Fuel Purchase</span>
           </a>

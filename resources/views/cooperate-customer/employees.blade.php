@@ -37,6 +37,26 @@
         <!-- End Navbar -->
         <div class="container-fluid py-4">
 
+            {{-- display success message on a successful action --}}
+            @if(Session::has('success'))
+            <div class="alert alert-success" role="alert">
+            {{ Session::get('success') }}
+            </div>
+            @endif
+
+            {{-- display error on top of the form --}}
+            @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul class="list-group">
+                    @foreach ($errors->all() as $error )
+                    <li class="list-group-item">
+                    {{ $error }}  
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
             <button type="button" style="background-color:#f9a14d;" class="btn btn-primary btn-md"
                 data-bs-toggle="modal" data-bs-target="#employees"><i class="fa-solid fa-plus"></i>
                 <span style="margin-left:5px;">Add Employee</span></button>
@@ -76,168 +96,38 @@
                                         </thead>
                                         <tbody>
 
+                                            @foreach( $employees as $employee)
+                                            
                                             <tr>
                                                 <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">Kevin</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $employee->first_name }}</p>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">0795704301</span>
+                                                    <span class="text-secondary text-xs font-weight-bold">{{ $employee->last_name }}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">34643511</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $employee->phone_number }}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">kevinamayi@gmail.com</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $employee->id_number }}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#employeesedit">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold">{{ $employee->email }}</span>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <a href="" id="{{ $employee->id  }}" class="showeditmodalbtn">
                                                         <span style="background-color:#3875b6;"
                                                             class="badge badge-sm">edit</span></a>
-                                                    <span class="badge badge-sm bg-gradient-danger">delete</span>
+                                                    <a href="/delete-cooperate-employee/{{ $employee->id }}" class="badge badge-sm bg-gradient-danger">delete</a>
                                                 </td>
                                             </tr>
 
-                                            <tr>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-secondary text-xs font-weight-bold">Musungu</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">34643511</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">kevinmusungu@gmail.com</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#employeesedit">
-                                                        <span style="background-color:#3875b6;"
-                                                            class="badge badge-sm">edit</span></a>
-                                                    <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                                </td>
-                                            </tr>
+                                            @endforeach
 
-                                            <tr>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-secondary text-xs font-weight-bold">Otwane</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">34643511</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">kevinotwane@gmail.com</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#employeesedit">
-                                                        <span style="background-color:#3875b6;"
-                                                            class="badge badge-sm">edit</span></a>
-                                                    <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">Kevin</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-secondary text-xs font-weight-bold">Mundoi</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">34643511</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">kevinuonqqdi@gmail.com</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#employeesedit">
-                                                        <span style="background-color:#3875b6;"
-                                                            class="badge badge-sm">edit</span></a>
-                                                    <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">Fidel</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-secondary text-xs font-weight-bold">Amayi</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">34643511</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">kevinfidqqqqe@gmail.com</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#employeesedit">
-                                                        <span style="background-color:#3875b6;"
-                                                            class="badge badge-sm">edit</span></a>
-                                                    <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">Donald</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">Kipkoech</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">0795704301</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">34643511</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">donaldqqqqq@gmail.com</span>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#employeesedit">
-                                                        <span style="background-color:#3875b6;"
-                                                            class="badge badge-sm">edit</span></a>
-                                                    <span class="badge badge-sm bg-gradient-danger">delete</span>
-                                                </td>
-                                            </tr>
+                                
                                         </tbody>
                                     </table>
                                 </div>
@@ -247,8 +137,10 @@
                 </div>
             </div>
 
-            <!--  Add employees modal -->
+<!--  Add employees modal -->
 <!-- Modal -->
+<form id="form-add-employee"  method="post" action="add-cooperate-employee">
+@csrf
 <div class="modal fade" id="employees" tabindex="-1" aria-labelledby="employees" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -256,103 +148,98 @@
         <h5 class="modal-title" id="exampleModalLabel">Add New Employee</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      
       <div class="modal-body">
-      <form class="form-register" id="form-register" action="#" method="post">
         <div class="form-holder form-holder-2 mb-2">
           <label for="regno">First Name</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="Kevin">
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="employee_firstname" id="employee_firstname" placeholder="Kevin" required>
         </div>
-
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Last Name</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="Amayi">
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="employee_lastname" id="employee_lastname" placeholder="Amayi" required>
         </div>
-
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Phone Number</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="0795704301">
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="phone_number"  id="phone_number" placeholder="0795704301" required>
         </div>
-
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">ID Number</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="34643511">
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="id_number"  id="id_number" placeholder="34643511" required>
         </div>
-
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Email</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="kevinamayi20@gmail.com">
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="email" name="email" id="email" placeholder="kevinamayi20@gmail.com" required>
         </div>
-
         <div class="form-holder form-holder-2">
           <label for="card-type">Gender</label>
-          <select name="make" id="make" class="form-control">
-            <option value="" selected>Male</option>
-            <option value="Honda">Female</option>
+          <select name="employee_gender" id="employee_gender" class="form-control" required>
+            <option value="male" selected>Male</option>
+            <option value="female">Female</option>
           </select>
         </div>
-
-      </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button style="background-color:#f9a14d; color:white;" type="button" class="btn">Save changes</button>
+        <button style="background-color:#f9a14d; color:white;" id="addemployeebtn" class="btn">Add Employee</button>
       </div>
     </div>
   </div>
 </div>
+</form>
+
 
 <!--  Edit employees modal -->
 <!-- Modal -->
+<form id="form-add-employee"  method="post" action="/edit-employee-data">
+  @csrf
 <div class="modal fade" id="employeesedit" tabindex="-1" aria-labelledby="employeesedit" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Employee</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Employee</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form class="form-register" id="form-register" action="#" method="post">
         <div class="form-holder form-holder-2 mb-2">
           <label for="regno">First Name</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="Kevin">
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="edit_first_name"  id="edit_first_name" placeholder="Kevin" required>
         </div>
 
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Last Name</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="Amayi">
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="edit_last_name"  id="edit_last_name" placeholder="Amayi" required>
         </div>
 
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Phone Number</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="0795704301">
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="edit_phone_number"  id="edit_phone_number" placeholder="0795704301" required>
         </div>
 
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">ID Number</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="34643511">
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="edit_id_number" id="edit_id_number" placeholder="34643511" required>
         </div>
 
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Email</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="kevinamayi20@gmail.com">
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="email" name="edit_email" id="edit_email" placeholder="kevinamayi20@gmail.com" required>
         </div>
 
         <div class="form-holder form-holder-2">
           <label for="card-type">Gender</label>
-          <select name="make" id="make" class="form-control">
-            <option value="" selected>Male</option>
-            <option value="Honda">Female</option>
+          <select name="edit_gender" id="edit_gender" class="form-control" required>
+            <option value="male" selected>Male</option>
+            <option value="female">Female</option>
           </select>
         </div>
-
-      </form>
       </div>
       <div class="modal-footer">
+        <input type="hidden" name="employee_edit_id" id="employee_edit_id">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button style="background-color:#f9a14d; color:white;" type="button" class="btn">Save changes</button>
+        <button type="submit" style="background-color:#f9a14d; color:white;" type="button" class="btn">Edit Employee</button>
       </div>
     </div>
   </div>
 </div>
-
+</form>
 @endsection

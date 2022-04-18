@@ -21,6 +21,7 @@ class CreateSalesTable extends Migration
             $table->string('vehicle_registration');
             $table->string('product');
             $table->string('rewards_used');
+            $table->string('rewards_awarded');
             $table->integer('amount_payable');
             $table->integer('amount_paid');
             $table->timestamps();

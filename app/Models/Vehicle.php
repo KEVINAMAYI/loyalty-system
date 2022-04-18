@@ -17,7 +17,9 @@ class Vehicle extends Model
     protected $fillable = [
         'customer_id',
         'vehicle_category',
+        'vehicle_type',
         'vehicle_registration',
+        'ownership',
         'image_url'
        ];
 }

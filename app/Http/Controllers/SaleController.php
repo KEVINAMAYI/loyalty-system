@@ -22,6 +22,23 @@ class SaleController extends Controller
     }
 
 
+     /**
+     * 
+     *
+     * @return vkiew
+     */
+    public function getSaleData(Sale $sale)
+    {   
+
+        $sale_data = $sale->where('id','=',$sale->id)->get();
+
+        return  response()->json([
+            'sale_data' => $sale_data,
+            ]);
+
+    }
+
+
     /**
      * Get all sales from the database.
      *

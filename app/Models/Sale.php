@@ -21,8 +21,8 @@ class Sale extends Model
         'vehicle_registration',
         'product',
         'rewards_used',
+        'rewards_awarded',
         'amount_payable',
-        'amount_paid'
-      
+        'amount_paid'   
     ];
 }

@@ -42,16 +42,6 @@ class LoginController extends Controller
     }
 
 
-     //redirect user back to previous page before login
-    //  public function showLoginForm()
-    //  {
-    //      if(!session()->has('url.intended'))
-    //      {
-    //          session(['url.intended' => url()->previous()]);
-    //      }
-    //      return view('auth.login');    
-    //  }
-
     //method called when user is authenticated
     protected function authenticated()
     {

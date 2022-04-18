@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Wizard-v1</title>
+	<title>Enroll-Customer</title>
     <base href="{{ URL::to('/') }}">
 
 	<!-- Mobile Specific Metas -->
@@ -15,12 +15,16 @@
 	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
 	<!-- Main Style Css -->
     <link rel="stylesheet" href="/front-end/css/style.css"/>
+	<link rel="icon"  href="front-end/images/logo.jpg">
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-	<div style=" text-align:center; padding-top:50px; width:100%; height:300px;">
-		<img src="front-end/images/logo.jpg" width="200" height="200" alt="">
+	 <div style="padding-left:20px; padding-top:20px;">		<img src="front-end/images/logo.jpg" width="50" height="50" alt="">
+    </div>
+    	<div style="margin-top:-50px; text-align:center; padding-top:50px; width:100%; margin-bottom:20px;">
+						<h3>Enroll to Loyalty and start enjoying free Rewards</h3>
+
 	</div>
     <div style="margin-top:-170px;" class="page-content">
 		<div class="wizard-v1-content" style="border:solid #f9a14d 2px;">
@@ -28,7 +32,10 @@
 			<div class="wizard-form" >
 		        <form class="form-register" id="form-register" action="#" method="post">
 					<div style="text-align:center; margin-bottom:30px; margin-top:30px;">
-						<h1>Enroll to Loyalty</h2>
+						<div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
+							<ul class="list-group" id="errorsul">
+							</ul>
+						</div>  
 					</div>
 		        	<div id="form-total" >
 		        		<!-- SECTION 1 -->
@@ -96,17 +103,61 @@
 									<div class="form-holder form-holder-2">
 										<label for="card-type">Vehicle Category</label>
 										<select name="category" id="category" class="form-control">
-											<option value="" selected>Toyota</option>
-											<option value="Honda">Honda</option>
-											<option value="Mitsubishi">Mitsubishi</option>
-											<option value="Isuzu">Isuzu</option>
-											<option value="Ford">Ford</option>
+											<option value="sedan">Sedan</option>
+											<option value="coupe">Coupe</option>
+											<option value="hatchback">Hatchback</option>
+											<option value="station-wagon">Station Wagon</option>
+											<option value="suv">SUV</option>
+											<option value="pick-up">Pick up</option>
+											<option value="van">Van</option>
+											<option value="mini-van">Mini Van</option>
+											<option value="wagon">Wagon</option>
+											<option value="convertible">Convertible</option>
+											<option value="bus">Bus</option>
+											<option value="truck">Truck</option>
+										</select>
+									</div>
+									<div class="form-holder form-holder-2">
+										<label for="card-type">Vehicle Type</label>
+										<select name="type" id="type" class="form-control">
+											<option value="audi">Audi</option>
+											<option value="bmw">BMW</option>
+											<option value="chevrolet">Chevrolet</option>
+											<option value="chrysler">Chrysler</option>
+											<option value="citroen">Citroën</option>
+											<option value="daihatsu">Daihatsu</option>
+											<option value="eicher">EICHER</option>
+											<option value="ford">Ford</option>
+											<option value="hino">HINO</option>
+											<option value="honda">Honda</option>
+											<option value="hyundai">Hyundai</option>
+											<option value="jaguar">Jaguar</option>
+											<option value="jeep">Jeep</option>
+											<option value="kia">Kia</option>
+											<option value="land rover">Land Rover</option>
+											<option value="lexus">Lexus</option>
+											<option value="man">Man</option>
+											<option value="maserati">Maserati</option>
+											<option value="mazda">Mazda</option>
+											<option value="mercedes-benz">Mercedes-Benz</option>
+											<option value="mini">MINI</option>
+											<option value="mitsubishi">Mitsubishi</option>
+											<option value="mobius">MOBIUS</option>
+											<option value="nissan">Nissan</option>
+											<option value="peugout">Peugeot</option>
+											<option value="porsche">Porsche</option>
+											<option value="range rover">Range Rover</option>
+											<option value="subaru">Subaru</option>
+											<option value="suzuki">Suzuki</option>
+											<option value="toyota">Toyota</option>
+											<option value="volkswagen">Volkswagen</option>
+											<option value="volvo">Volvo</option>
 										</select>
 									</div>
 								</div>
 								<div class="form-holder form-holder-2">
-									<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Vehicle Reg*</label>
-									<input type="text" placeholder="KAG 445" class="form-control" id="regno" name="regno" required>
+									<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Vehicle Registration Number*</label>
+									<input type="text" placeholder="KDD001Z" class="form-control" id="regno" name="regno" required>
 								</div>
 								<div class="form-row row mt-3">
 									<div class="col-lg-12 col-md-12 col-sm-12">
@@ -116,9 +167,10 @@
 								</div>
 								<div class="form-row" style="margin-top:30px;">
 									<div class="form-holder">
+									    <span style="color:white; font-weight:bold; font-size:18px;"> Take a Photo
 										<input type="file" id="image" name="uploader" id="uploader"                               
 										accept="image/*" 
-										capture="camera" />
+										capture="camera" /></span>
 										</div>
 								</div>
 							</div>
@@ -136,36 +188,36 @@
 									<table class="table">
 										<tbody>
 											<tr class="space-row">
-												<th>First Name:</th>
-												<td id="firstname-val"></td>
+												<th style="border:0px;">First Name:</th>
+												<td id="firstname-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Last Name:</th>
-												<td id="lastname-val"></td>
+												<th style="border:0px;">Last Name:</th>
+												<td id="lastname-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Gender:</th>
-												<td id="gender-val"></td>
+												<th style="border:0px;">Gender:</th>
+												<td id="gender-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Phone Number:</th>
-												<td id="phonenumber-val"></td>
+												<th style="border:0px;">Phone Number:</th>
+												<td id="phonenumber-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>ID Number:</th>
-												<td id="idnumber-val"></td>
+												<th style="border:0px;">ID Number:</th>
+												<td id="idnumber-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Email:</th>
-												<td id="email-val"></td>
+												<th style="border:0px;">Email:</th>
+												<td id="email-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Vehicle Category:</th>
-												<td id="category-val"></td>
+												<th style="border:0px;">Vehicle Category:</th>
+												<td id="category-val" style="border:0px;"></td>
 											</tr>
 											<tr class="space-row">
-												<th>Vehicle Registration Number:</th>
-												<td id="regno-val"></td>
+												<th style="border:0px;">Vehicle Registration Number:</th>
+												<td id="regno-val" style="border:0px;"></td>
 											</tr>
 										</tbody>
 									</table>

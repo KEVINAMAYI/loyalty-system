@@ -99,60 +99,57 @@ $(function(){
         const selectedFile = document.getElementById('image').files[0];
         console.log(selectedFile);
 
-        formData1 = new FormData();
-        formData1.append('vehicle_image',selectedFile);
-        formData1.append('first_name',$('#firstname').val());
-        formData1.append('last_name',$('#lastname').val());
-        formData1.append('gender',$('#gender').val());
-        formData1.append('phone_number',$('#phonenumber').val());
-        formData1.append('id_number',$('#idnumber').val());
-        formData1.append('email',$('#email').val());
-        formData1.append('category',$('#category').val());
-        formData1.append('regno',$('#regno').val());
+        formData = new FormData();
+        formData.append('vehicle_image',selectedFile);
+        formData.append('first_name',$('#firstname').val());
+        formData.append('last_name',$('#lastname').val());
+        formData.append('gender',$('#gender').val());
+        formData.append('phone_number',$('#phonenumber').val());
+        formData.append('id_number',$('#idnumber').val());
+        formData.append('email',$('#email').val());
+        formData.append('category',$('#category').val());
+        formData.append('type',$('#type').val());
+        formData.append('regno',$('#regno').val());
 
         $.ajax({
             type:'post',
             url: "/customer-enrollment",
-            data: formData1,
+            data: formData,
             processData: false,
             contentType: false,
             success: (data) => {
-               console.log(data);
-            },
-            error: function(data){
-               console.log(data);
-             }
-           }).then( function(){
-
-            //store phone number to form data and use to send sms
-           formData = new FormData();
-           formData.append('phone_number',$('#phonenumber').val());
-   
-           $.ajax({
-               type:'post',
-               url: "/send-sms",
-               data: formData,
-               processData: false,
-               contentType: false,
-               success: (data) => {
+                 
+                console.log(data);
                 
                 //display an alert message redirect user back to choose-option page 
                 swal("Success !", "Enrollment completed successfully, A Confirmation message was sent !", "success")
                 .then(() => {
                     location.href = "/choose-option";
                 });
+            },
+            error: function(data){
 
-               },
-               error: function(data){
-   
-                //display an alert message redirect user back to choose-option page 
-                swal("Error !", "Enrollment completed successfully, Confirmation message failed !", "error")
-                    .then(() => {
-                        location.href = "/choose-option";
-                    });            }
-                });
+                    errors = data.responseJSON.errors;
 
-             });
+                    $('#errorz').css("display","block");
+
+                    for(key in errors)
+                    {
+
+                        console.log(errors[key][0]);
+
+                        $('#errorsul').append(`
+                        <li class="list-group-item">
+                            "${errors[key][0]}"
+                        </li>
+                        `)
+
+                    }
+
+                  console.log(data); 
+                  
+             }
+           })
 
          })
 })

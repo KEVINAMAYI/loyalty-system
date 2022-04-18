@@ -21,6 +21,7 @@ class Customer extends Model
         'id_number',
         'email',
         'gender',
+        'type',
         'rewards'
     ];
 

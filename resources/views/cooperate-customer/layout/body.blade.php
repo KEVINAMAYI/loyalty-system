@@ -19,10 +19,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="icon"  href="front-end/images/logo.jpg">
     <title>
-        Soft UI Dashboard by Creative Tim
+        Cooperate Customer Dashboard
     </title>
     <base href="{{ URL::to('/') }}">
 
@@ -59,8 +60,8 @@
                                 document.write(new Date().getFullYear())
                             </script>,
                             made with <i class="fa fa-heart"></i> by
-                            <a href="#" class="font-weight-bold" target="_blank">MasterClass</a>
-                            for a better web.
+                            <a href="#" class="font-weight-bold" target="_blank">OLA PERTROL PREMIUM</a>
+                            for a better petrol services.
                         </div>
                     </div>
                 </div>
@@ -151,181 +152,13 @@
         </div>
     </div>
     <!--   Core JS Files   -->
+    <script src="/front-end/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/js/plugins/chartjs.min.js"></script>
-    <script>
-        var ctx = document.getElementById("chart-bars").getContext("2d");
-
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Sales",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    borderRadius: 4,
-                    borderSkipped: false,
-                    backgroundColor: "#fff",
-                    data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-                    maxBarThickness: 6
-                }, ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 500,
-                            beginAtZero: true,
-                            padding: 15,
-                            font: {
-                                size: 14,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                            color: "#fff"
-                        },
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false
-                        },
-                        ticks: {
-                            display: false
-                        },
-                    },
-                },
-            },
-        });
-
-
-        var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-        var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-        gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-        new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                        label: "Mobile apps",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#cb0c9f",
-                        borderWidth: 3,
-                        backgroundColor: gradientStroke1,
-                        fill: true,
-                        data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                        maxBarThickness: 6
-
-                    },
-                    {
-                        label: "Websites",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#3A416F",
-                        borderWidth: 3,
-                        backgroundColor: gradientStroke2,
-                        fill: true,
-                        data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-                        maxBarThickness: 6
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#b2b9bf',
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#b2b9bf',
-                            padding: 20,
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
-            },
-        });
-    </script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -339,6 +172,130 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+    <script>
+
+        
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+        
+        // show authorized purchase model with coorporate data 
+        $("#authorizepurchasemodelbtn").on('click', function(){
+    
+            $.ajax({
+                type:'get',
+                url: "/get-corporate-data",
+                success: (data) => {
+
+                    //get sale data and show in a model
+                    vehicles = data.vehicles;
+                    employees = data.employees;
+
+                    employees.forEach(employee => {
+                        $('#employees').append(
+                        `<option value="${employee.id}" selected>${employee.first_name}  ${employee.last_name} - ID: ${employee.id_number} </option>`
+                        )
+                      });
+
+                      vehicles.forEach(vehicle => {
+                        $('#vehicles').append(
+                        `<option value="${vehicle.id}" selected>${vehicle.vehicle_type}  ${vehicle.vehicle_registration}</option>`
+                        )
+                      });
+
+
+                      $("#authorize-purchase").modal('show');
+                  
+                },
+                error: function(data){  
+                    
+                      console.log(data);
+                                       
+                    }
+                });
+
+        });
+
+
+        // show modal for editing employee's data with the former data
+        $('.showeditmodalbtn').on('click',function(e){
+
+            e.preventDefault();
+
+            const id = parseInt($(this).attr('id'));
+
+
+            console.log(id);
+
+            $.ajax({
+                type:'get',
+                url: "/get-employee-data/"+id,
+                success: (data) => {
+
+                    employee_data = data.employee;
+
+                   $("#edit_first_name").val(employee_data[0].first_name);
+                   $("#edit_last_name").val(employee_data[0].last_name);
+                   $("#edit_phone_number").val(employee_data[0].phone_number);
+                   $("#edit_id_number").val(employee_data[0].id_number);
+                   $("#edit_email").val(employee_data[0].email);
+                   $("#edit_gender").val(employee_data[0].gender);
+                   $("#employeesedit").modal('show');
+
+                   $('#employee_edit_id').val(id);
+
+                },
+                error: function(data){  
+                    
+                    console.log(data);
+
+                                       
+                 }
+
+                });
+
+        });
+
+        //show modal for editing vehicle with the vehicle data
+        $(".showeditvehiclemodal").on('click',function(e){
+
+            e.preventDefault();
+            const id = parseInt($(this).attr('id'));
+
+            $.ajax({
+                type:'get',
+                url: "/get-vehicle-data/"+id,
+                success: (data) => {
+
+                    vehicle_data = data.vehicle;
+
+                   $("#edit_vehicle_category").val(vehicle_data[0].vehicle_category);
+                   $("#edit_vehicle_type").val(vehicle_data[0].vehicle_type);
+                   $("#edit_vehicle_registration").val(vehicle_data[0].vehicle_registration);
+                   $("#vehiclesedit").modal('show');
+
+                   $('#vehicle_edit_id').val(id);
+
+
+
+                },
+                error: function(data){  
+                    
+                    console.log(data);
+
+                                       
+                 }
+
+                });
+
+        });
+
+
+    </script>
+  
 </body>
 
 </html>

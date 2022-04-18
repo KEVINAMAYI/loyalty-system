@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V3</title>
+	<title>Choose Option</title>
     <base href="{{ URL::to('/') }}">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="/front-end/images/icons/favicon.ico"/>
+   <link rel="icon"  href="front-end/images/logo.jpg">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/front-end/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->

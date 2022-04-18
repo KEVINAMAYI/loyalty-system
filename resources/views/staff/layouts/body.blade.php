@@ -21,9 +21,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="76x76" href="staff/assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="staff/assets/img/favicon.png">
+    <link rel="icon"  href="front-end/images/logo.jpg">
     <title>
-        Soft UI Dashboard by Creative Tim
+        Staff Dashboard
     </title>
     <base href="{{ URL::to('/') }}">
 
@@ -62,7 +62,7 @@
                             </script>,
                             made with <i class="fa fa-heart"></i> by
                             <a href="#" class="font-weight-bold" target="_blank">OLA PETROL PREMIUM</a>
-                            for a better petrol servive.
+                            for a better petrol services.
                         </div>
                     </div>
                 </div>
@@ -222,176 +222,6 @@
     <script src="staff/assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="staff/assets/js/plugins/chartjs.min.js"></script>
     <script>
-        var ctx = document.getElementById("chart-bars").getContext("2d");
-
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Sales",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    borderRadius: 4,
-                    borderSkipped: false,
-                    backgroundColor: "#fff",
-                    data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-                    maxBarThickness: 6
-                }, ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 500,
-                            beginAtZero: true,
-                            padding: 15,
-                            font: {
-                                size: 14,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                            color: "#fff"
-                        },
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false
-                        },
-                        ticks: {
-                            display: false
-                        },
-                    },
-                },
-            },
-        });
-
-
-        var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-        var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-        gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-        new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                        label: "Mobile apps",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#cb0c9f",
-                        borderWidth: 3,
-                        backgroundColor: gradientStroke1,
-                        fill: true,
-                        data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                        maxBarThickness: 6
-
-                    },
-                    {
-                        label: "Websites",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#3A416F",
-                        borderWidth: 3,
-                        backgroundColor: gradientStroke2,
-                        fill: true,
-                        data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-                        maxBarThickness: 6
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#b2b9bf',
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#b2b9bf',
-                            padding: 20,
-                            font: {
-                                size: 11,
-                                family: "Open Sans",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
-            },
-        });
-    </script>
-    <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
             var options = {
@@ -411,7 +241,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
 
         //jQuery listen for checkbox change
         $("#rewards_checkbox").change(function() {
@@ -468,6 +297,42 @@
             }
         });
 
+        $('.editstaff').on('click',function(){
+
+            const id = parseInt($(this).attr("id"));
+            $("#staffid").val(id)
+
+            formData = new FormData();
+            formData.append('id',id);
+            
+            $('#edit-staff').modal('show');
+
+            $.ajax({
+                type:'post',
+                url: "/get-staff-data/"+id,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: (data) => {
+
+                    //get sale data and show in a model
+                    staff_data = data.user_data;
+
+                    console.log(data);
+
+                    $("#staffname").val(staff_data[0].name);
+                    $("#staffemail").val(staff_data[0].email);
+                },
+                error: function(data){
+                    
+                      console.log(data);
+                                       
+                    }
+                });
+
+
+
+        });
 
         //when the reward button is clicked
         $('#rewardpass').on('click',function(event){
@@ -502,26 +367,32 @@
         });
 
 
-        //retain the reward status when loading the page
-        (function(){
-                $.ajax({
+        //get specific sales data 
+        $(".moresalesdetails").on('click',function(){
+        
+            const id = parseInt($(this).attr("id"));
+
+            console.log(id);
+
+            $.ajax({
                 type:'get',
-                url: "get-status",
+                url: "/get-sale-data/"+id,
                 success: (data) => {
 
-                       
-                    if(data.reward[0].status == 'enabled')
-                    {
+                    //get sale data and show in a model
+                    sale_data = data.sale_data;
+                    console.log(sale_data);
 
-                        $('#rewards_checkbox').prop('checked',true);
-                    }
-                    else
-                    {
-
-                        $('#rewards_checkbox').prop('checked',false);
-
-
-                    }
+                    $("#firstname").text(sale_data[0].first_name);
+                    $("#lastname").text(sale_data[0].last_name);
+                    $("#phonenumber").text(sale_data[0].phone_number);
+                    $("#vehiclereg").text(sale_data[0].vehicle_registration);
+                    $("#product").text(sale_data[0].product);
+                    $("#rewards").text(sale_data[0].rewards_used);
+                    $("#amountpayable").text(sale_data[0].amount_payable);
+                    $("#amountpaid").text(sale_data[0].amount_paid);
+                    $("#date").text(sale_data[0].created_at);
+                    $('#sales-details').modal('show');
 
 
                 },
@@ -530,8 +401,244 @@
                       console.log(data);
                                        
                     }
-                    });
-        })();
+                });
+
+         
+
+        });
+
+
+     //get specific sales data 
+     $(".morecustomerdetails").on('click',function(){
+        
+        const id = parseInt($(this).attr('id'));
+
+        console.log(id);
+
+        $.ajax({
+            type:'get',
+            url: "/get-customer-data/"+id,
+            success: (data) => {
+
+                console.log(data); 
+
+                // get sale data and show in a model
+                customer_data = data.customer_data;
+
+                $("#firstname").text(customer_data[0].first_name);
+                $("#lastname").text(customer_data[0].last_name);
+                $("#phonenumber").text(customer_data[0].phone_number);
+                $("#idnumber").text(customer_data[0].id_number);
+                $("#email").text(customer_data[0].email);
+                $("#rewards").text(customer_data[0].rewards);
+                $("#gender").text(customer_data[0].gender);
+                $('#customer-details').modal('show');
+
+            },
+            error: function(data){
+                
+                  console.log(data);
+                                   
+                }
+            });
+
+     
+
+    });
+
+
+    
+
+    //edit customer details for editing
+     $(".editcustomerbtn").on('click',function(){
+        
+        const id = parseInt($(this).attr('id'));
+        $("#customerid").val(id);
+
+        console.log(id);
+
+        $.ajax({
+            type:'get',
+            url: "/get-customer-data/"+id,
+            success: (data) => {
+
+                console.log(data); 
+
+                // get sale data and show in a model
+                customer_data = data.customer_data;
+
+                $("#first_name").val(customer_data[0].first_name);
+                $("#last_name").val(customer_data[0].last_name);
+                $("#phone_number").val(customer_data[0].phone_number);
+                $("#id_number").val(customer_data[0].id_number);
+                $("#edit_email").val(customer_data[0].email);
+                $("#edit_rewards").val(customer_data[0].rewards);
+                $("#edit_gender").val(customer_data[0].gender);
+                $('#edit-customer-modal').modal('show');
+
+            },
+            error: function(data){
+                
+                  console.log(data);
+                                   
+                }
+            });
+
+    });
+
+
+    //send edit customer details for editing
+    $("#getcustomerdatabtn").on('click',function(){
+
+        const id = $("#customerid").val();
+
+        formData = new FormData
+        const first_name = $("#first_name").val()
+        const last_name = $("#last_name").val();
+        const phone_number = $("#phone_number").val()
+        const id_number = $("#id_number").val()
+        const email = $("#edit_email").val()
+        const rewards = $("#edit_rewards").val()
+        const gender = $("#edit_gender").val()
+
+        formData.append('first_name',first_name);
+        formData.append('last_name',last_name);
+        formData.append('phone_number',phone_number);
+        formData.append('id_number',id_number);
+        formData.append('email',email);
+        formData.append('rewards',rewards);
+        formData.append('gender',gender);
+        formData.append('id',id);
+
+        $.ajax({
+            type:'post',
+            url: "/edit-customer/"+id,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success: (data) => {
+
+                $('#edit-customer-modal').modal('hide');
+                swal("Good job!", "Customer details edited successfully", "success").then(() => {
+                          location.reload()
+                        });
+
+            },
+            error: function(data){
+
+                 errors = data.responseJSON.errors;
+
+                 $('#errorz').css("display","block");
+
+                  for(key in errors)
+                  {
+
+                     console.log(errors[key][0]);
+
+                     $('#errorsul').append(`
+                     <li class="list-group-item">
+                        "${errors[key][0]}"
+                      </li>
+                     `)
+
+                  }
+
+                
+                  console.log(data);
+                                   
+                }
+            });
+
+    });
+
+
+    //edit staff data
+    $("#editstaffbtn").on('click',function(){
+
+        const id = $("#staffid").val();
+
+        formData = new FormData
+        const name = $("#staffname").val()
+        const email = $("#staffemail").val()
+      
+        formData.append('name',name);
+        formData.append('email',email);
+        formData.append('id',id);
+
+     
+
+        $.ajax({
+            type:'post',
+            url: "/edit-staff/"+id,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success: (data) => {
+
+                $('#edit-staff').modal('hide');
+                swal("Good job!", "Staff details edited successfully", "success").then(() => {
+                        // location.reload()
+                });
+
+            },
+            error: function(data){
+
+                errors = data.responseJSON.errors;
+
+                $('#errorz').css("display","block");
+
+                for(key in errors)
+                {
+
+                    console.log(errors[key][0]);
+
+                    $('#errorsul').append(`
+                    <li class="list-group-item">
+                        "${errors[key][0]}"
+                    </li>
+                    `)
+
+                }
+
+                
+                console.log(data);
+                                
+                }
+            });
+
+        });
+
+
+    //retain the reward status when loading the page
+    (function(){
+            $.ajax({
+            type:'get',
+            url: "get-status",
+            success: (data) => {
+
+                    
+                if(data.reward[0].status == 'enabled')
+                {
+
+                    $('#rewards_checkbox').prop('checked',true);
+                }
+                else
+                {
+
+                    $('#rewards_checkbox').prop('checked',false);
+
+
+                }
+
+
+            },
+            error: function(data){
+                
+                    console.log(data);
+                                    
+                }
+                });
+    })();
 
     </script>
 
