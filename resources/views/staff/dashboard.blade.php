@@ -106,7 +106,7 @@
             <div class="card-header pb-0">
               <h6>Customer</h6>
               <div style="text-align:right;">
-                <a style="background-color:#f9a14d;" href="/ordinary-customers" type="button" class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i>
+                <a style="background-color:#f9a14d;" href="/customers" type="button" class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i>
                   <span style="margin-left:5px;">View More</span></a>
               </div>
             </div>
@@ -160,7 +160,7 @@
           <div class="card-header pb-0">
             <h6>Authorized Purchases</h6>
             <div style="text-align:right;">
-              <a style="background-color:#f9a14d;" href="cooperate-customer.html" type="button" class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i>
+              <a style="background-color:#f9a14d;" href="/authorized-purchases" type="button" class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i>
                 <span style="margin-left:5px;">View More</span></a>
             </div>
           </div>
@@ -254,7 +254,7 @@
         <div class="card-header pb-0">
           <h6>Sales</h6>
           <div style="text-align:right;">
-            <a style="background-color:#f9a14d;" href="cooperate-customer.html" type="button" class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i>
+            <a style="background-color:#f9a14d;" href="/sales" type="button" class="btn btn-primary btn-md"><i class="fa-solid fa-eye"></i>
               <span style="margin-left:5px;">View More</span></a>
           </div>
         </div>
@@ -269,7 +269,6 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Awarded</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -294,10 +293,7 @@
                 <td class="align-middle text-center text-sm">
                   <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
                 </td>
-                <td class="align-middle text-center text-sm">
-                  <input type="hidden" id="saleid" value={{ $sale->id }}>
-                  <button  id="{{ $sale->id }}"  style="background-color:#f9a14d;" class="moresalesdetails btn btn-sm btn-primary" >more info</button>
-                </td>
+                
               </tr>
               @endforeach
 
