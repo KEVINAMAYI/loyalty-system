@@ -469,6 +469,40 @@ class CustomerController extends Controller
     }
 
     /**
+     * get all dashboard data for the staff dashboard
+     *
+     * @return "view"
+     */
+    public function staffDashboard()
+    {      
+        $customers = Customer::all();
+        $sales = Sale::all();
+        $autorizedpurchases = AuthorizedPurchase::all();
+        $employees_authorized_data = array();
+
+        foreach ($autorizedpurchases as $autorizedpurchase)
+        {
+            $customerid = $autorizedpurchase->employee_id;
+            $vehicleid = $autorizedpurchase->vehicle_id;
+            $personal_data = Customer::where('id','=',$customerid)->get();
+            $vehicle_data = Vehicle::where('id','=',$vehicleid)->get();
+
+
+            $employee = array();
+
+            array_push($employee, $personal_data);
+            array_push($employee, $vehicle_data);
+            array_push($employee,  $autorizedpurchase);
+            array_push($employees_authorized_data,$employee);
+
+        }
+        
+        return view('staff.dashboard')->with(['customers' => $customers, 'sales' => $sales , 'authorized_purchases' => $employees_authorized_data ]);
+        
+    }
+
+
+    /**
      * delete an employee.
      *
      * @return "view"
