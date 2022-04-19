@@ -455,6 +455,34 @@ class CustomerController extends Controller
 
 
     /**
+     * add another vehicle.
+     *
+     * @return "view"
+     */
+    public function addAnotherVehicle(Request $request)
+    {          
+        $data = $request->all();
+
+         //update customer vehicle image
+         Vehicle::create([
+            'customer_id' => $data['customer_id'],
+            'vehicle_category' => $data['vehicle_category'],
+            'vehicle_type' => $data['vehicle_type'],
+            'vehicle_registration' => $data['vehicle_registration'],   
+             ]);
+
+        $vehicles = Vehicle::where('id','=',$data['customer_id'])->get();
+        $customer = Customer::where('id','=',$data['customer_id'])->get();
+
+        return response()->json([
+            'customer' => $customer,
+            'vehicles' => $vehicles
+        ]);
+      
+     
+    }
+
+    /**
      * get all coorporate customer employees.
      *
      * @return "view"

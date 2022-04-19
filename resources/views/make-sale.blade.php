@@ -32,12 +32,6 @@
 		<div class="wizard-v1-content" style="border:solid #f9a14d 2px;">
 			<div class="wizard-form">
 		        <form class="form-register" id="form-register" action="#" method="post">
-					<div style="text-align:center; margin-bottom:30px; margin-top:30px;">
-						<div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
-							<ul class="list-group" id="errorsul">
-							</ul>
-						</div>  
-					</div>
 		        	<div  id="form-total">
 		        		 <!-- SECTION 1 -->
                          <h2>
@@ -251,6 +245,91 @@
 			</div>
 		</div>
 	</div>
+
+
+	<!-- vehicle modal -->
+	<!-- Modal -->
+	<form action="">
+	@csrf
+    <div class="modal fade" id="add_vehicle_modal" tabindex="-1" aria-labelledby="vehicles" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Vehicle</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-holder form-holder-2">
+              <label for="vehicle_category">Vehicle Category</label>
+              <select name="vehicle_category" id="vehicle_category" class="form-control">
+                <option value="sedan">Sedan</option>
+                <option value="coupe">Coupe</option>
+                <option value="hatchback">Hatchback</option>
+                <option value="station-wagon">Station Wagon</option>
+                <option value="suv">SUV</option>
+                <option value="pick-up">Pick up</option>
+                <option value="van">Van</option>
+                <option value="mini-van">Mini Van</option>
+                <option value="wagon">Wagon</option>
+                <option value="convertible">Convertible</option>
+                <option value="bus">Bus</option>
+                <option value="truck">Truck</option>
+            </select>
+            </div>
+    
+            <div class="form-holder form-holder-2">
+              <label for="vehicle_type">Vehicle Type</label>
+              <select name="vehicle_type" id="vehicle_type" class="form-control">
+                <option value="audi">Audi</option>
+                <option value="bmw">BMW</option>
+                <option value="chevrolet">Chevrolet</option>
+                <option value="chrysler">Chrysler</option>
+                <option value="citroen">Citroën</option>
+                <option value="daihatsu">Daihatsu</option>
+                <option value="eicher">EICHER</option>
+                <option value="ford">Ford</option>
+                <option value="hino">HINO</option>
+                <option value="honda">Honda</option>
+                <option value="hyundai">Hyundai</option>
+                <option value="jaguar">Jaguar</option>
+                <option value="jeep">Jeep</option>
+                <option value="kia">Kia</option>
+                <option value="land rover">Land Rover</option>
+                <option value="lexus">Lexus</option>
+                <option value="man">Man</option>
+                <option value="maserati">Maserati</option>
+                <option value="mazda">Mazda</option>
+                <option value="mercedes-benz">Mercedes-Benz</option>
+                <option value="mini">MINI</option>
+                <option value="mitsubishi">Mitsubishi</option>
+                <option value="mobius">MOBIUS</option>
+                <option value="nissan">Nissan</option>
+                <option value="peugout">Peugeot</option>
+                <option value="porsche">Porsche</option>
+                <option value="range rover">Range Rover</option>
+                <option value="subaru">Subaru</option>
+                <option value="suzuki">Suzuki</option>
+                <option value="toyota">Toyota</option>
+                <option value="volkswagen">Volkswagen</option>
+                <option value="volvo">Volvo</option>
+    
+            </select>
+            </div>
+    
+            <div class="form-holder form-holder-2 mt-4 mb-4">
+              <label for="regno">Vehicle Registration</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="vehicle_registration" id="vehicle_registration" placeholder="KAG00445" required>
+            </div>
+    
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" id="submitvehiclebtn" style="background-color:#f9a14d; color:white;" type="button" class="btn">Add Vehicle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
 	
 	<script src="/front-end/js/jquery-3.3.1.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

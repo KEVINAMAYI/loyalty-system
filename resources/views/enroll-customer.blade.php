@@ -31,12 +31,6 @@
 
 			<div class="wizard-form" >
 		        <form class="form-register" id="form-register" action="#" method="post">
-					<div style="text-align:center; margin-bottom:30px; margin-top:30px;">
-						<div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
-							<ul class="list-group" id="errorsul">
-							</ul>
-						</div>  
-					</div>
 		        	<div id="form-total" >
 		        		<!-- SECTION 1 -->
 			            <h2>

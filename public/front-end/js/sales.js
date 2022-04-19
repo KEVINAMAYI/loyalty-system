@@ -131,7 +131,7 @@ $(function(){
                else
                {
                 
-                //display customer details
+               //display customer details
                $('#display-details').remove();
                $('.main-section').append(
                    `
@@ -149,45 +149,59 @@ $(function(){
                    </div>
 
                    <h3 style="color:white;">Customer Details</h3>
-                   <div class="form-row table-responsive">
-                       <table class="table">
-                           <tbody>
-                               <tr class="space-row" style="border:0px;">
-                                   <th style="border-bottom:0px;">First Name:</th>
-                                   <td id="firstname-val" style="border-bottom:0px;">${customer[0].first_name}</td>
-                               </tr>
-                               <tr class="space-row" style="border:0px;">
-                                   <th style="border-bottom:0px;">Last Name:</th>
-                                   <td id="lastname-val" style="border-bottom:0px;">${customer[0].last_name}</td>
-                               </tr>
-                           
-                               <tr class="space-row" style="border:0px;">
-                                   <th style="border-bottom:0px;">Phone Number:</th>
-                                   <td id="phonenumber-val" style="border-bottom:0px;">${customer[0].phone_number}</td>
-                               </tr>
-                               <tr class="space-row">
-                                   <th style="border-bottom:0px;">ID Number:</th>
-                                   <td id="idnumber-val" style="border-bottom:0px;">${customer[0].id_number}</td>
-                               </tr>
-                               <tr class="space-row" style="border:0px;">
-                                   <th style="border-bottom:0px;">Email:</th>
-                                   <td id="email-val" style="border-bottom:0px;">${customer[0].email}</td>
-                               </tr> 
-                               <tr class="space-row" style="border:0px;">
-                               <th style="border-bottom:0px;">Email:</th>
-                               <td id="gender-val" style="border-bottom:0px;">${customer[0].gender}</td>
-                           </tr>
-                               <tr class="space-row" style="border:0px;">
-                                   <th style="border-bottom:0px;">Rewards:</th>
-                                   <td id="rewards-val" style="border-bottom:0px;">${customer[0].rewards}</td>
-                               </tr>                                        
-                           </tbody>
-                       </table>
-                   </div>
+                   <div class="card" style="width: 100%; margin-bottom:25px; color:white; background-color:#2f8be0;">
+                    <div class="card-body">
+                        
+                        <p class="card-text">
+                        <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Name :</span>
+                        <span> ${customer[0].first_name}  ${customer[0].last_name} </span> 
+                        </p>
+
+                        <p class="card-text">
+                        <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Phone Number :</span>
+                        <span>${customer[0].phone_number}</span>
+                        </p>
+
+                        <p class="card-text">
+                        <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Id Number :</span>
+                        <span>${customer[0].id_number}</span>                        
+                        </p>
+
+                        <p class="card-text">
+                        <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Rewards :</span>
+                        <span>${customer[0].rewards}</span>                        
+                        </p>
+    
+                    </div>
+                    </div>
+                    <h3 style="color:white; margin-top:40px; padding-left:5px;">Select Vehicle</h3>
+
                </div>
 
                    `
                );
+
+
+               $('.main-section').append(
+                `
+                <div style="margin-bottom:-30px;" class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                <table style="border:0px;" class="table align-items-center mb-0">
+                    <thead style="border:0px;">
+                    <tr style="border:0px;">
+                    <th style="border:0px;" class="text-uppercase text-white text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                        <th style="border:0px; padding-left:40px;" class="text-uppercase text-white text-secondary text-xxs font-weight-bolder opacity-7">Registration</th>
+                        <th style="border:0px;"  class="text-center text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Make</th>
+                        <th style="border:0px;" class="text-center text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
+                    </tr>
+                    </thead>
+                    <tbody style="border:0px; border-bottom:0px;">
+                      
+                    </tbody>
+                </table>
+                </div>
+            </div>
+                `);
 
                let i = 0;
 
@@ -195,96 +209,55 @@ $(function(){
                vehicles.forEach(vehicle => {
                    i = i+1;
 
-                   if(vehicle.image_url != null)
-                   {
-                    $('.main-section').append(
-                        `
-                        <h3 style="color:white;">Vehicle ${i}</h3>
-                        <div class="inner">
-                        <div class="form-row table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    <tr class="space-row" style="border-bottom:0px;">
-                                        <th style="border-bottom:0px;">Vehicle Category:</th>
-                                        <td id="firstname-val" style="border-bottom:0px;">${vehicle.vehicle_category}</td>
-                                    </tr>
-                                    <tr class="space-row" style="border:0px;">
-                                        <th style="border-bottom:0px;">Vehicle Type:</th>
-                                        <td id="lastname-val" style="border-bottom:0px;">${vehicle.vehicle_type}</td>
-                                    </tr>
-                                
-                                    <tr class="space-row" style="border:0px;">
-                                        <th style="border-bottom:0px;">Vehicle Registration:</th>
-                                        <td id="phonenumber-val" style="border-bottom:0px;">${vehicle.vehicle_registration}</td>
-                                    </tr>                                       
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                   <img src="images/${vehicle.image_url}" style="max-width:100%; max-height:500px;" alt="">									
-                   </div>
-                   <div class="form-row table-responsive" style="padding-top:20px; padding-bottom:20px; margin-bottom:20px;">
-                   <table class="table" style="border-bottom:0px;">
-                       <tbody>
-                           <tr class="space-row" style="border:0px;">
-                               <th style="display:flex; border:0px;"><input id="${vehicle.id}" style="float:left margin-right:10px; width:30px; height:30px; font-size:30px;" class="form-check-input vehicle_sale_id" type="checkbox" value="" />
-                               <p style="margin-top:7px; margin-left:10px; font-weight:bold; font-size:20px; color:white;" >Fuel this Vehicle<p>
-                               </th>
- 
-                           </tr>                                     
-                       </tbody>
-                   </table>
-               </div>
-                        `
-                    );
-                   }
-                   else
-                   {
-
-                    $('.main-section').append(
-                        `
-                        <h3 style="color:white;">Vehicle ${i}</h3>
-                        <div class="inner">
-                        <div class="form-row table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    <tr class="space-row" style="border-bottom:0px;">
-                                        <th style="border-bottom:0px;">Vehicle Category:</th>
-                                        <td id="firstname-val" style="border-bottom:0px;">${vehicle.vehicle_category}</td>
-                                    </tr>
-                                    <tr class="space-row" style="border:0px;">
-                                        <th style="border-bottom:0px;">Vehicle Type:</th>
-                                        <td id="lastname-val" style="border-bottom:0px;">${vehicle.vehicle_type}</td>
-                                    </tr>
-                                
-                                    <tr class="space-row" style="border:0px;">
-                                        <th style="border-bottom:0px;">Vehicle Registration:</th>
-                                        <td id="phonenumber-val" style="border-bottom:0px;">${vehicle.vehicle_registration}</td>
-                                    </tr>                                       
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                   <div class="form-row table-responsive" style="padding-top:20px; padding-bottom:20px; margin-bottom:20px;">
-                   <table class="table" style="border-bottom:0px;">
-                       <tbody>
-                           <tr class="space-row" style="border:0px;">
-                               <th style="display:flex; border:0px;"><input id="${vehicle.id}" style="float:left margin-right:10px; width:30px; height:30px; font-size:30px;" class="form-check-input vehicle_sale_id" type="checkbox" value="" />
-                               <p style="margin-top:7px; margin-left:10px; font-weight:bold; font-size:20px; color:white;" >Fuel this Vehicle<p>
-                               </th>
- 
-                           </tr>                                     
-                       </tbody>
-                   </table>
-               </div>
-                        `
-                    );
-
-
-                   }
-
                   
+
+                    $('.main-section').append(
+                        `
+                            <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive p-0">
+                            <table style="border:0px;" class="table align-items-center mb-0">
+                                <thead style="border:0px;">
+                                <tr style="border:0px;">
+                                <th style="border:0px;" class="text-uppercase text-white text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                    <th style="border:0px;" class="text-uppercase text-white text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                    <th style="border:0px;"  class="text-center text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                    <th style="border:0px;" class="text-center text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                </tr>
+                                </thead>
+                                <tbody style="border:0px; border-bottom:0px;">
+                                    <tr style="border:0px;">
+                                    <th style="display:flex; border:0px;"><input id="${vehicle.id}" style="width:17px; height:17px;"  class="form-check-input vehicle_sale_id" type="checkbox" value="" />
+                                    </th>
+                                    <td  style="border:0px; color:white; " class="align-middle text-left text-sm">
+                                       ${vehicle.vehicle_registration}
+                                    <td style="border:0px; color:white;" class="align-middle text-center text-sm">
+                                        ${vehicle.vehicle_type}
+                                    </td>
+                                    <td style="border:0px; color:white;" class="align-middle text-center text-sm">
+                                    ${vehicle.vehicle_category}
+                                    </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                        
+                        `
+                    );
+            
+               });
+
+               $('.main-section').append(`
+                <div class="form-holder form-holder-2">
+                            <button type="button" id="addvehicle" style="max-width:150px; background-color:#f9a14d; border:0px; width:100%; font-size:15px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">ADD NEW</button>
+                        </div>
+               `);
+               
+
+               //Get vehicle data to be fueled
+               $("#addvehicle").on('click',function() {
+                 $('#add_vehicle_modal').modal('show');
                });
                
 
@@ -310,14 +283,9 @@ $(function(){
             },
             error: function(data){
 
-                    $('#errorz').css("display","block");
+                swal("Error!", "please enter a valid id number or phone number and try again!", "error");
 
-
-                    $('#errorsul').append(`
-                    <li class="list-group-item">
-                        please enter a valid id number or phone number and try again
-                    </li>
-                    `)
+                          
 
              }
            });
@@ -493,5 +461,51 @@ $(function(){
     });
 
 
+    //get vehicle data to add
+    $("#submitvehiclebtn").on('click',function(e){
 
+        e.preventDefault();
+        vehicle_category = $("#vehicle_category").val();
+        vehicle_type = $("#vehicle_type").val();
+        vehicle_registration = $("#vehicle_registration").val();
+        customer_id = localStorage.getItem('customer_id');
+
+        console.log(vehicle_registration);
+
+        formData = new FormData();
+        formData.append('vehicle_category',vehicle_category);
+        formData.append('vehicle_type',vehicle_type);
+        formData.append('vehicle_registration',vehicle_registration);
+        formData.append('customer_id',customer_id);
+
+
+        $.ajax({
+            type:'post',
+            url: "/add-another-vehicle",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: (data) => {
+
+                $('#add_vehicle_modal').modal('hide');
+                swal("Success!", "Vehicle Added successfully!", "success")
+                .then(() => {
+                    location.reload();
+                });
+                
+
+             
+            },
+            error: function(data){
+                   
+                  
+                swal("Error!", "There was an error adding vehicle Please try again!", "error");
+
+
+             }
+           });
+
+         });
+
+        
 });

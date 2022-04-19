@@ -25,8 +25,10 @@ Route::group(['middleware' => 'staff'], function()
     //front end routes
     Route::get('/choose-option', function () { return view('choose-option'); });
     Route::get('/enroll-customer', function () { return view('enroll-customer'); });
+    Route::post('/edit-staff/{user}',  [CustomerController::class,'editStaff']);
 
-     //back end routes
+
+    //back end routes
     Route::get('/staff-dashboard', [CustomerController::class,'staffDashboard']);
     Route::get('/authorized-purchases',[CustomerController::class,'getAuthorizedPurchasesForStaff']);
     Route::get('/users', [CustomerController::class,'showStaffs']);
@@ -48,7 +50,8 @@ Route::group(['middleware' => 'staff'], function()
     Route::get('/get-customer-data/{customer}',  [CustomerController::class,'viewCustomerData']);
     Route::post('/get-staff-data/{id}',  [CustomerController::class,'getStaffData']);
     Route::post('/edit-customer/{cutomer}',  [CustomerController::class,'edit']);
-    Route::post('/edit-staff/{user}',  [CustomerController::class,'editStaff']);
+    Route::post('/add-another-vehicle',  [CustomerController::class,'addAnotherVehicle']);
+
 
 
 });

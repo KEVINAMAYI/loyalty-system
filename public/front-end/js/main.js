@@ -128,25 +128,22 @@ $(function(){
                 });
             },
             error: function(data){
-
+                   
+                    theerrors = '';
                     errors = data.responseJSON.errors;
 
                     $('#errorz').css("display","block");
 
                     for(key in errors)
                     {
-
-                        console.log(errors[key][0]);
-
-                        $('#errorsul').append(`
-                        <li class="list-group-item">
-                            "${errors[key][0]}"
-                        </li>
-                        `)
+                        
+                        theerrors += errors[key][0];
+                        theerrors += '\n'
 
                     }
 
-                  console.log(data); 
+                
+                   swal("Error !", theerrors, "error");
                   
              }
            })
