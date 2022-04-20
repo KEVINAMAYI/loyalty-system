@@ -94,6 +94,7 @@ class CustomerController extends Controller
         $message = "Sales Completed successfully, Thanks and shop with us again";
         $data = $request->all();
 
+        //get customer purchase
          Customer::where('id','=',$data['customer_id'])->update([
             'rewards' => $data['new_cutomer_rewards']
         ]);
@@ -106,6 +107,12 @@ class CustomerController extends Controller
             'status' => "complete"
         ]);
 
+
+        //store image for sales
+        // upload vehicle image
+        $fileName =  "image-".time().'.'.$request->vehicle_image->getClientOriginalExtension();
+        $request->vehicle_image->move(public_path('images'), $fileName);
+
         //store sales details 
         Sale::create([
             'first_name' => $data['first_name'],
@@ -116,7 +123,9 @@ class CustomerController extends Controller
             'rewards_used' => $data['used_rewards'],
             'rewards_awarded' => $data['rewards_awarded'],
             'amount_payable' => $data['amount_payable'],
-            'amount_paid' => $data['amount_paid']
+            'amount_paid' => $data['amount_paid'],
+            'image_url' => $fileName
+
         ]);
         
         //send a confirmation SMS 

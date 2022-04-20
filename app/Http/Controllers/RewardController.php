@@ -69,7 +69,7 @@ class RewardController extends Controller
         $data = $request->all();
 
         Reward::where('id','=',1)->update([
-            'percentage' => ($data['reward_percentage'])/100
+            'percentage' => ($data['reward_percentage'])
         ]);
 
         return  response()->json([

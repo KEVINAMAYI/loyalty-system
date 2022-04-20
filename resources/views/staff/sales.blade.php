@@ -141,6 +141,10 @@
               <label for="regno">Date Created</label></br>
               <p id="date" style="padding-left:5px;"></p>
             </div>
+            <div class="form-holder form-holder-2 mt-4 mb-4">
+                 <label for="regno">Image</label></br>
+                <img id="vehicle_image" src="" style="max-width:100%; max-height:500px;" alt="">									
+            </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
            </div>

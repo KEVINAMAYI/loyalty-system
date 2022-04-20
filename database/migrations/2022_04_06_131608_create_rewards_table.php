@@ -17,6 +17,8 @@ class CreateRewardsTable extends Migration
             $table->id();
             $table->string('status')->default('enabled');
             $table->double('percentage');
+            $table->double('petrol_litre_amount');
+
             $table->timestamps();
         });
     }

@@ -48,7 +48,9 @@ $(function(){
                     console.log(customer);
                     console.log(vehicle);
 
+                    date_time = new Date().toLocaleString();
 
+                    $('#sales-date-time').text(date_time);
                     $('#sales-firstname-val').text(customer[0].first_name);
                     $('#sales-lastname-val').text(customer[0].last_name);
                     $('#sales-phonenumber-val').text(customer[0].phone_number);
@@ -61,7 +63,9 @@ $(function(){
                     var myrewards = parseInt(customer[0].rewards);
                     var amount_payable = $('#amount_payable').val();
                     var amount_paid = $('#amount_paid').val();
-                    var rewards_used = $('#rewards').val();
+                    var rewards_used = parseFloat($('#rewards').val()).toFixed(2);
+                    localStorage.setItem('vehicle_registration',vehicle[0].vehicle_registration);
+
 
             
                     $('#sales-amount-payable').text(amount_payable);
@@ -82,6 +86,7 @@ $(function(){
                     localStorage.setItem('product',"petrol");
 
 
+
                 },
                 error: function(data){
                    console.log(data);
@@ -94,9 +99,16 @@ $(function(){
     });
 
     
+    isSubmitting = false;
+
     //get data to be used for sales
-    $("#databtn").on('click',function(){
-    
+    $("#databtn").on('click',function(e){
+
+        if(isSubmitting) {
+            return;
+        }
+        isSubmitting = true;
+
         const id_number = $('#id-number').val();
         const vehicle_reg = $('#vehicle-reg').val();
 
@@ -135,7 +147,7 @@ $(function(){
                $('#display-details').remove();
                $('.main-section').append(
                    `
-                   <div class="inner">
+                   <div class="inner" style="margin-left:20px; margin-">
                             
                    <div class="form-row">
                        <div class="form-holder form-holder-2">
@@ -143,7 +155,7 @@ $(function(){
                            <input type="text" id="id-number" style="height:55px;" placeholder="ID Number (34643511)" class="form-control" id="firstname" name="firstname" >
                        </div>
 
-                       <div class="form-holder form-holder-2">
+                       <div id="get_data_btn" class="form-holder form-holder-2">
                            <button type="button" id="databtn" style="background-color:#f9a14d; border:0px; width:100%; height:55px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">Get Info</button>
                        </div>
                    </div>
@@ -182,26 +194,6 @@ $(function(){
                );
 
 
-               $('.main-section').append(
-                `
-                <div style="margin-bottom:-30px;" class="card-body px-0 pt-0 pb-2">
-                <div class="table-responsive p-0">
-                <table style="border:0px;" class="table align-items-center mb-0">
-                    <thead style="border:0px;">
-                    <tr style="border:0px;">
-                    <th style="border:0px;" class="text-uppercase text-white text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                        <th style="border:0px; padding-left:40px;" class="text-uppercase text-white text-secondary text-xxs font-weight-bolder opacity-7">Registration</th>
-                        <th style="border:0px;"  class="text-center text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Make</th>
-                        <th style="border:0px;" class="text-center text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
-                    </tr>
-                    </thead>
-                    <tbody style="border:0px; border-bottom:0px;">
-                      
-                    </tbody>
-                </table>
-                </div>
-            </div>
-                `);
 
                let i = 0;
 
@@ -242,14 +234,14 @@ $(function(){
                             </table>
                             </div>
                         </div>
-                        
+                    
                         `
                     );
             
                });
 
                $('.main-section').append(`
-                <div class="form-holder form-holder-2">
+                <div  class="form-holder form-holder-2">
                             <button type="button" id="addvehicle" style="max-width:150px; background-color:#f9a14d; border:0px; width:100%; font-size:15px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">ADD NEW</button>
                         </div>
                `);
@@ -279,16 +271,19 @@ $(function(){
 
                }
 
+            isSubmitting = false;
             
             },
             error: function(data){
 
                 swal("Error!", "please enter a valid id number or phone number and try again!", "error");
+                isSubmitting = false;        
 
-                          
-
-             }
+             },
+          
            });
+
+           return false;
 
     });
   
@@ -342,13 +337,15 @@ $(function(){
  
                      //calculate new reward value
                      reward_percentage = parseFloat($('#reward_percentage').val());
-                     console.log(reward_percentage);
-                     new_cutomer_rewards = (customer_rewards - rewards) + (reward_percentage * amount_to_pay);
-                     $('#sales-reward-balance').text(new_cutomer_rewards);
-                     console.log(customer_rewards);
-                     console.log(rewards);
+                     petrol_amount = parseFloat($('#petrol_amount').val());
+                     new_cutomer_rewards = (customer_rewards - rewards) + (reward_percentage * (amount_to_pay/petrol_amount));
+                     $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
+                     amount_in_litres = (amount_to_pay/petrol_amount);
+                     $("#liters_val").val(amount_in_litres.toFixed(2));
+                     new_cutomer_rewards.toFixed(2);
 
-                     rewards_awarded = reward_percentage * amount_to_pay;
+
+                     rewards_awarded = (reward_percentage * (amount_to_pay/petrol_amount));
                      localStorage.setItem('new_cutomer_rewards',new_cutomer_rewards);
                      localStorage.setItem('used_rewards',rewards);
                      localStorage.setItem('rewards_awarded',rewards_awarded);
@@ -390,9 +387,20 @@ $(function(){
 
     });
 
+    //calculate amount of litres
+    $('#total_amount').on('keyup',function(){
+        petrol_amount = parseFloat($('#petrol_amount').val());
+        total_amount = parseFloat($("#total_amount").val());
+        total_amount_ltr = parseFloat( total_amount / petrol_amount);
+        $("#liters_val").val(total_amount_ltr.toFixed(2));
+    });
+
 
      //display an alert message redirect user back to choose-option page 
      $("#completed").on('click',function(){
+
+        const selectedFile = document.getElementById('image').files[0];
+        console.log(selectedFile);
 
         const product = localStorage.getItem('product');
         const last_name = localStorage.getItem('last_name');
@@ -408,6 +416,8 @@ $(function(){
 
 
         formData = new FormData();
+
+        formData.append('vehicle_image',selectedFile);
         formData.append('product',product);
         formData.append('last_name',last_name);
         formData.append('first_name',first_name);
@@ -420,6 +430,7 @@ $(function(){
         formData.append('new_cutomer_rewards',new_cutomer_rewards);
         formData.append('rewards_awarded',rewards_awarded);
 
+        console.log(vehicle_registration);
 
         $.ajax({
             type:'post',
@@ -428,7 +439,9 @@ $(function(){
             processData: false,
             contentType: false,
             success: (data) => {
+                
                 console.log(data);
+                localStorage.clear();
                 swal("Good job!", "Sale completed successfully, A confirmation message was sent!", "success")
                 .then(() => {
                     location.href = "/choose-option";
@@ -506,6 +519,20 @@ $(function(){
            });
 
          });
+
+         $('#image').on('change',function(){
+           
+            let reader = new FileReader();
+        
+            reader.onload = (e) => { 
+        
+              $('#vehicle_image').attr('src', e.target.result); 
+
+            }
+        
+            reader.readAsDataURL(this.files[0]); 
+          
+           });
 
         
 });

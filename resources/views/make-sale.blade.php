@@ -36,8 +36,8 @@
 		        		 <!-- SECTION 1 -->
                          <h2>
 			            	<span class="step-icon"><i class="zmdi zmdi-receipt"></i></span>
-			            	<span class="step-number">Step 4</span>
-			            	<span class="step-text">View Rewards</span>
+			            	<span class="step-number">Step 1</span>
+			            	<span class="step-text">Customer</span>
 			            </h2>
 			            <section class="main-section" >
 			                <div class="inner"  id="display-details">
@@ -47,7 +47,7 @@
 										<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Customer ID/Phone*</label>
 										<input type="text" id="id-number" style="height:55px;" placeholder="34643511" class="form-control" required>
 									</div>
-									<div class="form-holder form-holder-2">
+									<div id="get_data_btn" class="form-holder form-holder-2">
 										<button type="button" id="databtn" style="background-color:#f9a14d; border:0px; width:100%; height:55px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">Get Info</button>
 									</div>
 								</div>
@@ -111,7 +111,12 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label for="firstname">Enter Amount (KES)</label>
-										<input type="number" id="total_amount" placeholder="Enter Amount" class="form-control" id="firstname" name="firstname">
+										<input type="number" id="total_amount" placeholder="Enter Amount" class="form-control" >
+									</div>
+									
+									<div class="form-holder form-holder-2 text-left">
+										<label for="firstname">Litres</label>
+										<input type="number" id="liters_val"  class="form-control" readonly required>
 									</div>
 								</div>
 								@if($rewards_details[0]->status == 'enabled')
@@ -175,13 +180,26 @@
 										<input type="text" placeholder="Enter Amount" class="form-control" id="amount_paid" name="phonenumber"  >
 									</div>
 								</div>
+								<div class="form-holder">
+										<p style="color:white; font-weight:bold; margin-bottom:30px;">Vehicle Picture</p>
+										<img id="vehicle_image" src="" style="max-width:100%; max-height:500px;" alt="">									
+								</div>
+								<div class="form-row" style="margin-top:30px;">
+									<div class="form-holder">
+									    <span style="color:white; font-weight:bold; font-size:18px;"> Take a Photo
+										<input type="file" id="image" name="uploader" id="uploader"                               
+										accept="image/*" 
+										capture="camera" /></span>
+										</div>
+								</div>
+								<input type="hidden" name="petrol_amount" id="petrol_amount" value={{ $rewards_details[0]->petrol_litre_amount }}>
 								<input type="hidden" name="reward_percentage" id="reward_percentage" value={{ $rewards_details[0]->percentage }}>
 							</div>
 			            </section>
 			            <!-- SECTION 3 -->
                         <h2>
 			            	<span class="step-icon"><i class="zmdi zmdi-account"></i></span>
-			            	<span class="step-number">Step 1</span>
+			            	<span class="step-number">Step 3</span>
 			            	<span class="step-text">Print Receipt</span>
 			            </h2>
                         <section>
@@ -206,21 +224,10 @@
 												<th style="border:0px;">ID Number:</th>
 												<td id="sales-idnumber-val" style="border:0px;"></td>
 											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Email:</th>
-												<td id="sales-email-val" style="border:0px;"></td>
-											</tr> 
-											<tr class="space-row">
-												<th style="border:0px;">Vehicle Category:</th>
-												<td id="sales-vehicle-category" style="border:0px;"></td>
-											</tr>
+									
 											<tr class="space-row">
 												<th style="border:0px;">Vehicle Registration:</th>
 												<td id="sales-vehicle-registration" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Amount Payable:</th>
-												<td id="sales-amount-payable" style="border:0px;"></td>
 											</tr>
                                             <tr class="space-row">
 												<th style="border:0px;">Amount Paid:</th>
@@ -233,6 +240,10 @@
                                             <tr class="space-row">
 												<th style="border:0px;">Rewards Balance:</th>
 												<td id="sales-reward-balance" style="border:0px;"></td>
+											</tr>
+											<tr class="space-row">
+												<th style="border:0px;">Date/Time:</th>
+												<td id="sales-date-time" style="border:0px;"></td>
 											</tr>
 										</tbody>
 									</table>

@@ -392,6 +392,7 @@
                     $("#amountpayable").text(sale_data[0].amount_payable);
                     $("#amountpaid").text(sale_data[0].amount_paid);
                     $("#date").text(sale_data[0].created_at);
+                    $('#vehicle_image').attr('src',`images/${sale_data[0].image_url}`); 
                     $('#sales-details').modal('show');
 
 

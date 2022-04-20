@@ -16,6 +16,7 @@ class Reward extends Model
      */
     protected $fillable = [
         'status',
-        'percentage'
+        'percentage',
+        'petrol_litre_amount'
     ];
 }

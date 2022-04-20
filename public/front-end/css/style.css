@@ -13,6 +13,14 @@ input[type=number] {
 }
 
 
+@media only screen and (max-width: 1000px) {
+	#amount_to_ltrs_btn, #get_data_btn{
+		margin-top:-50px;
+	}
+
+	
+  }
+
 .page-content {
 	width: 100%;
 	margin:  0 auto;
@@ -49,7 +57,7 @@ input[type=number] {
 	-ms-border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	margin: 162px 0;
+	margin: 162px;
 	font-family: 'Raleway', sans-serif;
 	position: relative;
 	display: flex;

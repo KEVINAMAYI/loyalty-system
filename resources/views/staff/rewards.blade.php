@@ -50,11 +50,11 @@
             </label>
             <form style="margin-top:20px;"> 
                     <div class="form-group">
-                        <label for="exampleInputEmail1"  style="margin-bottom:10px; font-weight:bold; font-size:24px;" >Set Reward percentage</label>
+                        <label for="exampleInputEmail1"  style="margin-bottom:10px; font-weight:bold; font-size:24px;" >Set Reward Amount</label>
                         <input type="number" class="form-control"  id="reward_percentage" step="any" placeholder="Enter reward percentage">
                     </div>
-                    <button style="background-color:#f9a14d;" class="btn btn-primary btn-md"  id="rewardpass" type="submit">Set Reward Percentage </button>
-                    <span style="color:rgb(46, 42, 42); font-weight:bold; font-size:25px; margin-left:20px;">  Current Percentage: {{ ($rewards[0]->percentage)*100 }}%</span>
+                    <button style="background-color:#f9a14d;" class="btn btn-primary btn-md"  id="rewardpass" type="submit">Set Reward Amount/Litre </button>
+                    <span style="color:rgb(46, 42, 42); font-weight:bold; font-size:25px; margin-left:20px;">  Current Amount/Litre: {{ $rewards[0]->percentage }}</span>
             </form>
            </div>
           </div>

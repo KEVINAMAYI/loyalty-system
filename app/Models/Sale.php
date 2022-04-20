@@ -23,6 +23,7 @@ class Sale extends Model
         'rewards_used',
         'rewards_awarded',
         'amount_payable',
-        'amount_paid'   
+        'amount_paid',
+        'image_url'  
     ];
 }

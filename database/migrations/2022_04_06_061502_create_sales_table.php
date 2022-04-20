@@ -24,6 +24,7 @@ class CreateSalesTable extends Migration
             $table->string('rewards_awarded');
             $table->integer('amount_payable');
             $table->integer('amount_paid');
+            $table->string('image_url');
             $table->timestamps();
         });
     }
