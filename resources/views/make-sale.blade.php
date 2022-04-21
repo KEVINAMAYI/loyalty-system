@@ -111,7 +111,7 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label for="firstname">Enter Amount (KES)</label>
-										<input type="number" id="total_amount" placeholder="Enter Amount" class="form-control" >
+										<input type="number" id="total_amount" placeholder="Enter Amount" class="form-control" required>
 									</div>
 									
 									<div class="form-holder form-holder-2 text-left">
@@ -173,24 +173,26 @@
 								<div class="form-row" style="margin-top:30px;">
 									<div class="form-holder">
 										<label for="password">Amount Payable (KSH)*</label>
-										<input type="text" placeholder="Enter Amount" class="form-control" id="amount_payable" name="phonenumber"  >
+										<input type="text" placeholder="Enter Amount" class="form-control" id="amount_payable" name="phonenumber" readonly required>
 									</div>
 									<div class="form-holder">
 										<label for="password">Amount Paid (KSH)*</label>
-										<input type="text" placeholder="Enter Amount" class="form-control" id="amount_paid" name="phonenumber"  >
+										<input type="text" placeholder="Enter Amount" class="form-control" id="amount_paid" name="phonenumber" required>
 									</div>
 								</div>
 								<div class="form-holder">
-										<p style="color:white; font-weight:bold; margin-bottom:30px;">Vehicle Picture</p>
-										<img id="vehicle_image" src="" style="max-width:100%; max-height:500px;" alt="">									
+										<img id="vehicle_image" src="" style="max-width:100%; max-height:500px;" alt="Vehicle Photo">									
 								</div>
 								<div class="form-row" style="margin-top:30px;">
-									<div class="form-holder">
-									    <span style="color:white; font-weight:bold; font-size:18px;"> Take a Photo
-										<input type="file" id="image" name="uploader" id="uploader"                               
-										accept="image/*" 
-										capture="camera" /></span>
-										</div>
+									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
+										<label class="custom-file-upload">
+											<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
+											<input type="file" id="image" name="uploader" id="uploader"                               
+											accept="image/*" 
+											capture="camera"/>
+											Take Photo
+										</label>
+									</div>
 								</div>
 								<input type="hidden" name="petrol_amount" id="petrol_amount" value={{ $rewards_details[0]->petrol_litre_amount }}>
 								<input type="hidden" name="reward_percentage" id="reward_percentage" value={{ $rewards_details[0]->percentage }}>

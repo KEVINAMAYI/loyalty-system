@@ -93,6 +93,57 @@ $(function(){
                  }
                });
 
+            //make it mandatory to choose a vehicle in the first step
+            if(!($('.vehicle_sale_id').is(":checked")))
+            {
+                swal("Error!", "Please select a vehicle before proceeding!", "error");
+                return;
+            }
+            else{
+                console.log("vehicle selected");
+            }
+
+            
+            
+            //execute amount and image check on the second step 
+            if( currentIndex == 1) {
+
+                let amount_paid =parseInt($('#amount_paid').val());
+                let amount_payable =parseInt($('#amount_payable').val());
+                const selectedFile = document.getElementById('image').files;
+                let error = "";
+                
+                // compare amount payable and amount paid
+                if(!(amount_paid == amount_payable))
+                {
+             
+                    error += "Amount paid must be equal to amount payable !";
+                    swal("Error!", error , "error");
+                    return;
+                    
+                }
+                else if(selectedFile.length == 0)
+                {
+                    error += "\n Please take a picture of the vehicle before proceeding !";
+                    swal("Error!", error , "error");
+                    return;
+
+                }
+                else
+                {
+                    console.log("amount paid is equal to amount payable");
+
+
+                }
+
+
+
+               
+            
+            }
+
+            
+
             $("#form-register").validate().settings.ignore = ":disabled,:hidden";
             return $("#form-register").valid();
         }
@@ -218,7 +269,8 @@ $(function(){
                                 </thead>
                                 <tbody style="border:0px; border-bottom:0px;">
                                     <tr style="border:0px;">
-                                    <th style="display:flex; border:0px;"><input id="${vehicle.id}" style="width:17px; height:17px;"  class="form-check-input vehicle_sale_id" type="checkbox" value="" />
+                                    <th style="display:flex; border:0px;">
+                                        <input id="${vehicle.id}" style="width:17px; height:17px;"  class="form-check-input vehicle_sale_id" type="checkbox" value="${vehicle.id}"/>
                                     </th>
                                     <td  style="border:0px; color:white; " class="align-middle text-left text-sm">
                                        ${vehicle.vehicle_registration}
@@ -313,8 +365,8 @@ $(function(){
       $("#amountpayablebtn").on('click',function(){
 
             //calculate amount payable
-            const rewards =parseInt($('#rewards').val());
-            const total_amount =parseInt($('#total_amount').val());
+            let rewards =parseInt($('#rewards').val());
+            let total_amount =parseInt($('#total_amount').val());
 
             if(rewards != null && isNaN(rewards) != true)
             {

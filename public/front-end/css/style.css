@@ -65,7 +65,7 @@ input[type=number] {
 }
 .wizard-v1-content .wizard-form {
 	width: 100%;
-	padding: 15px 25px;
+	padding: 15px 20px;
 }
 .wizard-form .wizard-header h3 {
 	color: #333;
@@ -79,6 +79,25 @@ input[type=number] {
 	font-weight: 600;
 	margin: 6px 0 26px;
 }
+
+#image{
+	display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 3px 12px;
+	text-align:center;
+	background-color:#fca14d;
+	color:white;
+	font-weight:bold;
+	border:0px;
+	border-radius:6px;
+    cursor: pointer;
+	max-width:200px;
+}
+
 .form-register .steps {
 	margin-bottom: 33px;
 }

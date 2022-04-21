@@ -87,6 +87,41 @@ $(function(){
             $('#category-val').text(category);
             $('#regno-val').text(regno);
             
+            //execute amount and image check on the second step 
+            if( currentIndex == 1) {
+
+                let vehicle_registration =$('#regno').val();
+                const selectedFile = document.getElementById('image').files;
+                let error = "";
+                
+                // compare amount payable and amount paid
+                if(vehicle_registration == "")
+                {
+             
+                    error += "Please enter vehicle registration!";
+                    swal("Error!", error , "error");
+                    return;
+                    
+                }
+                else if(selectedFile.length == 0)
+                {
+                    error += "\n Please take a picture of the vehicle before proceeding !";
+                    swal("Error!", error , "error");
+                    return;
+
+                }
+                else
+                {
+                    console.log("amount paid is equal to amount payable");
+
+
+                }
+
+
+
+               
+            
+            }
 
             $("#form-register").validate().settings.ignore = ":disabled,:hidden";
             return $("#form-register").valid();

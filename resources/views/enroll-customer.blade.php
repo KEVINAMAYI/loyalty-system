@@ -161,10 +161,12 @@
 								</div>
 								<div class="form-row" style="margin-top:30px;">
 									<div class="form-holder">
-									    <span style="color:white; font-weight:bold; font-size:18px;"> Take a Photo
+										<label class="custom-file-upload">
+										<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
+										 Take a Photo
 										<input type="file" id="image" name="uploader" id="uploader"                               
 										accept="image/*" 
-										capture="camera" /></span>
+										capture="camera" /></label>
 										</div>
 								</div>
 							</div>
