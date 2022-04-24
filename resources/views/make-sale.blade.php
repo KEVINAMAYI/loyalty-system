@@ -14,8 +14,6 @@
 	<!-- Font-->
 	<link rel="stylesheet" type="text/css" href="/front-end/css/raleway-font.css">
 	<link rel="stylesheet" type="text/css" href="/front-end/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-	<!-- Jquery -->
-	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
 	<!-- Main Style Css -->
     <link rel="stylesheet" href="/front-end/css/style.css"/>
 	<link rel="icon"  href="front-end/images/logo.jpg">
@@ -29,7 +27,10 @@
 
 	</div>
     <div style="margin-top:-170px;" class="page-content">
-		<div class="wizard-v1-content" style="border:solid #f9a14d 2px;">
+		<div class="wizard-v1-content" style="border:solid #f9a14d 2px; position: relative;">
+			<div id="progress_bar" style="justify-content:center; text-align:center;">
+				<img id="progress" src="front-end/images/progress_bar.gif" style=" display:none; position: absolute; top:40%; left:40%; z-index:3; margin-left:auto; margin-right:auto; max-width:100px; max-height:100px;" alt="">									
+			</div>
 			<div class="wizard-form">
 		        <form class="form-register" id="form-register" action="#" method="post">
 		        	<div  id="form-total">
@@ -206,53 +207,49 @@
                         <section>
 			                <div class="inner">
 			                	<h3>Receipt</h3>
-								<div class="form-row table-responsive">
-									<table class="table">
-										<tbody>
-											<tr class="space-row">
-												<th style="border:0px;">First Name:</th>
-												<td id="sales-firstname-val" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Last Name:</th>
-												<td id="sales-lastname-val" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Phone Number:</th>
-												<td id="sales-phonenumber-val" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">ID Number:</th>
-												<td id="sales-idnumber-val" style="border:0px;"></td>
-											</tr>
-									
-											<tr class="space-row">
-												<th style="border:0px;">Vehicle Registration:</th>
-												<td id="sales-vehicle-registration" style="border:0px;"></td>
-											</tr>
-                                            <tr class="space-row">
-												<th style="border:0px;">Amount Paid:</th>
-												<td id="sales-amount-paid" style="border:0px;"></td>
-											</tr>
-                                            <tr class="space-row">
-												<th style="border:0px;">Rewards Used:</th>
-												<td id="sales-reward" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Rewards Awarded:</th>
-												<td id="sales-rewards-awarded" style="border:0px;"></td>
-											</tr>
-                                            <tr class="space-row">
-												<th style="border:0px;">Rewards Balance:</th>
-												<td id="sales-reward-balance" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Date/Time:</th>
-												<td id="sales-date-time" style="border:0px;"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+								<div class="card" style="width: 100%; margin-bottom:25px; color:white; background-color:#2f8be0;">
+									<div class="card-body">
+										
+										<p class="card-text">
+										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Name :</span>
+										<span id="sales-name-val"> </span> 
+										</p>
+				
+										<p class="card-text">
+										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Phone Number :</span>
+										<span id="sales-phonenumber-val"></span>
+										</p>
+				
+										<p class="card-text">
+										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Vehicle Registration :</span>
+										<span id="sales-vehicle-registration"></span>                        
+										</p>
+				
+										<p class="card-text">
+										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Amount Paid:</span>
+										<span id="sales-amount-paid"></span>                        
+										</p>
+
+										<p class="card-text">
+											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Rewards Used:</span>
+											<span id="sales-reward"></span>                        
+										</p>
+										<p class="card-text">
+												<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Rewards Earned:</span>
+												<span id="sales-rewards-awarded"></span>                        
+										</p>
+										<p class="card-text">
+											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Date/Time:</span>
+											<span id="sales-date-time"></span>                        
+									     </p>
+										 <p class="card-text">
+											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Served By:</span>
+											<span id="sales-date-time">{{ auth()->user()->name }}</span>                        
+									     </p>
+					
+									</div>
+									</div>
+								
 							</div>
 			            </section>
 						

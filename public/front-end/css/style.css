@@ -463,6 +463,10 @@ input[type=number] {
 		-webkit-flex-direction: column;
 		margin: 0;
 	}
+	#progress{
+
+		left:100px;
+	}
 	.inner .form-row.form-row-2 {
 		width: 100%;
 	}
@@ -481,6 +485,11 @@ input[type=number] {
 	.wizard-v1-content .wizard-form {
 	    padding: 40px 20px;
 	    width: auto;
+	}
+
+	#progress{
+
+		left:50%;
 	}
 	.form-register .content {
 	    padding: 32px 30px 23px 30px;

@@ -94,6 +94,8 @@ class CustomerController extends Controller
         $message = "Sales Completed successfully, Thanks and shop with us again";
         $data = $request->all();
 
+        
+
         //get customer purchase
          Customer::where('id','=',$data['customer_id'])->update([
             'rewards' => $data['new_cutomer_rewards'],

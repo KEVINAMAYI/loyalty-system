@@ -41,7 +41,7 @@ $(function(){
         labels: {
             previous : 'Back',
             next : '<i class="zmdi zmdi-arrow-right"></i>',
-            finish : '<i id="completed" class="zmdi zmdi-arrow-right"></i>',
+            finish : 'Finish',
             current : ''
         },
         onStepChanging: function (event, currentIndex, newIndex) { 
@@ -131,6 +131,12 @@ $(function(){
     //submit enrollment details
     $("#completed").on('click',function(){
 
+        $('html, body').animate({
+            scrollTop: $("#progress").offset().top
+        }, 500);
+
+        $('#progress').css('display','');
+
         const selectedFile = document.getElementById('image').files[0];
         console.log(selectedFile);
 
@@ -155,7 +161,7 @@ $(function(){
             success: (data) => {
                  
                 console.log(data);
-                
+                $('#progress').css('display','none');
                 //display an alert message redirect user back to choose-option page 
                 swal("Success !", "Enrollment completed successfully, A Confirmation message was sent !", "success")
                 .then(() => {
@@ -166,7 +172,7 @@ $(function(){
                    
                     theerrors = '';
                     errors = data.responseJSON.errors;
-
+                    $('#progress').css('display','none');
                     $('#errorz').css("display","block");
 
                     for(key in errors)

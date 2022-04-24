@@ -19,16 +19,9 @@ class StaffMiddleware
 
         if(($request->user() == null) || ($request->user()->role !== 'Staff'))
         {    
-             if($request->user()->role == 'Admin')
-             {
-                return $next($request);
+            
 
-             }
-             else
-             {
-
-                 return redirect('/login');
-             }
+          return redirect('/login');
              
         }
         else

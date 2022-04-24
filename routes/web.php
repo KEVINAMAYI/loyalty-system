@@ -24,7 +24,7 @@ use App\Http\Controllers\ProductsController;
 
 
 //Staff middleware --> can only be acccessed by users with the role of Staff
-Route::group(['middleware' => ['admin','staff']], function()
+Route::group(['middleware' => 'staff'], function()
 {    
      //front end routes
      Route::get('/choose-option', function () { return view('choose-option'); });

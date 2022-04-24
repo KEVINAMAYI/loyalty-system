@@ -41,14 +41,12 @@
             <span class="nav-link-text ms-1">Sales</span>
           </a>
         </li>
-        @if(auth()->user()->role == 'Admin')
           <li class="nav-item">
             <a class="nav-link  " href="/rewards">
               <i class="fa-solid fa-trophy"></i>
               <span class="nav-link-text ms-1">Rewards & Products</span>
             </a>
           </li>
-        @endif
         <li class="nav-item">
           <a class="nav-link  " href="/choose-option">
             <i class="fa-solid fa-hand"></i>

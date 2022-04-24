@@ -11,8 +11,6 @@
 	<!-- Font-->
 	<link rel="stylesheet" type="text/css" href="/front-end/css/raleway-font.css">
 	<link rel="stylesheet" type="text/css" href="/front-end/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-	<!-- Jquery -->
-	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
 	<!-- Main Style Css -->
     <link rel="stylesheet" href="/front-end/css/style.css"/>
 	<link rel="icon"  href="front-end/images/logo.jpg">
@@ -20,14 +18,18 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-	 <div style="padding-left:20px; padding-top:20px;">		<img src="front-end/images/logo.jpg" width="50" height="50" alt="">
+	 <div style="padding-left:20px; padding-top:20px;">		
+		<img src="front-end/images/logo.jpg" width="50" height="50" alt="">
     </div>
     	<div style="margin-top:-50px; text-align:center; padding-top:50px; width:100%; margin-bottom:20px;">
 						<h3>Enroll to Loyalty and start enjoying free Rewards</h3>
 
 	</div>
     <div style="margin-top:-170px;" class="page-content">
-		<div class="wizard-v1-content" style="border:solid #f9a14d 2px;">
+		<div  id="" class="wizard-v1-content" style="border:solid #f9a14d 2px; position: relative;">
+			<div id="progress_bar" style="justify-content:center; text-align:center;">
+				<img id="progress" src="front-end/images/progress_bar.gif" style=" display:none; position: absolute; top:40%; left:40%; z-index:3; margin-left:auto; margin-right:auto; max-width:100px; max-height:100px;" alt="">									
+			</div>
 
 			<div class="wizard-form" >
 		        <form class="form-register" id="form-register" action="#" method="post">
