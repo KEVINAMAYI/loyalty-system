@@ -96,7 +96,10 @@ class CustomerController extends Controller
 
         //get customer purchase
          Customer::where('id','=',$data['customer_id'])->update([
-            'rewards' => $data['new_cutomer_rewards']
+            'rewards' => $data['new_cutomer_rewards'],
+            'sale_start_date' => $data['sale_end_date'],
+            'sale_end_date' => $data['sale_end_date'],
+
         ]);
 
         //get the updated customer
@@ -321,7 +324,7 @@ class CustomerController extends Controller
     }
 
 
-      /**
+    /**
      * edit coorporate employee 
      * 
      * @return "view"

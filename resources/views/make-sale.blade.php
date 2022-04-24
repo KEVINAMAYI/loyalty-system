@@ -102,8 +102,8 @@
 									<div class="form-holder form-holder-2">
 										<label for="card-type">Product</label>
 										<select name="make" id="product" class="form-control">
-											<option value="Diesel" selected>Diesel</option>
-											<option value="Petrol">Petrol</option>
+											<option value={{ $fuel_details[1]->cost }} selected>Diesel</option>
+											<option value={{ $fuel_details[0]->cost }}>Petrol</option>
 											
 										</select>
 									</div>
@@ -194,7 +194,6 @@
 										</label>
 									</div>
 								</div>
-								<input type="hidden" name="petrol_amount" id="petrol_amount" value={{ $rewards_details[0]->petrol_litre_amount }}>
 								<input type="hidden" name="reward_percentage" id="reward_percentage" value={{ $rewards_details[0]->percentage }}>
 							</div>
 			            </section>
@@ -238,6 +237,10 @@
                                             <tr class="space-row">
 												<th style="border:0px;">Rewards Used:</th>
 												<td id="sales-reward" style="border:0px;"></td>
+											</tr>
+											<tr class="space-row">
+												<th style="border:0px;">Rewards Awarded:</th>
+												<td id="sales-rewards-awarded" style="border:0px;"></td>
 											</tr>
                                             <tr class="space-row">
 												<th style="border:0px;">Rewards Balance:</th>

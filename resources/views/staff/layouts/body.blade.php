@@ -609,6 +609,99 @@
 
         });
 
+    
+    //edit products
+    $(".editproductbtn").on('click',function(){
+
+        const id = parseInt($(this).attr('id'));
+        
+        $.ajax({
+            type:'get',
+            url: "/get-product/"+id,
+            success: (data) => {
+
+                $('#product_cost').val(data.product[0].cost)
+                $('#month').val(data.product[0].price_period.split(" ")[0])
+                $('#product_year').val(data.product[0].price_period.split(" ")[1])
+    
+
+                console.log(data);
+                $("#edit-product").modal('show');
+                $("#product_id").val(id);
+
+            },
+            error: function(data){
+
+                console.log(data);
+                                
+                }
+            });
+
+       
+    });
+
+
+    //edit monthly rewards
+    $(".editmonthlyrewardbtn").on('click',function(){
+
+        const id = parseInt($(this).attr('id'));
+
+        $.ajax({
+            type:'get',
+            url: "/get-reward-format/"+id,
+            success: (data) => {
+
+                $('.lower_range').val(data.rewardformat[0].low)
+                $('.higher_range').val(data.rewardformat[0].high)
+                $('.reward_per_litre').val(data.rewardformat[0].shillings_per_litre)
+                ('.monthly').val(data.rewardformat[0].price_period.split(" ")[0])
+                $('.reward_year').val(data.rewardformat[0].price_period.split(" ")[1])
+                $("#edit-monthly-reward").modal('show');
+                $("#monthly_reward_id").val(id);
+
+            },
+            error: function(data){
+
+                console.log(data);
+
+                                
+                }
+            });
+
+        
+
+    });
+
+    //edit bulk rewards
+    $(".editbulkrewardbtn").on('click',function(){
+         const id = parseInt($(this).attr('id'));
+
+         $.ajax({
+            type:'get',
+            url: "/get-reward-format/"+id,
+            success: (data) => {
+
+                $('.lower_range').val(data.rewardformat[0].low)
+                $('.higher_range').val(data.rewardformat[0].high)
+                $('.reward_per_litre').val(data.rewardformat[0].shillings_per_litre)
+                $('.monthly').val(data.rewardformat[0].price_period.split(" ")[0])
+                $('.reward_year').val(data.rewardformat[0].price_period.split(" ")[1])
+                $("#edit-bulk-reward").modal('show');
+                $("#bulk_reward_id").val(id);
+
+            },
+            error: function(data){
+
+                console.log(data);
+                                
+                }
+            });
+
+         $("#edit-bulk-reward").modal('show');
+         $("#bulk_reward_id").val(id);
+    });
+
+
 
     //retain the reward status when loading the page
     (function(){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Models\Reward;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -16,8 +17,9 @@ class SaleController extends Controller
     public function makeSale()
     {   
 
+        $fuel_details = Products::all();        
         $reward_details = Reward::all();
-        return view('make-sale')->with(['rewards_details' => $reward_details]);
+        return view('make-sale')->with(['rewards_details' => $reward_details,'fuel_details' => $fuel_details]);
 
     }
 

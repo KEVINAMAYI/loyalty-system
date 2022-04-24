@@ -23,6 +23,8 @@ class CreateCustomersTable extends Migration
             $table->string('gender');
             $table->string('type')->nullable();
             $table->integer('rewards');
+            $table->date('sale_start_date')->nullable();
+            $table->date('sale_end_date')->nullable();
             $table->timestamps();
         });
     }

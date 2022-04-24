@@ -52,9 +52,15 @@ class LoginController extends Controller
             return redirect("/cooperate-customer-dashboard");
 
         }
-        else
+        else if(($role == 'Staff') || ($role == 'Admin'))
         {
             return redirect("/choose-option");
+
+
+        }
+        else{
+
+            return redirect("/logout");
 
 
         }

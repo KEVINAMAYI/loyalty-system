@@ -31,7 +31,7 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('front-end/images/bg-01.jpg');">
 			<div class="wrap-login100">
 					<span class="login100-form-logo">
 						<img src="front-end/images/logo.jpg" width="70" height="70">
