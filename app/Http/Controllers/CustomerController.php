@@ -113,10 +113,18 @@ class CustomerController extends Controller
         ]);
 
 
-        //store image for sales
+        //store images for sales
         // upload vehicle image
-        $fileName =  "image-".time().'.'.$request->vehicle_image->getClientOriginalExtension();
-        $request->vehicle_image->move(public_path('images'), $fileName);
+        $vehicleImage =  "image-".time().'.'.$request->vehicle_image->getClientOriginalExtension();
+        $request->vehicle_image->move(public_path('images'), $vehicleImage);
+
+        // upload pump image
+        $pumpImage =  "image-".time().'.'.$request->pump_image->getClientOriginalExtension();
+        $request->pump_image->move(public_path('images'), $pumpImage);
+
+        // upload receipt image
+        $receiptImage =  "image-".time().'.'.$request->receipt_image->getClientOriginalExtension();
+        $request->receipt_image->move(public_path('images'), $receiptImage);
 
         //store sales details 
         Sale::create([
@@ -129,7 +137,10 @@ class CustomerController extends Controller
             'rewards_awarded' => $data['rewards_awarded'],
             'amount_payable' => $data['amount_payable'],
             'amount_paid' => $data['amount_paid'],
-            'image_url' => $fileName
+            'image_url' => $vehicleImage,
+            'pump_image_url' => $pumpImage,
+            'receipt_image_url' => $receiptImage
+
 
         ]);
         

@@ -181,6 +181,8 @@
 										<input type="text" placeholder="Enter Amount" class="form-control" id="amount_paid" name="phonenumber" required>
 									</div>
 								</div>
+
+								{{-- vehicle image --}}
 								<div class="form-holder">
 										<img id="vehicle_image" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Vehicle Photo">									
 								</div>
@@ -189,6 +191,38 @@
 										<label class="custom-file-upload">
 											<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
 											<input type="file" id="image" name="uploader" id="uploader"                               
+											accept="image/*" 
+											capture="camera"/>
+											Take Photo
+										</label>
+									</div>
+								</div>
+
+								{{-- pump image --}}
+								<div class="form-holder">
+									<img id="vehicle_pump_image" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Pump Photo">									
+								</div>
+								<div class="form-row" style="margin-top:30px;">
+									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
+										<label class="custom-file-upload">
+											<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
+											<input type="file" id="pump_image" name="uploader" id="uploader"                               
+											accept="image/*" 
+											capture="camera"/>
+											Take Photo
+										</label>
+									</div>
+								</div>
+
+								{{-- receipt image --}}
+								<div class="form-holder">
+									<img id="vehicle_receipt_image" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Receipt Photo">									
+								</div>
+								<div class="form-row" style="margin-top:30px;">
+									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
+										<label class="custom-file-upload">
+											<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
+											<input type="file" id="receipt_image" name="uploader" id="uploader"                               
 											accept="image/*" 
 											capture="camera"/>
 											Take Photo

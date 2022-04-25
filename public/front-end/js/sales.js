@@ -817,7 +817,9 @@ $(function(){
         $('#progress').css('display','');
 
         const selectedFile = document.getElementById('image').files[0];
-        console.log(selectedFile);
+        const pumpFile = document.getElementById('image').files[0];
+        const receiptFile = document.getElementById('image').files[0];
+
 
         const product = localStorage.getItem('product');
         const last_name = localStorage.getItem('last_name');
@@ -838,6 +840,8 @@ $(function(){
 
         formData = new FormData();
         formData.append('vehicle_image',selectedFile);
+        formData.append('pump_image',pumpFile);
+        formData.append('receipt_image',receiptFile);
         formData.append('product',product);
         formData.append('last_name',last_name);
         formData.append('first_name',first_name);
@@ -950,6 +954,8 @@ $(function(){
 
          });
 
+
+         //set vehicle image
          $('#image').on('change',function(){
            
             let reader = new FileReader();
@@ -957,6 +963,37 @@ $(function(){
             reader.onload = (e) => { 
         
               $('#vehicle_image').attr('src', e.target.result); 
+
+            }
+        
+            reader.readAsDataURL(this.files[0]); 
+          
+           });
+
+
+        //set pump image
+         $('#pump_image').on('change',function(){
+           
+            let reader = new FileReader();
+        
+            reader.onload = (e) => { 
+        
+              $('#vehicle_pump_image').attr('src', e.target.result); 
+
+            }
+        
+            reader.readAsDataURL(this.files[0]); 
+          
+           });
+
+           //set pump image
+         $('#receipt_image').on('change',function(){
+           
+            let reader = new FileReader();
+        
+            reader.onload = (e) => { 
+        
+              $('#vehicle_receipt_image').attr('src', e.target.result); 
 
             }
         

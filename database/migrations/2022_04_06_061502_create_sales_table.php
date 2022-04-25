@@ -25,6 +25,8 @@ class CreateSalesTable extends Migration
             $table->integer('amount_payable');
             $table->integer('amount_paid');
             $table->string('image_url');
+            $table->string('pump_image_url');
+            $table->string('receipt_image_url');
             $table->timestamps();
         });
     }

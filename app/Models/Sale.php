@@ -24,6 +24,8 @@ class Sale extends Model
         'rewards_awarded',
         'amount_payable',
         'amount_paid',
-        'image_url'  
+        'image_url',
+        'pump_image_url',
+        'receipt_image_url'  
     ];
 }

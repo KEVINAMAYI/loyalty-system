@@ -143,7 +143,15 @@
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
                  <label for="regno">Image</label></br>
-                <img id="vehicle_image" src="" style="max-width:100%; max-height:500px;" alt="">									
+                <img id="vehicle_image" src="" style="border:4px solid grey; max-width:100%; max-height:400px;" alt="">									
+            </div>
+            <div class="form-holder form-holder-2 mt-4 mb-4">
+              <label for="regno">Pump Image</label></br>
+             <img id="pump_image" src="" style="border:4px solid grey; max-width:100%; max-height:500px;" alt="">									
+            </div>
+            <div class="form-holder form-holder-2 mt-4 mb-4">
+              <label for="regno">Receipt Image</label></br>
+              <img id="receipt_image" src="" style="border:4px solid grey; max-width:100%; max-height:500px;" alt="">									
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
