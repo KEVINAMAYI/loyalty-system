@@ -23,7 +23,7 @@
 	 <div style="padding-left:20px; padding-top:20px;">		<img src="front-end/images/logo.jpg" width="50" height="50" alt="">
     </div>
 	<div style="margin-top:-50px; text-align:center; padding-top:50px; width:100%; margin-bottom:20px;">
-						<h3>Reedem Rewards and Enjoy Purchase</h3>
+						<h3>Purchase and Redeem Rewards</h3>
 
 	</div>
     <div style="margin-top:-170px;" class="page-content">
@@ -182,7 +182,7 @@
 									</div>
 								</div>
 								<div class="form-holder">
-										<img id="vehicle_image" src="" style="max-width:100%; max-height:500px;" alt="Vehicle Photo">									
+										<img id="vehicle_image" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Vehicle Photo">									
 								</div>
 								<div class="form-row" style="margin-top:30px;">
 									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">

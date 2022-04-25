@@ -71,17 +71,17 @@
 								<div class="form-row">
 									<div class="form-holder">
 										<label for="password">Phone Number*</label>
-										<input type="number" placeholder="0722428401" class="form-control" id="phonenumber" name="phonenumber" required >
+										<input type="number" placeholder="Enter Phone Number" class="form-control" id="phonenumber" name="phonenumber" required >
 									</div>
 									<div class="form-holder">
 										<label for="confirm_password">ID Number*</label>
-										<input type="number" placeholder="34643511" class="form-control" id="idnumber" name="idnumber" required>
+										<input type="number" placeholder="Enter ID Number" class="form-control" id="idnumber" name="idnumber" required>
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label for="email">Email Address*</label>
-										<input type="email" placeholder="Your Email" class="form-control" id="email" name="email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+										<input type="email" placeholder="Enter Email" class="form-control" id="email" name="email"  pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
 									</div>
 								</div>
 								
@@ -153,12 +153,12 @@
 								</div>
 								<div class="form-holder form-holder-2">
 									<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Vehicle Registration Number*</label>
-									<input type="text" placeholder="KDD001Z" class="form-control" id="regno" name="regno" required>
+									<input type="text" placeholder="Enter Number Plate" class="form-control" id="regno" name="regno" required>
 								</div>
 								<div class="form-row row mt-3">
 									<div class="col-lg-12 col-md-12 col-sm-12">
 										<p style="color:white; font-weight:bold; margin-bottom:30px;">Vehicle Picture</p>
-                                        <img id="vehicle_image" src="front-end/images/car.jpg" style="max-width:100%; max-height:500px;" alt="">									
+										<img id="vehicle_image" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Vehicle Photo">									
 									</div>
 								</div>
 								<div class="form-row" style="margin-top:30px;">

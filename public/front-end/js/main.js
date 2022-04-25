@@ -41,7 +41,7 @@ $(function(){
         labels: {
             previous : 'Back',
             next : '<i class="zmdi zmdi-arrow-right"></i>',
-            finish : 'Finish',
+            finish : '<i id="completed" class="zmdi zmdi-arrow-right"></i>',
             current : ''
         },
         onStepChanging: function (event, currentIndex, newIndex) { 
@@ -132,7 +132,7 @@ $(function(){
     $("#completed").on('click',function(){
 
         $('html, body').animate({
-            scrollTop: $("#progress").offset().top
+            scrollTop: $("#progress").offset().bottom
         }, 500);
 
         $('#progress').css('display','');
