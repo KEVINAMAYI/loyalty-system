@@ -68,6 +68,7 @@ Route::group(['middleware' => 'staff'], function()
 Route::group(['middleware' => 'corporate'], function()
 {
      //back end routes
+    Route::get('/company-info', [CustomerController::class,'getCompanyInfo']);
     Route::get('/cooperate-customer-dashboard', [CustomerController::class,'getDashboardData']);
     Route::post('/add-cooperate-employee',  [CustomerController::class,'addEmployee']);
     Route::get('/cooperate-customer-employees',  [CustomerController::class,'getEmployees']);

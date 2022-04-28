@@ -62,12 +62,30 @@
 						<input  type="text" id="name" class="input100 @error('name') is-invalid @enderror"   name="name" value="{{ old('name') }}" required placeholder="Company's Name" autocomplete="name" autofocus>
 						<span class="focus-input100" data-placeholder="&#xf209;"></span>
 					</div>
-
-                    <div class="wrap-input100 validate-input" data-validate = "Enter Email">
+					<div class="wrap-input100 validate-input" data-validate = "Enter Phone Number">
+						<input  type="number" id="phonenumber" class="input100 @error('phonenumber') is-invalid @enderror"   name="phonenumber" value="{{ old('phonenumber') }}" required placeholder="Company's Phone Number" autocomplete="phonenumber" autofocus>
+						<span class="focus-input100" data-placeholder="&#xf2bc;"></span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Enter Alternative Phone Number">
+						<input  type="number" id="alternativephonenumber" class="input100 @error('alternativephonenumber') is-invalid @enderror"   name="alternativephonenumber" value="{{ old('alternativephonenumber') }}" required placeholder="Company's Alternative Phone Number" autocomplete="alternativephonenumber" autofocus>
+						<span class="focus-input100" data-placeholder="&#xf2bc;"></span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Enter Email">
 						<input  type="text" id="email" class="input100 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Company's Email" required autocomplete="email">
 						<span class="focus-input100" data-placeholder="&#xf111;"></span>
 					</div>
-
+					<div class="wrap-input100 validate-input" data-validate = "Enter Physical Address">
+						<input  type="text" id="address" class="input100 @error('address') is-invalid @enderror"   name="address" value="{{ old('address') }}" required placeholder="Company's Physical Address" autocomplete="name" autofocus>
+						<span class="focus-input100" data-placeholder="&#xf225;"></span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Enter Town">
+						<input  type="text" id="town" class="input100 @error('town') is-invalid @enderror"   name="town" value="{{ old('town') }}" required placeholder="Company's Physical Town" autocomplete="town" autofocus>
+						<span class="focus-input100" data-placeholder="&#xf209;"></span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Enter PIN (KRA PIN)">
+						<input  type="text" id="krapin" class="input100 @error('krapin') is-invalid @enderror"   name="krapin" value="{{ old('krapin') }}" required placeholder="Company's KRA PIN" autocomplete="krapin" autofocus>
+						<span class="focus-input100" data-placeholder="&#xf196;"></span>
+					</div>
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<input class="input100 @error('password') is-invalid @enderror" name="password" class="" type="password" name="pass" placeholder="Password" name="password" required autocomplete="new-password">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>

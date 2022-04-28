@@ -18,6 +18,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/company-info">
+            <i class="fa-solid fa-building"></i>
+            <span class="nav-link-text ms-1">Company's Info</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link  " href="/cooperate-customer-employees">
             <i class="fa-solid fa-person"></i>
             <span class="nav-link-text ms-1">Employees</span>

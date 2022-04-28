@@ -20,6 +20,14 @@ use Illuminate\Support\Facades\Log;
 class CustomerController extends Controller
 {
 
+    public function getCompanyInfo()
+    {   
+        $user = Auth::user()->id;
+        $company = User::where('id','=',$user)->get();
+        return view('cooperate-customer.company-info')->with(['company' => $company]);
+
+    }
+
     //generate sms token
     public function smsToken()
     {   
@@ -89,12 +97,10 @@ class CustomerController extends Controller
 
 
     public function sendSalesConfirmationSMS(Request $request)
-    {
+    {   
         $receiverNumber = "+254".substr($request->phone_number,1);
         $message = "Sales Completed successfully, Thanks and shop with us again";
         $data = $request->all();
-
-        
 
         //get customer purchase
          Customer::where('id','=',$data['customer_id'])->update([
@@ -112,8 +118,6 @@ class CustomerController extends Controller
             'status' => "complete"
         ]);
 
-
-        //store images for sales
         // upload vehicle image
         $vehicleImage =  "image-".time().'.'.$request->vehicle_image->getClientOriginalExtension();
         $request->vehicle_image->move(public_path('images'), $vehicleImage);
