@@ -46,7 +46,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Employees</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        {{ count($employees); }}
+                                        {{ count($employees) !=null ? count($employees) : 0 }}
                                     </h5>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Vehicles</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        {{ count($vehicles); }}
+                                        {{  count($vehicles) != null ? $count($vehicles) : 0  }}
                                     </h5>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Authorized Fuel
                                         Purchases</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        {{ count($authorized_purchases); }}
+                                        {{ count($authorized_purchases) != null ? count($authorized_purchases) : 0 }}
                                     </h5>
                                 </div>
                             </div>

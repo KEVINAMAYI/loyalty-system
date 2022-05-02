@@ -25,6 +25,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+	<link rel="stylesheet" href="/front-end/css/style.css"/>
+
 <!--===============================================================================================-->
 </head>
 <body>
@@ -46,18 +48,25 @@
                 </div>
                 @endif
 
-				<form class="login100-form validate-form" method="POST" action="{{ route('register') }}">
+				<form class="login100-form validate-form" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
 					@csrf
-
-                    <span class="login100-form-logo">
-						<img src="../assets/img/logo.jpg" width="70" height="70">
-					</span>
-
 					<span class="login100-form-title p-b-34 p-t-27">
 						Register
 					</span>
-
-    
+                    <span class="login100-form-logo">
+						<img id="company_logo" src="../assets/img/logo.jpg" width="70" height="70">
+					</span>
+					<div class="form-row" style="margin-top:15px; display:flex; margin-bottom:40px; justify-content:center; text-align:center;">
+						<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
+							<label class="custom-file-upload">
+								<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
+								<input type="file" style="display:none;" class="" id="company_logo_image" name="company_logo_image" id="uploader"                               
+								accept="image/*" 
+								capture="camera" required />
+								Upload  Logo
+							</label>
+						</div>
+					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Enter CompanyName">
 						<input  type="text" id="name" class="input100 @error('name') is-invalid @enderror"   name="name" value="{{ old('name') }}" required placeholder="Company's Name" autocomplete="name" autofocus>
 						<span class="focus-input100" data-placeholder="&#xf209;"></span>
@@ -150,6 +159,26 @@
 	<script src="../vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="../assets/js/main.js"></script>
+
+	<script>
+
+		 //set vehicle image
+         $('#company_logo_image').on('change',function(){
+           
+		   let reader = new FileReader();
+	   
+		   reader.onload = (e) => { 
+	   
+			 $('#company_logo').attr('src', e.target.result); 
+
+		   }
+	   
+		   reader.readAsDataURL(this.files[0]); 
+		 
+		  });
+
+
+	</script>
 
 </body>
 </html>

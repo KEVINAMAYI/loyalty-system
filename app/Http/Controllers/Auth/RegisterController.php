@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,7 +50,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {   
-
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'phonenumber' => 'required|regex:(^07)|digits:10',
@@ -70,9 +70,14 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
+    {   
+    
+         // upload company logo
+         $companyLogo =  "image-".time().'.'.$data['company_logo_image']->getClientOriginalExtension();
+         $data['company_logo_image']->move(public_path('images'), $companyLogo);
+
         return User::create([
-            'name' => $data['name'],
+            'name' => strtoupper($data['name']),
             'phone_number' => $data['phonenumber'],
             'address' => $data['address'],
             'town' => $data['town'],
@@ -80,7 +85,8 @@ class RegisterController extends Controller
             'alternative_phone_number' => $data['alternativephonenumber'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => 'Corperate'
+            'role' => 'Corperate',
+            'logo_url' => $companyLogo
         ]);
     }
 }

@@ -78,14 +78,12 @@ $(function(){
                });
 
 
-            $('#firstname-val').text(firstname);
-            $('#lastname-val').text(lastname);
+            $('#name-val').text(firstname+' '+lastname);
             $('#gender-val').text(gender);
             $('#phonenumber-val').text(phonenumber);
             $('#idnumber-val').text(idnumber);
             $('#email-val').text(email);
-            $('#category-val').text(category);
-            $('#regno-val').text(regno);
+            $('#vehicle-val').text(category+' '+regno);
             
             //execute amount and image check on the second step 
             if( currentIndex == 1) {

@@ -786,6 +786,17 @@ $(function(){
         $("#liters_val").val(total_amount_ltr.toFixed(2));
     });
 
+
+    //calculate cash if litres is entered
+    $('#liters_val').on('keyup',function(){
+        product_amount = parseFloat($('#product').val());
+        litres = parseFloat($("#liters_val").val());
+        total_amount = parseFloat( litres * product_amount);
+        $("#total_amount").val(total_amount.toFixed(2));
+    });
+
+
+
     //calculate litres if product changes
     $('#product').on('change',function(){
 

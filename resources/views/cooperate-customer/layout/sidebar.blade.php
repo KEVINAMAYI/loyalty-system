@@ -3,9 +3,9 @@
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html" target="_blank">
         <span style="margin-right:5px;" class="login100-form-logo">
-          <img src="assets/img/logo.jpg" style="border-radius:100%;" width="70" height="70">
+          <img src="/images/{{ Auth::user()->logo_url;}}" style="border-radius:100%;" width="50" height="50">
         </span>
-        <span class="ms-1 font-weight-bold">OLA</span>
+        <span class="ms-1 font-weight-bold">{{ Auth::user()->name; }}</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">

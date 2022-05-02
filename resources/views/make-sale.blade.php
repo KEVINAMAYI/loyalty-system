@@ -117,7 +117,7 @@
 									
 									<div class="form-holder form-holder-2 text-left">
 										<label for="firstname">Litres</label>
-										<input type="number" id="liters_val"  class="form-control" readonly required>
+										<input type="number" id="liters_val"  class="form-control"  required>
 									</div>
 								</div>
 								@if($rewards_details[0]->status == 'enabled')
@@ -206,7 +206,7 @@
 									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
 										<label class="custom-file-upload">
 											<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
-											<input type="file" id="pump_image" name="uploader" id="uploader"                               
+											<input type="file" style="display:none;" id="pump_image" name="uploader" id="uploader"                               
 											accept="image/*" 
 											capture="camera"/>
 											Take Photo
@@ -222,7 +222,7 @@
 									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
 										<label class="custom-file-upload">
 											<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
-											<input type="file" id="receipt_image" name="uploader" id="uploader"                               
+											<input type="file" style="display:none;" id="receipt_image" name="uploader" id="uploader"                               
 											accept="image/*" 
 											capture="camera"/>
 											Take Photo

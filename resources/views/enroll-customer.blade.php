@@ -182,47 +182,44 @@
 			            <section>
 			                <div class="inner">
 			                	<h3>Comfirm Details</h3>
-								<div class="form-row table-responsive">
-									<table class="table">
-										<tbody>
-											<tr class="space-row">
-												<th style="border:0px;">First Name:</th>
-												<td id="firstname-val" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Last Name:</th>
-												<td id="lastname-val" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Gender:</th>
-												<td id="gender-val" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Phone Number:</th>
-												<td id="phonenumber-val" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">ID Number:</th>
-												<td id="idnumber-val" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Email:</th>
-												<td id="email-val" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Vehicle Category:</th>
-												<td id="category-val" style="border:0px;"></td>
-											</tr>
-											<tr class="space-row">
-												<th style="border:0px;">Vehicle Registration Number:</th>
-												<td id="regno-val" style="border:0px;"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+								<div class="card" style="width: 100%; margin-bottom:25px; color:white; background-color:#2f8be0;">
+									<div class="card-body">
+										
+										<p class="card-text">
+										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Name:</span>
+										<span id="name-val"> </span> 
+										</p>
+										<p class="card-text">
+											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Gender:</span>
+											<span id="gender-val"> </span> 
+										</p>
+										<p class="card-text">
+										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Phone Number :</span>
+										<span id="phonenumber-val"></span>
+										</p>
+				
+										<p class="card-text">
+										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">ID Number:</span>
+										<span id="idnumber-val"></span>                        
+										</p>
+				
+										<p class="card-text">
+										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Email :</span>
+										<span id="email-val"></span>                        
+										</p>
+
+										<p class="card-text">
+											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Vehicle :</span>
+											<span id="vehicle-val"></span>                       
+										</p>
+										                       
+									     </p>
+								
+									</div>
+									</div>
 								<div class="col-lg-12 col-md-12 col-sm-12">
 									<p style="color:white; font-weight:bold; margin-bottom:15px;">Vehicle Picture</p>
-									<img id="confirm-vehicle-image" src="front-end/images/car.jpg" style="max-width:100%; max-height:500px;" alt="">									
+									<img id="confirm-vehicle-image" src="front-end/images/car.jpg" class="img-fluid img-thumbnail" style="border:3px solid rgb(182, 173, 89); width:200px; height:200px;" alt="">									
 								</div>
 							</div>
 			            </section>

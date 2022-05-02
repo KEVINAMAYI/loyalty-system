@@ -80,7 +80,7 @@ input[type=number] {
 	margin: 6px 0 26px;
 }
 
-#image, #pump_image, #receipt_image{
+#image, #pump_image, #receipt_image #company_logo_image{
 	display: none;
 }
 

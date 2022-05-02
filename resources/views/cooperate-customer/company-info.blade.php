@@ -43,7 +43,7 @@
                             Company Logo
                         </div>
                         <div class="card-body">
-                            <img src="front-end/images/logo.jpg" style="border-radius:100%; border:solid 2px rgb(40,50,60)" width="100" height="100" alt="">
+                            <img src="/images/{{ $company[0]->logo_url }}" style="border-radius:100%; border:solid 2px rgb(40,50,60)" width="100" height="100" alt="">
                           <h6 style="margin-top:20px;" class="card-title">Special title treatment</h6>
                           <a href="#" class="btn btn-primary">Change Logo</a>
                         </div>

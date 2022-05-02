@@ -310,12 +310,13 @@ class CustomerController extends Controller
      */
     public function getDashboardData(Customer $customer)
     {          
-        
         $user = Auth::user()->name;
         $employees = Customer::where('type','=',$user)->get();
         $vehicles =  Vehicle::where('ownership','=', $user)->get();
         $autorizedpurchases = AuthorizedPurchase::where('name','=', $user)->get();
         $employees_authorized_data = array();
+        $company = User::where('id','=',$user)->get();
+
 
         foreach ($autorizedpurchases as $autorizedpurchase)
         {
@@ -334,7 +335,7 @@ class CustomerController extends Controller
 
         }
 
-         return view('cooperate-customer.dashboard')->with(['employees' => $employees,'vehicles' => $vehicles,'authorized_purchases' => $employees_authorized_data]);
+         return view('cooperate-customer.dashboard')->with(['employees' => $employees,'vehicles' => $vehicles,'authorized_purchases' => $employees_authorized_data, 'company' => $company]);
        
        
      

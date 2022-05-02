@@ -26,7 +26,8 @@ class User extends Authenticatable
         'alternative_phone_number',
         'address',
         'town',
-        'krapin'
+        'krapin',
+        'logo_url'
     ];
 
     /**
