@@ -20,11 +20,19 @@ use Illuminate\Support\Facades\Log;
 class CustomerController extends Controller
 {
 
+    //get corporate company info
     public function getCompanyInfo()
     {   
         $user = Auth::user()->id;
         $company = User::where('id','=',$user)->get();
         return view('cooperate-customer.company-info')->with(['company' => $company]);
+
+    }
+
+    public function getRegisteredCorporates()
+    {   
+        $corporates = User::where('role','=','Corperate')->get();
+        return view('staff.corporates')->with(['corporates' => $corporates]);
 
     }
 

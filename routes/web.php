@@ -33,6 +33,7 @@ Route::group(['middleware' => 'staff'], function()
  
      //back end routes
      Route::get('/staff-dashboard', [CustomerController::class,'staffDashboard']);
+     Route::get('/corporates', [CustomerController::class,'getRegisteredCorporates']);
      Route::get('/authorized-purchases',[CustomerController::class,'getAuthorizedPurchasesForStaff']);
      Route::get('/users', [CustomerController::class,'showStaffs']);
      Route::get('/customers', [CustomerController::class,'showCustomers']);
