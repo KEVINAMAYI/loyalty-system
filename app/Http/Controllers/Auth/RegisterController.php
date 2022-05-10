@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
+use App\Models\Account;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -76,7 +77,7 @@ class RegisterController extends Controller
          $companyLogo =  "image-".time().'.'.$data['company_logo_image']->getClientOriginalExtension();
          $data['company_logo_image']->move(public_path('images'), $companyLogo);
 
-        return User::create([
+         $user = User::create([
             'name' => strtoupper($data['name']),
             'phone_number' => $data['phonenumber'],
             'address' => $data['address'],
@@ -88,5 +89,31 @@ class RegisterController extends Controller
             'role' => 'Corperate',
             'logo_url' => $companyLogo
         ]);
+
+
+         Account::create([
+            'organization_id' => $user->id,
+            'account_number' => 000000000,
+            'account_limit' => 100000,
+            'account_balance' =>0,
+            'limit_utilized' => 0,
+            'discount' => 0,
+            'account_type' => 'credit'
+        ]);
+
+
+         Account::create([
+            'organization_id' => $user->id,
+            'account_number' => 000000000,
+            'account_limit' => 100000,
+            'account_balance' =>0,
+            'limit_utilized' => 0,
+            'discount' => 0,
+            'account_type' => 'prepaid'
+        ]);
+
+        return  $user;
+
+
     }
 }

@@ -23,6 +23,7 @@ class CreateAuthorizedPurchasesTable extends Migration
             $table->string('status');
             $table->string('name');
             $table->timestamps();
+            $table->string('sales_date')->nullable();
         });
     }
 

@@ -42,6 +42,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link  " href="/my-account">
+            <i class="fa-solid fa-gear"></i>
+            <span class="nav-link-text ms-1">My Account</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('logout') }}"  onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>

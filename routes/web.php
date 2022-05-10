@@ -8,6 +8,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AuthorizedPurchaseController;
 use App\Http\Controllers\RewardFormatController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\AccountController;
+
 
 
 /*
@@ -59,6 +61,8 @@ Route::group(['middleware' => 'staff'], function()
      Route::get('/reward-format',  [RewardFormatController::class,'getRewardFormat']);
      Route::post('/edit-monthly-reward',  [RewardFormatController::class,'editMonthlyreward']);
      Route::post('/edit-bulk-reward',  [RewardFormatController::class,'editBulkreward']);
+     Route::post('/set-credit-limit',  [AccountController::class,'setCreditLimit']);
+     Route::post('/make-payment-or-purchase',  [AccountController::class,'makePaymentOrPurchases']);
      Route::get('/get-product/{products}',  [ProductsController::class,'getProduct']);
      Route::get('/get-reward-format/{rewardFormat}',  [RewardFormatController::class,'getSingleRewardFormat']);
  
@@ -85,8 +89,8 @@ Route::group(['middleware' => 'corporate'], function()
     Route::post('/edit-employee-data',[CustomerController::class,'editEmployeeData']);
     Route::post('/edit-coorporate-vehicle',[VehicleController::class,'editVehicleData']);
     Route::get('/delete-authorized-purchase/{authorizedPurchase}',[AuthorizedPurchaseController::class,'deleteAuthorizeFuelPurchase']);
-
-
+    Route::get('/my-account',[AccountController::class,'getAccountData']);
+    
 });
 
 

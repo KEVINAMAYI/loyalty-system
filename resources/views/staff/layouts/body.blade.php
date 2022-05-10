@@ -703,6 +703,51 @@
          $("#bulk_reward_id").val(id);
     });
 
+    //show corporate management model
+    $('.managecorporatebtn').on('click',function(){
+
+            corporate_id = $(this).attr("id");
+            account_type = $(this).attr("account_type");
+            account_name = $(this).attr("account_name");
+            account_balance = $(this).attr("account_balance");
+            account_number = $(this).attr("account_number");
+
+            console.log(account_name);
+
+            $('.corporate_main_id').val(corporate_id);
+            $('.corporate_account_type').val(account_type);
+            $('.corporate_main_id').val(corporate_id);
+            $('.acc_name_disp').text(account_name);
+            $('.acc_name_type').text(account_type);
+            $('.acc_no_disp').text(account_number);
+            $('.acc_bal_type').text(account_balance);
+            $('#manage-corporate').modal('show');
+
+
+
+            
+    });
+
+    //show purchase/payment model
+    $('.show_purchase_payment_btn').on('click',function(){
+
+        corporate_id = $(this).attr("org_id");
+        account_type = $(this).attr("account_type");
+        account_name = $(this).attr("account_name");
+        account_balance = $(this).attr("account_balance");
+        account_number = $(this).attr("account_number");
+
+        $('.corporate_main_id').val(corporate_id);
+        $('.corporate_account_type').val(account_type);
+        $('.acc_name_disp').text(account_name);
+        $('.acc_name_type').text(account_type);
+        $('.acc_no_disp').text(account_number);
+        $('.acc_bal_type').text(account_balance);
+        $('#make-payment-model').modal('show');
+
+
+    });
+
 
 
     //retain the reward status when loading the page

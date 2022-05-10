@@ -177,10 +177,10 @@
           </div>
 
           <div class="form-holder form-holder-2 mt-4 mb-4">
-            <label for="payment_type">Payment Type</label></br>
+            <label for="payment_type">Account Type</label></br>
             <select name="payment_type" id="payment_type" class="form-control">
-                <option value="sedan">Bank Transfer</option>
-                <option value="sedan">Mpesa</option>
+                <option value="credit">Credit</option>
+                <option value="prepaid">Prepaid</option>
             </select>          
         </div>
 
