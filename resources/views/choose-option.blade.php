@@ -73,6 +73,8 @@
                         OR ?
                      </div>
 
+					 @if(Auth::user()->major_role == 'Admin')
+
 					<div class="container-login100-form-btn mt-4">
 						<a href="/staff-dashboard" class="login100-form-btn">
 							Visit Staff Portal
@@ -81,6 +83,8 @@
 					<div class="text-white text-center mt-4">
                         OR ?
                      </div>
+					 
+					 @endif
 
 					<div class="container-login100-form-btn mt-4">
 						
