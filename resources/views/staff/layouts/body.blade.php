@@ -563,12 +563,12 @@
         formData = new FormData
         const name = $("#staffname").val()
         const email = $("#staffemail").val()
+        const major_role =  $("#major_role").val() 
       
+        formData.append('id',id);
         formData.append('name',name);
         formData.append('email',email);
-        formData.append('id',id);
-
-     
+        formData.append('major_role',major_role);
 
         $.ajax({
             type:'post',

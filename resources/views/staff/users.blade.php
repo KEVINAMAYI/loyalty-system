@@ -131,6 +131,13 @@
             <label for="regno">Confirm Password</label></br>
             <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="password_confirmation" id="password_confirmation" id="password_confirmation" placeholder="......">
           </div>
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label for="major_role">Role</label></br>
+            <select name="major_role" id="payment_type" class="form-control">
+                <option value="staff">Staff</option>
+                <option value="admin">Admin</option>
+            </select>          
+          </div>
           <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" style="background-color:#f9a14d; color:white;" type="button" class="btn">Add Staff</button>
@@ -163,6 +170,13 @@
               <label for="regno">Email</label></br>
               <input id="staffemail" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="email" id="email"  placeholder="kevinamayi20@gmail.com">
             </div>
+            <div class="form-holder form-holder-2 mt-4 mb-4">
+              <label for="major_role">Role</label></br>
+              <select name="major_role" id="major_role" class="form-control">
+                  <option value="Staff">Staff</option>
+                  <option value="Admin">Admin</option>
+              </select>          
+          </div>
             <div class="modal-footer">
             <input type="hidden" id="staffid" value="">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

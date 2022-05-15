@@ -45,7 +45,7 @@
 							
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
-										<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Customer ID/Phone*</label>
+										<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">ID/Phone/Vehicle Registration*</label>
 										<input type="text" id="id-number" style="height:55px;" placeholder="34643511" class="form-control" required>
 									</div>
 									<div id="get_data_btn" class="form-holder form-holder-2">

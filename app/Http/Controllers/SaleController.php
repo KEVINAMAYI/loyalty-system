@@ -6,6 +6,8 @@ use App\Models\Sale;
 use App\Models\Reward;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class SaleController extends Controller
 {
@@ -48,8 +50,16 @@ class SaleController extends Controller
      */
     public function getSales()
     {
-        $sales = Sale::all();
-        return view('staff.sales')->with(['sales' => $sales]);
+        if(Auth::user()->major_role == 'Admin')
+        {
+            $sales = Sale::all();
+            return view('staff.sales')->with(['sales' => $sales]);
+        }
+        else
+        {
+            return redirect('/choose-option');
+        }
+        
 
     }
 

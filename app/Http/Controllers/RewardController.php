@@ -6,6 +6,8 @@ use App\Models\Reward;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Models\RewardFormat;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class RewardController extends Controller
@@ -17,11 +19,18 @@ class RewardController extends Controller
      */
     public function getRewardDetails()
     {   
-        $products_details = Products::all();  
-        $rewards_monthly = RewardFormat::where('reward_type','monthly')->get();  
-        $rewards_bulk = RewardFormat::where('reward_type','bulk')->get();              
-        return view('staff.rewards')->with(['products_details'=> $products_details, 'rewards_monthly' => $rewards_monthly, 'rewards_bulk' => $rewards_bulk ]);
-
+        if(Auth::user()->major_role == 'Admin')
+        {
+            $products_details = Products::all();  
+            $rewards_monthly = RewardFormat::where('reward_type','monthly')->get();  
+            $rewards_bulk = RewardFormat::where('reward_type','bulk')->get();              
+            return view('staff.rewards')->with(['products_details'=> $products_details, 'rewards_monthly' => $rewards_monthly, 'rewards_bulk' => $rewards_bulk ]);    
+        }
+        else
+        {
+            return redirect('/choose-option');
+        }
+       
 
     }
 

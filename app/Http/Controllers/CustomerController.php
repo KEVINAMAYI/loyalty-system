@@ -34,10 +34,16 @@ class CustomerController extends Controller
 
     public function getRegisteredCorporates()
     {   
+        if(Auth::user()->major_role == 'Admin')
+        {
         $corporates_accounts = Account::all();
         // $corporates = User::where('role','=','Corperate')->get();
         return view('staff.corporates')->with(['corporates_accounts' => $corporates_accounts]);
-
+        }
+        else
+        {
+            return redirect('/choose-option');
+        }
     }
 
     //generate sms token
@@ -122,6 +128,7 @@ class CustomerController extends Controller
 
         ]);
 
+
         //get the updated customer
         $customer = Customer::where('id','=',$data['customer_id'])->get();
 
@@ -192,6 +199,7 @@ class CustomerController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'major_role' => ['required', 'string', 'max:255']
             
          ]);
          
@@ -201,7 +209,14 @@ class CustomerController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => 'Staff'
+            'role' => 'Staff',
+            'major_role' => $data['major_role'],
+            'phone_number' => '0719020100',
+            'alternative_phone_number' => '0719020100',
+            'address' => '00100',
+            'town' => 'Nairobi',
+            'krapin' => 'A010116927I',
+            'logo_url' => 'IMG_URL'
         ]);
 
 
@@ -264,7 +279,7 @@ class CustomerController extends Controller
         session()->flash('success','Staff Deleted Successfully');
         return redirect()->back();
 
-    }
+    }  
 
      /**
      * add a new staff and staff dashboard.
@@ -273,10 +288,15 @@ class CustomerController extends Controller
      */
     public function showStaffs()
     {          
-        
+        if(Auth::user()->major_role == 'Admin')
+        {
         $staffs = User::where('role','=','Staff')->get();
         return view('staff.users')->with(['staffs' => $staffs]);
-     
+        }
+        else
+        {
+            return redirect('/choose-option');
+        }
     }
 
 
@@ -554,29 +574,38 @@ class CustomerController extends Controller
      * 
      */
     public function getAuthorizedPurchasesForStaff()
-    {          
-
-        $autorizedpurchases = AuthorizedPurchase::all();
-        $employees_authorized_data = array();
-
-        foreach ($autorizedpurchases as $autorizedpurchase)
+    {    
+        if(Auth::user()->major_role == 'Admin')
         {
-            $customerid = $autorizedpurchase->employee_id;
-            $vehicleid = $autorizedpurchase->vehicle_id;
-            $personal_data = Customer::where('id','=',$customerid)->get();
-            $vehicle_data = Vehicle::where('id','=',$vehicleid)->get();
-
-
-            $employee = array();
-
-            array_push($employee, $personal_data);
-            array_push($employee, $vehicle_data);
-            array_push($employee,  $autorizedpurchase);
-            array_push($employees_authorized_data,$employee);
+            $autorizedpurchases = AuthorizedPurchase::all();
+            $employees_authorized_data = array();
+    
+            foreach ($autorizedpurchases as $autorizedpurchase)
+            {
+                $customerid = $autorizedpurchase->employee_id;
+                $vehicleid = $autorizedpurchase->vehicle_id;
+                $personal_data = Customer::where('id','=',$customerid)->get();
+                $vehicle_data = Vehicle::where('id','=',$vehicleid)->get();
+    
+    
+                $employee = array();
+    
+                array_push($employee, $personal_data);
+                array_push($employee, $vehicle_data);
+                array_push($employee,  $autorizedpurchase);
+                array_push($employees_authorized_data,$employee);
+    
+            }
+    
+             return view('staff.authorized-purchases')->with(['authorized_purchases' => $employees_authorized_data]);
+          
 
         }
+        else
+        {
+            return redirect('/choose-option');
+        }      
 
-         return view('staff.authorized-purchases')->with(['authorized_purchases' => $employees_authorized_data]);
        
     }
 
@@ -630,7 +659,9 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function staffDashboard()
-    {      
+    {    
+        if(Auth::user()->major_role == 'Admin')
+        {  
         $customers = Customer::all();
         $sales = Sale::all();
         $autorizedpurchases = AuthorizedPurchase::all();
@@ -655,6 +686,12 @@ class CustomerController extends Controller
         
         return view('staff.dashboard')->with(['customers' => $customers, 'sales' => $sales , 'authorized_purchases' => $employees_authorized_data ]);
         
+        }
+
+        else
+        {
+            return redirect('/choose-option');
+        }
     }
 
 
@@ -686,10 +723,16 @@ class CustomerController extends Controller
      */
     public function showCustomers()
     {          
-        
+        if(Auth::user()->major_role == 'Admin')
+        {
+
         $customers = Customer::all();
         return view('staff.customers')->with(['customers' => $customers]);
-     
+        }
+        else
+        {
+            return redirect('/choose-option');
+        }    
     }
 
 
@@ -842,7 +885,8 @@ class CustomerController extends Controller
         //validate customer enrollment details
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],    
+            'email' => ['required', 'string', 'email', 'max:255'], 
+            'major_role' =>  ['required', 'string', 'max:255'],
          ]);
         
         $data = $request->all();
@@ -851,11 +895,10 @@ class CustomerController extends Controller
         User::where('id','=',$user->id)->update([
             'name' => $data['name'],
             'email' => $data['email'],
+            'major_role' => $data['major_role']
         ]);
-
     
         return response()->json([
-
             'data' => $data['name']
             
         ]);
@@ -904,16 +947,31 @@ class CustomerController extends Controller
      */
     public function getCustomerData(Request  $request)
     {           
-
+         
          $data = $request->all();
-         $customer = Customer::where('id_number','=',$data['id_number'])->orWhere('phone_number','=',$data['id_number'])->get();
-         $vehicles =  Vehicle::where('customer_id','=',$customer[0]->id )->get();
+         $vehicle = Vehicle::where('vehicle_registration','=',$data['id_number'])->get();
+        
+         if(count($vehicle) > 0)
+         {
+
+            $customer = Customer::where('id','=',$vehicle[0]->customer_id)->get();
+            $vehicles =  Vehicle::where('customer_id','=',$customer[0]->id )->get();
+
+         }
+         else
+         {
+
+            $customer = Customer::where('id_number','=',$data['id_number'])->orWhere('phone_number','=',$data['id_number'])->get();
+            $vehicles =  Vehicle::where('customer_id','=',$customer[0]->id )->get();
+
+
+         }
 
          return  response()->json([
-
             'customer' =>  $customer,
-            'vehicles' =>   $vehicles
+            'vehicles' =>  $vehicles
         ]);
+      
 
     }
 

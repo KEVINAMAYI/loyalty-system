@@ -218,7 +218,7 @@ $(function(){
                             
                    <div class="form-row">
                        <div class="form-holder form-holder-2">
-                           <label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Customer ID/Phone*</label>
+                           <label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">ID/Phone/Vehicle Registration*</label>
                            <input type="text" id="id-number" style="height:55px;" placeholder="ID Number (34643511)" class="form-control" id="firstname" name="firstname" >
                        </div>
 
@@ -347,6 +347,7 @@ $(function(){
             },
             error: function(data){
 
+                console.log(data);
                 swal("Error!", "please enter a valid id number or phone number and try again!", "error");
                 isSubmitting = false;        
 
@@ -439,9 +440,13 @@ $(function(){
                 {   
                      
                     if('bulk' in reward_format_to_use)
-                    {
+                    {  
+                        console.log('bulk');
+
                         if(firstsale == true)
-                        {   
+                        { 
+                            console.log(true);
+
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
                              //calculate amount payable with the rewards set only when the reward option is enabled
@@ -468,7 +473,10 @@ $(function(){
                              console.log(rewards_awarded)
                         }
                         else
-                        {   
+                        {  
+                            
+                            console.log(false);
+
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -477,17 +485,26 @@ $(function(){
                             $('#amount_payable').val(amount_to_pay);
                             rewards_used = rewards;
 
+                            console.log({
+                                'rewards': customer_rewards
+                            })
+
 
                             //bulk rewards
                             new_cutomer_rewards = (customer_rewards) - rewards;
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
-                            rewards_awarded = (reward_format_to_use['bulk'] * litress).toFixed(2);
+                            rewards_awarded = (reward_format_to_use['bulk'] * litres).toFixed(2);
                             $('#sales-rewards-awarded').text(rewards_awarded);
 
                             date = new Date();
                             start_date = localStorage.getItem('db_start_date');
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+
+                            console.log({
+                                'st':start_date,
+                                'et':end_date
+                            })
 
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -499,7 +516,12 @@ $(function(){
                     }
                     else
                     {   
+                        console.log('reter');
+
                         if(firstsale == true){
+
+                            console.log(firstsale);
+
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
