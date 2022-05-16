@@ -65,6 +65,7 @@ Route::group(['middleware' => 'staff'], function()
      Route::post('/make-payment-or-purchase',  [AccountController::class,'makePaymentOrPurchases']);
      Route::get('/get-product/{products}',  [ProductsController::class,'getProduct']);
      Route::get('/get-reward-format/{rewardFormat}',  [RewardFormatController::class,'getSingleRewardFormat']);
+     Route::post('/add-register-corporate', [CustomerController::class,'registerCorporate']);
  
 });
 

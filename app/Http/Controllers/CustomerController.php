@@ -23,6 +23,73 @@ use Illuminate\Support\Facades\Log;
 class CustomerController extends Controller
 {
 
+
+    // register corporate customer from staff dashboard
+    public function registerCorporate(Request $request)
+    {
+         //validate new staff details
+         $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'phonenumber' => 'required|regex:(^07)|digits:10',
+            'alternativephonenumber' =>'required|regex:(^07)|digits:10',
+            'address' => ['required', 'string', 'max:255'],
+            'town' => ['required', 'string', 'max:255'],
+            'krapin' => ['required', 'string', 'max:255','unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            
+         ]);
+
+         $data = $request->all();
+
+         //define a default account number
+         $default_account_number = intval(substr(str_shuffle('0123456789'),0,7));  
+    
+         // upload company logo
+         $companyLogo =  "image-".time().'.'.$data['company_logo_image']->getClientOriginalExtension();
+         $data['company_logo_image']->move(public_path('images'), $companyLogo);
+
+         $user = User::create([
+            'name' => strtoupper($data['name']),
+            'phone_number' => $data['phonenumber'],
+            'address' => $data['address'],
+            'town' => $data['town'],
+            'krapin' => $data['krapin'],
+            'alternative_phone_number' => $data['alternativephonenumber'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => 'Corperate',
+            'logo_url' => $companyLogo
+        ]);
+
+
+         Account::create([
+            'organization_id' => $user->id,
+            'account_number' => $default_account_number,
+            'account_limit' => 0,
+            'account_balance' =>0,
+            'limit_utilized' => 0,
+            'discount' => 0,
+            'account_type' => 'credit'
+        ]);
+
+
+         Account::create([
+            'organization_id' => $user->id,
+            'account_number' => $default_account_number,
+            'account_limit' => 0,
+            'account_balance' =>0,
+            'limit_utilized' => 0,
+            'discount' => 0,
+            'account_type' => 'prepaid'
+        ]);
+
+
+        session()->flash('success','Coporate Added Successfully');
+        return redirect()->back();
+
+    }
+
     //get corporate company info
     public function getCompanyInfo()
     {   

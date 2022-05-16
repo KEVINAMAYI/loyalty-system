@@ -55,6 +55,10 @@
           </ul>
       </div>
       @endif
+
+      <button type="button" style="background-color:#f9a14d;" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#add-corporate-modal"><i class="fa-solid fa-plus"></i>
+        <span style="margin-left:5px;">Add Corporate</span>
+    </button>
       
     <div class="container-fluid py-4">
     <div class="row">
@@ -111,6 +115,90 @@
       </div>
     </div>
  </div>
+
+ {{-- Add Corporate Modal --}}
+ <form class="form-register" method="POST" action="/add-register-corporate" enctype="multipart/form-data">
+  @csrf
+  <div class="modal fade" id="add-corporate-modal" tabindex="-1" aria-labelledby="add-corporate-modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Corporate Customer</h5>
+            <button type="button" style="color:black;"  class="btn-close" data-bs-dismiss="modal" aria-label="Close">&#10006</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row col-md-12" style="margin-top:30px; text-align:center">
+              <span class="login100-form-logo" >
+                <img style="border:2px solid orange; border-radius:100%;" id="company_logo" src="../assets/img/logo.jpg" width="70" height="70">
+              </span>
+            </div>
+            <div class="form-row" style="margin-top:15px; display:flex; margin-bottom:40px; justify-content:center; text-align:center;">
+              <div style="background-color:#f9a14d; margin-left:0px; border-radius:10px; padding-right:20px; padding-left:20px; padding-top:2px;" class="form-holder">
+                <label class="custom-file-upload">
+                  <img id="camera" src="front-end/images/camera.png" id="company_logo" style="max-width:50px; max-height:50px;" alt="">									
+                  <input type="file" style="display:none;" class="" id="company_logo_image" name="company_logo_image" id="uploader"                               
+                  accept="image/*" 
+                  capture="camera" required />
+                  Upload  Logo
+                </label>
+              </div>
+            </div>
+            <div class="form-row col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Organization Name</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="name"   name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+              <span class="focus-input100" data-placeholder="&#xf209;"></span>
+            </div>
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Phone Number</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="phonenumber"   name="phonenumber" value="{{ old('phonenumber') }}" required autocomplete="phonenumber" autofocus>
+              <span class="focus-input100" data-placeholder="&#xf2bc;"></span>
+            </div>
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Alternative Phone Number</label></br>
+              <input  style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="number" id="alternativephonenumber"    name="alternativephonenumber" value="{{ old('alternativephonenumber') }}" required  autocomplete="alternativephonenumber" autofocus>
+              <span class="focus-input100" data-placeholder="&#xf2bc;"></span>
+            </div>
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Organization Email</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="email"  name="email" value="{{ old('email') }}"  required autocomplete="email">
+              <span class="focus-input100" data-placeholder="&#xf111;"></span>
+            </div>
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Organization Physical Address</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="address"     name="address" value="{{ old('address') }}" required  autocomplete="name" autofocus>
+              <span class="focus-input100" data-placeholder="&#xf225;"></span>
+            </div>
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Town</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="town"  name="town" value="{{ old('town') }}" required autocomplete="town" autofocus>
+              <span class="focus-input100" data-placeholder="&#xf209;"></span>
+            </div>
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Organization KRA PIN</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="krapin"    name="krapin" value="{{ old('krapin') }}" required autocomplete="krapin" autofocus>
+              <span class="focus-input100" data-placeholder="&#xf196;"></span>
+            </div>
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Password</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="password" class="" type="password" name="pass"name="password" required autocomplete="new-password">
+              <span class="focus-input100" data-placeholder="&#xf191;"></span>
+            </div>
+  
+              <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Confirm Password</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="password_confirmation" class="" type="password" name="pass"  name="password" required autocomplete="new-password">
+              <span class="focus-input100" data-placeholder="&#xf191;"></span>
+            </div>
+           
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" style="background-color:#f9a14d; color:white;" type="button" class="btn">Submit</button>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 
 
 

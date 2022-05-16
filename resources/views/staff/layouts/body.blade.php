@@ -750,6 +750,21 @@
     });
 
 
+     //set vehicle image
+     $('#company_logo_image').on('change',function(){
+           
+		   let reader = new FileReader();
+	   
+		   reader.onload = (e) => { 
+	   
+			 $('#company_logo').attr('src', e.target.result); 
+
+		   }
+	   
+		   reader.readAsDataURL(this.files[0]); 
+		 
+		  });
+
 
     //retain the reward status when loading the page
     (function(){
