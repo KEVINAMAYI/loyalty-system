@@ -610,28 +610,44 @@ class CustomerController extends Controller
     {          
 
         $name = Auth::user()->name; 
-        $autorizedpurchases = AuthorizedPurchase::where('name','=',$name)->get();
-        $employees_authorized_data = array();
+        $id = Auth::user()->id; 
+        $status = Account::where('organization_id','=',$id)
+                          ->where('account_type','=','prepaid')
+                          ->get()[0]->corporate_status;
 
-        foreach ($autorizedpurchases as $autorizedpurchase)
+        if($status == 'active')
         {
-            $customerid = $autorizedpurchase->employee_id;
-            $vehicleid = $autorizedpurchase->vehicle_id;
-            $personal_data = Customer::where('id','=',$customerid)->get();
-            $vehicle_data = Vehicle::where('id','=',$vehicleid)->get();
+            $autorizedpurchases = AuthorizedPurchase::where('name','=',$name)->get();
+            $employees_authorized_data = array();
+    
+            foreach ($autorizedpurchases as $autorizedpurchase)
+            {
+                $customerid = $autorizedpurchase->employee_id;
+                $vehicleid = $autorizedpurchase->vehicle_id;
+                $personal_data = Customer::where('id','=',$customerid)->get();
+                $vehicle_data = Vehicle::where('id','=',$vehicleid)->get();
+    
+    
+                $employee = array();
+    
+                array_push($employee, $personal_data);
+                array_push($employee, $vehicle_data);
+                array_push($employee,  $autorizedpurchase);
+                array_push($employees_authorized_data,$employee);
+    
+            }
+    
+             return view('cooperate-customer.authorizepurchase')->with(['authorized_purchases' => $employees_authorized_data]);
+        
 
-
-            $employee = array();
-
-            array_push($employee, $personal_data);
-            array_push($employee, $vehicle_data);
-            array_push($employee,  $autorizedpurchase);
-            array_push($employees_authorized_data,$employee);
+        }
+        else
+        {
+            return redirect('/cooperate-customer-dashboard');
 
         }
 
-         return view('cooperate-customer.authorizepurchase')->with(['authorized_purchases' => $employees_authorized_data]);
-       
+         
     }
 
 

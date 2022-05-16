@@ -146,48 +146,39 @@
             <div class="form-row col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization Name</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="name"   name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-              <span class="focus-input100" data-placeholder="&#xf209;"></span>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Phone Number</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="phonenumber"   name="phonenumber" value="{{ old('phonenumber') }}" required autocomplete="phonenumber" autofocus>
-              <span class="focus-input100" data-placeholder="&#xf2bc;"></span>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Alternative Phone Number</label></br>
               <input  style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="number" id="alternativephonenumber"    name="alternativephonenumber" value="{{ old('alternativephonenumber') }}" required  autocomplete="alternativephonenumber" autofocus>
-              <span class="focus-input100" data-placeholder="&#xf2bc;"></span>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization Email</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="email"  name="email" value="{{ old('email') }}"  required autocomplete="email">
-              <span class="focus-input100" data-placeholder="&#xf111;"></span>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization Physical Address</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="address"     name="address" value="{{ old('address') }}" required  autocomplete="name" autofocus>
-              <span class="focus-input100" data-placeholder="&#xf225;"></span>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Town</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="town"  name="town" value="{{ old('town') }}" required autocomplete="town" autofocus>
-              <span class="focus-input100" data-placeholder="&#xf209;"></span>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization KRA PIN</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="krapin"    name="krapin" value="{{ old('krapin') }}" required autocomplete="krapin" autofocus>
-              <span class="focus-input100" data-placeholder="&#xf196;"></span>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Password</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="password" class="" type="password" name="pass"name="password" required autocomplete="new-password">
-              <span class="focus-input100" data-placeholder="&#xf191;"></span>
             </div>
   
               <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Confirm Password</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="password_confirmation" class="" type="password" name="pass"  name="password" required autocomplete="new-password">
-              <span class="focus-input100" data-placeholder="&#xf191;"></span>
             </div>
            
             <div class="modal-footer">
@@ -235,6 +226,13 @@
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Discount Amount</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" id="discount" name="discount"  placeholder="2.00">
+            </div>
+            <div class="form-holder form-holder-2 mt-4 mb-4">
+              <label for="major_role">Manage Status</label></br>
+              <select name="corporate_status" id="corporate_status" class="form-control">
+                  <option value="active">Activate</option>
+                  <option value="inactive">Disable</option>
+              </select>          
             </div>
             <div class="modal-footer">
               <input type="hidden" class="corporate_main_id" name="corporate_id" value="">

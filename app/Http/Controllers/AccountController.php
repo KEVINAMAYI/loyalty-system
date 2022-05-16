@@ -59,6 +59,7 @@ class AccountController extends Controller
             'account_number' => ['required'],
             'account_limit' => ['required'],
             'discount' => ['required'],
+            'corporate_status' => ['required']
 
          ]);
 
@@ -76,7 +77,8 @@ class AccountController extends Controller
              'limit_utilized' => 0,
              'discount' => $data['discount'],
              'account_type' => $data['account_type'],
-             'amount_payable' => $amount_payable
+             'amount_payable' => $amount_payable,
+             'corporate_status' => $data['corporate_status']
          ]);
 
          session()->flash('success','The Account Limit set Successfully');
