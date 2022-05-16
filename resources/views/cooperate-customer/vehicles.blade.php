@@ -76,7 +76,7 @@
                                                 Vehicle Category</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Vehicle Type</th>
+                                                Vehicle Model</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Vehicle Registration</th>
@@ -92,13 +92,13 @@
 
                                             <tr>
                                                 <td style="padding-left:20px;" class="align-middle text-left text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $vehicle->vehicle_category }}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ strtoupper($vehicle->vehicle_category) }}</p>
                                                 </td>
                                                 <td class="align-middle text-left text-sm">
-                                                    <span class="text-secondary text-xs font-weight-bold">{{ $vehicle->vehicle_type }}</span>
+                                                    <span class="text-secondary text-xs font-weight-bold">{{ strtoupper($vehicle->vehicle_type) }}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <span class="text-secondary text-xs font-weight-bold">{{ $vehicle->vehicle_registration }}</span>
+                                                    <span class="text-secondary text-xs font-weight-bold">{{ strtoupper($vehicle->vehicle_registration) }}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <a href="" class="showeditvehiclemodal"  id="{{ $vehicle->id }}">

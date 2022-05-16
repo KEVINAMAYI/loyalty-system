@@ -72,6 +72,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
+         //define a default account number
+         $default_account_number = intval(substr(str_shuffle('0123456789'),0,7));  
     
          // upload company logo
          $companyLogo =  "image-".time().'.'.$data['company_logo_image']->getClientOriginalExtension();
@@ -93,8 +95,8 @@ class RegisterController extends Controller
 
          Account::create([
             'organization_id' => $user->id,
-            'account_number' => 000000000,
-            'account_limit' => 100000,
+            'account_number' => $default_account_number,
+            'account_limit' => 0,
             'account_balance' =>0,
             'limit_utilized' => 0,
             'discount' => 0,
@@ -104,8 +106,8 @@ class RegisterController extends Controller
 
          Account::create([
             'organization_id' => $user->id,
-            'account_number' => 000000000,
-            'account_limit' => 100000,
+            'account_number' => $default_account_number,
+            'account_limit' => 0,
             'account_balance' =>0,
             'limit_utilized' => 0,
             'discount' => 0,

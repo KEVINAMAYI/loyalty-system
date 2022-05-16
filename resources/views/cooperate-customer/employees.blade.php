@@ -99,11 +99,11 @@
                                             @foreach( $employees as $employee)
                                             
                                             <tr>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $employee->first_name }}</p>
+                                                <td class="align-middle text-left text-sm">
+                                                    <p style="padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $employee->first_name }}</p>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="text-secondary text-xs font-weight-bold">{{ $employee->last_name }}</span>
+                                                <td class="align-middle text-left text-sm">
+                                                    <span style="padding-left:0px;" class="text-secondary text-xs font-weight-bold">{{ $employee->last_name }}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <span
@@ -145,30 +145,30 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Employee</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       
       <div class="modal-body">
         <div class="form-holder form-holder-2 mb-2">
           <label for="regno">First Name</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="employee_firstname" id="employee_firstname" placeholder="Kevin" required>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="employee_firstname" id="employee_firstname" placeholder="" required>
         </div>
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Last Name</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="employee_lastname" id="employee_lastname" placeholder="Amayi" required>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="employee_lastname" id="employee_lastname" placeholder="" required>
         </div>
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Phone Number</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="phone_number"  id="phone_number" placeholder="0795704301" required>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="phone_number"  id="phone_number" placeholder="" required>
         </div>
         <div class="form-holder form-holder-2 mt-4 mb-4">
-          <label for="regno">ID Number</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="id_number"  id="id_number" placeholder="34643511" required>
+          <label for="regno">Employee ID Number</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="id_number"  id="id_number" placeholder="" required>
         </div>
         <div class="form-holder form-holder-2 mt-4 mb-4">
-          <label for="regno">Email</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="email" name="email" id="email" placeholder="kevinamayi20@gmail.com" required>
+          <label for="regno">Employee Email</label></br>
+          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="email" name="email" id="email" placeholder="" required>
         </div>
         <div class="form-holder form-holder-2">
           <label for="card-type">Gender</label>

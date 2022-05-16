@@ -721,6 +721,7 @@
             $('.acc_name_type').text(account_type);
             $('.acc_no_disp').text(account_number);
             $('.acc_bal_type').text(account_balance);
+            $('.acc_number').text(account_number);
             $('#manage-corporate').modal('show');
 
 

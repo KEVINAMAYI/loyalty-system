@@ -70,8 +70,8 @@
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Organization Name</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Customer Type</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Limit(KES)</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount Payable(KES)</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Credit Limit(KES)</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prepaid Amount(KES)</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Discount Amount</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Logo</th> --}}
@@ -137,11 +137,11 @@
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
                 <label for="regno">Account Number</label></br>
-                <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="account_number" id="account_number"  placeholder="7770169016805">
+                <input class="acc_number" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="account_number" id="account_number"  placeholder="7770169016805">
             </div> 
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Credit Limit Amount</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="account_limit" id="account_limit" placeholder="-100000">
+              <input  style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="account_limit" id="account_limit" placeholder="0">
             </div>
 
             <div class="form-holder form-holder-2 mt-4 mb-4">

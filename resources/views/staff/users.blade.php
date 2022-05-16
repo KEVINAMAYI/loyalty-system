@@ -74,6 +74,7 @@
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </thead>
@@ -86,6 +87,9 @@
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">{{ $staff->email }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs font-weight-bold">{{ $staff->major_role }}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <button id="{{ $staff->id }}" style="background-color:#4881c0; border:0px;"  class="editstaff badge badge-sm">edit</button>

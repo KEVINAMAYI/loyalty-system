@@ -75,7 +75,7 @@
                                                 Name</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Id Number</th>
+                                                Employee ID</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Vehicle</th>
@@ -102,7 +102,7 @@
                                                 <td style="padding-left:20px;" class="align-middle text-left text-sm">
                                                     <p class="text-xs font-weight-bold mb-0">{{ $authorized_purchase[0][0]->first_name }}   {{ $authorized_purchase[0][0]->last_name }}</p>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
+                                                <td class="align-middle text-left text-sm">
                                                     <span class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[0][0]->id_number }}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
