@@ -119,21 +119,21 @@
         <div class="modal-body">
           <div class="form-holder form-holder-2 mb-2">
             <label for="regno">Name</label></br>
-            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="name"  id="name" placeholder="Kevin">
+            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="name"  id="name" placeholder="">
           </div>  
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="regno">Email</label></br>
-            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="email" id="email"  placeholder="kevinamayi20@gmail.com">
+            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="email" id="email"  placeholder="">
           </div>
           
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="regno">Password</label></br>
-            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="password" id="password" id="password" placeholder="......">
+            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="password" id="password" id="password" placeholder="">
           </div>
 
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="regno">Confirm Password</label></br>
-            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="password_confirmation" id="password_confirmation" id="password_confirmation" placeholder="......">
+            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="password_confirmation" id="password_confirmation" id="password_confirmation" placeholder="">
           </div>
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="major_role">Role</label></br>

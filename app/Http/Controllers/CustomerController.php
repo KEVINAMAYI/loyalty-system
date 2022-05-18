@@ -308,9 +308,7 @@ class CustomerController extends Controller
             'employee_lastname' => ['required', 'string', 'max:255'],
             'employee_gender' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
-            'phone_number' => 'required|regex:(^07)|digits:10|unique:customers',
-            'id_number' => 'required|min:7|max:8|unique:customers',
-          
+            'phone_number' => 'required|regex:(^07)|digits:10|unique:customers'          
          ]);
 
          $data = $request->all();

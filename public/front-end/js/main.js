@@ -47,12 +47,14 @@ $(function(){
         onStepChanging: function (event, currentIndex, newIndex) { 
             var firstname = $('#firstname').val();
             var lastname = $('#lastname').val();
-            var gender = $('#gender').val();
+            var gender =  $("input[name='gender']:checked").val();
             var phonenumber = $('#phonenumber').val();
             var idnumber = $('#idnumber').val();
             var email = $('#email').val();
             var category = $('#category').val();
             var regno = $('#regno').val();
+            var type = $('#type').val();
+
 
 
             $.ajaxSetup({
@@ -83,7 +85,9 @@ $(function(){
             $('#phonenumber-val').text(phonenumber);
             $('#idnumber-val').text(idnumber);
             $('#email-val').text(email);
-            $('#vehicle-val').text(category+' '+regno);
+            $('#vehicle-val').text(category+' '+type);
+            $('#vehicle-reg-val').text(regno);
+
             
             //execute amount and image check on the second step 
             if( currentIndex == 1) {

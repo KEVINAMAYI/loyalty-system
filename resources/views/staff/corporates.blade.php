@@ -160,7 +160,7 @@
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="email"  name="email" value="{{ old('email') }}"  required autocomplete="email">
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Organization Physical Address</label></br>
+              <label for="regno">Organization Address</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="address"     name="address" value="{{ old('address') }}" required  autocomplete="name" autofocus>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">

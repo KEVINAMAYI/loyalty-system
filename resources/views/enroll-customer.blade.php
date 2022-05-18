@@ -56,13 +56,13 @@
 								<p style="color:white; ">Gender*</p>
 								<div class="form-row" style="padding-left:20px; margin-bottom:50px; margin-top:10px;">
 									<div class="form-check" style="margin-right:20px;">
-										<input class="form-check-input" type="radio" value="male" name="gender" id="gender">
-										<label style="color:white; font-weight:bold;" class="form-check-label" for="gender">
+										<input class="form-check-input gender" type="radio" value="male" name="gender">
+										<label style="color:white; font-weight:bold;" class="form-check-label" for="gender" >
 											Male
 										</label>
 									  </div>
 									  <div class="form-check">
-										<input class="form-check-input" value="female" type="radio" name="gender" id="gender" checked>
+										<input class="form-check-input gender" value="female" type="radio" name="gender" >
 										<label style="color:white; font-weight:bold;" class="form-check-label" for="gender">
 										  Female
 										</label>
@@ -211,6 +211,11 @@
 										<p class="card-text">
 											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Vehicle :</span>
 											<span id="vehicle-val"></span>                       
+										</p>
+
+										<p class="card-text">
+											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Registration Number :</span>
+											<span id="vehicle-reg-val"></span>                       
 										</p>
 										                       
 									     </p>

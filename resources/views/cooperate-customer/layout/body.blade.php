@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
     <link rel="icon"  href="front-end/images/logo.jpg">
     <title>
-        Cooperate Customer Dashboard
+        Cooperate Customer
     </title>
     <base href="{{ URL::to('/') }}">
 
