@@ -180,7 +180,23 @@
               <label for="regno">Confirm Password</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="password_confirmation" class="" type="password" name="pass"  name="password" required autocomplete="new-password">
             </div>
-           
+             <u><h5 style="margin-top:30px; margin-bottom:-20px;">Alternative Contact Person</h5></u>
+             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Name</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="contact_person_name" type="text" id="contact_person_name"  required autocomplete="contact_person_name" autofocus>
+            </div>
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Email</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="email" id="contact_person_email"  name="contact_person_email"  required autocomplete="email">
+            </div>
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Phone Number</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="contact_person_phone"   name="contact_person_phone" required autocomplete="phonenumber" autofocus>
+            </div>
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Alternative Phone Number</label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="contact_person_alternative_phone"   name="contact_person_alternative_phone" required autocomplete="phonenumber" autofocus>
+            </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="submit" style="background-color:#f9a14d; color:white;" type="button" class="btn">Submit</button>

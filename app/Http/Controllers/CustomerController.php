@@ -27,6 +27,8 @@ class CustomerController extends Controller
     // register corporate customer from staff dashboard
     public function registerCorporate(Request $request)
     {
+
+        // dd($request->all());
          //validate new staff details
          $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -37,6 +39,10 @@ class CustomerController extends Controller
             'krapin' => ['required', 'string', 'max:255','unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'contact_person_name' => ['required', 'string', 'max:255'],
+            'contact_person_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'contact_person_phone' => 'required|regex:(^07)|digits:10',
+            'contact_person_alternative_phone' => 'required|regex:(^07)|digits:10'
             
          ]);
 
@@ -59,7 +65,11 @@ class CustomerController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => 'Corperate',
-            'logo_url' => $companyLogo
+            'logo_url' => $companyLogo,
+            'contact_person_name' => $data['contact_person_name'],
+            'contact_person_email' => $data['contact_person_email'],
+            'contact_person_phone' =>  $data['contact_person_phone'],
+            'contact_person_alternative_phone' => $data['contact_person_alternative_phone']
         ]);
 
 

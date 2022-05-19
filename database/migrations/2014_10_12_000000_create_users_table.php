@@ -27,6 +27,10 @@ class CreateUsersTable extends Migration
             $table->string('role');
             $table->string('logo_url')->nullable();
             $table->string('major_role')->nullable();
+            $table->string('contact_person_name')->nullable();
+            $table->string('contact_person_email')->unique();
+            $table->integer('contact_person_phone')->nullable();
+            $table->integer('contact_person_alternative_phone')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

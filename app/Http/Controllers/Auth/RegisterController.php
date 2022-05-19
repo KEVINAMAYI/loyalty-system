@@ -60,7 +60,7 @@ class RegisterController extends Controller
             'krapin' => ['required', 'string', 'max:255','unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            
+
         ]);
     }
 
@@ -89,7 +89,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => 'Corperate',
-            'logo_url' => $companyLogo
+            'logo_url' => $companyLogo,
+            'contact_person_name' =>"test",
+            'contact_person_email' => "test",
+            'contact_person_phone' => "test",
+            'contact_person_alternative_phone' =>"test"
         ]);
 
 
