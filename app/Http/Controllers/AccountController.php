@@ -54,6 +54,8 @@ class AccountController extends Controller
     public function setCreditLimit(Request $request)
     {
 
+        // dd($request->all());
+
          // validate credit limit details enrollment details
          $request->validate([
             'account_number' => ['required'],
@@ -69,14 +71,15 @@ class AccountController extends Controller
          $account = Account::where('organization_id', $data['corporate_id'])->get();
          $amount_payable = $account[0]->amount_payable + $data['account_limit'];
 
-         Account::where('organization_id', $data['corporate_id'])->update([
+         Account::where('organization_id', $data['corporate_id'])
+                 ->where('account_type', $data['account_type'])
+                 ->update([
              'organization_id' => $data['corporate_id'],
              'account_number' => $data['account_number'],
              'account_limit' => $data['account_limit'],
              'account_balance' => $data['account_limit'],
              'limit_utilized' => 0,
              'discount' => $data['discount'],
-             'account_type' => $data['account_type'],
              'amount_payable' => $amount_payable,
              'corporate_status' => $data['corporate_status']
          ]);
