@@ -180,7 +180,7 @@
               <label for="regno">Confirm Password</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="password_confirmation" class="" type="password" name="pass"  name="password" required autocomplete="new-password">
             </div>
-             <u><h5 style="margin-top:30px; margin-bottom:-20px;">Alternative Contact Person</h5></u>
+             <u><h5 style="margin-top:30px; margin-bottom:-20px;">Primary Contact Person</h5></u>
              <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Name</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="contact_person_name" type="text" id="contact_person_name"  required autocomplete="contact_person_name" autofocus>
@@ -194,7 +194,7 @@
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="contact_person_phone"   name="contact_person_phone" required autocomplete="phonenumber" autofocus>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Alternative Phone Number</label></br>
+              <label for="regno">Additional Phone Number</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="contact_person_alternative_phone"   name="contact_person_alternative_phone" required autocomplete="phonenumber" autofocus>
             </div>
             <div class="modal-footer">
@@ -240,9 +240,13 @@
             </div>
 
             <div class="form-holder form-holder-2 mt-4 mb-4">
-              <label for="regno">Discount Amount</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" id="discount" name="discount"  placeholder="2.00">
-            </div>
+              <label for="reward-type">Reward Type</label>
+              <select name="reward-type" id="reward-type" class="form-control">
+                <option value="credit" selected>Credit</option>
+                <option value="prepaid">Prepaid</option>
+              </select>
+           </div>
+           
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="major_role">Manage Status</label></br>
               <select name="corporate_status" id="corporate_status" class="form-control">
