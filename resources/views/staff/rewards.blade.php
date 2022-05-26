@@ -245,11 +245,134 @@
                   @endforeach
               </tbody>
           </table>
+            </div>
+        </div>
       </div>
-</div>
-</div>
-</div>
-</div>
+    </div>
+  </div>
+
+
+  <div class="container-fluid py-4">
+  <div class="row">
+      <div class="col-12">
+          <div class="card mb-4">
+              <div class="card-header pb-0">
+                  <h6>Credit Rewards</h6>
+              </div>
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                  <th
+                      class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Range</th>
+                  <th
+                      class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                      Reward Type</th>
+                  <th
+                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Rewards in Shillings</th>
+                  <th
+                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Reward Period</th>
+                  <th
+                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Action</th>
+              </tr>
+          </thead>
+              <tbody>  
+                @foreach($rewards_credits as $rewards_credit)                
+                  <tr>
+                      <td class="align-middle text-center text-sm">
+                          <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $rewards_credit->low }} - {{ $rewards_credit->high }} </p>
+                      </td>
+                      
+                      <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $rewards_credit->reward_type }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $rewards_credit->shillings_per_litre }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span
+                            class="text-secondary text-xs font-weight-bold">{{ $rewards_credit->price_period }}</span>
+                    </td>
+                      <td class="align-middle text-center text-sm">
+                          <button id="{{ $rewards_credit->id }}" style="border:0px; background-color:#3875b6;" class="editbulkrewardbtn badge badge-sm">edit</button>
+                          {{-- <a href="/delete-cooperate-employee/" class="badge badge-sm bg-gradient-danger">delete</a> --}}
+                      </td>
+                  </tr>
+                  @endforeach
+              </tbody>
+          </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid py-4">
+  <div class="row">
+      <div class="col-12">
+          <div class="card mb-4">
+              <div class="card-header pb-0">
+                  <h6>Prepaid Rewards</h6>
+              </div>
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                  <th
+                      class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Range</th>
+                  <th
+                      class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                      Reward Type</th>
+                  <th
+                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Rewards in Shillings</th>
+                  <th
+                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Reward Period</th>
+                  <th
+                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Action</th>
+              </tr>
+          </thead>
+              <tbody>  
+                @foreach($rewards_prepaids as $rewards_prepaid)                
+                  <tr>
+                      <td class="align-middle text-center text-sm">
+                          <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $rewards_prepaid->low }} - {{ $rewards_prepaid->high }} </p>
+                      </td>
+                      
+                      <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $rewards_prepaid->reward_type }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $rewards_prepaid->shillings_per_litre }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span
+                            class="text-secondary text-xs font-weight-bold">{{ $rewards_prepaid->price_period }}</span>
+                    </td>
+                      <td class="align-middle text-center text-sm">
+                          <button id="{{ $rewards_prepaid->id }}" style="border:0px; background-color:#3875b6;" class="editbulkrewardbtn badge badge-sm">edit</button>
+                          {{-- <a href="/delete-cooperate-employee/" class="badge badge-sm bg-gradient-danger">delete</a> --}}
+                      </td>
+                  </tr>
+                  @endforeach
+              </tbody>
+          </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
       </div>
     </div>

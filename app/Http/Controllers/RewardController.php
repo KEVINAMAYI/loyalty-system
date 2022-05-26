@@ -23,15 +23,16 @@ class RewardController extends Controller
         {
             $products_details = Products::all();  
             $rewards_monthly = RewardFormat::where('reward_type','monthly')->get();  
-            $rewards_bulk = RewardFormat::where('reward_type','bulk')->get();              
-            return view('staff.rewards')->with(['products_details'=> $products_details, 'rewards_monthly' => $rewards_monthly, 'rewards_bulk' => $rewards_bulk ]);    
+            $rewards_bulk = RewardFormat::where('reward_type','bulk')->get();   
+            $rewards_credits = RewardFormat::where('reward_type','credit')->get();              
+            $rewards_prepaids = RewardFormat::where('reward_type','prepaid')->get();                         
+            return view('staff.rewards')->with(['products_details'=> $products_details, 'rewards_monthly' => $rewards_monthly, 'rewards_bulk' => $rewards_bulk,'rewards_credits'=> $rewards_credits,'rewards_prepaids'=>$rewards_prepaids ]);    
         }
         else
         {
             return redirect('/choose-option');
         }
        
-
     }
 
 
