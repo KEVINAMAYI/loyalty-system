@@ -77,7 +77,7 @@
 
 					<div class="container-login100-form-btn mt-4">
 						<a href="/staff-dashboard" class="login100-form-btn">
-							Visit Staff Portal
+							Admin Portal
 						</a>
 					</div>
 					<div class="text-white text-center mt-4">

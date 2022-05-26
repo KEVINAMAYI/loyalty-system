@@ -40,6 +40,12 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+    <!-- css to load PDF -->
+    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+        
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -172,6 +178,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+
+    <!-- you need to include the shieldui css and js assets in order for the components to work -->
+    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
+
     <script>
 
         
@@ -222,21 +233,15 @@
 
         // show modal for editing employee's data with the former data
         $('.showeditmodalbtn').on('click',function(e){
-
             e.preventDefault();
-
             const id = parseInt($(this).attr('id'));
-
-
             console.log(id);
 
             $.ajax({
                 type:'get',
                 url: "/get-employee-data/"+id,
                 success: (data) => {
-
-                    employee_data = data.employee;
-
+                   employee_data = data.employee;
                    $("#edit_first_name").val(employee_data[0].first_name);
                    $("#edit_last_name").val(employee_data[0].last_name);
                    $("#edit_phone_number").val(employee_data[0].phone_number);
@@ -244,16 +249,12 @@
                    $("#edit_email").val(employee_data[0].email);
                    $("#edit_gender").val(employee_data[0].gender);
                    $("#employeesedit").modal('show');
-
                    $('#employee_edit_id').val(id);
 
                 },
                 error: function(data){  
-                    
-                    console.log(data);
-
-                                       
-                 }
+                      console.log(data);
+                   }
 
                 });
 
@@ -261,36 +262,44 @@
 
         //show modal for editing vehicle with the vehicle data
         $(".showeditvehiclemodal").on('click',function(e){
-
             e.preventDefault();
             const id = parseInt($(this).attr('id'));
-
             $.ajax({
                 type:'get',
                 url: "/get-vehicle-data/"+id,
                 success: (data) => {
-
-                    vehicle_data = data.vehicle;
-
+                   vehicle_data = data.vehicle;
                    $("#edit_vehicle_category").val(vehicle_data[0].vehicle_category);
                    $("#edit_vehicle_type").val(vehicle_data[0].vehicle_type);
                    $("#edit_vehicle_registration").val(vehicle_data[0].vehicle_registration);
                    $("#vehiclesedit").modal('show');
-
                    $('#vehicle_edit_id').val(id);
-
-
-
                 },
                 error: function(data){  
-                    
                     console.log(data);
-
                                        
                  }
 
                 });
 
+        });
+
+
+
+          //export table
+          $("#exportauthorizedpurchasesbtn").click(function () {
+            html2canvas(document.getElementById('authorizationtable'), {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Authorized_Purchases.pdf");
+                }
+            });
         });
 
 

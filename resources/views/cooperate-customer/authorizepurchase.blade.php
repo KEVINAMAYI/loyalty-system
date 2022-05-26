@@ -60,31 +60,39 @@
             <span style="margin-left:5px;">Authorize Fuel Purchase</span></button>
 
         <div class="container-fluid py-4">
+    
+
             <div class="row">
+            
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>Authorized Purchases</h6>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <h6>Authorized Purchases</h6>
+                            </div>
+                            <div class="col-md-6" style="display:flex; justify-content:right;">
+                              <button  id="exportauthorizedpurchasesbtn" type="button" style="max-width:250px; background-color:#f9a14d;" class="btn btn-primary btn-md" ><i class="fa-solid fa-file"></i></i>
+                              <span style="margin-left:5px;">Export to PDF</span></button>
+                            </div>
+                          </div>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
+                                <table class="table align-items-center mb-0" id="authorizationtable">
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Name</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Employee ID</th>
+                                                Employee_ID</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Vehicle</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Amount</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Receipt Number</th>
                                              <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Status
@@ -112,21 +120,18 @@
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->amount }}</span>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->receipt_number }}</span>
-                                                </td>
+                                             
 
                                                 @if( $authorized_purchase[2]->status == 'complete' )
 
-                                                <td class="align-middle text-center text-sm">
-                                                  <span class="badge badge-sm bg-gradient-success">{{ $authorized_purchase[2]->status }}</span>
+                                                <td style="color:green; font-weight:bold;" class="align-middle text-center text-sm">
+                                                 {{ $authorized_purchase[2]->status }}
                                                 </td>
 
                                                 @else
 
-                                                <td class="align-middle text-center text-sm">
-                                                  <span class="badge badge-sm bg-gradient-warning">{{ $authorized_purchase[2]->status }}</span>
+                                                <td style="color:orange; font-weight:bold;" class="align-middle text-center  text-sm">
+                                                  {{ $authorized_purchase[2]->status }}
                                                 </td>
 
                                                 @endif

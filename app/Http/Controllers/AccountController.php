@@ -60,7 +60,6 @@ class AccountController extends Controller
          $request->validate([
             'account_number' => ['required'],
             'account_limit' => ['required'],
-            'discount' => ['required'],
             'corporate_status' => ['required']
 
          ]);
@@ -79,7 +78,7 @@ class AccountController extends Controller
              'account_limit' => $data['account_limit'],
              'account_balance' => $data['account_limit'],
              'limit_utilized' => 0,
-             'discount' => $data['discount'],
+             'discount' => 0,
              'amount_payable' => $amount_payable,
              'corporate_status' => $data['corporate_status']
          ]);
