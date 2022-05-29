@@ -189,11 +189,6 @@
             </select>          
         </div>
 
-          <div class="form-holder form-holder-2 mt-4 mb-4">
-            <label for="regno">Transaction/Receipt Number</label></br>
-            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="receiptreg" id="receiptreg" placeholder="Q23431SFR">
-          </div>
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -204,58 +199,5 @@
   </div>
 </form>
 
-
-  {{-- <!-- edit reward modal -->
-<!-- Modal -->
-<div class="modal fade" id="rewardedit" tabindex="-1" aria-labelledby="rewardedit" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Authorize Fuel Purchase</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form class="form-register" id="form-register" action="#" method="post">
-        <div class="form-holder form-holder-2">
-          <label for="card-type">Employee Name</label>
-          <select name="make" id="make" class="form-control">
-            <option value="" selected>Kevin Amayi</option>
-            <option value="Honda">Brian Otwane</option>
-            <option value="Mitsubishi">Donald Kaniaru</option>
-            <option value="Isuzu">Pius Musungu</option>
-            <option value="Ford">Joyce Ayaa</option>
-          </select>
-        </div>
-
-        <div class="form-holder form-holder-2 mt-4">
-          <label for="card-type">Vehicle Reg</label>
-          <select name="make" id="make" class="form-control">
-            <option value="" selected>KAG 334</option>
-            <option value="Honda">KAR 445</option>
-            <option value="Mitsubishi">KUV 447</option>
-            <option value="Isuzu">KIS 448</option>
-            <option value="Ford">KIT 376</option>
-          </select>
-        </div>
-
-        <div class="form-holder form-holder-2 mt-4 mb-4">
-          <label for="regno">Amount</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="33,000">
-        </div>
-
-        <div class="form-holder form-holder-2 mt-4 mb-4">
-          <label for="regno">Transaction/Receipt Number</label></br>
-          <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="regnor" class="regno" id="regno" placeholder="Q23431SFR">
-        </div>
-
-      </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button style="background-color:#f9a14d; color:white;" type="button" class="btn">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> --}}
 
 @endsection

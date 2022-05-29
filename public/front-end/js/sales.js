@@ -64,6 +64,9 @@ $(function(){
                     var amount_paid = $('#amount_paid').val();
                     var rewards_used = parseFloat($('#rewards').val()).toFixed(2);
                     localStorage.setItem('vehicle_registration',vehicle[0].vehicle_registration);
+                    localStorage.setItem('authorized_amount',customer[0].authorized_amount);
+                    localStorage.setItem('reward_type_to_use',customer[0].reward_type_to_use);
+
 
 
             
@@ -91,9 +94,26 @@ $(function(){
                         localStorage.setItem('db_end_date',customer[0].sale_end_date);
 
                     }
-                    
-                    
-                    
+
+
+                    //set amount and litres if customer is authoried by the corporate
+                    if(!(isNaN(customer[0].authorized_amount)) && ((customer[0].reward_type_to_use == 'credit') || (customer[0].reward_type_to_use == 'prepaid')))
+                    {
+                        //calculate amount of litres
+                        product_amount = parseFloat($('#product').val());
+                        total_amount_ltr = parseFloat( customer[0].authorized_amount / product_amount);
+                        $("#total_amount").val(customer[0].authorized_amount);
+                        $("#liters_val").val(total_amount_ltr.toFixed(2));
+                        rewards = parseInt($('#rewards').val());
+                        litres = parseFloat($("#liters_val").val());
+                        total_amount =parseInt($('#total_amount').val());
+                        $('#total_amount').attr('readonly', true);
+                        $('#liters_val').attr('readonly', true);
+
+
+
+                    }
+               
 
                     localStorage.setItem('amount_paid',amount_paid);
                     localStorage.setItem('amount_payable',amount_payable);
@@ -405,30 +425,78 @@ $(function(){
             var rewards_used = 0;
             firstsale = localStorage.getItem('firstsale');
 
+            authorized_amount = localStorage.getItem('authorized_amount');
+            authorized_reward_type = localStorage.getItem('reward_type_to_use');
+
             
-            // get reward format details
-            rewards_format.forEach(reward_format => {
+            console.log(authorized_amount);
+            console.log(authorized_reward_type);
+            
+            //define the reward format to use
+            if(!(isNaN(authorized_amount)) && ((authorized_reward_type == 'credit') || (authorized_reward_type == 'prepaid')))
+            {
+                
+                console.log(authorized_amount);
+                console.log(authorized_reward_type);
 
-                if((litres >= reward_format.low) && (litres <= reward_format.high))
-                {
+                // get reward format details for rewards that are not corporate
+                rewards_format.forEach(reward_format => {
+
+                    if(reward_format.reward_type == authorized_reward_type)
+                    {
+                        
+
+                        //calculate amount of litres
+                        product_amount = parseFloat($('#product').val());
+                        total_amount_ltr = parseFloat( authorized_amount / product_amount);
+                        $("#total_amount").val(authorized_amount);
+                        $("#liters_val").val(total_amount_ltr.toFixed(2));
+                        rewards = parseInt($('#rewards').val());
+                        litres = parseFloat($("#liters_val").val());
+                        total_amount =parseInt($('#total_amount').val());
+
+               
+                        if((total_amount_ltr >= reward_format.low) && (total_amount_ltr <= reward_format.high))
+                        {   
+                            
+                            reward_percentage = parseFloat(reward_format.shillings_per_litre);
+                            reward_type = reward_format.reward_type;
+                            reward_format_to_use[reward_type] = reward_percentage;
+
+                        
+                        }
+                    }
+
+                });
+
+
+            }
+            else
+            {
+
+                // get reward format details for rewards that are not corporate
+                rewards_format.forEach(reward_format => {
+
+                    if((litres >= reward_format.low) && (litres <= reward_format.high))
+                    {
+                        
+                        reward_percentage = parseFloat(reward_format.shillings_per_litre);
+                        reward_type = reward_format.reward_type;
+                        reward_format_to_use[reward_type] = reward_percentage;
+                        reward_format_length = Object.keys(reward_format_to_use).length;
                     
-                    reward_percentage = parseFloat(reward_format.shillings_per_litre);
-                    reward_type = reward_format.reward_type;
-                    reward_format_to_use[reward_type] = reward_percentage;
-                    reward_format_length = Object.keys(reward_format_to_use).length;
-                   
 
-                }
+                    }
 
+                });
 
-            });
+            }
+           
             
             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
             if(rewards != null && isNaN(rewards) != true)
             {
-
-                
 
                 // check if the rewards entered is not less than the customer reward value
                 if(rewards > customer_rewards)
@@ -449,7 +517,7 @@ $(function(){
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
-                             //calculate amount payable with the rewards set only when the reward option is enabled
+                            //calculate amount payable with the rewards set only when the reward option is enabled
                             let amount_to_pay = total_amount - (rewards + (reward_format_to_use['bulk'] * litre));
                             $('#amount_payable').val(amount_to_pay);
                             rewards_used = rewards;
@@ -514,6 +582,157 @@ $(function(){
 
 
                     }
+                    else if('credit' in reward_format_to_use)
+                    {
+                        
+
+                        if(firstsale == true)
+                        { 
+                            console.log(true);
+
+                            let customer_rewards = localStorage.getItem('cutomer_rewards');
+
+                            //calculate amount payable with the rewards set only when the reward option is enabled
+                            let amount_to_pay = total_amount - (rewards + (reward_format_to_use['credit'] * litre));
+                            $('#amount_payable').val(amount_to_pay);
+                            rewards_used = rewards;
+
+                            console.log(customer_rewards);
+
+                            //bulk rewards
+                            new_cutomer_rewards = (customer_rewards) - rewards;
+                            $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
+                            new_cutomer_rewards.toFixed(2);
+                            rewards_awarded = (reward_format_to_use['credit'] * litres).toFixed(2);
+                            $('#sales-rewards-awarded').text(rewards_awarded);
+
+                             //get current day
+                             date = new Date();
+                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+                             
+                             localStorage.setItem('sale_start_date',start_date);
+                             localStorage.setItem('sale_end_date',end_date);
+                             console.log(rewards_awarded);
+                             console.log(sale_start_date);
+                             console.log(sale_end_date);
+                        }
+                        else
+                        {  
+                            
+                            console.log(total_amount);
+                            console.log(reward_format_to_use['credit']); 
+
+                            let customer_rewards = localStorage.getItem('cutomer_rewards');
+
+                             //calculate amount payable with the rewards set only when the reward option is enabled
+                            let amount_to_pay = total_amount - (rewards + reward_format_to_use['credit'] * litres);
+                            $('#amount_payable').val(amount_to_pay);
+                            rewards_used = rewards;
+
+                            console.log({
+                                'rewards': customer_rewards
+                            })
+
+
+                            //bulk rewards
+                            new_cutomer_rewards = (customer_rewards) - rewards;
+                            $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
+                            new_cutomer_rewards.toFixed(2);
+                            rewards_awarded = (reward_format_to_use['credit'] * litres).toFixed(2);
+                            $('#sales-rewards-awarded').text(rewards_awarded);
+
+                            date = new Date();
+                            start_date = localStorage.getItem('db_start_date');
+                            end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+
+                            console.log({
+                                'st':start_date,
+                                'et':end_date
+                            })
+
+                            localStorage.setItem('sale_start_date',start_date);
+                            localStorage.setItem('sale_end_date',end_date);
+                            console.log(sale_start_date);
+                            console.log(sale_end_date);
+                        }
+                       
+
+
+
+                    }
+                    else if('prepaid' in reward_format_to_use)
+                    {
+                        console.log('prepaid');
+
+                        if(firstsale == true)
+                        { 
+                            console.log(true);
+
+                            let customer_rewards = localStorage.getItem('cutomer_rewards');
+
+                            //calculate amount payable with the rewards set only when the reward option is enabled
+                            let amount_to_pay = total_amount - (rewards + (reward_format_to_use['prepaid'] * litre));
+                            $('#amount_payable').val(amount_to_pay);
+                            rewards_used = rewards;
+
+                            console.log(customer_rewards);
+
+                            //bulk rewards
+                            new_cutomer_rewards = (customer_rewards) - rewards;
+                            $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
+                            new_cutomer_rewards.toFixed(2);
+                            rewards_awarded = (reward_format_to_use['prepaid'] * litres).toFixed(2);
+                            $('#sales-rewards-awarded').text(rewards_awarded);
+
+                             //get current day
+                             date = new Date();
+                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+                             
+                             localStorage.setItem('sale_start_date',start_date);
+                             localStorage.setItem('sale_end_date',end_date);
+                             console.log(rewards_awarded)
+                        }
+                        else
+                        {  
+                            
+                            console.log(false);
+
+
+                            let customer_rewards = localStorage.getItem('cutomer_rewards');
+
+                             //calculate amount payable with the rewards set only when the reward option is enabled
+                            let amount_to_pay = total_amount - (rewards + reward_format_to_use['prepaid'] * litres);
+                            $('#amount_payable').val(amount_to_pay);
+                            rewards_used = rewards;
+
+                            console.log({
+                                'rewards': customer_rewards
+                            })
+
+
+                            //bulk rewards
+                            new_cutomer_rewards = (customer_rewards) - rewards;
+                            $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
+                            new_cutomer_rewards.toFixed(2);
+                            rewards_awarded = (reward_format_to_use['prepaid'] * litres).toFixed(2);
+                            $('#sales-rewards-awarded').text(rewards_awarded);
+
+                            date = new Date();
+                            start_date = localStorage.getItem('db_start_date');
+                            end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+
+                            console.log({
+                                'st':start_date,
+                                'et':end_date
+                            })
+
+                            localStorage.setItem('sale_start_date',start_date);
+                            localStorage.setItem('sale_end_date',end_date);
+                        }
+                       
+                    }
                     else
                     {   
                         console.log('reter');
@@ -521,7 +740,6 @@ $(function(){
                         if(firstsale == true){
 
                             console.log(firstsale);
-
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -552,7 +770,7 @@ $(function(){
                         else
                         {    
 
-                            let customer_rewards = localStorage.getItem('cutomer_rewards');
+                           let customer_rewards = localStorage.getItem('cutomer_rewards');
 
                            //calculate difference in employs sale dates
                            db_end_date = new Date(localStorage.getItem('db_end_date')).getTime();
@@ -593,7 +811,6 @@ $(function(){
                            else
                            {
                             
-                              
                                 swal("Error!", "You are not eligble to use rewards, you must complete one month!", "error")
 
                                 let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -624,12 +841,9 @@ $(function(){
 
                           
                             }
-
-
                            
                         }
                         
-
 
                     }
            
@@ -692,6 +906,137 @@ $(function(){
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['bulk'] * litres);
+
+                           
+                            date = new Date();
+                            start_date = localStorage.getItem('db_start_date');
+                            end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+
+                            localStorage.setItem('sale_start_date',start_date);
+                            localStorage.setItem('sale_end_date',end_date);
+
+
+                        }
+
+
+                    }
+                    else if('credit' in reward_format_to_use)
+                    {
+                        if(firstsale == true)
+                        {
+
+                            let customer_rewards = localStorage.getItem('cutomer_rewards');
+
+                            //calculate amount payable with the rewards set only when the reward option is enabled
+                            let amount_to_pay = total_amount - (0 + reward_format_to_use['credit'] * litres);
+                            $('#amount_payable').val(amount_to_pay);
+                            rewards_used = 0;
+
+                            console.log(customer_rewards);
+
+                            //bulk rewards
+                            new_cutomer_rewards = (customer_rewards) - 0;
+                            $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
+                            new_cutomer_rewards.toFixed(2);
+                            rewards_awarded = (reward_format_to_use['credit'] * litres).toFixed(2);
+
+                            //get current day
+                            date = new Date();
+                            start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+                            end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+                            
+                            localStorage.setItem('sale_start_date',start_date);
+                            localStorage.setItem('sale_end_date',end_date);
+                            console.log(rewards_awarded);
+                            console.log(sale_start_date);
+                            console.log(sale_end_date);
+
+                        }
+                        else
+                        {
+                            let customer_rewards = localStorage.getItem('cutomer_rewards');
+                            console.log(total_amount);
+                            console.log(litres);
+                            console.log(reward_format_to_use['credit']);
+
+
+
+                            //calculate amount payable with the rewards set only when the reward option is enabled
+                            let amount_to_pay = total_amount - (0 + reward_format_to_use['credit'] * litres);
+                            console.log(amount_to_pay);
+
+                            $('#amount_payable').val(amount_to_pay);
+                            rewards_used = 0;
+
+                            console.log(customer_rewards);
+
+                            //bulk rewards
+                            new_cutomer_rewards = (customer_rewards) - 0;
+                            $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
+                            new_cutomer_rewards.toFixed(2);
+                            rewards_awarded = (reward_format_to_use['credit'] * litres);
+
+                           
+                            date = new Date();
+                            start_date = localStorage.getItem('db_start_date');
+                            end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+
+                            localStorage.setItem('sale_start_date',start_date);
+                            localStorage.setItem('sale_end_date',end_date);
+                            console.log(start_date);
+                            console.log(end_date);
+
+
+                        }
+
+
+                    }
+                    else if('prepaid' in reward_format_to_use)
+                    {
+                        if(firstsale == true)
+                        {
+
+                            let customer_rewards = localStorage.getItem('cutomer_rewards');
+
+                            //calculate amount payable with the rewards set only when the reward option is enabled
+                            let amount_to_pay = total_amount - (0 + reward_format_to_use['prepaid'] * litres);
+                            $('#amount_payable').val(amount_to_pay);
+                            rewards_used = 0;
+
+                            console.log(customer_rewards);
+
+                            //bulk rewards
+                            new_cutomer_rewards = (customer_rewards) - 0;
+                            $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
+                            new_cutomer_rewards.toFixed(2);
+                            rewards_awarded = (reward_format_to_use['prepaid'] * litres).toFixed(2);
+
+                            //get current day
+                            date = new Date();
+                            start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+                            end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+                            
+                            localStorage.setItem('sale_start_date',start_date);
+                            localStorage.setItem('sale_end_date',end_date);
+                            console.log(rewards_awarded)
+
+                        }
+                        else
+                        {
+                            let customer_rewards = localStorage.getItem('cutomer_rewards');
+
+                            //calculate amount payable with the rewards set only when the reward option is enabled
+                            let amount_to_pay = total_amount - (0 + reward_format_to_use['prepaid'] * litres);
+                            $('#amount_payable').val(amount_to_pay);
+                            rewards_used = 0;
+
+                            console.log(customer_rewards);
+
+                            //bulk rewards
+                            new_cutomer_rewards = (customer_rewards) - 0;
+                            $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
+                            new_cutomer_rewards.toFixed(2);
+                            rewards_awarded = (reward_format_to_use['prepaid'] * litres);
 
                            
                             date = new Date();

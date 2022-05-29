@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AuthorizedPurchase;
+use App\Models\Account;
 use Illuminate\Http\Request;
+use App\Models\AuthorizedPurchase;
+
 
 class AuthorizedPurchaseController extends Controller
 {
@@ -80,11 +82,46 @@ class AuthorizedPurchaseController extends Controller
      */
     public function deleteAuthorizeFuelPurchase(AuthorizedPurchase $authorizedPurchase)
     {
-
-        $authorizedPurchase->delete();
         
-        session()->flash('success','Authorized Purchase Deleted Successfully');
-        return redirect()->back();
+        $authorizedPurchase_record = AuthorizedPurchase::where('id','=',$authorizedPurchase->id)->get();
+        $user = $authorizedPurchase_record[0]->organization_id;
+        $amount = $authorizedPurchase_record[0]->amount; 
+        $payment_type = $authorizedPurchase_record[0]->payment_type; 
+        $status = $authorizedPurchase_record[0]->status; 
+
+        //update corporate account only when the status is pending.
+        if($status == 'pending')
+        {
+
+             //get account for the organization that authorized the purchase
+            $account = Account::where('organization_id','=',$user)
+                                ->where('account_type','=',$payment_type)
+                                ->get();
+
+            //update account balance
+            $new_account_balance = -1 * (abs($account[0]->account_balance) + $amount);
+            Account::where('organization_id','=',$user)
+            ->where('account_type','=',$payment_type)
+            ->update(['account_balance' => $new_account_balance]);
+
+            //delete the authorized purchase record and return a success message
+            $authorizedPurchase->delete();
+            session()->flash('success','Authorized Purchase Deleted Successfully');
+            return redirect()->back();
+
+        }
+        else
+        {
+
+             //delete the authorized purchase record and return a success message
+             $authorizedPurchase->delete();
+             session()->flash('success','Authorized Purchase Deleted Successfully');
+             return redirect()->back();
+
+
+        }
+
+       
 
         
     }

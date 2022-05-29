@@ -25,6 +25,8 @@ class CreateCustomersTable extends Migration
             $table->integer('rewards');
             $table->date('sale_start_date')->nullable();
             $table->date('sale_end_date')->nullable();
+            $table->string('reward_type_to_use')->nullable();
+            $table->integer('authorized_amount')->nullable();
             $table->timestamps();
         });
     }

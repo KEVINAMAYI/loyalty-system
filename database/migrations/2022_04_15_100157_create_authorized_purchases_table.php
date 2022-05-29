@@ -15,11 +15,12 @@ class CreateAuthorizedPurchasesTable extends Migration
     {
         Schema::create('authorized_purchases', function (Blueprint $table) {
             $table->id();
+            $table->integer('organization_id');
             $table->integer('employee_id');
             $table->integer('vehicle_id');
             $table->integer('amount');
             $table->string('payment_type');
-            $table->string('receipt_number');
+            // $table->string('receipt_number');
             $table->string('status');
             $table->string('name');
             $table->timestamps();

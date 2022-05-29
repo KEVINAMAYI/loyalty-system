@@ -513,23 +513,34 @@ class CustomerController extends Controller
                     ->get();
 
             if(($account[0]->account_balance > $data['amount']) && ($account[0]->account_balance > 0))
-            {
+            {   
+                //create authorized purchase record for an employee
                 AuthorizedPurchase::create([
+                    'organization_id' => $user,
                     'employee_id' =>  $data['employees'],
                     'vehicle_id' =>  $data['vehicles'],
                     'amount' =>  $data['amount'],
                     'payment_type' =>  $data['payment_type'],
-                    'receipt_number' =>  $data['receiptreg'],
                     'status' => 'pending',
-                    'name' => $name
+                    'name' => $name,
+                    'organization_id' => $user
         
                 ]);
         
-                //update vehicle with customer id
+                //update vehicle with customer id reward type and amount for the authorized purchase
                 Vehicle::where('id','=', $data['vehicles'])->update([
-                    'customer_id' => $data['employees']
+                    'customer_id' => $data['employees'],
                 ]);
 
+
+                //update customer amount authrized and reward type to use
+                Customer::where('id','=', $data['employees'])->update([
+                    'authorized_amount' => $data['amount'],
+                    'reward_type_to_use' => 'prepaid',
+                ]);
+
+                
+                //update account balance for the corporate customer
                 $new_account_balance = $account[0]->account_balance - $data['amount'];
 
                 Account::where('organization_id','=',$user)
@@ -569,9 +580,9 @@ class CustomerController extends Controller
                     'vehicle_id' =>  $data['vehicles'],
                     'amount' =>  $data['amount'],
                     'payment_type' =>  $data['payment_type'],
-                    'receipt_number' =>  $data['receiptreg'],
                     'status' => 'pending',
-                    'name' => $name
+                    'name' => $name,
+                    'organization_id' => $user
         
                 ]);
         
@@ -580,6 +591,12 @@ class CustomerController extends Controller
                     'customer_id' => $data['employees']
                 ]);
 
+
+                //update customer amount authrized and reward type to use
+                Customer::where('id','=', $data['employees'])->update([
+                    'authorized_amount' => $data['amount'],
+                    'reward_type_to_use' => 'credit',
+                ]);
 
                 
                 $new_account_balance = -1 * (abs($account[0]->account_balance) - $data['amount']);

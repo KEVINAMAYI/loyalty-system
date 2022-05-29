@@ -15,11 +15,12 @@ class AuthorizedPurchase extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'organization_id',
         'employee_id',
         'vehicle_id',
         'amount',
         'payment_type',
-        'receipt_number',
+        // 'receipt_number',
         'status',
         'name'
     ];
