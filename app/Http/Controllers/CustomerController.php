@@ -502,6 +502,24 @@ class CustomerController extends Controller
 
         $data = $request->all();         
         $name = Auth::user()->name; 
+
+        //check if the employee/vehicle is authorized and the status is pending 
+        $alreadyAuthorizedVehicleandEmployees = AuthorizedPurchase::where(function($query) use ($data)
+                    {
+                        $query->where('employee_id','=',$data['employees']);
+                        $query->orWhere('vehicle_id','=',$data['vehicles']);
+                    })
+                    ->where('status', '=', 'pending')->get();
+
+
+        // if the employee/vehicle is already authorized cancel authorization
+        if(count($alreadyAuthorizedVehicleandEmployees) > 0)
+        { 
+            session()->flash('success','The employee or the vehicle is already authorized try again once the sale is completed');
+            return redirect()->back();  
+        }
+        else
+        {
         
         //check payment type and compare amount
         if($data['payment_type'] == 'prepaid')
@@ -622,6 +640,11 @@ class CustomerController extends Controller
 
         }
   
+
+
+        }
+        
+        
     }
 
 
