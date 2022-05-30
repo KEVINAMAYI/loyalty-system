@@ -129,11 +129,17 @@
 											Yes
 										</label>
 									  </div>
-									  <div class="form-check">
+									  <div class="form-check" style="margin-right:15px; margin-bottom:20px;">
 										<input class="usereward form-check-input" value="no"  type="radio" name="usereward"  >
 										<label style="color:white; font-weight:bold;" class="form-check-label" for="gender">
 										  No
 										</label>
+									  </div>
+									  <div style="margin-left:0px;">
+										<label style="color:white; font-weight:bold;" class="form-check-label">
+										  Rewards Available :
+										</label>
+										<span style="font-weight:bold; color:white; margin-leftt:10px; " class="rewards-available">200</span>
 									  </div>
 								</div>
 								<div class="form-row">

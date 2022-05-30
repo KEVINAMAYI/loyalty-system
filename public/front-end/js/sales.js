@@ -60,6 +60,7 @@ $(function(){
 
 
                     var myrewards = parseInt(customer[0].rewards);
+                    $('.rewards-available').text(myrewards);
                     var amount_payable = $('#amount_payable').val();
                     var amount_paid = $('#amount_paid').val();
                     var rewards_used = parseFloat($('#rewards').val()).toFixed(2);
