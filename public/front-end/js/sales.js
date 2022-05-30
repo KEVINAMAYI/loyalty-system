@@ -270,6 +270,16 @@ $(function(){
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Rewards :</span>
                         <span>${customer[0].rewards}</span>                        
                         </p>
+
+                        <p class="card-text">
+                        <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Customer :</span>
+                        <span class="customer-type">${customer[0].reward_type_to_use}</span>                        
+                        </p>
+
+                        <p class="card-text authorized-amount-paragraph">
+                        <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Authorized Amount :</span>
+                        <span class="authorized-amount">${customer[0].reward_type_to_use}</span>                        
+                        </p>
     
                     </div>
                     </div>
@@ -279,6 +289,22 @@ $(function(){
 
                    `
                );
+                
+               //set customer type
+               if(customer[0].reward_type_to_use !== null)
+               {
+
+                   $('.customer-type').text('Corporate');
+                   $('.authorized-amount').text(customer[0].authorized_amount);
+
+               }
+               else
+               {
+                   $('.customer-type').text('Normal');
+                   $('.authorized-amount-paragraph').hide();
+
+
+               }
 
 
 
