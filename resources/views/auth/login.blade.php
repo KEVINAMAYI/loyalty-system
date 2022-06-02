@@ -92,8 +92,8 @@
 
                     @if (Route::has('password.request'))
 					<div class="text-center p-t-20">
-						<a class="txt1" href="/password-reset">
-							Forgot Password?
+						<a class="txt1" href="/password/reset">
+							Reset Password ?
 						</a>
 					</div>
                     @endif

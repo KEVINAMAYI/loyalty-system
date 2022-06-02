@@ -100,7 +100,6 @@ Route::group(['middleware' => 'corporate'], function()
 //can be accessed by anyone
 Route::get('/register', function () { return view('auth.register'); });
 Route::get('/index', function () { return view('auth.login'); });
-Route::get('/password-reset', function () { return view('password-reset'); });
 Route::get('/', function () { return view('auth.login'); });
 Route::get('/login', function () { return view('auth.login'); });
 Route::post('/send-sales-sms', [CustomerController::class,'sendSalesConfirmationSMS']);
