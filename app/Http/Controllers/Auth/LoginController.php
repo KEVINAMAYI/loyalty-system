@@ -49,7 +49,7 @@ class LoginController extends Controller
 
         if($role == "Corperate")
         {
-            return redirect("/cooperate-customer-dashboard");
+            return redirect("/corporate-customer-dashboard");
 
         }
         else if(($role == 'Staff') || ($role == 'Admin'))

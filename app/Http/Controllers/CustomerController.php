@@ -1080,7 +1080,7 @@ class CustomerController extends Controller
     {           
          
          $data = $request->all();
-         $vehicle = Vehicle::where('vehicle_registration','=',$data['id_number'])->get();
+         $vehicle = Vehicle::where('vehicle_registration','=',$string = str_replace(' ', '', $data['id_number']))->get();
         
          if(count($vehicle) > 0)
          {

@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/cooperate-customer-dashboard">
+          <a class="nav-link" href="/corporate-customer-dashboard">
             <i class="fa-solid fa-house"></i>
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
@@ -24,19 +24,19 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="/cooperate-customer-employees">
+          <a class="nav-link  " href="/corporate-customer-employees">
             <i class="fa-solid fa-person"></i>
             <span class="nav-link-text ms-1">Employees</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="/cooperate-customer-vehicles">
+          <a class="nav-link  " href="/corporate-customer-vehicles">
             <i class="fa-solid fa-car"></i>
             <span class="nav-link-text ms-1">Vehicle</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="/cooperate-customer-authorizepurchase">
+          <a class="nav-link  " href="/corporate-customer-authorizepurchase">
             <i class="fa-solid fa-lock-open"></i>
             <span class="nav-link-text ms-1">Authorize Fuel Purchase</span>
           </a>

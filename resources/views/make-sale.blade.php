@@ -46,46 +46,14 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">ID/Phone/Vehicle Registration*</label>
-										<input type="text" id="id-number" style="height:55px;" placeholder="34643511" class="form-control" required>
+										<input type="text" id="id-number" style="height:55px;" placeholder="" class="form-control" required>
 									</div>
 									<div id="get_data_btn" class="form-holder form-holder-2">
 										<button type="button" id="databtn" style="background-color:#f9a14d; border:0px; width:100%; height:55px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">Get Info</button>
 									</div>
 								</div>
-								<div id="cutomer-details" class="form-row table-responsive">
-									<table class="table">
-										<tbody>
-											<tr class="space-row">
-									
-											</tr>
-											<tr class="space-row">
-											
-											</tr>
-										
-											<tr class="space-row">
-											
-											</tr>
-											<tr class="space-row">
-											
-											</tr>
-											<tr class="space-row">
-												
-											</tr>
-											<tr class="space-row">
-												
-											</tr>
-											<tr class="space-row">
-												
-											</tr>
-											<tr class="space-row">
-												
-											</tr>
-                                            <tr class="space-row">
-											
-											</tr>
-										</tbody>
-									</table>
-								</div>
+								{{-- <div id="cutomer-details" class="form-row table-responsive" style="height:0px; background-color:yellow">
+								</div> --}}
 								<div class="col-lg-12 col-md-12 col-sm-12">
 																	
 								</div>

@@ -75,14 +75,14 @@ Route::group(['middleware' => 'corporate'], function()
 {
      //back end routes
     Route::get('/company-info', [CustomerController::class,'getCompanyInfo']);
-    Route::get('/cooperate-customer-dashboard', [CustomerController::class,'getDashboardData']);
+    Route::get('/corporate-customer-dashboard', [CustomerController::class,'getDashboardData']);
     Route::post('/add-cooperate-employee',  [CustomerController::class,'addEmployee']);
-    Route::get('/cooperate-customer-employees',  [CustomerController::class,'getEmployees']);
+    Route::get('/corporate-customer-employees',  [CustomerController::class,'getEmployees']);
     Route::get('/delete-cooperate-employee/{customer}',  [CustomerController::class,'deleteEmployees']);
     Route::post('/add-coorporate-vehicle',  [VehicleController::class,'addCoorporateVehicle']);
-    Route::get('/cooperate-customer-vehicles', [VehicleController::class,'getCoorporateVehicle']);
+    Route::get('/corporate-customer-vehicles', [VehicleController::class,'getCoorporateVehicle']);
     Route::get('/delete-coorporate-vehicle/{vehicle}', [VehicleController::class,'deleteCoorporateVehicle']);
-    Route::get('/cooperate-customer-authorizepurchase',[CustomerController::class,'getAuthorizedPurchases']);
+    Route::get('/corporate-customer-authorizepurchase',[CustomerController::class,'getAuthorizedPurchases']);
     Route::get('/get-corporate-data',[CustomerController::class,'getCoorporateData']);
     Route::post('/authorize-fuel-purchase',[CustomerController::class,'authorizeFuelPurchase']);
     Route::get('/get-employee-data/{customer}',[CustomerController::class,'getEmployeeData']);

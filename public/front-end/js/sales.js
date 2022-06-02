@@ -197,15 +197,12 @@ $(function(){
         }
         isSubmitting = true;
 
-        const id_number = $('#id-number').val();
-        const vehicle_reg = $('#vehicle-reg').val();
+        id_number = $('#id-number').val();
 
         localStorage.setItem('id_number', id_number );
-        localStorage.setItem('vehicle_reg', vehicle_reg );
 
         formData = new FormData();
         formData.append('id_number',id_number);
-        formData.append('vehicle_reg',vehicle_reg);
 
 
         $.ajax({
@@ -240,7 +237,7 @@ $(function(){
                    <div class="form-row">
                        <div class="form-holder form-holder-2">
                            <label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">ID/Phone/Vehicle Registration*</label>
-                           <input type="text" id="id-number" style="height:55px;" placeholder="ID Number (34643511)" class="form-control" id="firstname" name="firstname" >
+                           <input type="text" id="id-number" style="height:55px;" placeholder="" class="form-control" id="firstname" name="firstname" >
                        </div>
 
                        <div id="get_data_btn" class="form-holder form-holder-2">
