@@ -270,14 +270,16 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function addNewStaff(Request $request)
-    {          
+    {       
+        
+        // dd($request->all());
+
         //validate new staff details
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'major_role' => ['required', 'string', 'max:255']
-            
+            'major_role' => ['required', 'string', 'max:255']  
          ]);
          
          $data = $request->all();
@@ -287,7 +289,7 @@ class CustomerController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => 'Staff',
-            'major_role' => $data['major_role'],
+            'major_role' => ucfirst($data['major_role']),
             'phone_number' => '0719020100',
             'alternative_phone_number' => '0719020100',
             'address' => '00100',
@@ -1026,7 +1028,7 @@ class CustomerController extends Controller
         User::where('id','=',$user->id)->update([
             'name' => $data['name'],
             'email' => $data['email'],
-            'major_role' => $data['major_role']
+            'major_role' => ucfirst($data['major_role'])
         ]);
     
         return response()->json([
