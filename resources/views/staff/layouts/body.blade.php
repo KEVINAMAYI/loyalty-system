@@ -656,7 +656,7 @@
                 $('.lower_range').val(data.rewardformat[0].low)
                 $('.higher_range').val(data.rewardformat[0].high)
                 $('.reward_per_litre').val(data.rewardformat[0].shillings_per_litre)
-                ('.monthly').val(data.rewardformat[0].price_period.split(" ")[0])
+                $('.monthly').val(data.rewardformat[0].price_period.split(" ")[0])
                 $('.reward_year').val(data.rewardformat[0].price_period.split(" ")[1])
                 $("#edit-monthly-reward").modal('show');
                 $("#monthly_reward_id").val(id);

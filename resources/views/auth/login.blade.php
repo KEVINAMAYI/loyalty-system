@@ -84,11 +84,11 @@
 						</button>
 					</div>
 
-					<div class="text-center p-t-20">
+					{{-- <div class="text-center p-t-20">
 						<a class="txt1" href="/register">
 							Register as a Cooperate Customer
 						</a>
-					</div>
+					</div> --}}
 
                     @if (Route::has('password.request'))
 					<div class="text-center p-t-20">
