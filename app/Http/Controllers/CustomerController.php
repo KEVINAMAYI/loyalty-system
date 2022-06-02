@@ -32,8 +32,8 @@ class CustomerController extends Controller
          //validate new staff details
          $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'phonenumber' => 'required|regex:(^07)|digits:10',
-            'alternativephonenumber' =>'required|regex:(^07)|digits:10',
+            'phonenumber' => 'required',
+            'alternativephonenumber' =>'required',
             'address' => ['required', 'string', 'max:255'],
             'town' => ['required', 'string', 'max:255'],
             'krapin' => ['required', 'string', 'max:255','unique:users'],
@@ -41,8 +41,8 @@ class CustomerController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'contact_person_name' => ['required', 'string', 'max:255'],
             'contact_person_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'contact_person_phone' => 'required|regex:(^07)|digits:10',
-            'contact_person_alternative_phone' => 'required|regex:(^07)|digits:10'
+            'contact_person_phone' => 'required',
+            'contact_person_alternative_phone' => 'required'
             
          ]);
 
