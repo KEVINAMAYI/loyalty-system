@@ -32,7 +32,8 @@ class User extends Authenticatable
         'contact_person_name',
         'contact_person_email',
         'contact_person_phone',
-        'contact_person_alternative_phone'
+        'contact_person_alternative_phone',
+        'country'
 
     ];
 

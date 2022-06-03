@@ -27,13 +27,11 @@ class CustomerController extends Controller
     // register corporate customer from staff dashboard
     public function registerCorporate(Request $request)
     {
-
-        // dd($request->all());
+          
          //validate new staff details
          $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'phonenumber' => 'required',
-            'alternativephonenumber' =>'required',
             'address' => ['required', 'string', 'max:255'],
             'town' => ['required', 'string', 'max:255'],
             'krapin' => ['required', 'string', 'max:255','unique:users'],
@@ -42,18 +40,30 @@ class CustomerController extends Controller
             'contact_person_name' => ['required', 'string', 'max:255'],
             'contact_person_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'contact_person_phone' => 'required',
-            'contact_person_alternative_phone' => 'required'
+            'country' => 'required'
             
          ]);
 
          $data = $request->all();
 
          //define a default account number
-         $default_account_number = intval(substr(str_shuffle('0123456789'),0,7));  
+         $default_account_number = intval(substr(str_shuffle('0123456789'),0,7));
+         
+         //check if image is set and upload otherwise default to OLA logo
+         if ($request->hasFile('company_logo_image')) {
+              
+            //upload company logo
+            $companyLogo =  "image-".time().'.'.$data['company_logo_image']->getClientOriginalExtension();
+            $data['company_logo_image']->move(public_path('images'), $companyLogo);
+         }
+        else{
+            
+            // set default logo to OLA logo
+            $companyLogo = 'logo.jpg';
+
+         }
     
-         // upload company logo
-         $companyLogo =  "image-".time().'.'.$data['company_logo_image']->getClientOriginalExtension();
-         $data['company_logo_image']->move(public_path('images'), $companyLogo);
+   
 
          $user = User::create([
             'name' => strtoupper($data['name']),
@@ -69,7 +79,8 @@ class CustomerController extends Controller
             'contact_person_name' => $data['contact_person_name'],
             'contact_person_email' => $data['contact_person_email'],
             'contact_person_phone' =>  $data['contact_person_phone'],
-            'contact_person_alternative_phone' => $data['contact_person_alternative_phone']
+            'contact_person_alternative_phone' => $data['contact_person_alternative_phone'],
+            'country' => $data['country']
         ]);
 
 

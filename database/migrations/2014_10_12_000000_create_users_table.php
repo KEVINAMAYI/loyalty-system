@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('contact_person_email')->unique();
             $table->integer('contact_person_phone')->nullable();
             $table->integer('contact_person_alternative_phone')->nullable();
+            $table->string('country')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

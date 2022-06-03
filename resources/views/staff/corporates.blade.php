@@ -138,7 +138,7 @@
                   <img id="camera" src="front-end/images/camera.png" id="company_logo" style="max-width:50px; max-height:50px;" alt="">									
                   <input type="file" style="display:none;" class="" id="company_logo_image" name="company_logo_image" id="uploader"                               
                   accept="image/*" 
-                  capture="camera" required />
+                  capture="camera" />
                   Upload  Logo
                 </label>
               </div>
@@ -158,6 +158,13 @@
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization Email</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="email"  name="email" value="{{ old('email') }}"  required autocomplete="email">
+            </div>
+            <div class="form-holder col-md-12 form-holder-2 mt-4 mb-4">
+              <label for="country">Country</label></br>
+              <select name="country" id="country" class="form-control">
+                  <option value="Kenya">Kenya</option>
+                  <option value="Uganda">Uganda</option>
+              </select>          
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization Address</label></br>
