@@ -722,6 +722,8 @@
             $('.acc_no_disp').text(account_number);
             $('.acc_bal_type').text(account_balance);
             $('.acc_number').text(account_number);
+            $('.limit_label').text(account_type.charAt(0).toUpperCase()+account_type.substring(1)+" Limit");
+            $('.acc_number').val(account_number);
             $('#manage-corporate').modal('show');
 
 

@@ -44,8 +44,23 @@ class AccountController extends Controller
 
 
         $accounts = Account::where('organization_id','=',$user)->get();
+        
+        //check account type
+        if(count($accounts) == 1)
+        {
+
+            $account_type = $accounts[0]->account_type;
+
+        }
+        else
+        {
+            $account_type = 'both';
+
+
+        }
+        
         $payments = Payment::where('organization_id','=',$user)->get();
-        return view('cooperate-customer.account')->with(['accounts' => $accounts, 'payments' => $payments, 'authorized_purchases' => $employees_authorized_data ]);
+        return view('cooperate-customer.account')->with(['accounts' => $accounts, 'payments' => $payments, 'authorized_purchases' => $employees_authorized_data,'account_type'=>$account_type ]);
 
 
     }

@@ -143,6 +143,14 @@
                 </label>
               </div>
             </div>
+            <div class="form-holder col-md-12 form-holder-2 mt-4 mb-4">
+              <label for="account_type">Account Type</label></br>
+              <select name="account_type" id="account_type" class="form-control">
+                  <option value="credit">Credit</option>
+                  <option value="prepaid">Prepaid</option>
+                  <option value="both">Prepaid & Credit</option>
+              </select>          
+            </div>
             <div class="form-row col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization Name</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="name"   name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -242,7 +250,7 @@
                 <input class="acc_number" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="account_number" id="account_number"  placeholder="7770169016805">
             </div> 
             <div class="form-holder form-holder-2 mt-4 mb-4">
-              <label for="regno">Credit Limit Amount</label></br>
+              <label for="regno" class="limit_label">Credit Limit Amount</label></br>
               <input  style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="account_limit" id="account_limit" placeholder="0">
             </div>
 

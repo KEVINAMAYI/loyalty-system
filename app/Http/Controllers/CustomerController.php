@@ -84,27 +84,53 @@ class CustomerController extends Controller
         ]);
 
 
-         Account::create([
-            'organization_id' => $user->id,
-            'account_number' => $default_account_number,
-            'account_limit' => 0,
-            'account_balance' =>0,
-            'limit_utilized' => 0,
-            'discount' => 0,
-            'account_type' => 'credit'
-        ]);
-
-
-         Account::create([
-            'organization_id' => $user->id,
-            'account_number' => $default_account_number,
-            'account_limit' => 0,
-            'account_balance' =>0,
-            'limit_utilized' => 0,
-            'discount' => 0,
-            'account_type' => 'prepaid'
-        ]);
-
+        //create account depending on the corporate customer preference
+        switch ($data['account_type']) {
+            case "credit":
+                Account::create([
+                    'organization_id' => $user->id,
+                    'account_number' => $default_account_number,
+                    'account_limit' => 0,
+                    'account_balance' =>0,
+                    'limit_utilized' => 0,
+                    'discount' => 0,
+                    'account_type' => 'credit'
+                ]);
+              break;
+            case "prepaid":
+                Account::create([
+                    'organization_id' => $user->id,
+                    'account_number' => $default_account_number,
+                    'account_limit' => 0,
+                    'account_balance' =>0,
+                    'limit_utilized' => 0,
+                    'discount' => 0,
+                    'account_type' => 'prepaid'
+                ]);
+              break;
+            case "both":
+                Account::create([
+                    'organization_id' => $user->id,
+                    'account_number' => $default_account_number,
+                    'account_limit' => 0,
+                    'account_balance' =>0,
+                    'limit_utilized' => 0,
+                    'discount' => 0,
+                    'account_type' => 'credit'
+                ]);
+                Account::create([
+                    'organization_id' => $user->id,
+                    'account_number' => $default_account_number,
+                    'account_limit' => 0,
+                    'account_balance' =>0,
+                    'limit_utilized' => 0,
+                    'discount' => 0,
+                    'account_type' => 'prepaid'
+                ]);;
+              break;
+            default:
+              echo "No account type chosen";
+          }       
 
         session()->flash('success','Coporate Added Successfully');
         return redirect()->back();
