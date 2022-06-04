@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use Config;
 use Exception;
 use App\Models\Sale;
@@ -36,14 +37,16 @@ class CustomerController extends Controller
             'town' => ['required', 'string', 'max:255'],
             'krapin' => ['required', 'string', 'max:255','unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'contact_person_name' => ['required', 'string', 'max:255'],
             'contact_person_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'contact_person_phone' => 'required',
             'country' => 'required'
             
          ]);
-
+         
+         //generate password for corporate user
+         $password_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#$%^&*()!~';
+         $password = substr(str_shuffle($password_chars),0,15);
          $data = $request->all();
 
          //define a default account number
@@ -63,8 +66,6 @@ class CustomerController extends Controller
 
          }
     
-   
-
          $user = User::create([
             'name' => strtoupper($data['name']),
             'phone_number' => $data['phonenumber'],
@@ -73,7 +74,7 @@ class CustomerController extends Controller
             'krapin' => $data['krapin'],
             'alternative_phone_number' => $data['alternativephonenumber'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($password),
             'role' => 'Corperate',
             'logo_url' => $companyLogo,
             'contact_person_name' => $data['contact_person_name'],
@@ -130,9 +131,20 @@ class CustomerController extends Controller
               break;
             default:
               echo "No account type chosen";
-          }       
+          } 
+          
+          
+        //data to use in email
+        $email_data = array('corporate_name'=>$data['name'],'corporate_email'=>$data['email'],'corporate_password'=>$password);
 
-        session()->flash('success','Coporate Added Successfully');
+        //send the user a password once the account has been set successfully
+        Mail::send('corporate_login_mail', $email_data, function($message) use ($data) {
+            $message->to($data['email'], $data['name'])->subject
+            ("Loyalty Corporate Portal Login Details");
+            $message->from('loyalty@datahatchworks.co.ke','Loyalty Reward System');
+         });
+
+        session()->flash('success','Coporate Added Successfully Login details was sent to the registration email');
         return redirect()->back();
 
     }
