@@ -22,7 +22,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Employees</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        {{ count($employees) !=null ? count($employees) : 0 }}
+                                        {{ count($employees_count) !=null ? count($employees_count) : 0 }}
                                     </h5>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Vehicles</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        {{  count($vehicles) != null ? count($vehicles) : 0  }}
+                                        {{  count($vehicle_count) != null ? count($vehicle_count) : 0  }}
                                     </h5>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+            <div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
@@ -67,7 +67,7 @@
                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Authorized Fuel
                                         Purchases</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        {{ count($authorized_purchases) != null ? count($authorized_purchases) : 0 }}
+                                        {{ count($authorized_purchases_count) != null ? count($authorized_purchases_count) : 0 }}
                                     </h5>
                                 </div>
                             </div>

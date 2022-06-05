@@ -473,10 +473,13 @@ class CustomerController extends Controller
     {          
         $user = Auth::user()->name;
         $employees = Customer::where('type','=',$user)->take(20)->get();
-        $vehicles =  Vehicle::where('ownership','=', $user)->take(20)->get();;
-        $autorizedpurchases = AuthorizedPurchase::where('name','=', $user)->take(20)->get();;
+        $vehicles =  Vehicle::where('ownership','=', $user)->take(20)->get();
+        $autorizedpurchases = AuthorizedPurchase::where('name','=', $user)->take(20)->get();
         $employees_authorized_data = array();
         $company = User::where('id','=',$user)->get();
+        $employees_count = Customer::where('type','=',$user)->get();
+        $vehicles_count = Vehicle::where('ownership','=', $user)->get();
+        $autorizedpurchases_count = AuthorizedPurchase::where('name','=', $user)->get();
 
 
         foreach ($autorizedpurchases as $autorizedpurchase)
@@ -496,7 +499,14 @@ class CustomerController extends Controller
 
         }
 
-         return view('cooperate-customer.dashboard')->with(['employees' => $employees,'vehicles' => $vehicles,'authorized_purchases' => $employees_authorized_data, 'company' => $company]);
+         return view('cooperate-customer.dashboard')->with([
+                            'employees' => $employees,
+                            'vehicles' => $vehicles,
+                            'authorized_purchases' => $employees_authorized_data, 
+                            'company' => $company,
+                            'employees_count' => $employees_count,
+                            'vehicle_count' => $vehicles_count,
+                            'authorized_purchases_count' => $autorizedpurchases_count ]);
        
        
      
