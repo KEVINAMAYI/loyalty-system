@@ -472,9 +472,9 @@ class CustomerController extends Controller
     public function getDashboardData(Customer $customer)
     {          
         $user = Auth::user()->name;
-        $employees = Customer::where('type','=',$user)->get();
-        $vehicles =  Vehicle::where('ownership','=', $user)->get();
-        $autorizedpurchases = AuthorizedPurchase::where('name','=', $user)->get();
+        $employees = Customer::where('type','=',$user)->take(20)->get();
+        $vehicles =  Vehicle::where('ownership','=', $user)->take(20)->get();;
+        $autorizedpurchases = AuthorizedPurchase::where('name','=', $user)->take(20)->get();;
         $employees_authorized_data = array();
         $company = User::where('id','=',$user)->get();
 
@@ -844,9 +844,9 @@ class CustomerController extends Controller
     {    
         if(Auth::user()->major_role == 'Admin')
         {  
-        $customers = Customer::all();
-        $sales = Sale::all();
-        $autorizedpurchases = AuthorizedPurchase::all();
+        $customers = Customer::latest()->take(20)->get();;
+        $sales = Sale::latest()->take(20)->get();;
+        $autorizedpurchases = AuthorizedPurchase::latest()->take(20)->get();;
         $employees_authorized_data = array();
 
         foreach ($autorizedpurchases as $autorizedpurchase)

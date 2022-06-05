@@ -40,8 +40,16 @@
     <link id="pagestyle" href="staff/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="staff/assets/js/main.js"></script>
+
+    <style>
+        #authorization_table_wrapper{
+            margin-left:20px;
+            margin-right:20px;
+        }
+    </style>
 
 
 </head>
@@ -59,10 +67,8 @@
                             ©
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script>,
-                            made with <i class="fa fa-heart"></i> by
-                            <a href="#" class="font-weight-bold" target="_blank">OLA PETROL PREMIUM</a>
-                            for a better petrol services.
+                            </script>
+                            <a href="#" class="font-weight-bold" target="_blank">Epren Petrol Station Limited</a>
                         </div>
                     </div>
                 </div>
@@ -221,6 +227,9 @@
     <script src="staff/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="staff/assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="staff/assets/js/plugins/chartjs.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -333,6 +342,10 @@
 
 
         });
+
+        //datatable
+        $('#authorization_table').DataTable();
+
 
         //when the reward button is clicked
         $('#rewardpass').on('click',function(event){
