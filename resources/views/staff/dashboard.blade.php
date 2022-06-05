@@ -19,7 +19,7 @@
                 <div class="numbers">
                   <p class="text-sm mb-0 text-capitalize font-weight-bold">Customers</p>
                   <h5 class="font-weight-bolder mb-0">
-                    {{ count($customers) }}
+                    {{ count(App\Models\Customer::all()) }}
                   </h5>
                 </div>
               </div>
@@ -40,7 +40,7 @@
                 <div class="numbers">
                   <p class="text-sm mb-0 text-capitalize font-weight-bold">Authorized Purchases</p>
                   <h5 class="font-weight-bolder mb-0">
-                    {{ count($authorized_purchases) }}
+                    {{ count(App\Models\AuthorizedPurchase::all()) }}
                   </h5>
                 </div>
               </div>
@@ -61,7 +61,7 @@
                 <div class="numbers">
                   <p class="text-sm mb-0 text-capitalize font-weight-bold">Sales</p>
                   <h5 class="font-weight-bolder mb-0">
-                    {{ count($sales) }}
+                    {{ count(App\Models\Sale::all()) }}
                   </h5>
                 </div>
               </div>
