@@ -70,10 +70,8 @@
                             ©
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script>,
-                            made with <i class="fa fa-heart"></i> by
-                            <a href="#" class="font-weight-bold" target="_blank">OLA PERTROL PREMIUM</a>
-                            for a better petrol services.
+                            </script>
+                            <a href="#" class="font-weight-bold" target="_blank">Epren Petrol Station Limited</a>
                         </div>
                     </div>
                 </div>
