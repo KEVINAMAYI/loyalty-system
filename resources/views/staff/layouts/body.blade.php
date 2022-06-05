@@ -813,6 +813,11 @@
     $('#dashboard_authorization_table').DataTable();
     $('#dashboard_sales_table').DataTable();
     $('#dashboard_customer_table').DataTable();
+    $('#customer_table').DataTable();
+    $('#sales_table').DataTable();
+    $('#corporates_table').DataTable();
+    $('#staff_table').DataTable();
+    $('#authrorized_purchases_table').DataTable();
 
     
 
