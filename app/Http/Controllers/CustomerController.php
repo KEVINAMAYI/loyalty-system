@@ -720,9 +720,16 @@ class CustomerController extends Controller
 
         $name = Auth::user()->name; 
         $id = Auth::user()->id; 
-        $status = Account::where('organization_id','=',$id)
-                          ->where('account_type','=','prepaid')
-                          ->get()[0]->corporate_status;
+        $account = Account::where('organization_id','=',$id) ->where('account_type','=','credit')->get();
+        
+        if(count($account) < 1)
+        {
+
+            $account = Account::where('organization_id','=',$id) ->where('account_type','=','prepaid')->get();
+
+        }
+        
+        $status = $account[0]->corporate_status;
 
         if($status == 'active')
         {
