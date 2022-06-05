@@ -414,15 +414,6 @@
               <label for="regno">Organization KRA PIN</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="krapin"    name="krapin" value="{{ old('krapin') }}" required autocomplete="krapin" autofocus>
             </div>
-            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Password</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="password" class="" type="password" name="pass"name="password" required autocomplete="new-password">
-            </div>
-  
-              <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Confirm Password</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="password_confirmation" class="" type="password" name="pass"  name="password" required autocomplete="new-password">
-            </div>
              <u><h5 style="margin-top:30px; margin-bottom:-20px;">Primary Contact Person</h5></u>
              <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Name</label></br>

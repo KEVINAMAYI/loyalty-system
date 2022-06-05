@@ -6,31 +6,6 @@
             <nav aria-label="breadcrumb">
                 <h6 class="font-weight-bolder mb-0">Authorize Fuel Purchase</h6>
             </nav>
-            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                    <div class="input-group">
-                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" placeholder="Type here...">
-                    </div>
-                </div>
-                <ul class="navbar-nav  justify-content-end">
-                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                            <div class="sidenav-toggler-inner">
-                                <i class="sidenav-toggler-line"></i>
-                                <i class="sidenav-toggler-line"></i>
-                                <i class="sidenav-toggler-line"></i>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item px-3 d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-body p-0">
-                            <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
         </div>
     </nav>
     <!-- End Navbar -->
@@ -82,23 +57,23 @@
                                 <table class="table align-items-center mb-0" id="authorizationtable">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            <th style="border-bottom:1px solid" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Name</th>
                                             <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            style="border-bottom:1px solid" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Employee_ID</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Vehicle</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Amount</th>
                                              <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                             style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Status
                                             </th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Action</th>
                                         </tr>
                                     </thead>
@@ -142,7 +117,28 @@
                                             </tr>
 
                                         @endforeach
-
+                                        <tfoot>
+                                            <tr>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Name</th>
+                                                <th
+                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    Employee_ID</th>
+                                                <th
+                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Vehicle</th>
+                                                <th
+                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Amount</th>
+                                                 <th
+                                                  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Status
+                                                </th>
+                                                <th
+                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Action</th>
+                                            </tr>
+                                        </tfoot>
                                     </tbody>
                                 </table>
                             </div>

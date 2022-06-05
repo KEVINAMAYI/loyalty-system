@@ -227,7 +227,6 @@
     <script src="staff/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="staff/assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="staff/assets/js/plugins/chartjs.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script>

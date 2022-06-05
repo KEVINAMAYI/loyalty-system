@@ -42,10 +42,16 @@
 
     <!-- css to load PDF -->
     <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-        
+    <style>
+        .dataTables_wrapper{
+            margin-left:20px;
+            margin-right:20px;
+        }
+    </style>  
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -182,6 +188,7 @@
     <!-- you need to include the shieldui css and js assets in order for the components to work -->
     <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
     <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script>
 
@@ -301,6 +308,13 @@
                 }
             });
         });
+
+        //create data table for table records
+        $('#authorizationtable').DataTable();
+        $('#employees_table').DataTable();
+        $('#vehicles_table').DataTable();
+
+
 
 
     </script>
