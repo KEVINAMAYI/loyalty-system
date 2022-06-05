@@ -45,7 +45,7 @@
     <script src="staff/assets/js/main.js"></script>
 
     <style>
-        #authorization_table_wrapper{
+        .dataTables_wrapper{
             margin-left:20px;
             margin-right:20px;
         }
@@ -342,10 +342,6 @@
 
 
         });
-
-        //datatable
-        $('#authorization_table').DataTable();
-
 
         //when the reward button is clicked
         $('#rewardpass').on('click',function(event){
@@ -811,6 +807,14 @@
                 }
                 });
     })();
+
+
+    //datatable
+    $('#dashboard_authorization_table').DataTable();
+    $('#dashboard_sales_table').DataTable();
+    $('#dashboard_customer_table').DataTable();
+
+    
 
     </script>
 
