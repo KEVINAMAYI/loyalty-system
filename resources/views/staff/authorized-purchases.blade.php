@@ -35,10 +35,7 @@
                                             <th
                                             style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Amount</th>
-                                            <th
-                                            style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Receipt Number
-                                            </th>
+                                        
                                             <th
                                             style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Company Name</th>
@@ -67,11 +64,7 @@
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->amount }}</span>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->receipt_number }}
-                                                    </span>
-                                                </td>
+        
                                                 <td class="align-middle text-center text-sm">
                                                     <span
                                                     class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->name }}
@@ -107,10 +100,7 @@
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Amount</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Receipt Number
-                                            </th>
+                                         
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Company Name</th>
