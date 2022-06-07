@@ -92,12 +92,13 @@
                 <table id="dashboard_sales_table" class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
-                      <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
-                      <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Used</th>
-                      <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Awarded</th>
-                      <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
-                      <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Used</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Awarded</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sold By</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -105,10 +106,7 @@
                   @foreach ( $sales as $sale )
                   <tr>
                     <td class="align-middle text-center text-sm">
-                      <p class="text-xs font-weight-bold mb-0">{{ $sale->first_name }}</p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <span class="text-secondary text-xs font-weight-bold">{{ $sale->last_name }}</span>
+                      <p class="text-xs font-weight-bold mb-0">{{ $sale->first_name }} {{ $sale->last_name }}</p>
                     </td>
                     <td class="align-middle text-center text-sm">
                       <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_used }}</span>
@@ -120,21 +118,28 @@
                       <span class="text-secondary text-xs font-weight-bold">{{ $sale->amount_paid }}</span>
                     </td>
                     <td class="align-middle text-center text-sm">
+                      <span class="text-secondary text-xs font-weight-bold">{{ $sale->sold_by }}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
                       <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
                     </td>
-                    
+                    <td class="align-middle text-center text-sm">
+                      <input type="hidden" id="saleid" value={{ $sale->id }}>
+                      <button  id="{{ $sale->id }}"  style="background-color:#f9a14d;" class="moresalesdetails btn btn-sm btn-primary" >more info</button>
+                    </td>
                   </tr>
                   @endforeach
     
                   </tbody>
                   <tfoot>
                     <tr>
-                      <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
-                      <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
-                      <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Used</th>
-                      <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Awarded</th>
-                      <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
-                      <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Used</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Awarded</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sold By</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
 
                   </tfoot>
