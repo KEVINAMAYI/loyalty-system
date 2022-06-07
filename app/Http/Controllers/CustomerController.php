@@ -136,16 +136,28 @@ class CustomerController extends Controller
           
         //data to use in email
         $email_data = array('corporate_name'=>$data['name'],'corporate_email'=>$data['email'],'corporate_password'=>$password);
+        
+        try{
 
-        //send the user a password once the account has been set successfully
-        Mail::send('corporate_login_mail', $email_data, function($message) use ($data) {
-            $message->to($data['email'], $data['name'])->subject
-            ("Loyalty Corporate Portal Login Details");
-            $message->from('loyalty@datahatchworks.co.ke','Loyalty Reward System');
-         });
+             //send the user a password once the account has been set successfully
+            Mail::send('corporate_login_mail', $email_data, function($message) use ($data) {
+                $message->to($data['email'], $data['name'])->subject
+                ("Loyalty Corporate Portal Login Details");
+                $message->from('loyalty@datahatchworks.co.ke','Loyalty Reward System');
+                });
 
-        session()->flash('success','Coporate Added Successfully Login details was sent to the registration email');
-        return redirect()->back();
+            session()->flash('success','Coporate Added Successfully Login details was sent to the registration email');
+            return redirect()->back();
+
+        }
+        catch(Exception $e)
+        {
+
+            session()->flash('success','There was an error while sending the login details');
+            return redirect()->back();
+
+        }
+       
 
     }
 
