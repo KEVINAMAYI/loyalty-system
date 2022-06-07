@@ -291,7 +291,8 @@ class CustomerController extends Controller
             'amount_paid' => $data['amount_paid'],
             'image_url' => $vehicleImage,
             'pump_image_url' => $pumpImage,
-            'receipt_image_url' => $receiptImage
+            'receipt_image_url' => $receiptImage,
+            'sold_by' => $data['sold_by']
         ]);
 
 

@@ -1236,6 +1236,7 @@ $(function(){
         const vehicle_registration = localStorage.getItem('vehicle_registration');
         const sale_start_date = localStorage.getItem('sale_start_date');
         const sale_end_date = localStorage.getItem('sale_end_date');
+        const sold_by = $('#sales-person-name').text();
 
 
 
@@ -1257,8 +1258,10 @@ $(function(){
         formData.append('rewards_awarded',rewards_awarded);
         formData.append('sale_start_date',sale_start_date);
         formData.append('sale_end_date',sale_end_date);
+        formData.append('sold_by',sold_by);
 
 
+        console.log(sold_by);
         console.log(sale_start_date);
         console.log(sale_end_date);
 

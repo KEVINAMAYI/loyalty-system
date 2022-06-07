@@ -26,6 +26,7 @@ class Sale extends Model
         'amount_paid',
         'image_url',
         'pump_image_url',
-        'receipt_image_url'  
+        'receipt_image_url',
+        'sold_by'  
     ];
 }

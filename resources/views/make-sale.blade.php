@@ -252,7 +252,7 @@
 									     </p>
 										 <p class="card-text">
 											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Served By:</span>
-											<span id="sales-date-time">{{ auth()->user()->name }}</span>                        
+											<span id="sales-person-name">{{ auth()->user()->name }}</span>                        
 									     </p>
 					
 									</div>
