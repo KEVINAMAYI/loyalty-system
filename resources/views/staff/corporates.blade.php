@@ -154,6 +154,7 @@
             <div class="form-holder col-md-12 form-holder-2 mt-4 mb-4">
               <label for="country">Country</label></br>
               <select name="country" id="country" class="form-control">
+                <option value="Kenya">Kenya</option>
                 <option value="Afganistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -265,7 +266,6 @@
                 <option value="Japan">Japan</option>
                 <option value="Jordan">Jordan</option>
                 <option value="Kazakhstan">Kazakhstan</option>
-                <option value="Kenya">Kenya</option>
                 <option value="Kiribati">Kiribati</option>
                 <option value="Korea North">Korea North</option>
                 <option value="Korea Sout">Korea South</option>
