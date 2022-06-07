@@ -29,12 +29,15 @@ class User extends Authenticatable
         'town',
         'krapin',
         'logo_url',
+        'country',
         'contact_person_name',
         'contact_person_email',
         'contact_person_phone',
         'contact_person_alternative_phone',
-        'country'
-
+        'another_contact_person_name',
+        'another_contact_person_email',
+        'another_contact_person_phone',
+        'another_contact_person_alternative_phone'
     ];
 
     /**

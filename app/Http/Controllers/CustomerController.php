@@ -77,14 +77,19 @@ class CustomerController extends Controller
             'password' => Hash::make($password),
             'role' => 'Corperate',
             'logo_url' => $companyLogo,
+            'country' => $data['country'],
             'contact_person_name' => $data['contact_person_name'],
             'contact_person_email' => $data['contact_person_email'],
             'contact_person_phone' =>  $data['contact_person_phone'],
             'contact_person_alternative_phone' => $data['contact_person_alternative_phone'],
-            'country' => $data['country']
+            'another_contact_person_name' => $data['another_contact_person_name'],
+            'another_contact_person_email' => $data['another_contact_person_email'],
+            'another_contact_person_phone' => $data['another_contact_person_phone'],
+            'another_contact_person_alternative_phone' => $data['another_contact_person_alternative_phone']
+
         ]);
 
-
+    
         //create account depending on the corporate customer preference
         switch ($data['account_type']) {
             case "credit":

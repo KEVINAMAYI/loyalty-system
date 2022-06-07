@@ -250,6 +250,15 @@
                 }
             });
 
+
+        //show another contact person information
+        $('#add_another_contact_peson').on('click',function(){
+            $("#another_contact_person_name_div").css("display","");
+            $("#another_contact_person_email_div").css("display","");
+            $("#another_contact_person_phone_div").css("display","");
+            $("#another_contact_person_alternative_phone_div").css("display","");
+        });
+
         //jQuery listen for checkbox change
         $("#rewards_checkbox").change(function() {
             if(this.checked) {
