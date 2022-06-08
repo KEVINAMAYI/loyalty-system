@@ -52,7 +52,7 @@
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Customer Type</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Credit Limit(KES)</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prepaid Amount(KES)</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Discount Amount</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Contact Person</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Logo</th> --}}
                   </tr>
@@ -74,7 +74,7 @@
                         <span class="text-secondary text-xs font-weight-bold">{{ $corporate_account->amount_payable ? $corporate_account->amount_payable : 0  }}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">{{ $corporate_account->discount }}</span>
+                        <span class="text-secondary text-xs font-weight-bold">{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->contact_person_phone; }}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
                       <span id="{{ $corporate_account->organization_id }}" account_name="{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name; }}" account_type="{{ $corporate_account->account_type }}" account_number={{ $corporate_account->account_number }} account_balance={{ $corporate_account->account_balance }} style="background-color:#4881c0; cursor:pointer;"  class="managecorporatebtn badge badge-sm">Manage</span>
