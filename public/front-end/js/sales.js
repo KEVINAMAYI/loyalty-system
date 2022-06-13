@@ -443,7 +443,6 @@ $(function(){
             var rewards =parseInt($('#rewards').val());
             var total_amount =parseInt($('#total_amount').val());
             var litres = parseFloat($("#liters_val").val());
-            var reward_format_to_use = {};
             var new_cutomer_rewards = 0;;
             var rewards_awarded = 0;
             var rewards_used = 0;
@@ -460,6 +459,7 @@ $(function(){
             if(!(isNaN(authorized_amount)) && ((authorized_reward_type == 'credit') || (authorized_reward_type == 'prepaid')))
             {
                 
+                var reward_format_to_use = {};
                 console.log(authorized_amount);
                 console.log(authorized_reward_type);
 
@@ -498,10 +498,14 @@ $(function(){
             else
             {
 
+                //clear reward format to
+                reward_format_to_use = {};
+                console.log(rewards_format);
+
                 // get reward format details for rewards that are not corporate
                 rewards_format.forEach(reward_format => {
 
-                    if((litres >= reward_format.low) && (litres <= reward_format.high))
+                    if((litres >= reward_format.low) && (litres <= reward_format.high) && (reward_format.reward_type != 'credit') && (reward_format.reward_type != 'prepaid'))
                     {
                         
                         reward_percentage = parseFloat(reward_format.shillings_per_litre);
@@ -946,6 +950,8 @@ $(function(){
                     }
                     else if('credit' in reward_format_to_use)
                     {
+
+                        console.log(reward_format_to_use);
                         if(firstsale == true)
                         {
 
