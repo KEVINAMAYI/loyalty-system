@@ -51,7 +51,7 @@
                                                     @if($account->account_type == 'credit')
                                                     <tr>
                                                         <td style="padding-left:20px;" class="align-middle text-left text-sm">
-                                                            <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account Status</span>
+                                                            <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account</span>
                                                         </td>
                                                         <td style="padding-left:20px;" class="align-middle text-left text-sm">
                                                             <span class="text-xs font-weight-bold mb-0">STATUS</span>
@@ -241,7 +241,7 @@
                                             <tbody>           
                                                 <tr>
                                                     <td style="padding-left:20px;" class="align-middle text-left text-sm">
-                                                        <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account Status</span>
+                                                        <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account</span>
                                                     </td>
                                                   </tr>
                                              </tbody>
@@ -419,7 +419,7 @@
                                                 <tbody>           
                                                     <tr>
                                                         <td style="padding-left:20px;" class="align-middle text-left text-sm">
-                                                            <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account Status</span>
+                                                            <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account</span>
                                                         </td>
                                                       </tr>
                                                  </tbody>
@@ -589,7 +589,7 @@
                                                         @if($account->account_type == 'credit')
                                                         <tr>
                                                             <td style="padding-left:20px;" class="align-middle text-left text-sm">
-                                                                <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account Status</span>
+                                                                <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account</span>
                                                             </td>
                                                             <td style="padding-left:20px;" class="align-middle text-left text-sm">
                                                                 <span class="text-xs font-weight-bold mb-0">STATUS</span>

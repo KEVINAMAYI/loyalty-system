@@ -280,9 +280,10 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="form-holder form-holder-2">
+            <div class="form-holder form-holder-2 mt-2">
               <label for="vehicle_category">Vehicle Category</label>
               <select name="vehicle_category" id="vehicle_category" class="form-control">
+				<option value="">Select...</option>
                 <option value="sedan">Sedan</option>
                 <option value="coupe">Coupe</option>
                 <option value="hatchback">Hatchback</option>
@@ -298,9 +299,10 @@
             </select>
             </div>
     
-            <div class="form-holder form-holder-2">
+            <div class="form-holder form-holder-2 mt-2">
               <label for="vehicle_type">Vehicle Type</label>
               <select name="vehicle_type" id="vehicle_type" class="form-control">
+				<option value="">Select...</option>
                 <option value="audi">Audi</option>
                 <option value="bmw">BMW</option>
                 <option value="chevrolet">Chevrolet</option>
@@ -336,12 +338,10 @@
     
             </select>
             </div>
-    
-            <div class="form-holder form-holder-2 mt-4 mb-4">
+            <div class="form-holder form-holder-2 mt-2 mb-2">
               <label for="regno">Vehicle Registration</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="vehicle_registration" id="vehicle_registration" placeholder="KAG00445" required>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="vehicle_registration" id="vehicle_registration" placeholder="Enter Number Plate" required>
             </div>
-    
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

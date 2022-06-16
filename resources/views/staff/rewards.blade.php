@@ -233,7 +233,7 @@
       <div class="col-12">
           <div class="card mb-4">
               <div class="card-header pb-0">
-                  <h6>Credit Rewards</h6>
+                  <h6>Corporate Credit Rewards</h6>
               </div>
         <div class="table-responsive p-0">
           <table class="table align-items-center mb-0">
@@ -294,7 +294,7 @@
       <div class="col-12">
           <div class="card mb-4">
               <div class="card-header pb-0">
-                  <h6>Prepaid Rewards</h6>
+                  <h6>Corporate Prepaid  Rewards</h6>
               </div>
         <div class="table-responsive p-0">
           <table class="table align-items-center mb-0">

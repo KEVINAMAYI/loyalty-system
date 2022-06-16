@@ -420,20 +420,24 @@
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="contact_person_name" type="text" id="contact_person_name"  required autocomplete="contact_person_name" autofocus>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Email</label></br>
+              <label for="regno">Email <span style="color:red;">   ( login credentials will be sent to email address )</span></label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="email" id="contact_person_email"  name="contact_person_email"  required autocomplete="email">
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Phone Number</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="contact_person_phone"   name="contact_person_phone" required autocomplete="phonenumber" autofocus>
             </div>
-            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+            <div style="margin-top:20px;" class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Additional Phone Number</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="contact_person_alternative_phone"   name="contact_person_alternative_phone" required autocomplete="phonenumber" autofocus>
             </div>
-            <button id="add_another_contact_peson" type="button" style="width:100%; margin-top:20px; margin-bottom:-10px;  background-color:#f9a14d;" class="btn btn-primary btn-md"><i class="fa-solid fa-plus"></i>
+
+            
+            <span style="color:red; font-size:11px; font-weight:bold;">Optional</span>
+            <button id="add_another_contact_peson" type="button" style="width:100%; margin-top:0px; margin-bottom:-10px;  background-color:#f9a14d;" class="btn btn-primary btn-md"><i class="fa-solid fa-plus"></i>
               <span style="margin-left:5px;">Add Another contact person</span>
             </button>
+
             <div id="another_contact_person_name_div" style="display:none;" class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Name</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="another_contact_person_name" type="text" id="another_contact_person_name"  required autocomplete="contact_person_name" autofocus>
