@@ -174,7 +174,7 @@
 
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="regno">Amount</label></br>
-            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="amount"  id="amount" placeholder="33,000">
+            <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="amount"  id="amount" placeholder="">
           </div>
 
           <div class="form-holder form-holder-2 mt-4 mb-4">
