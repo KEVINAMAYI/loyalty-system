@@ -420,7 +420,7 @@
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="contact_person_name" type="text" id="contact_person_name"  required autocomplete="contact_person_name" autofocus>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Email <span style="color:red;">   ( login credentials will be sent to email address )</span></label></br>
+              <label for="regno">Email <span style="color:red;">   ( login credentials will be sent to this email address )</span></label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="email" id="contact_person_email"  name="contact_person_email"  required autocomplete="email">
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
