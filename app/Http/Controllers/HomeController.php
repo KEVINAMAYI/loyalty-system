@@ -44,7 +44,10 @@ class HomeController extends Controller
                 $user = Auth::user()->name;
                 $employees = Customer::where('type','=',$user)->get();
                 $vehicles =  Vehicle::where('ownership','=', $user)->get();
+                $employees_count = Customer::where('type','=',$user)->get();
+                $vehicles_count = Vehicle::where('ownership','=', $user)->get();
                 $autorizedpurchases = AuthorizedPurchase::where('name','=', $user)->get();
+                $autorizedpurchases_count = AuthorizedPurchase::where('name','=', $user)->get();
                 $employees_authorized_data = array();
                 $company = User::where('id','=',$user)->get();
         
@@ -66,7 +69,13 @@ class HomeController extends Controller
         
                 }
         
-                 return view('cooperate-customer.dashboard')->with(['employees' => $employees,'vehicles' => $vehicles,'authorized_purchases' => $employees_authorized_data, 'company' => $company]);
+                 return view('cooperate-customer.dashboard')->with([
+                                                'employees' => $employees,
+                                                'vehicles' => $vehicles,
+                                                'employees_count' => $employees_count,
+                                                'vehicle_count' => $vehicles_count,
+                                                'authorized_purchases_count' => $autorizedpurchases_count,
+                                                'authorized_purchases' => $employees_authorized_data, 'company' => $company]);
                
                
     

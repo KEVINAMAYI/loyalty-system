@@ -268,7 +268,7 @@ class CustomerController extends Controller
             'rewards' => $data['new_cutomer_rewards'],
             'sale_start_date' => $data['sale_end_date'],
             'sale_end_date' => $data['sale_end_date'],
-
+            'purchase_status' => "complete"
         ]);
 
 
@@ -497,6 +497,9 @@ class CustomerController extends Controller
         $company = User::where('id','=',$user)->get();
         $employees_count = Customer::where('type','=',$user)->get();
         $vehicles_count = Vehicle::where('ownership','=', $user)->get();
+
+    
+
         $autorizedpurchases_count = AuthorizedPurchase::where('name','=', $user)->get();
 
 
@@ -634,6 +637,7 @@ class CustomerController extends Controller
                 Customer::where('id','=', $data['employees'])->update([
                     'authorized_amount' => $data['amount'],
                     'reward_type_to_use' => 'prepaid',
+                    'purchase_status' => 'pending'
                 ]);
 
                 
@@ -1172,14 +1176,32 @@ class CustomerController extends Controller
          {
 
             $customer = Customer::where('id','=',$vehicle[0]->customer_id)->get();
-            $vehicles =  Vehicle::where('customer_id','=',$customer[0]->id )->get();
+
+            if($customer[0]->purchase_status == 'complete')
+            {
+                $vehicle = [];
+            }
+            else
+            {
+                $vehicles =  Vehicle::where('customer_id','=',$customer[0]->id )->get();
+
+            }
+
 
          }
          else
          {
 
             $customer = Customer::where('id_number','=',$data['id_number'])->orWhere('phone_number','=',$data['id_number'])->get();
-            $vehicles =  Vehicle::where('customer_id','=',$customer[0]->id )->get();
+            
+            if($customer[0]->purchase_status == 'complete')
+            {
+                $vehicle = [];
+            }
+            else
+            {
+                $vehicles =  Vehicle::where('customer_id','=',$customer[0]->id )->get();
+            }
 
 
          }
