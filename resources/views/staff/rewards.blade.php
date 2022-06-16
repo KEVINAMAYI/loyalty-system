@@ -408,6 +408,7 @@
 </div>
 </form>
 
+
 {{-- edit monthly rewards --}}
 <form action="/edit-monthly-reward" method="POST">
   @csrf
