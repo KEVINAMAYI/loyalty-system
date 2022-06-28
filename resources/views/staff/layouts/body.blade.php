@@ -817,6 +817,87 @@
     })();
 
 
+    //function for authorizing purchase from admin portal
+    $('#authorize_purchase_btn').on('click',function(){
+        $('#authorize_purchase').modal('show');
+
+        //get corporate users
+        $.ajax({
+            type:'get',
+            url: "/get-corporate-users",
+            success: (data) => {
+
+                console.log(data)
+
+                //get company data data and show in a model
+                corporates = data.corporates;
+
+                corporates.forEach(corporate => {
+                        $('#companies_id').append(
+                        `<option value="${corporate.id}" selected>${corporate.name}</option>`
+                        )
+                });
+
+                $('#companies_id').append(
+                        `<option value="" selected>Select...</option>`
+                )
+                    
+
+            },
+            error: function(data){
+                     
+            }
+         });
+
+    });
+
+    $('#companies_id').on('change',function(){
+       
+       id = $('#companies_id').val();
+
+       //clear the employee and vehicle option on changing the corporate option
+       $('#employees').find('option').remove().end()
+       $('#vehicles').find('option').remove().end()
+
+       formData = new FormData();
+       formData.append('id',id);
+            //get corporate data
+            $.ajax({
+            type:'post',
+            data:formData,
+            processData: false,
+            contentType: false,
+            url: "/get-corporate-data",
+            success: (data) => {
+
+                    //get sale data and show in a model
+                    vehicles = data.vehicles;
+                    employees = data.employees;
+
+                   employees.forEach(employee => {
+                        $('#employees').append(
+                        `<option value="${employee.id}" selected>${employee.first_name}  ${employee.last_name} - ID: ${employee.id_number} </option>`
+                        )
+                      });
+
+                      vehicles.forEach(vehicle => {
+                        $('#vehicles').append(
+                        `<option value="${vehicle.id}" selected>${vehicle.vehicle_type}  ${vehicle.vehicle_registration}</option>`
+                        )
+                      });
+
+                console.log(vehicles);
+                console.log(employees);
+
+                    
+            },
+            error: function(data){
+                     
+            }
+         });
+    });
+
+
     //datatable
     $('#dashboard_authorization_table').DataTable();
     $('#dashboard_sales_table').DataTable();

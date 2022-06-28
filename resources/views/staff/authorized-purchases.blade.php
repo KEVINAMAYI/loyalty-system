@@ -12,12 +12,34 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
+
+           {{-- display success message on a successful action --}}
+      @if(Session::has('success'))
+      <div class="alert alert-success" role="alert">
+        {{ Session::get('success') }}
+      </div>
+      @endif
+  
+      {{-- display error on top of the form --}}
+      @if ($errors->any())
+      <div class="alert alert-danger" role="alert">
+          <ul class="list-group">
+              @foreach ($errors->all() as $error )
+              <li class="list-group-item">
+                {{ $error }}  
+              </li>
+              @endforeach
+          </ul>
+      </div>
+      @endif
+
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
                     <div class="card mb-4">
-                        <div class="card-header pb-0">
+                        <div class="card-header pb-3" style="display:flex;  justify-content:space-between;">
                             <h6>Authorized Fuel Purchases</h6>
+                            <button id="authorize_purchase_btn" class="btn-sm btn btn-success" style="background-color:#f9a14d;">Authorize Purchase</button>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -118,4 +140,62 @@
                 </div>
             </div>
         </div>
+
+<!-- Modal -->
+<form action="/staff-authorize-fuel-purchase" method="post" enctype="multipart/form-data">
+    @csrf
+   <div class="modal fade" id="authorize_purchase" tabindex="-1" aria-labelledby="authorize-purchase" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel">Authorize Fuel Purchase</h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+            <div class="form-holder form-holder-2">
+                <label for="card-type">Company Name</label>
+                <select name="companies_id" id="companies_id" class="form-control">
+                </select>
+              </div>
+
+             <div class="form-holder form-holder-2">
+               <label for="card-type">Employee</label>
+               <select name="employees" id="employees" class="form-control">
+               </select>
+             </div>
+   
+             <div class="form-holder form-holder-2 mt-4">
+               <label for="card-type">Vehicle</label>
+               <select name="vehicles" id="vehicles" class="form-control">
+               </select>
+             </div>
+   
+             <div class="form-holder form-holder-2 mt-4 mb-4">
+               <label for="regno">Amount</label></br>
+               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="amount"  id="amount" placeholder="">
+             </div>
+   
+             <div class="form-holder form-holder-2 mt-4 mb-4">
+               <label for="payment_type">Account Type</label></br>
+               <select name="payment_type" id="payment_type" class="form-control">
+                   <option value="credit">Credit</option>
+                   <option value="prepaid">Prepaid</option>
+               </select>          
+           </div>
+           <div class="form-group" >
+            <label style="margin-left:0px; font-weight:bold;" for="picture">Document</label>
+            <input type="file" class="form-control" name="authorize_purchase_document" id="authorize_purchase_document" >
+          </div>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="submit" style="background-color:#f9a14d; color:white;" type="button" class="btn">Authorize Fuel Purchase</button>
+           </div>
+         </div>
+       </div>
+     </div>
+   </form>
     @endsection
+
+
+

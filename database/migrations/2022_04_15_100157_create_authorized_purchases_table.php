@@ -20,9 +20,9 @@ class CreateAuthorizedPurchasesTable extends Migration
             $table->integer('vehicle_id');
             $table->integer('amount');
             $table->string('payment_type');
-            // $table->string('receipt_number');
             $table->string('status');
             $table->string('name');
+            $table->string('document_url');
             $table->timestamps();
             $table->string('sales_date')->nullable();
         });

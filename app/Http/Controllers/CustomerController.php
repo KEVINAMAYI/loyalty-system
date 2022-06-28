@@ -445,6 +445,40 @@ class CustomerController extends Controller
 
 
     /**
+     * add a new staff and staff dashboard.
+     *
+     * @return "view"
+     */
+    public function getCorporateUsers()
+    {          
+        
+        $corporates = User::where('krapin','!=','')->get();
+        
+        return response()->json([
+            'corporates' => $corporates
+        ]);
+        
+    }
+
+     /**
+     * get corpoarate data.
+     *
+     * @return "view"
+     */
+    public function getCorporateUserData(Request $request)
+    {          
+       $data = $request->all();
+       $name = User::where('id','=',$data['id'])->get()[0]['name']; 
+       $employees = Customer::where('type','=',$name)->get();
+       $vehicles =  Vehicle::where('ownership','=',$name)->get();
+       return response()->json([
+           'employees' => $employees,
+           'vehicles' => $vehicles
+       ]);
+        
+    }
+
+    /**
      * get coorporate data for authorizing purchase
      *
      * @return "view"
@@ -684,6 +718,192 @@ class CustomerController extends Controller
                     'status' => 'pending',
                     'name' => $name,
                     'organization_id' => $user
+        
+                ]);
+        
+                //update vehicle with customer id
+                Vehicle::where('id','=', $data['vehicles'])->update([
+                    'customer_id' => $data['employees']
+                ]);
+
+
+                //update customer amount authrized and reward type to use
+                Customer::where('id','=', $data['employees'])->update([
+                    'authorized_amount' => $data['amount'],
+                    'reward_type_to_use' => 'credit',
+                ]);
+
+                
+                $new_account_balance = -1 * (abs($account[0]->account_balance) - $data['amount']);
+
+                Account::where('organization_id','=',$user)
+                        ->where('account_type','=','credit')
+                        ->update([
+                              'account_balance' => $new_account_balance
+                             ]);
+
+                session()->flash('success','Fuel Purchase Authorized Successfully');
+                return redirect()->back();
+
+            }
+            else
+            {
+
+                session()->flash('success','You do not have enough balance to authorize a purchase, Please recharge your account and try again');
+                return redirect()->back();
+
+            }
+
+
+        }
+  
+
+
+        }
+        
+        
+    }
+
+    /**
+     * authorize fuel purchase
+     *
+     * 
+     */
+    public function staffAuthorizeFuelPurchase(Request $request)
+    {          
+
+        $data = $request->all();   
+        $name = User::where('id','=',$data['companies_id'])->get()[0]['name'];
+
+        
+        //check if the employee/vehicle is authorized and the status is pending 
+        $alreadyAuthorizedVehicleandEmployees = AuthorizedPurchase::where(function($query) use ($data)
+                    {
+                        $query->where('employee_id','=',$data['employees']);
+                        $query->orWhere('vehicle_id','=',$data['vehicles']);
+                    })
+                    ->where('status', '=', 'pending')->get();
+
+
+                    
+        // if the employee/vehicle is already authorized cancel authorization
+        if(count($alreadyAuthorizedVehicleandEmployees) > 0)
+        { 
+            session()->flash('success','The employee or the vehicle is already authorized try again once the sale is completed');
+            return redirect()->back();  
+        }
+        else
+        {
+        
+        //check payment type and compare amount
+        if($data['payment_type'] == 'prepaid')
+        {
+            //check if amount to prepaid account is furnished
+            $account = Account::where('organization_id','=',$data['companies_id'])
+                    ->where('account_type','=','prepaid')
+                    ->get();
+
+            if(($account[0]->account_balance > $data['amount']) && ($account[0]->account_balance > 0))
+            {   
+
+                $document_url = '';
+
+                //upload testimony image
+                if(($request->hasfile('authorize_purchase_document')) && ($request->authorize_purchase_document != null))
+                {
+
+                    $document_url = $request->authorize_purchase_document->getClientOriginalName();
+                    $request->authorize_purchase_document->move(public_path().'/assets/authorize_purchases/', $document_url);
+            
+                }
+                
+                //create authorized purchase record for an employee
+                AuthorizedPurchase::create([
+                    'organization_id' => $data['companies_id'],
+                    'employee_id' =>  $data['employees'],
+                    'vehicle_id' =>  $data['vehicles'],
+                    'amount' =>  $data['amount'],
+                    'payment_type' =>  $data['payment_type'],
+                    'status' => 'pending',
+                    'name' => $name,
+                    'organization_id' => $data['companies_id'],
+                    'document_url' => $document_url
+        
+                ]);
+        
+                //update vehicle with customer id reward type and amount for the authorized purchase
+                Vehicle::where('id','=', $data['vehicles'])->update([
+                    'customer_id' => $data['employees'],
+                ]);
+
+
+                //update customer amount authrized and reward type to use
+                Customer::where('id','=', $data['employees'])->update([
+                    'authorized_amount' => $data['amount'],
+                    'reward_type_to_use' => 'prepaid',
+                    'purchase_status' => 'pending'
+                ]);
+
+                
+                //update account balance for the corporate customer
+                $new_account_balance = $account[0]->account_balance - $data['amount'];
+
+                Account::where('organization_id','=',$data['companies_id'])
+                        ->where('account_type','=','prepaid')
+                        ->update([
+                              'account_balance' => $new_account_balance
+                             ]);
+
+                session()->flash('success','Fuel Purchase Authorized Successfully');
+                return redirect()->back();
+
+            }
+            else
+            {
+
+                session()->flash('success','There is no enough balance to authorize a purchase, Please recharge your account and try again');
+                return redirect()->back();
+
+            }
+
+        }
+        else
+        {
+         
+            //check if amount to prepaid account is furnished
+            $user =  $data['companies_id'];;
+            $account = Account::where('organization_id','=',$data['companies_id'])
+                    ->where('account_type','=','credit')
+                    ->get();
+
+            //get the account balance as a positive value
+            $account_balance = abs($account[0]->account_balance);
+            
+            if(($account_balance > $data['amount']) && ($account_balance > 0 ))
+            {
+
+                
+                $document_url = '';
+
+                //upload testimony image
+                if(($request->hasfile('authorize_purchase_document')) && ($request->authorize_purchase_document != null))
+                {
+
+                    $document_url = $request->authorize_purchase_document->getClientOriginalName();
+                    $request->authorize_purchase_document->move(public_path().'/assets/authorize_purchases/', $document_url);
+            
+                }
+
+                AuthorizedPurchase::create([
+                    'employee_id' =>  $data['employees'],
+                    'vehicle_id' =>  $data['vehicles'],
+                    'amount' =>  $data['amount'],
+                    'payment_type' =>  $data['payment_type'],
+                    'status' => 'pending',
+                    'name' => $name,
+                    'organization_id' => $data['companies_id'],
+                    'document_url' => $document_url
+
         
                 ]);
         

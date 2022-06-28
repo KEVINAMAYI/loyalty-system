@@ -558,18 +558,18 @@
             </div> 
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Amount Paid</label></br>
-              <input type="number" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " name="amount_paid" id="amount_paid"  placeholder="100000" required>
+              <input type="number" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " name="amount_paid" id="amount_paid"  required>
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Paid By</label></br>
-              <input type="text" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " name="paid_by" id="paid_by"  placeholder="Hassan Kassim" required>
+              <input type="text" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " name="paid_by" id="paid_by" required>
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Payment Date</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="date" name="payment_date" id="payment_date" placeholder="-100000" required>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="date" name="payment_date" id="payment_date" required>
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
-              <label for="regno">Mode of Payment</label></br>
+              <label for="regno">Mode of Payment (Choose One ...)</label></br>
               <select name="payment_mode" id="payment_mode" class="form-control" required>
                 <option value="Cheque">Cheque</option>
                 <option value="Cash">Cash</option>
@@ -578,15 +578,13 @@
            </div>
            <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="regno">Reference Number</label></br>
-            <input type="text" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " name="reference_number" id="reference_number"  placeholder="QAWSD3433" required>
+            <input type="text" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " name="reference_number" id="reference_number"  required>
           </div>
            <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="regno">Payment details</label></br>
-            <textarea name="payment_details" id="payment_details" style="width:100%; padding-left:0px;" rows="3" required>  Cheque 3025
-  Absa Bank
-  Date 02-05-2022              
+            <textarea name="payment_details" id="payment_details" style="width:100%; padding-left:0px;" rows="3" required>             
             </textarea>            
-         </div>
+            </div>
             <div class="modal-footer">
               <input type="hidden" class="corporate_main_id" name="corporate_id" value="">
               <input type="hidden" class="corporate_account_type" name="account_type"  value="">

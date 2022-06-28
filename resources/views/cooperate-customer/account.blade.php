@@ -50,18 +50,18 @@
                                                 @foreach($accounts as $account)
                                                     @if($account->account_type == 'credit')
                                                     <tr>
-                                                        <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                        {{-- <td style="padding-left:20px;" class="align-middle text-left text-sm">
                                                             <span class="text-xl" style="font-size:20px; font-weight:bold; color:#f9a14d;" >Account</span>
-                                                        </td>
-                                                        <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                        </td> --}}
+                                                        <td class="text-left text-sm">
                                                             <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">STATUS</span>
                                                             <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ strtoupper($account->corporate_status) }}</span>
                                                         </td>
-                                                        <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                        <td class="text-left text-sm">
                                                             <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">Account Number</span>
                                                             <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ $account->account_number }}</span>
                                                         </td>
-                                                        <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                        <td class="text-left text-sm">
                                                             <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">Account Type</span>
                                                             <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ $account->account_type }}</span>
                                                         </td>
@@ -78,15 +78,15 @@
                                                 @foreach($accounts as $account)
                                                   @if($account->account_type == 'credit')
                                                     <tr style="border-top:2px solid grey;">
-                                                        <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                        <td class="text-left text-sm">
                                                             <span class="text-xs font-weight-bold mb-0 font-weight:bold; color:#f9a14d;">Account Limit</span>
                                                             <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ $account->account_limit }}</span>
                                                         </td>
-                                                        <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                        <td class="text-left text-sm">
                                                             <span class="text-xs font-weight-bold mb-0 font-weight:bold; color:#f9a14d;">Account Balance</span>
                                                             <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">KES {{ $account->account_balance }}</span>
                                                         </td>
-                                                        <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                        <td  class="text-left text-sm">
                                                             <span class="text-xs font-weight-bold mb-0 font-weight:bold; color:#f9a14d;">Limit Utilized</span>
                                                             <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">KES {{ $account->limit_utilized }}</span>
                                                         </td>
@@ -239,11 +239,11 @@
                                     <div class="table-responsive p-0" style="margin-top:20px;">
                                         <table class="table align-items-center mb-0">
                                             <tbody>           
-                                                <tr>
+                                                {{-- <tr>
                                                     <td style="padding-left:20px;" class="align-middle text-left text-sm">
                                                         <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account</span>
                                                     </td>
-                                                  </tr>
+                                                  </tr> --}}
                                              </tbody>
                                         </table>
                                     </div>
@@ -252,7 +252,7 @@
                                             <tbody>   
                                                 @foreach($accounts as $account)
                                                 @if($account->account_type == 'prepaid')
-                                                 <tr style="border-top:2px solid grey;">
+                                                 <tr>
                                                     <td style="padding-left:20px;" class="align-middle text-left text-sm">
                                                         <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">STATUS</span>
                                                         <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ strtoupper($account->corporate_status) }}</span>
@@ -411,17 +411,16 @@
                                   </nav>
                                   <div style="margin-left:20px; margin-top:30px;" class="tab-content" id="nav-tabContent">
                                     
-                                    
                                     {{-- prepaid --}}
                                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                         <div class="table-responsive p-0" style="margin-top:20px;">
                                             <table class="table align-items-center mb-0">
                                                 <tbody>           
-                                                    <tr>
+                                                    {{-- <tr>
                                                         <td style="padding-left:20px;" class="align-middle text-left text-sm">
                                                             <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account</span>
                                                         </td>
-                                                      </tr>
+                                                      </tr> --}}
                                                  </tbody>
                                             </table>
                                         </div>
@@ -430,17 +429,17 @@
                                                 <tbody>   
                                                     @foreach($accounts as $account)
                                                     @if($account->account_type == 'prepaid')
-                                                     <tr style="border-top:2px solid grey;">
-                                                        <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                     <tr>
+                                                        <td  class="text-left text-sm">
                                                             <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">STATUS</span>
                                                             <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ strtoupper($account->corporate_status) }}</span>
                                                         </td>
-                                                        <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                        <td  class="text-left text-sm">
                                                             <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">Balance</span>
                                                             <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">KES {{ $account->account_balance }}</span>
                                                         </td>
                                     
-                                                        <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                        <td  class="text-left text-sm">
                                                             <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">Account Type</span>
                                                             <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ $account->account_type }}</span>
                                                         </td>
@@ -588,18 +587,16 @@
                                                     @foreach($accounts as $account)
                                                         @if($account->account_type == 'credit')
                                                         <tr>
-                                                            <td style="padding-left:20px;" class="align-middle text-left text-sm">
-                                                                <span class="text-xl" style="font-size:20px; font-weight:bold;" >Account</span>
-                                                            </td>
-                                                            <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                            
+                                                            <td  class="text-left text-sm">
                                                                 <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">STATUS</span>
                                                                 <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ strtoupper($account->corporate_status) }}</span>
                                                             </td>
-                                                            <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                            <td  class="text-left pl-2 text-sm">
                                                                 <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">Account Number</span>
                                                                 <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ $account->account_number }}</span>
                                                             </td>
-                                                            <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                            <td class="text-left text-sm">
                                                                 <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">Account Type</span>
                                                                 <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ $account->account_type }}</span>
                                                             </td>
@@ -616,15 +613,15 @@
                                                     @foreach($accounts as $account)
                                                       @if($account->account_type == 'credit')
                                                         <tr style="border-top:2px solid grey;">
-                                                            <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                            <td class="text-left text-sm">
                                                                 <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">Account Limit</span>
                                                                 <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">{{ $account->account_limit }}</span>
                                                             </td>
-                                                            <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                            <td class="text-left text-sm">
                                                                 <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">Account Balance</span>
                                                                 <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">KES {{ $account->account_balance }}</span>
                                                             </td>
-                                                            <td style="padding-left:20px;" class="align-middle text-left text-sm">
+                                                            <td class="text-left text-sm">
                                                                 <span class="text-xs font-weight-bold mb-0" style="font-weight:bold; color:#f9a14d;">Limit Utilized</span>
                                                                 <span style="margin-left:20px;" class="text-secondary text-xs font-weight-bold">KES {{ $account->limit_utilized }}</span>
                                                             </td>

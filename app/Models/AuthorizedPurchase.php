@@ -9,7 +9,7 @@ class AuthorizedPurchase extends Model
 {
     use HasFactory;
 
-      /**
+   /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -20,8 +20,8 @@ class AuthorizedPurchase extends Model
         'vehicle_id',
         'amount',
         'payment_type',
-        // 'receipt_number',
         'status',
-        'name'
+        'name',
+        'document_url'
     ];
 }
