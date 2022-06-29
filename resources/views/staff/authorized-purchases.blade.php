@@ -61,6 +61,9 @@
                                             <th
                                             style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Company Name</th>
+                                            <th
+                                                style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Document</th>
                                              <th
                                              style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Status
@@ -92,6 +95,9 @@
                                                     class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->name }}
                                                     </span>                                                
                                                 </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <a href="/assets/authorize_purchases/{{ $authorized_purchase[2]->document_url }}" download class="badge badge-sm bg-gradient-info">Download</a>
+                                                  </td>
                                                 @if( $authorized_purchase[2]->status == 'complete' )
 
                                                 <td class="align-middle text-center text-sm">
@@ -126,6 +132,9 @@
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Company Name</th>
+                                             <th
+                                                style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Document</th>
                                              <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Status

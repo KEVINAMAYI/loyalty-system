@@ -443,7 +443,7 @@ $(function(){
             var rewards =parseInt($('#rewards').val());
             var total_amount =parseInt($('#total_amount').val());
             var litres = parseFloat($("#liters_val").val());
-            var new_cutomer_rewards = 0;;
+            var new_cutomer_rewards = 0;
             var rewards_awarded = 0;
             var rewards_used = 0;
             firstsale = localStorage.getItem('firstsale');
@@ -553,7 +553,7 @@ $(function(){
                             console.log(customer_rewards);
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - rewards;
+                            new_cutomer_rewards = parseInt(customer_rewards) - rewards;
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['bulk'] * litres).toFixed(2);
@@ -581,17 +581,15 @@ $(function(){
                             $('#amount_payable').val(amount_to_pay);
                             rewards_used = rewards;
 
-                            console.log({
-                                'rewards': customer_rewards
-                            })
-
-
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - rewards;
+                            new_cutomer_rewards = parseInt(customer_rewards) - rewards;
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['bulk'] * litres).toFixed(2);
                             $('#sales-rewards-awarded').text(rewards_awarded);
+
+                            console.log(rewards_awarded);
+
 
                             date = new Date();
                             start_date = localStorage.getItem('db_start_date');
@@ -621,18 +619,21 @@ $(function(){
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
                             //calculate amount payable with the rewards set only when the reward option is enabled
-                            let amount_to_pay = total_amount - (rewards + (reward_format_to_use['credit'] * litre));
+                            let amount_to_pay = total_amount - rewards;
                             $('#amount_payable').val(amount_to_pay);
                             rewards_used = rewards;
 
                             console.log(customer_rewards);
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - rewards;
+                            new_cutomer_rewards = parseInt(customer_rewards) - rewards + (reward_format_to_use['credit'] * litre);
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['credit'] * litres).toFixed(2);
                             $('#sales-rewards-awarded').text(rewards_awarded);
+
+                            console.log(rewards_awarded);
+
 
                              //get current day
                              date = new Date();
@@ -654,7 +655,7 @@ $(function(){
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
                              //calculate amount payable with the rewards set only when the reward option is enabled
-                            let amount_to_pay = total_amount - (rewards + reward_format_to_use['credit'] * litres);
+                            let amount_to_pay = total_amount - rewards;
                             $('#amount_payable').val(amount_to_pay);
                             rewards_used = rewards;
 
@@ -664,7 +665,7 @@ $(function(){
 
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - rewards;
+                            new_cutomer_rewards = parseInt(customer_rewards) - rewards + (reward_format_to_use['credit'] * litres);
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['credit'] * litres).toFixed(2);
@@ -700,17 +701,19 @@ $(function(){
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
                             //calculate amount payable with the rewards set only when the reward option is enabled
-                            let amount_to_pay = total_amount - (rewards + (reward_format_to_use['prepaid'] * litre));
+                            let amount_to_pay = total_amount - (rewards);
                             $('#amount_payable').val(amount_to_pay);
                             rewards_used = rewards;
 
-                            console.log(customer_rewards);
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - rewards;
+                            new_cutomer_rewards = parseInt(customer_rewards) - rewards + (reward_format_to_use['prepaid'] * litre);
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['prepaid'] * litres).toFixed(2);
+                           
+                            console.log(customer_rewards);
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
 
                              //get current day
@@ -731,7 +734,7 @@ $(function(){
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
                              //calculate amount payable with the rewards set only when the reward option is enabled
-                            let amount_to_pay = total_amount - (rewards + reward_format_to_use['prepaid'] * litres);
+                            let amount_to_pay = total_amount - (rewards);
                             $('#amount_payable').val(amount_to_pay);
                             rewards_used = rewards;
 
@@ -741,7 +744,7 @@ $(function(){
 
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - rewards;
+                            new_cutomer_rewards = parseInt(customer_rewards) - rewards + (reward_format_to_use['prepaid'] * litres);
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['prepaid'] * litres).toFixed(2);
@@ -779,7 +782,7 @@ $(function(){
                             console.log(customer_rewards);
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards - rewards) + (reward_format_to_use['monthly'] * litres);
+                            new_cutomer_rewards = (parseInt(customer_rewards) - rewards) + (reward_format_to_use['monthly'] * litres);
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['monthly'] * litres).toFixed(2);
@@ -819,7 +822,7 @@ $(function(){
 
 
                                 //bulk rewards
-                                new_cutomer_rewards = (customer_rewards - rewards) + (reward_format_to_use['monthly'] * litres);
+                                new_cutomer_rewards = (parseInt(customer_rewards) - rewards) + (reward_format_to_use['monthly'] * litres);
                                 $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                                 new_cutomer_rewards.toFixed(2);
                                 rewards_awarded = (reward_format_to_use['monthly'] * litres).toFixed(2);
@@ -853,10 +856,13 @@ $(function(){
                                 console.log(customer_rewards);
 
                                 //bulk rewards
-                                new_cutomer_rewards = (customer_rewards - rewards) + (reward_format_to_use['monthly'] * litres);
+                                new_cutomer_rewards = (parseInt(customer_rewards) - rewards) + (reward_format_to_use['monthly'] * litres);
                                 $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                                 new_cutomer_rewards.toFixed(2);
                                 rewards_awarded = (reward_format_to_use['monthly'] * litres);
+
+                                console.log(customer_rewards);
+
 
                                 date = new Date();
                                 start_date = localStorage.getItem('db_start_date');
@@ -903,7 +909,7 @@ $(function(){
                             console.log(customer_rewards);
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - 0;
+                            new_cutomer_rewards = parseInt(customer_rewards) - 0;
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['bulk'] * litres).toFixed(2);
@@ -912,7 +918,8 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                            
+                           
+                            $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
                             console.log(rewards_awarded)
@@ -930,7 +937,7 @@ $(function(){
                             console.log(customer_rewards);
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - 0;
+                            new_cutomer_rewards = parseInt(customer_rewards) - 0;
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['bulk'] * litres);
@@ -939,7 +946,8 @@ $(function(){
                             date = new Date();
                             start_date = localStorage.getItem('db_start_date');
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-
+                           
+                            $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
 
@@ -958,14 +966,12 @@ $(function(){
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
                             //calculate amount payable with the rewards set only when the reward option is enabled
-                            let amount_to_pay = total_amount - (0 + reward_format_to_use['credit'] * litres);
-                            $('#amount_payable').val(amount_to_pay);
-                            rewards_used = 0;
+                            // let amount_to_pay = total_amount - (0 + reward_format_to_use['credit'] * litres);
+                            $('#amount_payable').val(total_amount);
 
-                            console.log(customer_rewards);
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - 0;
+                            new_cutomer_rewards = parseInt(customer_rewards) + (reward_format_to_use['credit'] * litres);
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['credit'] * litres).toFixed(2);
@@ -974,7 +980,8 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                            
+                           
+                            $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
                             console.log(rewards_awarded);
@@ -992,29 +999,30 @@ $(function(){
 
 
                             //calculate amount payable with the rewards set only when the reward option is enabled
-                            let amount_to_pay = total_amount - (0 + reward_format_to_use['credit'] * litres);
-                            console.log(amount_to_pay);
+                            // let amount_to_pay = total_amount - (0 + reward_format_to_use['credit'] * litres);
+                            console.log(total_amount);
 
-                            $('#amount_payable').val(amount_to_pay);
+                            $('#amount_payable').val(total_amount);
                             rewards_used = 0;
 
-                            console.log(customer_rewards);
-
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - 0;
+                            new_cutomer_rewards = parseInt(customer_rewards) + (reward_format_to_use['credit'] * litres);
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['credit'] * litres);
-
+                            console.log(rewards_awarded);
                            
+                            $('#sales-rewards-awarded').text(rewards_awarded);
+
                             date = new Date();
                             start_date = localStorage.getItem('db_start_date');
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-
+                            
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
                             console.log(start_date);
                             console.log(end_date);
+                            console.log(rewards_awarded);
 
 
                         }
@@ -1029,14 +1037,14 @@ $(function(){
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
                             //calculate amount payable with the rewards set only when the reward option is enabled
-                            let amount_to_pay = total_amount - (0 + reward_format_to_use['prepaid'] * litres);
-                            $('#amount_payable').val(amount_to_pay);
+                            // let amount_to_pay = total_amount - (0 + reward_format_to_use['prepaid'] * litres);
+                            $('#amount_payable').val(total_amount);
                             rewards_used = 0;
 
                             console.log(customer_rewards);
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - 0;
+                            new_cutomer_rewards = parseInt(customer_rewards) +  (reward_format_to_use['prepaid'] * litres);
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['prepaid'] * litres).toFixed(2);
@@ -1045,7 +1053,8 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                            
+                           
+                            $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
                             console.log(rewards_awarded)
@@ -1056,23 +1065,24 @@ $(function(){
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
                             //calculate amount payable with the rewards set only when the reward option is enabled
-                            let amount_to_pay = total_amount - (0 + reward_format_to_use['prepaid'] * litres);
-                            $('#amount_payable').val(amount_to_pay);
+                            // let amount_to_pay = total_amount - (0 + reward_format_to_use['prepaid'] * litres);
+                            $('#amount_payable').val(total_amount);
                             rewards_used = 0;
 
                             console.log(customer_rewards);
 
                             //bulk rewards
-                            new_cutomer_rewards = (customer_rewards) - 0;
+                            new_cutomer_rewards = parseInt(customer_rewards) + (reward_format_to_use['prepaid'] * litres);
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['prepaid'] * litres);
 
-                           
+                            console.log(rewards_awarded)
+
+                            $('#sales-rewards-awarded').text(rewards_awarded);
                             date = new Date();
                             start_date = localStorage.getItem('db_start_date');
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
 
@@ -1098,7 +1108,7 @@ $(function(){
                                 console.log(customer_rewards);
         
                                 //bulk rewards
-                                new_cutomer_rewards = (customer_rewards - 0) + (reward_format_to_use['monthly'] * litres);
+                                new_cutomer_rewards = (parseInt(customer_rewards) - 0) + (reward_format_to_use['monthly'] * litres);
                                 $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                                 new_cutomer_rewards.toFixed(2);
                                 rewards_awarded =(reward_format_to_use['monthly']*litres).toFixed(2);
@@ -1108,7 +1118,8 @@ $(function(){
                                  date = new Date();
                                  start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                                  end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-        
+                               
+                                 $('#sales-rewards-awarded').text(rewards_awarded);
                                  localStorage.setItem('sale_start_date',start_date);
                                  localStorage.setItem('sale_end_date',end_date);
         
@@ -1128,7 +1139,7 @@ $(function(){
                                 console.log(customer_rewards);
         
                                 //bulk rewards
-                                new_cutomer_rewards = (customer_rewards - rewards) + (reward_format_to_use['monthly'] * litres);
+                                new_cutomer_rewards = (parseInt(customer_rewards) - rewards) + (reward_format_to_use['monthly'] * litres);
                                 $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                                 new_cutomer_rewards.toFixed(2);
                                 rewards_awarded = (reward_format_to_use['monthly'] * litres).toFixed(2);
@@ -1137,7 +1148,8 @@ $(function(){
                                 date = new Date();
                                 start_date = localStorage.getItem('db_start_date');
                                 end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-        
+                                
+                                $('#sales-rewards-awarded').text(rewards_awarded);
                                 localStorage.setItem('sale_start_date',start_date);
                                 localStorage.setItem('sale_end_date',end_date);
         
