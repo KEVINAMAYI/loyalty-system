@@ -35,25 +35,25 @@
 
                 @foreach ( $sales as $sale )
                 <tr>
-                  <td class="align-middle text-center text-sm">
+                  <td class="align-middle  text-sm">
                     <p class="text-xs font-weight-bold mb-0">{{ $sale->first_name }} {{ $sale->last_name }}</p>
                   </td>
-                  <td class="align-middle text-center text-sm">
+                  <td class="align-middle  text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_used }}</span>
                   </td>
-                  <td class="align-middle text-center text-sm">
+                  <td class="align-middle  text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_awarded }}</span>
                   </td>
-                  <td class="align-middle text-center text-sm">
+                  <td class="align-middle  text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->amount_paid }}</span>
                   </td>
-                  <td class="align-middle text-center text-sm">
+                  <td class="align-middle  text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->sold_by }}</span>
                   </td>
-                  <td class="align-middle text-center text-sm">
+                  <td class="align-middle text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
                   </td>
-                  <td class="align-middle text-center text-sm">
+                  <td class="align-middle  text-sm">
                     <input type="hidden" id="saleid" value={{ $sale->id }}>
                     <button  id="{{ $sale->id }}"  style="background-color:#f9a14d;" class="moresalesdetails btn btn-sm btn-primary" >more info</button>
                   </td>
