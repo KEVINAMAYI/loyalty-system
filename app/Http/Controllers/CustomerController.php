@@ -262,15 +262,41 @@ class CustomerController extends Controller
         $receiverNumber = "+254".substr($request->phone_number,1);
         $message = "Sales Completed successfully, Thanks and shop with us again";
         $data = $request->all();
+       
 
-        //get customer purchase
-         Customer::where('id','=',$data['customer_id'])->update([
-            'rewards' => $data['new_cutomer_rewards'],
-            'sale_start_date' => $data['sale_end_date'],
-            'sale_end_date' => $data['sale_end_date'],
-            'purchase_status' => "complete"
-        ]);
+        //get amount store in database
+        $authorized_amount = Customer::where('id','=',$data['customer_id'])->get()[0]->authorized_amount;
+        
+        if($authorized_amount != '')
+        {
+            if($data['amount_payable'] < $authorized_amount)
+            {
+                //get customer purchase
+                Customer::where('id','=',$data['customer_id'])->update([
+                    'rewards' => $data['new_cutomer_rewards'],
+                    'sale_start_date' => $data['sale_end_date'],
+                    'sale_end_date' => $data['sale_end_date'],
+                    'purchase_status' => "pending",
+                    'authorized_amount' => $authorized_amount - $data['amount_payable']
+                ]);
 
+            }
+            else
+            {
+
+                //get customer purchase
+                Customer::where('id','=',$data['customer_id'])->update([
+                    'rewards' => $data['new_cutomer_rewards'],
+                    'sale_start_date' => $data['sale_end_date'],
+                    'sale_end_date' => $data['sale_end_date'],
+                    'purchase_status' => "complete"
+                ]);
+
+            }
+
+
+        }
+ 
 
         //get the updated customer
         $customer = Customer::where('id','=',$data['customer_id'])->get();
@@ -731,6 +757,8 @@ class CustomerController extends Controller
                 Customer::where('id','=', $data['employees'])->update([
                     'authorized_amount' => $data['amount'],
                     'reward_type_to_use' => 'credit',
+                    'purchase_status' => 'pending'
+
                 ]);
 
                 
