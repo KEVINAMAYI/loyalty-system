@@ -259,6 +259,8 @@ class CustomerController extends Controller
 
     public function sendSalesConfirmationSMS(Request $request)
     {   
+
+
         $receiverNumber = "+254".substr($request->phone_number,1);
         $message = "Sales Completed successfully, Thanks and shop with us again";
         $data = $request->all();
@@ -310,16 +312,17 @@ class CustomerController extends Controller
         ]);
 
         // upload vehicle image
-        $vehicleImage =  "image-".time().'.'.$request->vehicle_image->getClientOriginalExtension();
+        $vehicleImage =  "image-".time().'-'.$request->vehicle_image->getClientOriginalName();
         $request->vehicle_image->move(public_path('images'), $vehicleImage);
 
         // upload pump image
-        $pumpImage =  "image-".time().'.'.$request->pump_image->getClientOriginalExtension();
+        $pumpImage =  "image-".time().'-'.$request->pump_image->getClientOriginalName();
         $request->pump_image->move(public_path('images'), $pumpImage);
 
         // upload receipt image
-        $receiptImage =  "image-".time().'.'.$request->receipt_image->getClientOriginalExtension();
+        $receiptImage =  "image-".time().'-'.$request->receipt_image->getClientOriginalName();
         $request->receipt_image->move(public_path('images'), $receiptImage);
+
 
         //store sales details 
         Sale::create([

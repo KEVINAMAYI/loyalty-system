@@ -56,13 +56,13 @@
 								<p style="color:white; ">Gender*</p>
 								<div class="form-row" style="padding-left:20px; margin-bottom:50px; margin-top:10px;">
 									<div class="form-check" style="margin-right:20px;">
-										<input class="form-check-input gender" type="radio" value="male" name="gender">
+										<input class="form-check-input gender" type="radio" value="male" required name="gender">
 										<label style="color:white; font-weight:bold;" class="form-check-label" for="gender" >
 											Male
 										</label>
 									  </div>
 									  <div class="form-check">
-										<input class="form-check-input gender" value="female" type="radio" name="gender" >
+										<input class="form-check-input gender" value="female" type="radio" required name="gender" >
 										<label style="color:white; font-weight:bold;" class="form-check-label" for="gender">
 										  Female
 										</label>
@@ -71,11 +71,11 @@
 								<div class="form-row">
 									<div class="form-holder">
 										<label for="password">Phone Number*</label>
-										<input type="number" placeholder="Enter Phone Number" class="form-control" id="phonenumber" name="phonenumber" required >
+										<input type="number" minlength="10" maxlength="12" placeholder="Enter Phone Number" class="form-control" id="phonenumber" name="phonenumber" required >
 									</div>
 									<div class="form-holder">
 										<label for="confirm_password">ID Number*</label>
-										<input type="number" placeholder="Enter ID Number" class="form-control" id="idnumber" name="idnumber" required>
+										<input type="number" minlength="7" maxlength="8" placeholder="Enter ID Number" class="form-control" id="idnumber" name="idnumber" required>
 									</div>
 								</div>
 								<div class="form-row">
