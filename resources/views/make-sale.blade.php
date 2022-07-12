@@ -164,7 +164,7 @@
 									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
 										<label class="custom-file-upload">
 											<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
-											<input type="file" id="image" name="uploader" id="uploader"                               
+											<input type="file" id="image" name="image"                               
 											accept="image/*" 
 											capture="camera"/>
 											Take Photo
@@ -180,7 +180,7 @@
 									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
 										<label class="custom-file-upload">
 											<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
-											<input type="file" style="display:none;" id="pump_image" name="uploader" id="uploader"                               
+											<input type="file" style="display:none;" id="pump_image" name="pump_image"                               
 											accept="image/*" 
 											capture="camera"/>
 											Take Photo
@@ -196,7 +196,7 @@
 									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
 										<label class="custom-file-upload">
 											<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
-											<input type="file" style="display:none;" id="receipt_image" name="uploader" id="uploader"                               
+											<input type="file" style="display:none;" id="receipt_image" name="receipt_image"                               
 											accept="image/*" 
 											capture="camera"/>
 											Take Photo

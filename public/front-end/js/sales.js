@@ -2029,8 +2029,8 @@ $(function(){
         $('#progress').css('display','');
 
         const selectedFile = document.getElementById('image').files[0];
-        const pumpFile = document.getElementById('image').files[0];
-        const receiptFile = document.getElementById('image').files[0];
+        const pumpFile = document.getElementById('pump_image').files[0];
+        const receiptFile = document.getElementById('receipt_image').files[0];
 
 
         const product = localStorage.getItem('product');
