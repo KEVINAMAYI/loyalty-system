@@ -338,7 +338,8 @@ class CustomerController extends Controller
             'image_url' => $vehicleImage,
             'pump_image_url' => $pumpImage,
             'receipt_image_url' => $receiptImage,
-            'sold_by' => $data['sold_by']
+            'sold_by' => $data['sold_by'],
+            'rewards_balance' => $data['new_cutomer_rewards']
         ]);
 
 

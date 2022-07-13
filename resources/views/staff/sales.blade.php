@@ -22,38 +22,38 @@
               <table id="sales_table" class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Used</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Awarded</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sold By</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder">Name</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">Rewards Used</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Rewards Awarded</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Amount</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Sold By</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Date</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Action</th>
                   </tr>
                 </thead>
                 <tbody>
 
                 @foreach ( $sales as $sale )
                 <tr>
-                  <td class="align-middle  text-sm">
-                    <p class="text-xs font-weight-bold mb-0">{{ $sale->first_name }} {{ $sale->last_name }}</p>
+                  <td class="text-sm">
+                    <span  class="text-xs font-weight-bold mb-0">{{ $sale->first_name }} {{ $sale->last_name }}</span>
                   </td>
                   <td class="align-middle  text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_used }}</span>
                   </td>
-                  <td class="align-middle  text-sm">
+                  <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_awarded }}</span>
                   </td>
-                  <td class="align-middle  text-sm">
+                  <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->amount_paid }}</span>
                   </td>
-                  <td class="align-middle  text-sm">
+                  <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->sold_by }}</span>
                   </td>
-                  <td class="align-middle text-sm">
+                  <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
                   </td>
-                  <td class="align-middle  text-sm">
+                  <td class="text-sm">
                     <input type="hidden" id="saleid" value={{ $sale->id }}>
                     <button  id="{{ $sale->id }}"  style="background-color:#f9a14d;" class="moresalesdetails btn btn-sm btn-primary" >more info</button>
                   </td>

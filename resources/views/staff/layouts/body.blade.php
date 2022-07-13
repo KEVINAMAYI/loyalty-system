@@ -49,6 +49,12 @@
             margin-left:20px;
             margin-right:20px;
         }
+        th::after, th::before{
+            color:black;
+            font-weight:bold;
+            font-size:20px;
+            border:1px solid black;
+        }
     </style>
 
 

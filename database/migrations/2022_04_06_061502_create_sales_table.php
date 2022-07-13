@@ -28,6 +28,7 @@ class CreateSalesTable extends Migration
             $table->string('pump_image_url');
             $table->string('receipt_image_url');
             $table->string('sold_by');
+            $table->string('rewards_balance');
             $table->timestamps();
         });
     }

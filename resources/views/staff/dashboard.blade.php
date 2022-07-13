@@ -89,12 +89,13 @@
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
-                <table id="dashboard_sales_table" class="table align-items-center mb-0">
+                <table id="dashboard_sales_table" class="table  mb-0">
                   <thead>
                     <tr>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Used</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Awarded</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Balance</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sold By</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
@@ -105,25 +106,28 @@
     
                   @foreach ( $sales as $sale )
                   <tr>
-                    <td class="align-middle text-center text-sm">
+                    <td class="text-sm">
                       <p class="text-xs font-weight-bold mb-0">{{ $sale->first_name }} {{ $sale->last_name }}</p>
                     </td>
-                    <td class="align-middle text-center text-sm">
+                    <td class="text-sm">
                       <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_used }}</span>
                     </td>
-                    <td class="align-middle text-center text-sm">
+                    <td class="text-sm">
                       <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_awarded }}</span>
                     </td>
-                    <td class="align-middle text-center text-sm">
+                    <td class="text-sm">
+                      <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_awarded }}</span>
+                    </td>
+                    <td class="text-sm">
                       <span class="text-secondary text-xs font-weight-bold">{{ $sale->amount_paid }}</span>
                     </td>
-                    <td class="align-middle text-center text-sm">
+                    <td class="text-sm">
                       <span class="text-secondary text-xs font-weight-bold">{{ $sale->sold_by }}</span>
                     </td>
-                    <td class="align-middle text-center text-sm">
+                    <td class="text-sm">
                       <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
                     </td>
-                    <td class="align-middle text-center text-sm">
+                    <td class="text-sm">
                       <input type="hidden" id="saleid" value={{ $sale->id }}>
                       <button  id="{{ $sale->id }}"  style="background-color:#f9a14d;" class="moresalesdetails btn btn-sm btn-primary" >more info</button>
                     </td>
@@ -136,6 +140,7 @@
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Used</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Awarded</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Balance</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sold By</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
