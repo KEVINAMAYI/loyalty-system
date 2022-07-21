@@ -76,7 +76,7 @@ class RewardFormatController extends Controller
          ]);
 
 
-        session()->flash('success','Monthly Reward Updated Successfully');
+        session()->flash('success','Bulk Reward Updated Successfully');
         return redirect()->back();
     }
 

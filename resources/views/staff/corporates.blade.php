@@ -440,19 +440,19 @@
 
             <div id="another_contact_person_name_div" style="display:none;" class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Name</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="another_contact_person_name" type="text" id="another_contact_person_name"  required autocomplete="contact_person_name" autofocus>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="another_contact_person_name" type="text" id="another_contact_person_name" autocomplete="contact_person_name" autofocus>
             </div>
             <div  id="another_contact_person_email_div"  style="display:none;" class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Email</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="email" id="another_contact_person_email"  name="another_contact_person_email"  required autocomplete="email">
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="email" id="another_contact_person_email"  name="another_contact_person_email"  autocomplete="email">
             </div>
             <div id="another_contact_person_phone_div" style="display:none;" class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Phone Number</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="another_contact_person_phone"   name="another_contact_person_phone" required autocomplete="phonenumber" autofocus>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="another_contact_person_phone"   name="another_contact_person_phone" autocomplete="phonenumber" autofocus>
             </div>
             <div id="another_contact_person_alternative_phone_div" style="display:none;" class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-0">
               <label for="regno">Additional Phone Number</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="another_contact_person_alternative_phone"   name="another_contact_person_alternative_phone" required autocomplete="phonenumber" autofocus>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="another_contact_person_alternative_phone"   name="another_contact_person_alternative_phone" autocomplete="phonenumber" autofocus>
             </div>
             <div style="margin-top:30px;" class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

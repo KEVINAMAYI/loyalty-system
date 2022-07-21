@@ -26,7 +26,7 @@ use App\Http\Controllers\AccountController;
 
 
 //Staff middleware --> can only be acccessed by users with the role of Staff
-Route::group(['middleware' => 'staff'], function()
+Route::group(['middleware' => ['staff','optimizeImages']], function()
 {    
      //front end routes
      Route::get('/choose-option', function () { return view('choose-option'); });

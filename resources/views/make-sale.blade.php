@@ -158,7 +158,7 @@
 
 								{{-- vehicle image --}}
 								<div class="form-holder">
-										<img id="vehicle_image" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Vehicle Photo">									
+										<img id="vehicle_image" loading="lazy" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Vehicle Photo">									
 								</div>
 								<div class="form-row" style="margin-top:30px;">
 									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
@@ -174,7 +174,7 @@
 
 								{{-- pump image --}}
 								<div class="form-holder">
-									<img id="vehicle_pump_image" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Pump Photo">									
+									<img id="vehicle_pump_image" loading="lazy" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Pump Photo">									
 								</div>
 								<div class="form-row" style="margin-top:30px;">
 									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
@@ -190,7 +190,7 @@
 
 								{{-- receipt image --}}
 								<div class="form-holder">
-									<img id="vehicle_receipt_image" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Receipt Photo">									
+									<img id="vehicle_receipt_image" loading="lazy" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Receipt Photo">									
 								</div>
 								<div class="form-row" style="margin-top:30px;">
 									<div style="margin-left:0px; padding-left:0px; padding-top:5px;" class="form-holder">
