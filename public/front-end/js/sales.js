@@ -25,7 +25,7 @@ $(function(){
 
             const customer_id = localStorage.getItem('customer_id');
             const vehicle_id = localStorage.getItem('vehicle_id');
-            var firstsale = false;
+            var firstsale = 0;
 
             console.log(vehicle_id);
 
@@ -86,11 +86,11 @@ $(function(){
 
                     if((customer[0].sale_start_date == null) && (customer[0].sale_end_date == null))
                     {
-                        firstsale = true;
+                        firstsale = 1;
                     }
                     else
                     {
-                        firstsale = false;
+                        firstsale = 0;
                         localStorage.setItem('db_start_date',customer[0].sale_start_date);
                         localStorage.setItem('db_end_date',customer[0].sale_end_date);
 
@@ -534,7 +534,7 @@ $(function(){
             
             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
-            if(rewards != null && isNaN(rewards) != true)
+            if(rewards != null && isNaN(rewards) !== true)
             {
 
                 // check if the rewards entered is not less than the customer reward value
@@ -550,7 +550,7 @@ $(function(){
                     {  
                         console.log('bulk');
 
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         { 
                             console.log(true);
 
@@ -623,7 +623,7 @@ $(function(){
                     {
                         
 
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         { 
                             console.log(true);
 
@@ -703,11 +703,9 @@ $(function(){
                     }
                     else if('prepaid' in reward_format_to_use)
                     {
-                        console.log('prepaid');
 
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         { 
-                            console.log(true);
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -779,9 +777,8 @@ $(function(){
                     {   
                         console.log('reter');
 
-                        if(firstsale == true){
+                        if(firstsale == 1){
 
-                            console.log(firstsale);
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -907,7 +904,7 @@ $(function(){
                 
                     if('bulk' in reward_format_to_use)
                     {
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         {
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -970,8 +967,7 @@ $(function(){
                     else if('credit' in reward_format_to_use)
                     {
 
-                        console.log(reward_format_to_use);
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         {
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -1042,7 +1038,7 @@ $(function(){
                     }
                     else if('prepaid' in reward_format_to_use)
                     {
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         {
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -1096,6 +1092,7 @@ $(function(){
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
+                            console.log(firstsale);
 
 
                         }
@@ -1107,7 +1104,7 @@ $(function(){
 
                         if('monthly' in reward_format_to_use)
                         {
-                            if(firstsale == true){
+                            if(firstsale == 1){
 
                                 let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -1133,7 +1130,11 @@ $(function(){
                                  $('#sales-rewards-awarded').text(rewards_awarded);
                                  localStorage.setItem('sale_start_date',start_date);
                                  localStorage.setItem('sale_end_date',end_date);
-        
+                                 console.log(firstsale);
+                                 console.log(start_date);
+                                 console.log(end_date);
+
+
                                }
                                else
                                {
@@ -1163,7 +1164,12 @@ $(function(){
                                 $('#sales-rewards-awarded').text(rewards_awarded);
                                 localStorage.setItem('sale_start_date',start_date);
                                 localStorage.setItem('sale_end_date',end_date);
-        
+                                console.log(firstsale);
+                                console.log(start_date);
+                                console.log(end_date);
+
+
+
         
                                }
         
@@ -1350,7 +1356,7 @@ $(function(){
                     {  
                         console.log('bulk');
 
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         { 
                             console.log(true);
 
@@ -1423,7 +1429,7 @@ $(function(){
                     {
                         
 
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         { 
                             console.log(true);
 
@@ -1505,7 +1511,7 @@ $(function(){
                     {
                         console.log('prepaid');
 
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         { 
                             console.log(true);
 
@@ -1577,11 +1583,9 @@ $(function(){
                     }
                     else
                     {   
-                        console.log('reter');
 
-                        if(firstsale == true){
+                        if(firstsale == 1){
 
-                            console.log(firstsale);
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -1707,7 +1711,7 @@ $(function(){
                 
                     if('bulk' in reward_format_to_use)
                     {
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         {
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -1770,8 +1774,7 @@ $(function(){
                     else if('credit' in reward_format_to_use)
                     {
 
-                        console.log(reward_format_to_use);
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         {
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -1842,7 +1845,7 @@ $(function(){
                     }
                     else if('prepaid' in reward_format_to_use)
                     {
-                        if(firstsale == true)
+                        if(firstsale == 1)
                         {
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -1907,7 +1910,7 @@ $(function(){
 
                         if('monthly' in reward_format_to_use)
                         {
-                            if(firstsale == true){
+                            if(firstsale == 1){
 
                                 let customer_rewards = localStorage.getItem('cutomer_rewards');
 

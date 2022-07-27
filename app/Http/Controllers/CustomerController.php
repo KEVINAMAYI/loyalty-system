@@ -35,7 +35,7 @@ class CustomerController extends Controller
             'phonenumber' => 'required',
             'address' => ['required', 'string', 'max:255'],
             'town' => ['required', 'string', 'max:255'],
-            'krapin' => ['required', 'string', 'max:255','unique:users'],
+            'krapin' => ['max:255','unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'contact_person_name' => ['required', 'string', 'max:255'],
             'contact_person_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -276,7 +276,7 @@ class CustomerController extends Controller
                 //get customer purchase
                 Customer::where('id','=',$data['customer_id'])->update([
                     'rewards' => $data['new_cutomer_rewards'],
-                    'sale_start_date' => $data['sale_end_date'],
+                    'sale_start_date' => $data['sale_start_date'],
                     'sale_end_date' => $data['sale_end_date'],
                     'purchase_status' => "pending",
                     'authorized_amount' => $authorized_amount - $data['amount_payable']
@@ -289,13 +289,23 @@ class CustomerController extends Controller
                 //get customer purchase
                 Customer::where('id','=',$data['customer_id'])->update([
                     'rewards' => $data['new_cutomer_rewards'],
-                    'sale_start_date' => $data['sale_end_date'],
+                    'sale_start_date' => $data['sale_start_date'],
                     'sale_end_date' => $data['sale_end_date'],
                     'purchase_status' => "complete"
                 ]);
 
             }
 
+
+        }
+        else{
+
+            //get customer purchase
+            Customer::where('id','=',$data['customer_id'])->update([
+                'rewards' => $data['new_cutomer_rewards'],
+                'sale_start_date' => $data['sale_start_date'],
+                'sale_end_date' => $data['sale_end_date'],
+            ]);
 
         }
  

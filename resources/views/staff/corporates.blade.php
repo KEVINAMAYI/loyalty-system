@@ -136,23 +136,33 @@
               </select>          
             </div>
             <div class="form-row col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Organization Name</label></br>
+              <label for="regno">Organization Name  <span style="color:red;">*</span></label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="name"   name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Phone Number</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="phonenumber"   name="phonenumber" value="{{ old('phonenumber') }}" required autocomplete="phonenumber" autofocus>
+              <label for="regno">Phone Number <span style="color:red;">*</span></label> </br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="phonenumber"   name="phonenumber" value="{{ old('phonenumber') }}" required autocomplete="phonenumber" autofocus>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Alternative Phone Number</label></br>
-              <input  style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="number" id="alternativephonenumber"    name="alternativephonenumber" value="{{ old('alternativephonenumber') }}" required  autocomplete="alternativephonenumber" autofocus>
+              <input  style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="alternativephonenumber"    name="alternativephonenumber" value="{{ old('alternativephonenumber') }}" autocomplete="alternativephonenumber" autofocus>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Organization Email</label></br>
+              <label for="regno">Organization Email <span style="color:red;">( login credentials will be sent to this email address ) *</span></label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="email"  name="email" value="{{ old('email') }}"  required autocomplete="email">
             </div>
+            
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Organization Address<span style="color:red;">*</span></label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="address"     name="address" value="{{ old('address') }}" required  autocomplete="name" autofocus>
+            </div>
+
+            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
+              <label for="regno">Town<span style="color:red;">*</span></label></br>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="town"  name="town" value="{{ old('town') }}" required autocomplete="town" autofocus>
+            </div>
             <div class="form-holder col-md-12 form-holder-2 mt-4 mb-4">
-              <label for="country">Country</label></br>
+              <label for="country">Country<span style="color:red;">*</span></label></br>
               <select name="country" id="country" class="form-control">
                 <option value="Kenya">Kenya</option>
                 <option value="Afganistan">Afghanistan</option>
@@ -403,33 +413,25 @@
               </select>          
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Organization Address</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="address"     name="address" value="{{ old('address') }}" required  autocomplete="name" autofocus>
-            </div>
-            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Town</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="town"  name="town" value="{{ old('town') }}" required autocomplete="town" autofocus>
-            </div>
-            <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization KRA PIN</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="krapin"    name="krapin" value="{{ old('krapin') }}" required autocomplete="krapin" autofocus>
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" type="text" id="krapin"    name="krapin" value="{{ old('krapin') }}"  autocomplete="krapin" autofocus>
             </div>
              <u><h5 style="margin-top:30px; margin-bottom:-20px;">Primary Contact Person</h5></u>
              <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Name</label></br>
+              <label for="regno">Name<span style="color:red;">*</span></label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="contact_person_name" type="text" id="contact_person_name"  required autocomplete="contact_person_name" autofocus>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Email <span style="color:red;">   ( login credentials will be sent to this email address )</span></label></br>
+              <label for="regno">Email<span style="color:red;">*</span></label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="email" id="contact_person_email"  name="contact_person_email"  required autocomplete="email">
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
-              <label for="regno">Phone Number</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="contact_person_phone"   name="contact_person_phone" required autocomplete="phonenumber" autofocus>
+              <label for="regno">Phone Number<span style="color:red;">*</span></label></br>
+              <input type="text" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"   id="contact_person_phone"   name="contact_person_phone" required autocomplete="phonenumber" autofocus>
             </div>
             <div style="margin-top:20px;" class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Additional Phone Number</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="contact_person_alternative_phone"   name="contact_person_alternative_phone" required autocomplete="phonenumber" autofocus>
+              <input type="text" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"   id="contact_person_alternative_phone"   name="contact_person_alternative_phone" autocomplete="phonenumber" autofocus>
             </div>
 
             
@@ -448,11 +450,11 @@
             </div>
             <div id="another_contact_person_phone_div" style="display:none;" class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Phone Number</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="another_contact_person_phone"   name="another_contact_person_phone" autocomplete="phonenumber" autofocus>
+              <input type="text" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"   id="another_contact_person_phone"   name="another_contact_person_phone" autocomplete="phonenumber" autofocus>
             </div>
             <div id="another_contact_person_alternative_phone_div" style="display:none;" class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-0">
               <label for="regno">Additional Phone Number</label></br>
-              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="number" id="another_contact_person_alternative_phone"   name="another_contact_person_alternative_phone" autocomplete="phonenumber" autofocus>
+              <input type="text" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  id="another_contact_person_alternative_phone"   name="another_contact_person_alternative_phone" autocomplete="phonenumber" autofocus>
             </div>
             <div style="margin-top:30px;" class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
