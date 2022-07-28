@@ -189,6 +189,16 @@ class CustomerController extends Controller
         }
     }
 
+    public function getRegisteredCorporateDetails(Request $request)
+    {   
+        
+        $corporate = User::where('id',$request->id)->get();
+        return response()->json([
+            'corporate' => $corporate
+        ]);
+        
+    }
+
     //generate sms token
     public function smsToken()
     {   
