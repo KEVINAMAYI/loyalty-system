@@ -49,6 +49,7 @@
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Number</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </thead>
@@ -71,8 +72,24 @@
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">{{ $customer->email }}</span>
                       </td>
+                      @if(Auth::user()->major_role == 'Supervisor')
+                         @if($customer->status == 'Accepted')
+                            <td class="align-middle text-center text-sm">
+                              <span style="cursor:pointer" customer_id={{ $customer->id }}   class="customerstatusbtn badge badge-sm bg-gradient-success">Reject</span>
+                            </td>
+                          @else
+                             <td class="align-middle text-center text-sm">
+                               <span style="cursor:pointer" customer_id={{ $customer->id }} class="customerstatusbtn badge badge-sm bg-gradient-success">Accept</span>
+                             </td>
+                         @endif
+                      @else
+                        <td class="align-middle text-center text-sm">
+                          <span class="customerstaus badge badge-sm bg-gradient-success">{{ $customer->status }}</span>
+                        </td>
+                      @endif
+                      
                       <td class="align-middle text-center text-sm">
-                          <span style="cursor:pointer;" id="{{ $customer->id }}" class="morecustomerdetails badge badge-sm bg-gradient-secondary">more info</span>
+                        <span style="cursor:pointer;" id="{{ $customer->id }}" class="morecustomerdetails badge badge-sm bg-gradient-secondary">more info</span>
                         <span id="{{ $customer->id }}" style="background-color:#4881c0; cursor:pointer;" class="editcustomerbtn badge badge-sm">edit</span>
                         <a href="/customers/{{ $customer->id }}" class="badge badge-sm bg-gradient-danger">delete</a>
                       </td>
@@ -149,7 +166,6 @@
 
 {{-- Edit customer details --}}
 <!-- Modal -->
-<form>
   <div class="modal fade" id="edit-customer-modal" tabindex="-1" aria-labelledby="edit-customer-modal" aria-hidden="true">
     
     <div class="modal-dialog">
@@ -202,5 +218,42 @@
         </div>
       </div>
     </div> 
-  <form>
+
+  <!--  edit employees modal -->
+  <form action="/set-enrollment-status" method="POST">
+    @csrf
+  <div class="modal fade" id="enrollment-status-modal" tabindex="-1"  aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
+          <ul class="list-group" id="errorsul">
+          </ul>
+        </div> 
+        <div class="modal-header">
+          <h5 class="modal-title" id="enrollment-status-modalLabel">Set Customer Enrollment Status</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label for="enrollment_status">Set Status</label></br>
+            <select name="enrollment_status" id="enrollment_status" class="form-control">
+                <option value="Rejected">Reject</option>
+                <option value="Accepted">Accept</option>
+            </select>          
+          </div>
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="enrollment_status_reason">Reason for Rejecting/Accepting</label></br>
+            <textarea  name="enrollment_status_reason" id="enrollment_status_reason" style="width:100%; margin-bottom:20px; padding-left:0px;" rows="3">             
+            </textarea>
+        </div>
+          <div class="modal-footer">
+          <input type="hidden" name="enrollment_customerid" id="enrollment_customerid" value="">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" style="background-color:#f9a14d; color:white;"  class="btn">Set Status</button>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 @endsection

@@ -904,6 +904,14 @@
     });
 
 
+    $('.customerstatusbtn').on('click',function(){
+
+        customer_id = $(this).attr("customer_id");
+        $('#enrollment_customerid').val(customer_id);
+        $('#enrollment-status-modal').modal('show');
+
+    });
+
     //datatable
     $('#dashboard_authorization_table').DataTable();
     $('#dashboard_sales_table').DataTable();
@@ -951,8 +959,9 @@
 
     });
     
-
     </script>
+
+    
 
 </body>
 

@@ -73,7 +73,7 @@
                         OR ?
                      </div>
 
-					 @if(Auth::user()->major_role == 'Admin')
+					 @if((Auth::user()->major_role == 'Admin') || (Auth::user()->major_role == 'Supervisor'))
 
 					<div class="container-login100-form-btn mt-4">
 						<a href="/staff-dashboard" class="login100-form-btn">

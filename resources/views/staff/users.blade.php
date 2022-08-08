@@ -124,6 +124,7 @@
             <select name="major_role" id="payment_type" class="form-control">
                 <option value="staff">Staff</option>
                 <option value="admin">Admin</option>
+                <option value="Supervisor">Supervisor</option>
             </select>          
           </div>
           <div class="modal-footer">
@@ -163,6 +164,7 @@
               <select name="major_role" id="major_role" class="form-control">
                   <option value="Staff">Staff</option>
                   <option value="Admin">Admin</option>
+                  <option value="Supervisor">Supervisor</option>
               </select>          
           </div>
             <div class="modal-footer">
