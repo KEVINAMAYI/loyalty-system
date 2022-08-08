@@ -914,6 +914,42 @@
     $('#staff_table').DataTable();
     $('#authrorized_purchases_table').DataTable();
 
+
+    $('.view-organizational-detail-link').on('click',function(){
+       
+        id = $(this).attr('id');
+        formData = new FormData();
+        formData.append('id',id);
+
+            //get corporate data
+            $.ajax({
+            type:'post',
+            data:formData,
+            processData: false,
+            contentType: false,
+            url: "/get-organization-data",
+            success: (data) => {
+
+                    //get sale data and show in a model
+                    corporate = data.corporate[0];
+                    console.log(corporate);
+                    $('#organization-details-modal').modal('show');
+                    $('#orgname').text(corporate.name);
+                    $('#orgemail').text(corporate.email);
+                    $('#orgphonenumber').text(corporate.phone_number);
+                    $('#orgaddress').text(corporate.country+'  '+corporate.town+'  '+corporate.address);
+                    $('#orgkrapin').text(corporate.krapin);
+                    $('#orgcontactperson1').text(corporate.contact_person_name+'   '+corporate.contact_person_email+'   '+corporate.contact_person_phone);
+                    $('#orgcontactperson2').text(corporate.another_contact_person_name+'  '+corporate.another_contact_person_email+'   '+corporate.another_contact_person_phone);    
+
+                   
+            },
+            error: function(data){
+                     
+            }
+         });
+
+    });
     
 
     </script>

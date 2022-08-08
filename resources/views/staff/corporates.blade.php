@@ -62,7 +62,7 @@
                   @foreach ( $corporates_accounts as $corporate_account)    
                     <tr>
                       <td style="padding-left:30px;" class="align-middle text-left text-sm">
-                        <p class="text-xs font-weight-bold mb-0">{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name; }}</p>
+                        <a id="{{$corporate_account->organization_id}}" style="cursor:pointer" class="view-organizational-detail-link text-xs font-weight-bold mb-0">{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name; }}</a>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">{{ $corporate_account->account_type }}</span>
@@ -74,7 +74,10 @@
                         <span class="text-secondary text-xs font-weight-bold">{{ $corporate_account->amount_payable ? $corporate_account->amount_payable : 0  }}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->contact_person_phone; }}</span>
+                        <span class="text-secondary text-xs font-weight-bold">
+                          {{ App\Models\User::where('id', $corporate_account->organization_id)->first()->contact_person_phone; }}<br>
+                          {{ App\Models\User::where('id', $corporate_account->organization_id)->first()->contact_person_name; }}
+                        </span>
                       </td>
                       <td class="align-middle text-center text-sm">
                       <span id="{{ $corporate_account->organization_id }}" account_name="{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name; }}" account_type="{{ $corporate_account->account_type }}" account_number={{ $corporate_account->account_number }} account_balance={{ $corporate_account->account_balance }} style="background-color:#4881c0; cursor:pointer;"  class="managecorporatebtn badge badge-sm">Manage</span>
@@ -598,5 +601,52 @@
       </div>
     </div>
   </form>
+
+{{-- Get organizational details --}}
+  <div class="modal fade" id="organization-details-modal" tabindex="-1" aria-labelledby="organization-details-modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Organization Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-holder form-holder-2 mb-2">
+            <label for="orgname">Organization Name</label></br>
+            <p id="orgname" style="padding-left:5px;"></p>
+           </div>  
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label for="orgemail">Organization Email</label></br>
+            <p  id="orgemail" style="padding-left:5px;"></p>
+          </div>
+          
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label for="orgphonenumber">Organization Phone Number</label></br>
+            <p id="orgphonenumber" style="padding-left:5px;"></p>
+          </div>
+
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label for="orgaddress">Organization Address</label></br>
+            <p  id="orgaddress" style="padding-left:5px;"></p>
+          </div>
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label for="orgkrapin">Organization KRA PIN</label></br>
+            <p id="orgkrapin" style="padding-left:5px;"></p>
+          </div>
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label id="orgcontactperson1label" for="orgcontactperson1">Organization Contact Person 1</label></br>
+            <p id="orgcontactperson1" style="padding-left:5px;"></p>
+          </div>
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label id="orgcontactperson2label" for="orgcontactperson2">Organization Contact Person 2</label></br>
+            <p id="orgcontactperson2" style="padding-left:5px;"></p>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection
