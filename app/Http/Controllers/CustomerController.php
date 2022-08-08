@@ -177,7 +177,7 @@ class CustomerController extends Controller
 
     public function getRegisteredCorporates()
     {   
-        if(Auth::user()->major_role == 'Admin')
+        if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
         {
         $corporates_accounts = Account::all();
         // $corporates = User::where('role','=','Corperate')->get();
@@ -482,7 +482,7 @@ class CustomerController extends Controller
      */
     public function showStaffs()
     {          
-        if(Auth::user()->major_role == 'Admin')
+        if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
         {
         $staffs = User::where('role','=','Staff')->get();
         return view('staff.users')->with(['staffs' => $staffs]);
@@ -1068,7 +1068,7 @@ class CustomerController extends Controller
      */
     public function getAuthorizedPurchasesForStaff()
     {    
-        if(Auth::user()->major_role == 'Admin')
+        if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
         {
             $autorizedpurchases = AuthorizedPurchase::all();
             $employees_authorized_data = array();
@@ -1153,7 +1153,7 @@ class CustomerController extends Controller
      */
     public function staffDashboard()
     {    
-        if(Auth::user()->major_role == 'Admin')
+        if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
         {  
         $customers = Customer::latest()->take(20)->get();;
         $sales = Sale::latest()->take(20)->get();;
@@ -1216,7 +1216,7 @@ class CustomerController extends Controller
      */
     public function showCustomers()
     {          
-        if(Auth::user()->major_role == 'Admin')
+        if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
         {
 
         $customers = Customer::all();
@@ -1226,6 +1226,32 @@ class CustomerController extends Controller
         {
             return redirect('/choose-option');
         }    
+    }
+
+
+    /**
+     * set customer enrollment status.
+     *
+     * @return "view"
+     */
+    public function setEnrollmentStatus(Request $request)
+    {    
+        
+         //validate eployee enrollment details
+         $request->validate([
+            'enrollment_status_reason' => ['string'],          
+         ]);
+
+         $data = $request->all();
+        
+        Customer::where('id','=',$data['enrollment_customerid'] )->update([
+            'status' => $data['enrollment_status'],
+            'reason' => $data['enrollment_status_reason']
+        ]);
+        
+        session()->flash('success','Status Updated Successfully');
+        return redirect()->back();
+           
     }
 
 
@@ -1449,7 +1475,7 @@ class CustomerController extends Controller
 
             $customer = Customer::where('id','=',$vehicle[0]->customer_id)->get();
 
-            if($customer[0]->purchase_status == 'complete')
+            if(($customer[0]->purchase_status == 'complete') || ($customer[0]->status == 'Rejected'))
             {
                 $vehicle = [];
             }
@@ -1466,7 +1492,7 @@ class CustomerController extends Controller
 
             $customer = Customer::where('id_number','=',$data['id_number'])->orWhere('phone_number','=',$data['id_number'])->get();
             
-            if($customer[0]->purchase_status == 'complete')
+            if(($customer[0]->purchase_status == 'complete') || ($customer[0]->status == 'Rejected') )
             {
                 $vehicle = [];
             }

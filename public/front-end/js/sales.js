@@ -396,7 +396,7 @@ $(function(){
             error: function(data){
 
                 console.log(data);
-                swal("Error!", "please enter a valid id number or phone number and try again!", "error");
+                swal("Error!", "Unauthorized user : please enter authorized id number, authorized phone number or authorized vehicle details and try again!", "error");
                 isSubmitting = false;        
 
              },

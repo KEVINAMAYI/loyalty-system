@@ -28,6 +28,8 @@ class CreateCustomersTable extends Migration
             $table->string('reward_type_to_use')->nullable();
             $table->integer('authorized_amount')->nullable();
             $table->string('purchase_status')->nullable();
+            $table->string('status')->default('Rejected');
+            $table->string('reason')->default('Does not have clear Vehicle Picture');
             $table->timestamps();
         });
     }
