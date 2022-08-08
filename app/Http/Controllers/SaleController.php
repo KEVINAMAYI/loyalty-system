@@ -50,7 +50,7 @@ class SaleController extends Controller
      */
     public function getSales()
     {
-        if(Auth::user()->major_role == 'Admin')
+        if((Auth::user()->major_role == 'Admin') || (Auth::user()->major_role == 'Supervisor'))
         {
             $sales = Sale::all();
             return view('staff.sales')->with(['sales' => $sales]);

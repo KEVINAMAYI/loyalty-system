@@ -73,7 +73,6 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::post('/staff-authorize-fuel-purchase',[CustomerController::class,'staffAuthorizeFuelPurchase']);
 
 
- 
 });
 
 
