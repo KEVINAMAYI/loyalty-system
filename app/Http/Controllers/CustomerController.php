@@ -1263,21 +1263,94 @@ class CustomerController extends Controller
     public function setSaleStatus(Request $request)
     {    
 
-         //validate status reason  enrollment details
+
+        //  validate status reason  enrollment details
          $request->validate([
             'sales_status_reason' => ['string'],          
          ]);
 
          $data = $request->all();
+
+         if($data['sales_status'] == 'Rejected')
+         { 
+             
+             //sales status for the sale 
+             $sales_status = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->status;
+ 
+             if($sales_status == 'Rejected'){
+ 
+                 session()->flash('success','Status Already Rejected, Try another option');
+                 return redirect()->back();
+             }
+             else{
+ 
+             //sales rewards 
+             $sales_rewards = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->rewards_awarded;
+ 
+             //get cutomer rewards 
+             $customer_rewards = Customer::where('phone_number','=',$data['salestatuscustomer_phone'])
+                                           ->get()[0]->rewards;
+ 
+             $new_rewards =  $customer_rewards - $sales_rewards;
+ 
+             Customer::where('phone_number','=',$data['salestatuscustomer_phone'])
+                       ->update(['rewards' => $new_rewards ]);
+            
+            Sale::where('id','=',$data['salestatus_id'] )->update([
+                        'status' => $data['sales_status'],
+                        'reason' => $data['sales_status_reason']
+                    ]);
+ 
+             session()->flash('success','Status Updated Successfully');
+             return redirect()->back();
+ 
+             }
+ 
+         }
+         else{
+ 
+             //sales status for the sale 
+             $sales_status = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->status;
+ 
+             if($sales_status == 'Accepted'){
+ 
+                 session()->flash('success','Status Already Accepted, Try another option');
+                 return redirect()->back();
+             }
+             else{
+ 
+                 //sales rewards 
+                 $sales_rewards = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->rewards_awarded;
+ 
+                 //get cutomer rewards 
+                 $customer_rewards = Customer::where('phone_number','=',$data['salestatuscustomer_phone'])
+                                             ->get()[0]->rewards;
+ 
+                 $new_rewards =  $customer_rewards + $sales_rewards;
+ 
+                 Customer::where('phone_number','=',$data['salestatuscustomer_phone'])
+                         ->update(['rewards' => $new_rewards ]);
+
+                
+                 Sale::where('id','=',$data['salestatus_id'] )->update([
+                            'status' => $data['sales_status'],
+                            'reason' => $data['sales_status_reason']
+                        ]);
+ 
+                 session()->flash('success','Status Updated Successfully');
+                 return redirect()->back();
+                 
+ 
+             }
+ 
+         }
         
-        Sale::where('id','=',$data['salestatus_id'] )->update([
-            'status' => $data['sales_status'],
-            'reason' => $data['sales_status_reason']
-        ]);
         
-        session()->flash('success','Status Updated Successfully');
-        return redirect()->back();
-           
+
+       
+
+      
+          
     }
 
 

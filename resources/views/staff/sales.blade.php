@@ -31,7 +31,7 @@
           </ul>
       </div>
       @endif
-      
+
     <div class="container-fluid py-4">
     <div class="row">
       <div class="col-12">
@@ -79,16 +79,16 @@
                   @if(Auth::user()->major_role == 'Supervisor')
                          @if($sale->status == 'Accepted')
                             <td class="align-middle text-center text-sm">
-                              <span style="cursor:pointer" sale_id={{ $sale->id }}   class="salestatusbtn badge badge-sm bg-gradient-success">Reject</span>
+                              <span style="cursor:pointer" phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="salestatusbtn badge badge-sm bg-gradient-success">Reject</span>
                             </td>
                           @else
                              <td class="align-middle text-center text-sm">
-                               <span style="cursor:pointer" sale_id={{ $sale->id }} class="salestatusbtn badge badge-sm bg-gradient-success">Accept</span>
+                               <span style="cursor:pointer" phone_number={{ $sale->phone_number }}  sale_id={{ $sale->id }} class="salestatusbtn badge badge-sm bg-gradient-success">Accept</span>
                              </td>
                          @endif
                       @else
                         <td class="text-sm">
-                          <span style="cursor:pointer" sale_id={{ $sale->id }}   class="badge badge-sm bg-gradient-success">{{ $sale->status }}</span>
+                          <span style="cursor:pointer" phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="badge badge-sm bg-gradient-success">{{ $sale->status }}</span>
                         </td>
                       @endif
                   <td class="text-sm">
@@ -217,6 +217,7 @@
         </div>
           <div class="modal-footer">
           <input type="hidden" name="salestatus_id" id="salestatus_id" value="">
+          <input type="hidden" name="salestatuscustomer_phone" id="salestatuscustomer_phone" value="">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" style="background-color:#f9a14d; color:white;"  class="btn">Set Status</button>
          </div>

@@ -55,6 +55,11 @@
             font-size:20px;
             border:1px solid black;
         }
+        .btn-default{
+            margin-top:12px;
+            margin-left:10px;
+
+        }
     </style>
 
 
@@ -234,6 +239,12 @@
     <script src="staff/assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="staff/assets/js/plugins/chartjs.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
@@ -915,22 +926,127 @@
 
     $('.salestatusbtn').on('click',function(){
 
-         sale_id = $(this).attr("sale_id");
-         console.log(sale_id);
+        sale_id = $(this).attr("sale_id");
         $('#salestatus_id').val(sale_id);
+        customer_phone_number = $(this).attr("phone_number");
+        $('#salestatuscustomer_phone').val(customer_phone_number);
         $('#sale-status-modal').modal('show');
 
     });
 
     //datatable
-    $('#dashboard_authorization_table').DataTable();
-    $('#dashboard_sales_table').DataTable();
-    $('#dashboard_customer_table').DataTable();
-    $('#customer_table').DataTable();
-    $('#sales_table').DataTable();
-    $('#corporates_table').DataTable();
-    $('#staff_table').DataTable();
-    $('#authrorized_purchases_table').DataTable();
+    $('#dashboard_authorization_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    });
+    $('#dashboard_sales_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    });
+    $('#dashboard_customer_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    });
+    $('#customer_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    });
+    $('#sales_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    });
+    $('#corporates_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    });
+    $('#staff_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    });
+    $('#authrorized_purchases_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    });
 
 
     $('.view-organizational-detail-link').on('click',function(){
