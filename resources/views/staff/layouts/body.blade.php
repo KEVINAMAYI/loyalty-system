@@ -912,6 +912,16 @@
 
     });
 
+
+    $('.salestatusbtn').on('click',function(){
+
+         sale_id = $(this).attr("sale_id");
+         console.log(sale_id);
+        $('#salestatus_id').val(sale_id);
+        $('#sale-status-modal').modal('show');
+
+    });
+
     //datatable
     $('#dashboard_authorization_table').DataTable();
     $('#dashboard_sales_table').DataTable();

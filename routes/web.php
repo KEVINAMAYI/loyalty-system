@@ -70,6 +70,7 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::get('/get-corporate-users', [CustomerController::class,'getCorporateUsers']);
      Route::post('/get-corporate-data', [CustomerController::class,'getCorporateUserData']);
      Route::post('/set-enrollment-status', [CustomerController::class,'setEnrollmentStatus']);
+     Route::post('/set-sale-status', [CustomerController::class,'setSaleStatus']);
      Route::post('/staff-authorize-fuel-purchase',[CustomerController::class,'staffAuthorizeFuelPurchase']);
 
 

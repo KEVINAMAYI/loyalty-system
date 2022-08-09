@@ -1237,7 +1237,7 @@ class CustomerController extends Controller
     public function setEnrollmentStatus(Request $request)
     {    
         
-         //validate eployee enrollment details
+         //validate status reason  enrollment details
          $request->validate([
             'enrollment_status_reason' => ['string'],          
          ]);
@@ -1247,6 +1247,32 @@ class CustomerController extends Controller
         Customer::where('id','=',$data['enrollment_customerid'] )->update([
             'status' => $data['enrollment_status'],
             'reason' => $data['enrollment_status_reason']
+        ]);
+        
+        session()->flash('success','Status Updated Successfully');
+        return redirect()->back();
+           
+    }
+
+
+    /**
+     * set sale enrollment status.
+     *
+     * @return "view"
+     */
+    public function setSaleStatus(Request $request)
+    {    
+
+         //validate status reason  enrollment details
+         $request->validate([
+            'sales_status_reason' => ['string'],          
+         ]);
+
+         $data = $request->all();
+        
+        Sale::where('id','=',$data['salestatus_id'] )->update([
+            'status' => $data['sales_status'],
+            'reason' => $data['sales_status_reason']
         ]);
         
         session()->flash('success','Status Updated Successfully');

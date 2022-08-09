@@ -10,6 +10,28 @@
   </nav>
   <!-- End Navbar -->
   <div class="container-fluid py-4">
+
+    
+      {{-- display success message on a successful action --}}
+      @if(Session::has('success'))
+      <div class="alert alert-success" role="alert">
+        {{ Session::get('success') }}
+      </div>
+      @endif
+  
+      {{-- display error on top of the form --}}
+      @if ($errors->any())
+      <div class="alert alert-danger" role="alert">
+          <ul class="list-group">
+              @foreach ($errors->all() as $error )
+              <li class="list-group-item">
+                {{ $error }}  
+              </li>
+              @endforeach
+          </ul>
+      </div>
+      @endif
+      
     <div class="container-fluid py-4">
     <div class="row">
       <div class="col-12">
@@ -54,9 +76,21 @@
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
                   </td>
-                  <td class="text-sm">
-                    <span style="padding-right:20px;" class="sales_status_btn btn btn-sm btn-info">Accepted</span>
-                  </td>
+                  @if(Auth::user()->major_role == 'Supervisor')
+                         @if($sale->status == 'Accepted')
+                            <td class="align-middle text-center text-sm">
+                              <span style="cursor:pointer" sale_id={{ $sale->id }}   class="salestatusbtn badge badge-sm bg-gradient-success">Reject</span>
+                            </td>
+                          @else
+                             <td class="align-middle text-center text-sm">
+                               <span style="cursor:pointer" sale_id={{ $sale->id }} class="salestatusbtn badge badge-sm bg-gradient-success">Accept</span>
+                             </td>
+                         @endif
+                      @else
+                        <td class="text-sm">
+                          <span style="cursor:pointer" sale_id={{ $sale->id }}   class="badge badge-sm bg-gradient-success">{{ $sale->status }}</span>
+                        </td>
+                      @endif
                   <td class="text-sm">
                     <input type="hidden" id="saleid" value={{ $sale->id }}>
                     <button  id="{{ $sale->id }}"  style="background-color:#f9a14d;" class="moresalesdetails btn btn-sm btn-primary" >more info</button>
@@ -152,4 +186,43 @@
         </div>
       </div>
     </div>
+
+
+    <!--  enrollment status employees modal -->
+  <form action="/set-sale-status" method="POST">
+   @csrf
+  <div class="modal fade" id="sale-status-modal" tabindex="-1"  aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
+          <ul class="list-group" id="errorsul">
+          </ul>
+        </div> 
+        <div class="modal-header">
+          <h5 class="modal-title" id="sale-status-modal">Set Sale Status</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+            <label for="enrollment_status">Set Status</label></br>
+            <select name="sales_status" id="sale_status" class="form-control">
+                <option value="Rejected">Reject</option>
+                <option value="Accepted">Accept</option>
+            </select>          
+          </div>
+          <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="sales_status_reason">Reason for Rejecting/Accepting</label></br>
+            <textarea  name="sales_status_reason" id="sale_status_reason" style="width:100%; margin-bottom:20px; padding-left:0px;" rows="3">             
+            </textarea>
+        </div>
+          <div class="modal-footer">
+          <input type="hidden" name="salestatus_id" id="salestatus_id" value="">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" style="background-color:#f9a14d; color:white;"  class="btn">Set Status</button>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 @endsection

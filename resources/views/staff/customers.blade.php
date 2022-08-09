@@ -219,7 +219,7 @@
       </div>
     </div> 
 
-  <!--  edit employees modal -->
+  <!--  enrollment status employees modal -->
   <form action="/set-enrollment-status" method="POST">
     @csrf
   <div class="modal fade" id="enrollment-status-modal" tabindex="-1"  aria-hidden="true">
