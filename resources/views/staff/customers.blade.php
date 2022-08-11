@@ -44,11 +44,9 @@
               <table id="customer_table" class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Number</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vehicle Registration Number</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
@@ -57,20 +55,14 @@
 
                   @foreach ( $customers as $customer)
                     <tr>
-                      <td class="align-middle text-center text-sm">
-                        <p class="text-xs font-weight-bold mb-0">{{ $customer->first_name }}</p>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">{{ $customer->last_name }}</span>
+                      <td class="align-middle text-left text-sm">
+                        <p class="text-xs font-weight-bold mb-0">{{ $customer->first_name }}  {{ $customer->last_name }}</p>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">{{ $customer->phone_number }}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">{{ $customer->id_number }}</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">{{ $customer->email }}</span>
+                        <span class="text-secondary text-xs font-weight-bold">{{ App\Models\Vehicle::where('customer_id','=',$customer->id)->value('vehicle_registration') != null ? App\Models\Vehicle::where('customer_id','=',$customer->id)->value('vehicle_registration') : "No Vehicle Assigned"  }}</span>
                       </td>
                       @if(Auth::user()->major_role == 'Supervisor')
                          @if($customer->status == 'Accepted')
@@ -91,7 +83,7 @@
                       <td class="align-middle text-center text-sm">
                         <span style="cursor:pointer;" id="{{ $customer->id }}" class="morecustomerdetails badge badge-sm bg-gradient-secondary">more info</span>
                         <span id="{{ $customer->id }}" style="background-color:#4881c0; cursor:pointer;" class="editcustomerbtn badge badge-sm">edit</span>
-                        <a href="/customers/{{ $customer->id }}" class="badge badge-sm bg-gradient-danger">delete</a>
+                        {{-- <a href="/customers/{{ $customer->id }}" class="badge badge-sm bg-gradient-danger">delete</a> --}}
                       </td>
                     </tr>
                   @endforeach
@@ -102,8 +94,7 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Number</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vehicle Registration Number</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </tfoot>
@@ -115,7 +106,7 @@
     </div>
  </div>
 
- <!--  Add specific customer details modal -->
+ <!--  Show more customer details modal -->
 <!-- Modal -->
 <div class="modal fade" id="customer-details" tabindex="-1" aria-labelledby="customer-details" aria-hidden="true">
   <div class="modal-dialog">
@@ -125,15 +116,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="form-holder form-holder-2 mb-2">
-          <label for="regno">First Name</label></br>
-          <p id="firstname" style="padding-left:5px;"></p>
-         </div>  
-        <div class="form-holder form-holder-2 mt-4 mb-4">
-          <label for="regno">Last Name</label></br>
-          <p  id="lastname" style="padding-left:5px;"></p>
-        </div>
-        
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Phone Number</label></br>
           <p id="phonenumber" style="padding-left:5px;"></p>

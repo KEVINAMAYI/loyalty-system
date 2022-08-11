@@ -67,7 +67,7 @@
               </div>
               <div class="col-4 text-end">
                 <div style="background-color:#f9a14d;" class="icon icon-shape shadow text-center border-radius-md">
-                  <i class="fa-solid fa-car" style="color:white;"></i>
+                  <i class="fa-solid fa-dollar" style="color:white;"></i>
                 </div>
               </div>
             </div>
@@ -99,7 +99,6 @@
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sold By</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -127,10 +126,6 @@
                     <td class="text-sm">
                       <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
                     </td>
-                    <td class="text-sm">
-                      <input type="hidden" id="saleid" value={{ $sale->id }}>
-                      <button  id="{{ $sale->id }}"  style="background-color:#f9a14d;" class="moresalesdetails btn btn-sm btn-primary" >more info</button>
-                    </td>
                   </tr>
                   @endforeach
     
@@ -144,9 +139,7 @@
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sold By</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                      <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
-
                   </tfoot>
                 </table>
               </div>
@@ -281,8 +274,7 @@
                 <table id="dashboard_customer_table" class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
-                      <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
+                      <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Number</th>
                       <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
@@ -293,10 +285,7 @@
                     @foreach ( $customers as $customer)
                       <tr>
                         <td class="align-middle text-center text-sm">
-                          <p class="text-xs font-weight-bold mb-0">{{ $customer->first_name }}</p>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                          <span class="text-secondary text-xs font-weight-bold">{{ $customer->last_name }}</span>
+                          <p class="text-xs font-weight-bold mb-0">{{ $customer->first_name }}  {{ $customer->last_name }}</p>
                         </td>
                         <td class="align-middle text-center text-sm">
                           <span class="text-secondary text-xs font-weight-bold">{{ $customer->phone_number }}</span>
@@ -313,8 +302,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Number</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>

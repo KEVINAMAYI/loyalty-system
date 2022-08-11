@@ -1221,6 +1221,7 @@ class CustomerController extends Controller
 
         $customers = Customer::all();
         return view('staff.customers')->with(['customers' => $customers]);
+        
         }
         else
         {
