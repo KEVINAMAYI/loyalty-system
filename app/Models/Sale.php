@@ -28,6 +28,8 @@ class Sale extends Model
         'pump_image_url',
         'receipt_image_url',
         'sold_by',
-        'rewards_balance'  
+        'rewards_balance',
+        'status'  
+
     ];
 }

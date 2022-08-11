@@ -345,7 +345,7 @@ class CustomerController extends Controller
 
 
         //store sales details 
-        Sale::create([
+        $sale = Sale::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'phone_number' => $data['phone_number'],
@@ -359,7 +359,9 @@ class CustomerController extends Controller
             'pump_image_url' => $pumpImage,
             'receipt_image_url' => $receiptImage,
             'sold_by' => $data['sold_by'],
-            'rewards_balance' => $data['new_cutomer_rewards']
+            'rewards_balance' => $data['new_cutomer_rewards'],
+            'status' => "Pending"
+
         ]);
 
 
