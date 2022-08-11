@@ -77,10 +77,14 @@
                             <td class="align-middle text-center text-sm">
                               <span style="cursor:pointer" customer_id={{ $customer->id }}   class="customerstatusbtn badge badge-sm bg-gradient-success">Accepted</span>
                             </td>
-                          @else
+                          @elseif($customer->status == 'Rejected')
                              <td class="align-middle text-center text-sm">
-                               <span style="cursor:pointer" customer_id={{ $customer->id }} class="customerstatusbtn badge badge-sm bg-gradient-success">Rejected</span>
+                               <span style="cursor:pointer" customer_id={{ $customer->id }} class="customerstatusbtn badge badge-sm bg-gradient-danger">Rejected</span>
                              </td>
+                          @else
+                            <td class="align-middle text-center text-sm">
+                              <span style="cursor:pointer" customer_id={{ $customer->id }} class="customerstatusbtn badge badge-sm bg-gradient-warning">Pending</span>
+                            </td>
                          @endif
                       @else
                         <td class="align-middle text-center text-sm">

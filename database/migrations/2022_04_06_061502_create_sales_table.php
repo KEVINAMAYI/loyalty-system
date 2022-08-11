@@ -29,6 +29,8 @@ class CreateSalesTable extends Migration
             $table->string('receipt_image_url');
             $table->string('sold_by');
             $table->string('rewards_balance');
+            $table->string('status');
+            $table->string('reason');
             $table->timestamps();
         });
     }
