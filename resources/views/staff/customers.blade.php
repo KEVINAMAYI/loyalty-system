@@ -239,8 +239,7 @@
           </div>
           <div id="enrollment_reason_div" style="display:none;" class="form-holder form-holder-2 mt-4 mb-4">
           <label for="enrollment_status_reason">Reason for Rejecting/Accepting</label></br>
-            <textarea  name="enrollment_status_reason" id="enrollment_status_reason" style="width:100%; margin-bottom:20px; padding-left:0px;" rows="3">             
-            </textarea>
+            <textarea  name="enrollment_status_reason" id="enrollment_status_reason" style="width:100%; margin-bottom:20px; padding-left:0px;" rows="3"> </textarea>
         </div>
           <div class="modal-footer">
           <input type="hidden" name="enrollment_customerid" id="enrollment_customerid" value="">
