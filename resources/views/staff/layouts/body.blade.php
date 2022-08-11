@@ -426,6 +426,7 @@
                     $("#amountpayable").text(sale_data[0].amount_payable);
                     $("#amountpaid").text(sale_data[0].amount_paid);
                     $("#date").text(sale_data[0].created_at);
+                    $("#sale_approved_by").text(sale_data[0].approved_by);
                     $('#vehicle_image').attr('src',`images/${sale_data[0].image_url}`); 
                     $('#pump_image').attr('src',`images/${sale_data[0].pump_image_url}`); 
                     $('#receipt_image').attr('src',`images/${sale_data[0].receipt_image_url}`); 
