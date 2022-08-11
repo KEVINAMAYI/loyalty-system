@@ -151,7 +151,10 @@
           <label for="regno">Rewards Available</label></br>
           <p id="rewards" style="padding-left:5px;"></p>
         </div>
-    
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">Approved By : </label></br>
+          <p id="approved_by" style="padding-left:5px;"></p>
+        </div>    
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
        </div>

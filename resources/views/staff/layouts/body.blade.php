@@ -469,6 +469,7 @@
                 $("#email").text(customer_data[0].email);
                 $("#rewards").text(customer_data[0].rewards);
                 $("#gender").text(customer_data[0].gender);
+                $("#approved_by").text(customer_data[0].approved_by);
                 $('#customer-details').modal('show');
 
             },
