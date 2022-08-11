@@ -1261,7 +1261,8 @@ class CustomerController extends Controller
                 //update customer status
                 Customer::where('id','=',$data['enrollment_customerid'] )->update([
                     'status' => $data['enrollment_status'],
-                    'reason' => $data['enrollment_status_reason']
+                    'reason' => $data['enrollment_status_reason'],
+                    'approved_by' => ""
                 ]);
                 
                 session()->flash('success','Status Updated Successfully');
@@ -1285,7 +1286,8 @@ class CustomerController extends Controller
                 //update customer status
                 Customer::where('id','=',$data['enrollment_customerid'] )->update([
                     'status' => $data['enrollment_status'],
-                    'reason' => $data['enrollment_status_reason']
+                    'reason' => $data['enrollment_status_reason'],
+                    'approved_by' => Auth::user()->name
                 ]);
                 
                 session()->flash('success','Status Updated Successfully');
@@ -1336,7 +1338,8 @@ class CustomerController extends Controller
             
             Sale::where('id','=',$data['salestatus_id'] )->update([
                         'status' => $data['sales_status'],
-                        'reason' => $data['sales_status_reason']
+                        'reason' => $data['sales_status_reason'],
+                        'approved_by' => ""
                     ]);
  
              session()->flash('success','Status Updated Successfully');
@@ -1372,7 +1375,8 @@ class CustomerController extends Controller
                 
                  Sale::where('id','=',$data['salestatus_id'] )->update([
                             'status' => $data['sales_status'],
-                            'reason' => $data['sales_status_reason']
+                            'reason' => $data['sales_status_reason'],
+                            'approved_by' => Auth::user()->name
                         ]);
  
                  session()->flash('success','Status Updated Successfully');
