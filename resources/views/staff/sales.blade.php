@@ -76,14 +76,14 @@
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
                   </td>
-                  @if(Auth::user()->major_role == 'Supervisor')
+                  @if((Auth::user()->major_role == 'Supervisor') || (Auth::user()->major_role == 'Admin'))
                          @if($sale->status == 'Accepted')
                             <td class="align-middle text-center text-sm">
-                              <span style="cursor:pointer" phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="salestatusbtn badge badge-sm bg-gradient-success">Reject</span>
+                              <span style="cursor:pointer" phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="salestatusbtn badge badge-sm bg-gradient-success">Accepted</span>
                             </td>
                           @else
                              <td class="align-middle text-center text-sm">
-                               <span style="cursor:pointer" phone_number={{ $sale->phone_number }}  sale_id={{ $sale->id }} class="salestatusbtn badge badge-sm bg-gradient-success">Accept</span>
+                               <span style="cursor:pointer" phone_number={{ $sale->phone_number }}  sale_id={{ $sale->id }} class="salestatusbtn badge badge-sm bg-gradient-success">Rejected</span>
                              </td>
                          @endif
                       @else
@@ -206,8 +206,8 @@
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="enrollment_status">Set Status</label></br>
             <select name="sales_status" id="sale_status" class="form-control">
-                <option value="Rejected">Reject</option>
                 <option value="Accepted">Accept</option>
+                <option value="Rejected">Reject</option>
             </select>          
           </div>
           <div class="form-holder form-holder-2 mt-4 mb-4">

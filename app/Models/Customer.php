@@ -22,7 +22,8 @@ class Customer extends Model
         'email',
         'gender',
         'type',
-        'rewards'
+        'rewards',
+        'enrolled_by'
     ];
 
 }

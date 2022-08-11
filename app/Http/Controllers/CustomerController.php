@@ -364,19 +364,22 @@ class CustomerController extends Controller
 
 
         
-        //send a confirmation SMS 
-        try {
-            
-            $this->sendSms($message,$receiverNumber);                              
-            return  response()->json([
-            'data' => $request->all(),
-            ]);
+        //send a confirmation SMS
+        if ($sale) {
+            try {
+                $message = "Congratulations " . $sale->first_name . "! You have been awarded " . $sale->rewards_awarded .
+                    " points. Your balance is " . $sale->rewards_balance . " Keep fuelling with us for bigger discounts and rewards.";
 
-        } catch (Exception $e) {
+                $this->sendSms($message, $receiverNumber);
+                return  response()->json([
+                    'data' => $request->all(),
+                ]);
+            } catch (Exception $e) {
 
-            return  response()->json([
-                'data' => $e->getMessage(),
-             ]);
+                return  response()->json([
+                    'data' => $e->getMessage(),
+                ]);
+            }
         }
     }
 
@@ -1221,7 +1224,7 @@ class CustomerController extends Controller
 
         $customers = Customer::all();
         return view('staff.customers')->with(['customers' => $customers]);
-        
+
         }
         else
         {
@@ -1236,22 +1239,60 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function setEnrollmentStatus(Request $request)
-    {    
+    { 
         
-         //validate status reason  enrollment details
-         $request->validate([
-            'enrollment_status_reason' => ['string'],          
-         ]);
+        $data = $request->all();
 
-         $data = $request->all();
-        
-        Customer::where('id','=',$data['enrollment_customerid'] )->update([
-            'status' => $data['enrollment_status'],
-            'reason' => $data['enrollment_status_reason']
-        ]);
-        
-        session()->flash('success','Status Updated Successfully');
-        return redirect()->back();
+         if($data['enrollment_status'] == 'Rejected')
+         { 
+             
+             //Customer status for the sale 
+             $enrollment_status = Customer::where('id','=',$data['enrollment_customerid'] )->get()[0]->status;
+ 
+             if($enrollment_status == 'Rejected'){
+ 
+                 session()->flash('success','Status Already Rejected, Try another option');
+                 return redirect()->back();
+             }
+             else{
+                
+                //update customer status
+                Customer::where('id','=',$data['enrollment_customerid'] )->update([
+                    'status' => $data['enrollment_status'],
+                    'reason' => $data['enrollment_status_reason']
+                ]);
+                
+                session()->flash('success','Status Updated Successfully');
+                return redirect()->back();
+ 
+             }
+ 
+         }
+         else{
+ 
+             //Customer status for the sale 
+             $enrollment_status = Customer::where('id','=',$data['enrollment_customerid'] )->get()[0]->status;
+ 
+             if($enrollment_status == 'Accepted'){
+ 
+                 session()->flash('success','Status Already Accepted, Try another option');
+                 return redirect()->back();
+             }
+             else{
+                
+                //update customer status
+                Customer::where('id','=',$data['enrollment_customerid'] )->update([
+                    'status' => $data['enrollment_status'],
+                    'reason' => $data['enrollment_status_reason']
+                ]);
+                
+                session()->flash('success','Status Updated Successfully');
+                return redirect()->back();
+                 
+ 
+             }
+ 
+         }   
            
     }
 
@@ -1263,12 +1304,6 @@ class CustomerController extends Controller
      */
     public function setSaleStatus(Request $request)
     {    
-
-
-        //  validate status reason  enrollment details
-         $request->validate([
-            'sales_status_reason' => ['string'],          
-         ]);
 
          $data = $request->all();
 
@@ -1346,11 +1381,6 @@ class CustomerController extends Controller
  
          }
         
-        
-
-       
-
-      
           
     }
 
@@ -1407,7 +1437,9 @@ class CustomerController extends Controller
              'email' => $data['email'],
              'phone_number' => $data['phone_number'],
              'id_number' => $data['id_number'],
-             'rewards' => 0
+             'rewards' => 0,
+             'enrolled_by' => Auth::user()->name
+
          ]);
 
         

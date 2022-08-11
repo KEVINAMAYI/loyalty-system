@@ -47,6 +47,8 @@
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vehicle Registration Number</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Enrolled By</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date/Time</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
@@ -64,14 +66,20 @@
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">{{ App\Models\Vehicle::where('customer_id','=',$customer->id)->value('vehicle_registration') != null ? App\Models\Vehicle::where('customer_id','=',$customer->id)->value('vehicle_registration') : "No Vehicle Assigned"  }}</span>
                       </td>
-                      @if(Auth::user()->major_role == 'Supervisor')
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs font-weight-bold">{{ $customer->enrolled_by }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs font-weight-bold">{{ $customer->created_at }}</span>
+                      </td>
+                      @if((Auth::user()->major_role == 'Supervisor') || (Auth::user()->major_role == 'Admin'))
                          @if($customer->status == 'Accepted')
                             <td class="align-middle text-center text-sm">
-                              <span style="cursor:pointer" customer_id={{ $customer->id }}   class="customerstatusbtn badge badge-sm bg-gradient-success">Reject</span>
+                              <span style="cursor:pointer" customer_id={{ $customer->id }}   class="customerstatusbtn badge badge-sm bg-gradient-success">Accepted</span>
                             </td>
                           @else
                              <td class="align-middle text-center text-sm">
-                               <span style="cursor:pointer" customer_id={{ $customer->id }} class="customerstatusbtn badge badge-sm bg-gradient-success">Accept</span>
+                               <span style="cursor:pointer" customer_id={{ $customer->id }} class="customerstatusbtn badge badge-sm bg-gradient-success">Rejected</span>
                              </td>
                          @endif
                       @else
@@ -95,6 +103,8 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vehicle Registration Number</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Enrolled By</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date/Time</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </tfoot>
@@ -219,8 +229,8 @@
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="enrollment_status">Set Status</label></br>
             <select name="enrollment_status" id="enrollment_status" class="form-control">
-                <option value="Rejected">Reject</option>
                 <option value="Accepted">Accept</option>
+                <option value="Rejected">Reject</option>
             </select>          
           </div>
           <div class="form-holder form-holder-2 mt-4 mb-4">
