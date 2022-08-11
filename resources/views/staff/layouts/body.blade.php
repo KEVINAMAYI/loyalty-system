@@ -934,6 +934,46 @@
 
     });
 
+
+    $('#sales_status').on('change', function () {
+        
+        status = $(this).val(); 
+
+        console.log(status);
+
+        if (status == 'Rejected'){
+
+            $('#sales_reason_div').css('display','');
+
+        }
+        else {
+
+            $('#sales_reason_div').css('display','none');
+
+        }
+        
+    });
+
+    $('#enrollment_status').on('change', function () {
+        
+        status = $(this).val(); 
+
+        if (status == 'Rejected'){
+
+            $('#enrollment_reason_div').css('display','');
+
+        }
+        else {
+
+            $('#enrollment_reason_div').css('display','none');
+
+        }
+
+    });
+
+
+   
+
     //datatable
     $('#dashboard_authorization_table').DataTable({
         dom: 'Bfrtip',

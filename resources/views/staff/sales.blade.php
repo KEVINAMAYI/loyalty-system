@@ -208,21 +208,21 @@
         </div>
         <div class="modal-body">
           <div class="form-holder form-holder-2 mt-4 mb-4">
-            <label for="enrollment_status">Set Status</label></br>
-            <select name="sales_status" id="sale_status" class="form-control">
+            <label for="sales_status">Set Status</label></br>
+            <select name="sales_status" id="sales_status" class="form-control">
                 <option value="Accepted">Accept</option>
                 <option value="Rejected">Reject</option>
             </select>          
           </div>
-          <div class="form-holder form-holder-2 mt-4 mb-4">
+          <div id="sales_reason_div" style="display:none;" class="form-holder form-holder-2 mt-4 mb-4">
           <label for="sales_status_reason">Reason for Rejecting/Accepting</label></br>
             <textarea  name="sales_status_reason" id="sale_status_reason" style="width:100%; margin-bottom:20px; padding-left:0px;" rows="3">             
             </textarea>
         </div>
           <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <input type="hidden" name="salestatus_id" id="salestatus_id" value="">
           <input type="hidden" name="salestatuscustomer_phone" id="salestatuscustomer_phone" value="">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" style="background-color:#f9a14d; color:white;"  class="btn">Set Status</button>
          </div>
         </div>
