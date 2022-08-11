@@ -23,7 +23,8 @@ class Customer extends Model
         'gender',
         'type',
         'rewards',
-        'enrolled_by'
+        'enrolled_by',
+        'status',
     ];
 
 }

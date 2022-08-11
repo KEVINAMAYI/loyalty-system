@@ -1412,7 +1412,6 @@ class CustomerController extends Controller
     {   
 
         $receiversNumber = "+254".substr($request->phone_number,1);
-        $message = "Enrollment Completed successfully,you can now shop";
 
          //validate customer enrollment details
          $request->validate([
@@ -1438,8 +1437,8 @@ class CustomerController extends Controller
              'phone_number' => $data['phone_number'],
              'id_number' => $data['id_number'],
              'rewards' => 0,
-             'enrolled_by' => Auth::user()->name
-
+             'enrolled_by' => Auth::user()->name,
+             'status' => "Pending"
          ]);
 
         
@@ -1459,20 +1458,19 @@ class CustomerController extends Controller
          ]);
 
 
-       //send a confirmation SMS 
-       try{
-        
-            $this->sendSms($message, $receiversNumber);
-            return  response()->json([
-            'data' => $request->phone_number,
-            ]);
+         if ($customer) {
+            try {
+                $message = "Dear " . $customer->first_name . ", Congratulations! You have successfully enrolled to our fuel rewards program. Keep fuelling with us to earn redeemable discount rewards";
+                $this->sendSms($message, $receiversNumber);
+                return  response()->json([
+                    'data' => $request->phone_number,
+                ]);
+            } catch (Exception $e) {
 
-        } 
-        catch (Exception $e) {
-
-            return  response()->json([
-                'data' => $e->getMessage(),
-            ]);
+                return  response()->json([
+                    'data' => $e->getMessage(),
+                ]);
+            }
         }
 
    
