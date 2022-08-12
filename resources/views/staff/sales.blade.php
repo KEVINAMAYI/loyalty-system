@@ -47,6 +47,7 @@
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder">Name</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">Rewards Used</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Rewards Awarded</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Rewards Balance</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Vehicle Registration</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Amount</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Sold By</th>
@@ -67,6 +68,9 @@
                   </td>
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_awarded }}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="text-secondary text-xs font-weight-bold">{{ App\Models\Customer::where('phone_number','=',$sale->phone_number)->value('rewards') }}</span>
                   </td>
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
@@ -112,6 +116,7 @@
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Used</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rewards Awarded</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Rewards Balance</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Vehicle Registration</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sold By</th>
