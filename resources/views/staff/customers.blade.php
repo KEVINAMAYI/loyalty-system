@@ -48,7 +48,7 @@
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vehicle Registration Number</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Enrolled By</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date/Time</th>
+                    {{-- <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date/Time</th> --}}
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
@@ -69,9 +69,9 @@
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">{{ $customer->enrolled_by }}</span>
                       </td>
-                      <td class="align-middle text-center text-sm">
+                      {{-- <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">{{ $customer->created_at }}</span>
-                      </td>
+                      </td> --}}
                       @if((Auth::user()->major_role == 'Supervisor') || (Auth::user()->major_role == 'Admin'))
                          @if($customer->status == 'Accepted')
                             <td class="align-middle text-center text-sm">
@@ -108,7 +108,7 @@
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phonenumber</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vehicle Registration Number</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Enrolled By</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date/Time</th>
+                    {{-- <th style="border-bottom:1px solid rgb(200, 195, 195);" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date/Time</th> --}}
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </tfoot>
@@ -131,25 +131,22 @@
       </div>
       <div class="modal-body">
         <div class="form-holder form-holder-2 mt-4 mb-4">
-          <label for="regno">Phone Number</label></br>
-          <p id="phonenumber" style="padding-left:5px;"></p>
+          <label for="regno"> Name & Phone Number</label></br>
+          <p id="name_id" style="padding-left:5px;"></p>
         </div>
-
+       
         <div class="form-holder form-holder-2 mt-4 mb-4">
-          <label for="regno">Id Number</label></br>
-          <p  id="idnumber" style="padding-left:5px;"></p>
+          <label for="regno">Phone Number & Email</label></br>
+          <p  id="phone_email" style="padding-left:5px;"></p>
         </div>
-        <div class="form-holder form-holder-2 mt-4 mb-4">
-          <label for="regno">Email</label></br>
-          <p id="email" style="padding-left:5px;"></p>
-        </div>
-        <div class="form-holder form-holder-2 mt-4 mb-4">
-          <label for="regno">Gender</label></br>
-          <p id="gender" style="padding-left:5px;"></p>
-        </div>
+     
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Rewards Available</label></br>
           <p id="rewards" style="padding-left:5px;"></p>
+        </div>
+        <div class="form-holder form-holder-2 mt-4 mb-4">
+          <label for="regno">Enrolled By : </label></br>
+          <p id="enrolled_by" style="padding-left:5px;"></p>
         </div>
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Approved By : </label></br>

@@ -417,16 +417,12 @@
                     sale_data = data.sale_data;
                     console.log(sale_data);
 
-                    $("#firstname").text(sale_data[0].first_name);
-                    $("#lastname").text(sale_data[0].last_name);
-                    $("#phonenumber").text(sale_data[0].phone_number);
-                    $("#vehiclereg").text(sale_data[0].vehicle_registration);
-                    $("#product").text(sale_data[0].product);
-                    $("#rewards").text(sale_data[0].rewards_used);
-                    $("#amountpayable").text(sale_data[0].amount_payable);
-                    $("#amountpaid").text(sale_data[0].amount_paid);
-                    $("#date").text(sale_data[0].created_at);
-                    $("#sale_approved_by").text(sale_data[0].approved_by);
+                    $("#firstname").text(sale_data[0].first_name+" "+sale_data[0].last_name+" "+sale_data[0].phone_number );
+                    $("#vehiclereg").text(sale_data[0].vehicle_registration+",  "+sale_data[0].product);
+                    $("#rewards").text(sale_data[0].rewards_awarded+",  "+sale_data[0].rewards_used);
+                    $("#amountpayable").text(sale_data[0].amount_payable+",  "+sale_data[0].amount_paid);
+                    $("#sold_by").text(sale_data[0].created_at+",  "+sale_data[0].sold_by);
+                    $("#sale_approved_by").text(sale_data[0].created_at+",  "+sale_data[0].approved_by);
                     $('#vehicle_image').attr('src',`images/${sale_data[0].image_url}`); 
                     $('#pump_image').attr('src',`images/${sale_data[0].pump_image_url}`); 
                     $('#receipt_image').attr('src',`images/${sale_data[0].receipt_image_url}`); 
@@ -462,15 +458,11 @@
 
                 // get sale data and show in a model
                 customer_data = data.customer_data;
-
-                $("#firstname").text(customer_data[0].first_name);
-                $("#lastname").text(customer_data[0].last_name);
-                $("#phonenumber").text(customer_data[0].phone_number);
-                $("#idnumber").text(customer_data[0].id_number);
-                $("#email").text(customer_data[0].email);
+                $("#name_id").text(customer_data[0].first_name+" "+customer_data[0].last_name+",  "+customer_data[0].id_number);
+                $("#phone_email").text(customer_data[0].phone_number+",  "+customer_data[0].email);
                 $("#rewards").text(customer_data[0].rewards);
-                $("#gender").text(customer_data[0].gender);
-                $("#approved_by").text(customer_data[0].approved_by);
+                $("#enrolled_by").text(customer_data[0].created_at+",  "+customer_data[0].enrolled_by);
+                $("#approved_by").text(customer_data[0].created_at+",  "+customer_data[0].approved_by);
                 $('#customer-details').modal('show');
 
             },
