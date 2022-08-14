@@ -1581,10 +1581,13 @@ class CustomerController extends Controller
     public function viewCustomerData(Customer $customer)
     {
         $customer_data = Customer::where('id',$customer->id)->get();
+        $vehicles_data = Vehicle::where('customer_id','=',$customer->id)->get();
 
         return response()->json([
             
-            'customer_data' => $customer_data
+            'customer_data' => $customer_data,
+            'vehicles_data' => $vehicles_data
+
         ]);
     }
 

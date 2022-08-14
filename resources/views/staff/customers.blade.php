@@ -129,7 +129,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Customer Details</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" >
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno"> Name & Phone Number</label></br>
           <p id="name_id" style="padding-left:5px;"></p>
@@ -151,7 +151,10 @@
         <div class="form-holder form-holder-2 mt-4 mb-4">
           <label for="regno">Approved By : </label></br>
           <p id="approved_by" style="padding-left:5px;"></p>
-        </div>    
+        </div>  
+        <div id="customer_vehicles_details">
+          <p id="vehicle Registration" style="font-size:12px; color:rgb(35,46,65); margin-bottom:-20px; padding-left:5px; font-weight:bold;">Vehicles Data</p>
+        </div> 
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
        </div>
