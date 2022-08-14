@@ -71,8 +71,8 @@
 									<div class="form-holder form-holder-2">
 										<label for="card-type">Product</label>
 										<select name="make" id="product" class="form-control">
-											<option value={{ $fuel_details[1]->cost }} selected>Diesel</option>
-											<option value={{ $fuel_details[0]->cost }}>Petrol</option>
+											<option value={{ $fuel_details[1]->cost }} >Diesel</option>
+											<option value={{ $fuel_details[0]->cost }} >Petrol</option>
 											
 										</select>
 									</div>

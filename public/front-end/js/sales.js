@@ -2050,8 +2050,9 @@ $(function(){
         const sale_start_date = localStorage.getItem('sale_start_date');
         const sale_end_date = localStorage.getItem('sale_end_date');
         const sold_by = $('#sales-person-name').text();
-
-
+        const product_text = $( "#product option:selected" ).text();
+        
+      
 
 
         formData = new FormData();
@@ -2072,15 +2073,16 @@ $(function(){
         formData.append('sale_start_date',sale_start_date);
         formData.append('sale_end_date',sale_end_date);
         formData.append('sold_by',sold_by);
+        formData.append('product_text',product_text);
 
+  
 
         console.log(sold_by);
         console.log(sale_start_date);
         console.log(sale_end_date);
-
-
-
         console.log(vehicle_registration);
+        console.log(product_text);
+
 
         $.ajax({
             type:'post',

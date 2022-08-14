@@ -45,6 +45,7 @@
                 <thead>
                   <tr>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Vehicle Registration</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Product</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">Amount</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">Rewards Used</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Rewards Awarded</th>
@@ -60,6 +61,9 @@
                 <tr>
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
+                  </td>
+                  <td class="text-sm">
+                    <span class="text-secondary text-xs font-weight-bold">{{ $sale->product }}</span>
                   </td>
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->amount_paid }}</span>

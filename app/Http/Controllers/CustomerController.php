@@ -275,7 +275,6 @@ class CustomerController extends Controller
 
 
         $receiverNumber = "+254".substr($request->phone_number,1);
-        $message = "Sales Completed successfully, Thanks and shop with us again";
         $data = $request->all();
        
 
@@ -363,8 +362,8 @@ class CustomerController extends Controller
             'receipt_image_url' => $receiptImage,
             'sold_by' => $data['sold_by'],
             'rewards_balance' => $data['new_cutomer_rewards'],
-            'status' => "Pending"
-
+            'status' => "Pending",
+            'product' => $data['product_text']
         ]);
 
 
