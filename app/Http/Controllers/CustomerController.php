@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Mail;
 use Config;
 use Exception;
+use Carbon\Carbon;
 use App\Models\Sale;
 use App\Models\User;
 use App\Models\Vehicle;
@@ -16,6 +17,8 @@ use App\Models\AuthorizedPurchase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+
+
 
 
 
@@ -1262,7 +1265,9 @@ class CustomerController extends Controller
                 Customer::where('id','=',$data['enrollment_customerid'] )->update([
                     'status' => $data['enrollment_status'],
                     'reason' => $data['enrollment_status_reason'],
-                    'approved_by' => ""
+                    'approved_by' => "",
+                    'approved_date' => null
+
                 ]);
                 
                 session()->flash('success','Status Updated Successfully');
@@ -1282,12 +1287,15 @@ class CustomerController extends Controller
                  return redirect()->back();
              }
              else{
+
+                $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
                 
                 //update customer status
                 Customer::where('id','=',$data['enrollment_customerid'] )->update([
                     'status' => $data['enrollment_status'],
                     'reason' => $data['enrollment_status_reason'],
-                    'approved_by' => Auth::user()->name
+                    'approved_by' => Auth::user()->name,
+                    'approved_date' => $todayDateTime
                 ]);
                 
                 session()->flash('success','Status Updated Successfully');
@@ -1339,7 +1347,9 @@ class CustomerController extends Controller
             Sale::where('id','=',$data['salestatus_id'] )->update([
                         'status' => $data['sales_status'],
                         'reason' => $data['sales_status_reason'],
-                        'approved_by' => ""
+                        'approved_by' => "",
+                        'approved_date' => null
+
                     ]);
  
              session()->flash('success','Status Updated Successfully');
@@ -1359,6 +1369,8 @@ class CustomerController extends Controller
                  return redirect()->back();
              }
              else{
+
+                $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
  
                  //sales rewards 
                  $sales_rewards = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->rewards_awarded;
@@ -1376,7 +1388,9 @@ class CustomerController extends Controller
                  Sale::where('id','=',$data['salestatus_id'] )->update([
                             'status' => $data['sales_status'],
                             'reason' => $data['sales_status_reason'],
-                            'approved_by' => Auth::user()->name
+                            'approved_by' => Auth::user()->name,
+                            'approved_date' => $todayDateTime
+
                         ]);
  
                  session()->flash('success','Status Updated Successfully');

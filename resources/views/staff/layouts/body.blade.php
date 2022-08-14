@@ -422,7 +422,7 @@
                     $("#rewards").text(sale_data[0].rewards_awarded+",  "+sale_data[0].rewards_used);
                     $("#amountpayable").text(sale_data[0].amount_payable+",  "+sale_data[0].amount_paid);
                     $("#sold_by").text(sale_data[0].created_at+",  "+sale_data[0].sold_by);
-                    $("#sale_approved_by").text(sale_data[0].created_at+",  "+sale_data[0].approved_by);
+                    $("#sale_approved_by").text(sale_data[0].approved_date+",  "+sale_data[0].approved_by);
                     $('#vehicle_image').attr('src',`images/${sale_data[0].image_url}`); 
                     $('#pump_image').attr('src',`images/${sale_data[0].pump_image_url}`); 
                     $('#receipt_image').attr('src',`images/${sale_data[0].receipt_image_url}`); 
@@ -462,7 +462,7 @@
                 $("#phone_email").text(customer_data[0].phone_number+",  "+customer_data[0].email);
                 $("#rewards").text(customer_data[0].rewards);
                 $("#enrolled_by").text(customer_data[0].created_at+",  "+customer_data[0].enrolled_by);
-                $("#approved_by").text(customer_data[0].created_at+",  "+customer_data[0].approved_by);
+                $("#approved_by").text(customer_data[0].approved_date+",  "+customer_data[0].approved_by);
                 $('#customer-details').modal('show');
 
             },
