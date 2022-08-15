@@ -41,9 +41,10 @@
           </div>
           <div class="card-body px-0 pt-0 pb-2 pr-2 pl-3">
             <div class="table-responsive p-0">
-              <table id="sales_table" class="table align-items-center mb-0">
+              <table data-ordering="false" id="sales_table" class="table align-items-center mb-0">
                 <thead>
                   <tr>
+                    {{-- <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Sales ID</th> --}}
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Vehicle Registration</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Product</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">Amount</th>
@@ -59,6 +60,9 @@
 
                 @foreach ( $sales as $sale )
                 <tr>
+                  {{-- <td style="display:none;" class="text-sm">
+                    <span class="text-secondary text-xs font-weight-bold">{{ $sale->id }}</span>
+                  </td> --}}
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
                   </td>
