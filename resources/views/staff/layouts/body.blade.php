@@ -465,18 +465,19 @@
                 $("#rewards").text(customer_data[0].rewards);
                 $("#enrolled_by").text(customer_data[0].created_at+",  "+customer_data[0].enrolled_by);
                 $("#approved_by").text(customer_data[0].approved_date+",  "+customer_data[0].approved_by);
-                
-
+          
+                $('.customer_vehicle').remove();
                 vehicles_data.forEach(vehicle_data => {
-                        $('#customer_vehicles_details').append(
-                            `<div class="form-holder form-holder-2 mt-4 mb-4">
-                                <p id="vehicle Registration" style="padding-left:5px;">vehicle Registration : ${vehicle_data.vehicle_registration} </p>
-                                <img id="vehicle_image" src="images/${vehicle_data.image_url}" style="border:4px solid grey; width:200px; height:200px;" alt="">									
-                            </div`
-                        )
-                 });
+                            $('#customer_vehicles_details').append(
+                                `<div class="customer_vehicle form-holder form-holder-2 mt-4 mb-4">
+                                    <p id="vehicle Registration" style="padding-left:5px;">vehicle Registration : ${vehicle_data.vehicle_registration} </p>
+                                    <img id="vehicle_image" src="images/${vehicle_data.image_url}" style="border:4px solid grey; width:200px; height:200px;" alt="">									
+                                </div`
+                            )
+                    });
 
-                $('#customer-details').modal('show');
+            
+               $('#customer-details').modal('show');
 
             },
             error: function(data){
