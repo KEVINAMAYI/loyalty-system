@@ -1247,7 +1247,7 @@ class CustomerController extends Controller
         
         $data = $request->all();
 
-         if($data['enrollment_status'] == 'Rejected')
+         if($data['enrollment_status'] == 'Rejected' || $data['enrollment_status'] == 'Accepted')
          { 
              
              //Customer status for the sale 
@@ -1255,7 +1255,7 @@ class CustomerController extends Controller
  
              if($enrollment_status == 'Rejected'){
  
-                 session()->flash('success','Status Already Rejected, Try another option');
+                 session()->flash('success','Status Already Set');
                  return redirect()->back();
              }
              else{
@@ -1280,9 +1280,9 @@ class CustomerController extends Controller
              //Customer status for the sale 
              $enrollment_status = Customer::where('id','=',$data['enrollment_customerid'] )->get()[0]->status;
  
-             if($enrollment_status == 'Accepted'){
+             if($enrollment_status == 'Accepted' || $data['enrollment_status'] == 'Rejected'){
  
-                 session()->flash('success','Status Already Accepted, Try another option');
+                 session()->flash('success','Status Already Set');
                  return redirect()->back();
              }
              else{
@@ -1318,19 +1318,20 @@ class CustomerController extends Controller
 
          $data = $request->all();
 
-         if($data['sales_status'] == 'Rejected')
-         { 
-             
-             //sales status for the sale 
-             $sales_status = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->status;
- 
-             if($sales_status == 'Rejected'){
- 
-                 session()->flash('success','Status Already Rejected, Try another option');
+         //sales rewards 
+         $sales_status = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->status;
+
+
+         if(($sales_status == 'Accepted') || ($sales_status == 'Rejected') )
+         {
+                 session()->flash('success','Status Already Set');
                  return redirect()->back();
-             }
-             else{
- 
+         }   
+         else{
+
+            if($data['sales_status'] == 'Rejected')
+            {
+
              //sales rewards 
              $sales_rewards = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->rewards_awarded;
  
@@ -1342,48 +1343,23 @@ class CustomerController extends Controller
  
              Customer::where('phone_number','=',$data['salestatuscustomer_phone'])
                        ->update(['rewards' => $new_rewards ]);
-            
-            Sale::where('id','=',$data['salestatus_id'] )->update([
-                        'status' => $data['sales_status'],
-                        'reason' => $data['sales_status_reason'],
-                        'approved_by' => "",
-                        'approved_date' => null
 
-                    ]);
- 
-             session()->flash('success','Status Updated Successfully');
-             return redirect()->back();
- 
-             }
- 
-         }
-         else{
- 
-             //sales status for the sale 
-             $sales_status = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->status;
- 
-             if($sales_status == 'Accepted'){
- 
-                 session()->flash('success','Status Already Accepted, Try another option');
-                 return redirect()->back();
-             }
-             else{
+             Sale::where('id','=',$data['salestatus_id'] )->update([
+                    'status' => $data['sales_status'],
+                    'reason' => $data['sales_status_reason'],
+                    'approved_by' => "",
+                    'approved_date' => null
 
+                ]);
+
+             session()->flash('success','Sale Rejected Successfully');
+                        return redirect()->back();
+
+            }
+            else{
+               
                 $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
- 
-                 //sales rewards 
-                 $sales_rewards = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->rewards_awarded;
- 
-                 //get cutomer rewards 
-                 $customer_rewards = Customer::where('phone_number','=',$data['salestatuscustomer_phone'])
-                                             ->get()[0]->rewards;
- 
-                 $new_rewards =  $customer_rewards + $sales_rewards;
- 
-                 Customer::where('phone_number','=',$data['salestatuscustomer_phone'])
-                         ->update(['rewards' => $new_rewards ]);
 
-                
                  Sale::where('id','=',$data['salestatus_id'] )->update([
                             'status' => $data['sales_status'],
                             'reason' => $data['sales_status_reason'],
@@ -1391,15 +1367,16 @@ class CustomerController extends Controller
                             'approved_date' => $todayDateTime
 
                         ]);
+
+                session()->flash('success','Sale Approved Successfully');
+                        return redirect()->back();
+
+
+               }
+            
  
-                 session()->flash('success','Status Updated Successfully');
-                 return redirect()->back();
-                 
+          }
  
-             }
- 
-         }
-        
           
     }
 
