@@ -1244,66 +1244,58 @@ class CustomerController extends Controller
      */
     public function setEnrollmentStatus(Request $request)
     { 
-        
+
         $data = $request->all();
 
-         if($data['enrollment_status'] == 'Rejected' || $data['enrollment_status'] == 'Accepted')
-         { 
-             
-             //Customer status for the sale 
-             $enrollment_status = Customer::where('id','=',$data['enrollment_customerid'] )->get()[0]->status;
+        //Customer status for the sale 
+        $enrollment_status = Customer::where('id','=',$data['enrollment_customerid'] )->get()[0]->status;
  
-             if($enrollment_status == 'Rejected'){
- 
-                 session()->flash('success','Status Already Set');
-                 return redirect()->back();
-             }
-             else{
-                
-                //update customer status
-                Customer::where('id','=',$data['enrollment_customerid'] )->update([
-                    'status' => $data['enrollment_status'],
-                    'reason' => $data['enrollment_status_reason'],
-                    'approved_by' => "",
-                    'approved_date' => null
 
-                ]);
-                
-                session()->flash('success','Status Updated Successfully');
+        if(($enrollment_status == 'Accepted') || ($enrollment_status == 'Rejected') )
+        {
+                session()->flash('success','Status Already Set');
                 return redirect()->back();
- 
-             }
- 
+        }   
+        else{
+
+           if($data['enrollment_status'] == 'Rejected')
+           {
+
+             //update customer status
+             Customer::where('id','=',$data['enrollment_customerid'] )->update([
+                'status' => $data['enrollment_status'],
+                'reason' => $data['enrollment_status_reason'],
+                'approved_by' => "",
+                'approved_date' => null
+
+            ]);
+            
+            session()->flash('success','Customer Rejected Successfully');
+                       return redirect()->back();
+
+           }
+           else{
+              
+
+               $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
+                
+               //update customer status
+               Customer::where('id','=',$data['enrollment_customerid'] )->update([
+                   'status' => $data['enrollment_status'],
+                   'reason' => $data['enrollment_status_reason'],
+                   'approved_by' => Auth::user()->name,
+                   'approved_date' => $todayDateTime
+               ]);
+
+               session()->flash('success','Customer Approved Successfully');
+                       return redirect()->back();
+
+
+              }
+           
+
          }
-         else{
- 
-             //Customer status for the sale 
-             $enrollment_status = Customer::where('id','=',$data['enrollment_customerid'] )->get()[0]->status;
- 
-             if($enrollment_status == 'Accepted' || $data['enrollment_status'] == 'Rejected'){
- 
-                 session()->flash('success','Status Already Set');
-                 return redirect()->back();
-             }
-             else{
-
-                $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
-                
-                //update customer status
-                Customer::where('id','=',$data['enrollment_customerid'] )->update([
-                    'status' => $data['enrollment_status'],
-                    'reason' => $data['enrollment_status_reason'],
-                    'approved_by' => Auth::user()->name,
-                    'approved_date' => $todayDateTime
-                ]);
-                
-                session()->flash('success','Status Updated Successfully');
-                return redirect()->back();
-                 
- 
-             }
- 
-         }   
+          
            
     }
 
