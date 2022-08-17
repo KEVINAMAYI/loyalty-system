@@ -149,9 +149,15 @@
           <p id="enrolled_by" style="padding-left:5px;"></p>
         </div>
         <div class="form-holder form-holder-2 mt-4 mb-4">
-          <label for="regno">Approved By : </label></br>
+          <label id="customer_status_title" for="regno">Approved By : </label></br>
           <p id="approved_by" style="padding-left:5px;"></p>
         </div>  
+
+        <div id="rejection_div" style="display:none;" class="form-holder form-holder-2 mt-4 mb-4">
+          <label  for="regno">Reason for Rejection : </label></br>
+          <p id="customer_rejection_reason" style="padding-left:5px;"></p>
+        </div>  
+
         <div id="customer_vehicles_details">
           <p id="vehicle Registration" style="font-size:12px; color:rgb(35,46,65); margin-bottom:-20px; padding-left:5px; font-weight:bold;">Vehicles Data</p>
         </div> 

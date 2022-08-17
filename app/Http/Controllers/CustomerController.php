@@ -1258,6 +1258,10 @@ class CustomerController extends Controller
         }   
         else{
 
+           $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
+           $personnel = Auth::user()->name;
+
+
            if($data['enrollment_status'] == 'Rejected')
            {
 
@@ -1265,8 +1269,8 @@ class CustomerController extends Controller
              Customer::where('id','=',$data['enrollment_customerid'] )->update([
                 'status' => $data['enrollment_status'],
                 'reason' => $data['enrollment_status_reason'],
-                'approved_by' => "",
-                'approved_date' => null
+                'approved_by' => $personnel,
+                'approved_date' => $todayDateTime
 
             ]);
             
@@ -1283,7 +1287,7 @@ class CustomerController extends Controller
                Customer::where('id','=',$data['enrollment_customerid'] )->update([
                    'status' => $data['enrollment_status'],
                    'reason' => $data['enrollment_status_reason'],
-                   'approved_by' => Auth::user()->name,
+                   'approved_by' => $personnel,
                    'approved_date' => $todayDateTime
                ]);
 
@@ -1321,6 +1325,9 @@ class CustomerController extends Controller
          }   
          else{
 
+            $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
+            $personnel = Auth::user()->name;
+
             if($data['sales_status'] == 'Rejected')
             {
 
@@ -1339,8 +1346,8 @@ class CustomerController extends Controller
              Sale::where('id','=',$data['salestatus_id'] )->update([
                     'status' => $data['sales_status'],
                     'reason' => $data['sales_status_reason'],
-                    'approved_by' => "",
-                    'approved_date' => null
+                    'approved_by' => $personnel,
+                    'approved_date' => $todayDateTime
 
                 ]);
 
@@ -1355,7 +1362,7 @@ class CustomerController extends Controller
                  Sale::where('id','=',$data['salestatus_id'] )->update([
                             'status' => $data['sales_status'],
                             'reason' => $data['sales_status_reason'],
-                            'approved_by' => Auth::user()->name,
+                            'approved_by' => $personnel,
                             'approved_date' => $todayDateTime
 
                         ]);

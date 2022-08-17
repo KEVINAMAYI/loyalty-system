@@ -166,8 +166,12 @@
               <p id="sold_by" style="padding-left:5px;"></p>
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
-              <label for="regno">Approved By(Date, Name)</label></br>
+              <label id="sales_status_title" for="regno">Approved By(Date, Name)</label></br>
               <p id="sale_approved_by" style="padding-left:5px;"></p>
+            </div>
+            <div id="sales_rejection_div" style="display:none;" class="form-holder form-holder-2 mt-4 mb-4">
+              <label for="regno">Reason for Rejection</label></br>
+              <p id="sale_rejection_reason" style="padding-left:5px;"></p>
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
                  <label for="regno">Image</label></br>
