@@ -274,7 +274,6 @@ class CustomerController extends Controller
     {   
 
 
-        $receiverNumber = "+254".substr($request->phone_number,1);
         $data = $request->all();
        
 
@@ -366,25 +365,10 @@ class CustomerController extends Controller
             'product' => $data['product_text']
         ]);
 
-
-        
-        //send a confirmation SMS
-        if ($sale) {
-            try {
-                $message = "Congratulations " . $sale->first_name . "! You have been awarded " . $sale->rewards_awarded .
-                    " points. Your balance is " . $sale->rewards_balance . " Keep fuelling with us for bigger discounts and rewards.";
-
-                $this->sendSms($message, $receiverNumber);
-                return  response()->json([
+        return  response()->json([
                     'data' => $request->all(),
                 ]);
-            } catch (Exception $e) {
-
-                return  response()->json([
-                    'data' => $e->getMessage(),
-                ]);
-            }
-        }
+            
     }
 
 
@@ -1244,12 +1228,16 @@ class CustomerController extends Controller
      */
     public function setEnrollmentStatus(Request $request)
     { 
+        
 
         $data = $request->all();
 
-        //Customer status for the sale 
-        $enrollment_status = Customer::where('id','=',$data['enrollment_customerid'] )->get()[0]->status;
- 
+        //Customer status & Phone Number & FirstName for the sale 
+        $customer =  Customer::where('id','=',$data['enrollment_customerid'] )->get();
+        $enrollment_status =$customer[0]->status;
+        $receiversNumber = "+254".substr($customer[0]->phone_number,1);
+        $firstname = $customer[0]->first_name;
+
 
         if(($enrollment_status == 'Accepted') || ($enrollment_status == 'Rejected') )
         {
@@ -1274,14 +1262,24 @@ class CustomerController extends Controller
 
             ]);
             
-            session()->flash('success','Customer Rejected Successfully');
-                       return redirect()->back();
+            //send conmfirmation message
+            try {
+                $message = "Dear " . $firstname . ", Sorry ! Your enrollment has failed. Please Review the reason and enrollment again";
+                $this->sendSms($message, $receiversNumber);
+
+                session()->flash('success','Customer Rejected and  Message sent Successfully');
+                return redirect()->back();
+
+                } catch (Exception $e) {
+
+                        session()->flash('success','Customer Rejected, there was an error while sending SMS');
+                        return redirect()->back();
+
+                };
 
            }
            else{
               
-
-               $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
                 
                //update customer status
                Customer::where('id','=',$data['enrollment_customerid'] )->update([
@@ -1291,9 +1289,21 @@ class CustomerController extends Controller
                    'approved_date' => $todayDateTime
                ]);
 
-               session()->flash('success','Customer Approved Successfully');
-                       return redirect()->back();
 
+                 //send conmfirmation message
+                 try {
+                        $message = "Dear " . $firstname . ", Congratulations! You have successfully enrolled to our fuel rewards program. Keep fuelling with us to earn redeemable discount rewards";
+                        $this->sendSms($message, $receiversNumber);
+
+                        session()->flash('success','Customer Approved and Confirmation Message sent Successfully');
+                        return redirect()->back();
+
+                 } catch (Exception $e) {
+        
+                         session()->flash('success','Customer Approved Successfully, but there was an error while sending SMS');
+                         return redirect()->back();
+
+                   }
 
               }
            
@@ -1314,11 +1324,16 @@ class CustomerController extends Controller
 
          $data = $request->all();
 
-         //sales rewards 
-         $sales_status = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->status;
+         //sales details 
+         $sale = Sale::where('id','=',$data['salestatus_id'] )->get();
+         $sales_status = $sale[0]->status;
+         $firstname = $sale[0]->first_name;
+         $rewards_awarded = $sale[0]->rewards_awarded;
+         $customer_rewards = Customer::where('phone_number','=',$data['salestatuscustomer_phone'])->get()[0]->rewards;
+         $receiverNumber = "+254".substr($data['salestatuscustomer_phone'],1);
+        
 
-
-         if(($sales_status == 'Accepted') || ($sales_status == 'Rejected') )
+         if(($sales_status == 'Accepted') || ($sales_status == 'Rejected'))
          {
                  session()->flash('success','Status Already Set');
                  return redirect()->back();
@@ -1342,6 +1357,9 @@ class CustomerController extends Controller
  
              Customer::where('phone_number','=',$data['salestatuscustomer_phone'])
                        ->update(['rewards' => $new_rewards ]);
+            
+             $less_customer_rewards = Customer::where('phone_number','=',$data['salestatuscustomer_phone'])->get()[0]->rewards;
+
 
              Sale::where('id','=',$data['salestatus_id'] )->update([
                     'status' => $data['sales_status'],
@@ -1351,8 +1369,22 @@ class CustomerController extends Controller
 
                 ]);
 
-             session()->flash('success','Sale Rejected Successfully');
-                        return redirect()->back();
+                //send a confirmation SMS
+                try {
+                    $message = "Sorry " . $firstname. "! You have not been awarded " . $rewards_awarded .
+                        " points. Your balance is " . $less_customer_rewards . " Keep fuelling with us for bigger discounts and rewards.";
+
+                    $this->sendSms($message, $receiverNumber);
+                    session()->flash('success','Sale Rejected , A Confirmation message was sent');
+                    return redirect()->back();
+
+                } catch (Exception $e) {
+
+                    session()->flash('success','Sale Rejected, there was an error while sending SMS');
+                    return redirect()->back();
+                
+                }
+
 
             }
             else{
@@ -1367,8 +1399,22 @@ class CustomerController extends Controller
 
                         ]);
 
-                session()->flash('success','Sale Approved Successfully');
-                        return redirect()->back();
+
+                //send a confirmation SMS
+                try {
+                    $message = "Congratulations " . $firstname. "! You have been awarded " . $rewards_awarded .
+                        " points. Your balance is " . $customer_rewards . " Keep fuelling with us for bigger discounts and rewards.";
+
+                    $this->sendSms($message, $receiverNumber);
+                    session()->flash('success','Sale Approved Successfully, A Confirmation message was sent');
+                    return redirect()->back();
+
+                } catch (Exception $e) {
+
+                    session()->flash('success','Sale Approved Successfully, there was an error while sending SMS');
+                    return redirect()->back();
+                
+                }
 
 
                }
@@ -1405,8 +1451,6 @@ class CustomerController extends Controller
      */
     public function enrollCustomer(Request $request)
     {   
-
-        $receiversNumber = "+254".substr($request->phone_number,1);
 
          //validate customer enrollment details
          $request->validate([
@@ -1452,22 +1496,10 @@ class CustomerController extends Controller
 
          ]);
 
-
-         if ($customer) {
-            try {
-                $message = "Dear " . $customer->first_name . ", Congratulations! You have successfully enrolled to our fuel rewards program. Keep fuelling with us to earn redeemable discount rewards";
-                $this->sendSms($message, $receiversNumber);
-                return  response()->json([
+     
+        return  response()->json([
                     'data' => $request->phone_number,
                 ]);
-            } catch (Exception $e) {
-
-                return  response()->json([
-                    'data' => $e->getMessage(),
-                ]);
-            }
-        }
-
    
     }
 
