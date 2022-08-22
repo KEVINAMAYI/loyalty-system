@@ -75,15 +75,15 @@
                       @if((Auth::user()->major_role == 'Supervisor') || (Auth::user()->major_role == 'Admin'))
                          @if($customer->status == 'Accepted')
                             <td class="align-middle text-center text-sm">
-                              <span style="cursor:pointer" customer_id={{ $customer->id }}   class="customerstatusbtn badge badge-sm bg-gradient-success">Accepted</span>
+                              <button style="border:none;" customer_id={{ $customer->id }}   class="customerstatusbtn badge badge-sm bg-gradient-success" disabled>Accepted</button>
                             </td>
                           @elseif($customer->status == 'Rejected')
                              <td class="align-middle text-center text-sm">
-                               <span style="cursor:pointer" customer_id={{ $customer->id }} class="customerstatusbtn badge badge-sm bg-gradient-danger">Rejected</span>
+                               <button style="border:none;" customer_id={{ $customer->id }} class="customerstatusbtn badge badge-sm bg-gradient-danger" disabled>Rejected</button>
                              </td>
                           @else
                             <td class="align-middle text-center text-sm">
-                              <span style="cursor:pointer" customer_id={{ $customer->id }} class="customerstatusbtn badge badge-sm bg-gradient-warning">Pending</span>
+                              <span style="cursor:pointer; border:none;" customer_id={{ $customer->id }} class="customerstatusbtn badge badge-sm bg-gradient-warning">Pending</span>
                             </td>
                          @endif
                       @else

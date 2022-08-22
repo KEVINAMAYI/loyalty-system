@@ -90,20 +90,20 @@
                   @if((Auth::user()->major_role == 'Supervisor') || (Auth::user()->major_role == 'Admin'))
                          @if($sale->status == 'Accepted')
                             <td class="align-middle text-center text-sm">
-                              <span style="cursor:pointer" phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="salestatusbtn badge badge-sm bg-gradient-success">Accepted</span>
+                              <button style="border:none;" phone_number={{ $sale->phone_number }}  sale_id={{ $sale->id }}   class="salestatusbtn badge badge-sm bg-gradient-success" disabled>Accepted</button>
                             </td>
                           @elseif($sale->status == 'Rejected')
                              <td class="align-middle text-center text-sm">
-                               <span style="cursor:pointer" phone_number={{ $sale->phone_number }}  sale_id={{ $sale->id }} class="salestatusbtn badge badge-sm bg-gradient-danger">Rejected</span>
+                               <button style="border:none;" phone_number={{ $sale->phone_number }}  sale_id={{ $sale->id }} class="salestatusbtn badge badge-sm bg-gradient-danger" disabled>Rejected</button>
                              </td>
                           @else
                             <td class="align-middle text-center text-sm">
-                              <span style="cursor:pointer" phone_number={{ $sale->phone_number }}  sale_id={{ $sale->id }} class="salestatusbtn badge badge-sm bg-gradient-secondary">Pending</span>
+                              <span style="cursor:pointer;" phone_number={{ $sale->phone_number }}  sale_id={{ $sale->id }} class="salestatusbtn badge badge-sm bg-gradient-secondary">Pending</span>
                             </td>
                          @endif
                       @else
                         <td class="text-sm">
-                          <span style="cursor:pointer" phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="badge badge-sm bg-gradient-success">{{ $sale->status }}</span>
+                          <span style="cursor:pointer;" phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="badge badge-sm bg-gradient-success">{{ $sale->status }}</span>
                         </td>
                       @endif
                   <td class="text-sm">
