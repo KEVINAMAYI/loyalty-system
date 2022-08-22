@@ -239,7 +239,7 @@ $(function(){
                    <div class="form-row">
                        <div class="form-holder form-holder-2">
                            <label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">ID/Phone/Vehicle Registration*</label>
-                           <input type="text" id="id-number" style="height:55px;" placeholder="" class="form-control" id="firstname" name="firstname" >
+                           <input  class="typeahead"  type="text" id="id-number" style="height:55px;" placeholder="" class="form-control" id="firstname" name="firstname" >
                        </div>
 
                        <div id="get_data_btn" class="form-holder form-holder-2">
@@ -2219,6 +2219,17 @@ $(function(){
         
             reader.readAsDataURL(this.files[0]); 
           
+           });
+
+           //autocomplete when searching vehicle
+           var path = "/get-number-plate";
+           $('input.typeahead').typeahead({
+               source:  function (query, process) {
+               return $.get(path, { query: query }, function (data) {
+                       console.log(data);
+                       return process(data);
+                   });
+               }
            });
 
         

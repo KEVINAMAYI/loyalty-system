@@ -72,7 +72,7 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::post('/set-enrollment-status', [CustomerController::class,'setEnrollmentStatus']);
      Route::post('/set-sale-status', [CustomerController::class,'setSaleStatus']);
      Route::post('/staff-authorize-fuel-purchase',[CustomerController::class,'staffAuthorizeFuelPurchase']);
-
+     Route::get('/get-number-plate',[CustomerController::class,'autoCompleteCustomerSearch']);
 
 });
 

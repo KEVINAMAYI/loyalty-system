@@ -1698,13 +1698,23 @@ class CustomerController extends Controller
    
 
     /**
-     * Remove the specified customer from storage.
+     * Autocomplete sales search
      *
-     * @param  \App\Models\Customer  $customer
-     * @return 
      */
-    public function destroy(Customer $customer)
-    {
-        //
+    public function autoCompleteCustomerSearch(Request $request)
+    {   
+        $query = $request->get('query');
+        $datas = Vehicle::select('vehicle_registration')
+                        ->where('vehicle_registration','LIKE','%'.$query.'%')
+                        ->get();
+        
+        $dataModified = array();
+        foreach ($datas as $data)
+        {
+           $dataModified[] = $data->vehicle_registration;
+        }
+
+        return response()->json($dataModified);
+            // return response()->json($data);
     }
 }
