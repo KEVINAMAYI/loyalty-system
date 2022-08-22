@@ -61,7 +61,7 @@
                         <p class="text-xs font-weight-bold mb-0">{{ $customer->first_name }}  {{ $customer->last_name }}</p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">{{ $customer->phone_number }}</span>
+                        <span class="text-secondary text-xs font-weight-bold">{{ "254". ltrim($customer->phone_number,"0") }}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">{{ App\Models\Vehicle::where('customer_id','=',$customer->id)->value('vehicle_registration') != null ? App\Models\Vehicle::where('customer_id','=',$customer->id)->value('vehicle_registration') : "No Vehicle Assigned"  }}</span>
