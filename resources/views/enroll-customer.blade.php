@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-	 <div style="padding-left:20px; padding-top:20px;">		
+	 <div style="padding-left:20px; padding-top:20px;">
 		<img src="front-end/images/logo.jpg" width="50" height="50" alt="">
     </div>
     	<div style="margin-top:-50px; text-align:center; padding-top:50px; width:100%; margin-bottom:20px;">
@@ -28,7 +28,7 @@
     <div style="margin-top:-170px;" class="page-content">
 		<div  id="" class="wizard-v1-content" style="border:solid #f9a14d 2px; position: relative;">
 			<div id="progress_bar" style="justify-content:center; text-align:center;">
-				<img id="progress" src="front-end/images/progress_bar.gif" style=" display:none; position: absolute; top:40%; left:40%; z-index:3; margin-left:auto; margin-right:auto; max-width:100px; max-height:100px;" alt="">									
+				<img id="progress" src="front-end/images/progress_bar.gif" style=" display:none; position: absolute; top:40%; left:40%; z-index:3; margin-left:auto; margin-right:auto; max-width:100px; max-height:100px;" alt="">
 			</div>
 
 			<div class="wizard-form" >
@@ -84,7 +84,7 @@
 										<input type="email" placeholder="Enter Email" class="form-control" id="email" name="email"  pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
 									</div>
 								</div>
-								
+
 							</div>
 			            </section>
 						<!-- SECTION 2 -->
@@ -153,21 +153,21 @@
 								</div>
 								<div class="form-holder form-holder-2">
 									<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Vehicle Registration Number*</label>
-									<input type="text" placeholder="Enter Number Plate" class="form-control" id="regno" name="regno" required>
+									<input type="text" placeholder="Enter Number Plate" class="form-control" id="regno" name="regno" style="text-transform: uppercase" required>
 								</div>
 								<div class="form-row row mt-3">
 									<div class="col-lg-12 col-md-12 col-sm-12">
 										<p style="color:white; font-weight:bold; margin-bottom:30px;">Vehicle Picture</p>
-										<img id="vehicle_image" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Vehicle Photo">									
+										<img id="vehicle_image" class="img-fluid img-thumbnail" src="" style="border:2px solid white; width:200px; height:200px;" alt="Vehicle Photo">
 									</div>
 								</div>
 								<div class="form-row" style="margin-top:30px;">
 									<div class="form-holder">
 										<label class="custom-file-upload">
-										<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">									
+										<img id="camera" src="front-end/images/camera.png" style="max-width:50px; max-height:50px;" alt="">
 										 Take a Photo
-										<input type="file" id="image" name="uploader" id="uploader"                               
-										accept="image/*" 
+										<input type="file" id="image" name="uploader" id="uploader"
+										accept="image/*"
 										capture="camera" /></label>
 										</div>
 								</div>
@@ -184,51 +184,51 @@
 			                	<h3>Comfirm Details</h3>
 								<div class="card" style="width: 100%; margin-bottom:25px; color:white; background-color:#2f8be0;">
 									<div class="card-body">
-										
+
 										<p class="card-text">
 										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Name:</span>
-										<span id="name-val"> </span> 
+										<span id="name-val"> </span>
 										</p>
 										<p class="card-text">
 											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Gender:</span>
-											<span id="gender-val"> </span> 
+											<span id="gender-val"> </span>
 										</p>
 										<p class="card-text">
 										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Phone Number :</span>
 										<span id="phonenumber-val"></span>
 										</p>
-				
+
 										<p class="card-text">
 										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">ID Number:</span>
-										<span id="idnumber-val"></span>                        
+										<span id="idnumber-val"></span>
 										</p>
-				
+
 										<p class="card-text">
 										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Email :</span>
-										<span id="email-val"></span>                        
+										<span id="email-val"></span>
 										</p>
 
 										<p class="card-text">
 											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Vehicle :</span>
-											<span id="vehicle-val"></span>                       
+											<span id="vehicle-val"></span>
 										</p>
 
 										<p class="card-text">
 											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Registration Number :</span>
-											<span id="vehicle-reg-val"></span>                       
+											<span id="vehicle-reg-val"></span>
 										</p>
-										                       
+
 									     </p>
-								
+
 									</div>
 									</div>
 								<div class="col-lg-12 col-md-12 col-sm-12">
 									<p style="color:white; font-weight:bold; margin-bottom:15px;">Vehicle Picture</p>
-									<img id="confirm-vehicle-image" src="front-end/images/car.jpg" class="img-fluid img-thumbnail" style="border:3px solid rgb(182, 173, 89); width:200px; height:200px;" alt="">									
+									<img id="confirm-vehicle-image" src="front-end/images/car.jpg" class="img-fluid img-thumbnail" style="border:3px solid rgb(182, 173, 89); width:200px; height:200px;" alt="">
 								</div>
 							</div>
 			            </section>
-						
+
 		        	</div>
 		        </form>
 			</div>
