@@ -31,7 +31,7 @@ class CustomerController extends Controller
     // register corporate customer from staff dashboard
     public function registerCorporate(Request $request)
     {
-          
+
          //validate new staff details
          $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -44,9 +44,9 @@ class CustomerController extends Controller
             'contact_person_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'contact_person_phone' => 'required',
             'country' => 'required'
-            
+
          ]);
-         
+
          //generate password for corporate user
          $password_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#$%^&*()!~';
          $password = substr(str_shuffle($password_chars),0,15);
@@ -54,21 +54,21 @@ class CustomerController extends Controller
 
          //define a default account number
          $default_account_number = intval(substr(str_shuffle('0123456789'),0,7));
-         
+
          //check if image is set and upload otherwise default to OLA logo
          if ($request->hasFile('company_logo_image')) {
-              
+
             //upload company logo
             $companyLogo =  "image-".time().'.'.$data['company_logo_image']->getClientOriginalExtension();
             $data['company_logo_image']->move(public_path('images'), $companyLogo);
          }
         else{
-            
+
             // set default logo to OLA logo
             $companyLogo = 'logo.jpg';
 
          }
-    
+
          $user = User::create([
             'name' => strtoupper($data['name']),
             'phone_number' => $data['phonenumber'],
@@ -92,7 +92,7 @@ class CustomerController extends Controller
 
         ]);
 
-    
+
         //create account depending on the corporate customer preference
         switch ($data['account_type']) {
             case "credit":
@@ -139,12 +139,12 @@ class CustomerController extends Controller
               break;
             default:
               echo "No account type chosen";
-          } 
-          
-          
+          }
+
+
         //data to use in email
         $email_data = array('corporate_name'=>$data['name'],'corporate_email'=>$data['email'],'corporate_password'=>$password);
-        
+
         try{
 
              //send the user a password once the account has been set successfully
@@ -165,13 +165,13 @@ class CustomerController extends Controller
             return redirect()->back();
 
         }
-       
+
 
     }
 
     //get corporate company info
     public function getCompanyInfo()
-    {   
+    {
         $user = Auth::user()->id;
         $company = User::where('id','=',$user)->get();
         return view('cooperate-customer.company-info')->with(['company' => $company]);
@@ -179,7 +179,7 @@ class CustomerController extends Controller
     }
 
     public function getRegisteredCorporates()
-    {   
+    {
         if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
         {
         $corporates_accounts = Account::all();
@@ -193,18 +193,18 @@ class CustomerController extends Controller
     }
 
     public function getRegisteredCorporateDetails(Request $request)
-    {   
-        
+    {
+
         $corporate = User::where('id',$request->id)->get();
         return response()->json([
             'corporate' => $corporate
         ]);
-        
+
     }
 
     //generate sms token
     public function smsToken()
-    {   
+    {
 
 
         $curl = curl_init();
@@ -271,15 +271,15 @@ class CustomerController extends Controller
 
 
     public function sendSalesConfirmationSMS(Request $request)
-    {   
+    {
 
 
         $data = $request->all();
-       
+
 
         //get amount store in database
         $authorized_amount = Customer::where('id','=',$data['customer_id'])->get()[0]->authorized_amount;
-        
+
         if($authorized_amount != '')
         {
             if($data['amount_payable'] < $authorized_amount)
@@ -319,7 +319,7 @@ class CustomerController extends Controller
             ]);
 
         }
- 
+
 
         //get the updated customer
         $customer = Customer::where('id','=',$data['customer_id'])->get();
@@ -345,7 +345,7 @@ class CustomerController extends Controller
         $request->receipt_image->move(public_path('images'), $receiptImage);
 
 
-        //store sales details 
+        //store sales details
         $sale = Sale::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -368,7 +368,7 @@ class CustomerController extends Controller
         return  response()->json([
                     'data' => $request->all(),
                 ]);
-            
+
     }
 
 
@@ -378,8 +378,8 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function addNewStaff(Request $request)
-    {       
-        
+    {
+
         // dd($request->all());
 
         //validate new staff details
@@ -387,9 +387,9 @@ class CustomerController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'major_role' => ['required', 'string', 'max:255']  
+            'major_role' => ['required', 'string', 'max:255']
          ]);
-         
+
          $data = $request->all();
 
          User::create([
@@ -410,7 +410,7 @@ class CustomerController extends Controller
         session()->flash('success','Staff Added Successfully');
         return redirect()->back();
 
-     
+
     }
 
 
@@ -420,7 +420,7 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function addEmployee(Request $request)
-    {      
+    {
 
         //validate eployee enrollment details
         $request->validate([
@@ -428,7 +428,7 @@ class CustomerController extends Controller
             'employee_lastname' => ['required', 'string', 'max:255'],
             'employee_gender' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
-            'phone_number' => 'required|regex:(^07)|digits:10|unique:customers'          
+            'phone_number' => 'required|regex:(^07)|digits:10|unique:customers'
          ]);
 
          $data = $request->all();
@@ -448,7 +448,7 @@ class CustomerController extends Controller
 
         session()->flash('success','Employee Added Successfully');
         return redirect()->back();
-     
+
     }
 
 
@@ -458,13 +458,13 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function deleteStaff(User $user)
-    {          
-        
+    {
+
         $user->delete();
         session()->flash('success','Staff Deleted Successfully');
         return redirect()->back();
 
-    }  
+    }
 
      /**
      * add a new staff and staff dashboard.
@@ -472,7 +472,7 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function showStaffs()
-    {          
+    {
         if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
         {
         $staffs = User::where('role','=','Staff')->get();
@@ -491,14 +491,14 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function getCorporateUsers()
-    {          
-        
+    {
+
         $corporates = User::where('krapin','!=','')->get();
-        
+
         return response()->json([
             'corporates' => $corporates
         ]);
-        
+
     }
 
      /**
@@ -507,16 +507,16 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function getCorporateUserData(Request $request)
-    {          
+    {
        $data = $request->all();
-       $name = User::where('id','=',$data['id'])->get()[0]['name']; 
+       $name = User::where('id','=',$data['id'])->get()[0]['name'];
        $employees = Customer::where('type','=',$name)->get();
        $vehicles =  Vehicle::where('ownership','=',$name)->get();
        return response()->json([
            'employees' => $employees,
            'vehicles' => $vehicles
        ]);
-        
+
     }
 
     /**
@@ -525,8 +525,8 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function getCoorporateData()
-    {          
-        
+    {
+
         $user = Auth::user()->name;
         $employees = Customer::where('type','=',$user)->get();
         $vehicles =  Vehicle::where('ownership','=', $user)->get();
@@ -534,7 +534,7 @@ class CustomerController extends Controller
             'employees' => $employees,
             'vehicles' => $vehicles
         ]);
-     
+
     }
 
 
@@ -544,16 +544,16 @@ class CustomerController extends Controller
      * @return "json"
      */
     public function getEmployeeData(Customer $customer)
-    {          
-        
+    {
+
         $employee_data  = Customer::where('id','=',$customer->id)->get();
 
         return response()->json([
 
             'employee' => $employee_data
         ]);
-       
-     
+
+
     }
 
 
@@ -563,7 +563,7 @@ class CustomerController extends Controller
      * @return view
      */
     public function getDashboardData(Customer $customer)
-    {          
+    {
         $user = Auth::user()->name;
         $employees = Customer::where('type','=',$user)->take(20)->get();
         $vehicles =  Vehicle::where('ownership','=', $user)->take(20)->get();
@@ -573,7 +573,7 @@ class CustomerController extends Controller
         $employees_count = Customer::where('type','=',$user)->get();
         $vehicles_count = Vehicle::where('ownership','=', $user)->get();
 
-    
+
 
         $autorizedpurchases_count = AuthorizedPurchase::where('name','=', $user)->get();
 
@@ -598,25 +598,25 @@ class CustomerController extends Controller
          return view('cooperate-customer.dashboard')->with([
                             'employees' => $employees,
                             'vehicles' => $vehicles,
-                            'authorized_purchases' => $employees_authorized_data, 
+                            'authorized_purchases' => $employees_authorized_data,
                             'company' => $company,
                             'employees_count' => $employees_count,
                             'vehicle_count' => $vehicles_count,
                             'authorized_purchases_count' => $autorizedpurchases_count ]);
-       
-       
-     
+
+
+
     }
 
 
     /**
-     * edit coorporate employee 
-     * 
+     * edit coorporate employee
+     *
      * @return "view"
      */
     public function editEmployeeData(Request $request)
-    {          
-        
+    {
+
         $data = $request->all();
 
         //validate eployee enrollment details
@@ -627,10 +627,10 @@ class CustomerController extends Controller
             'edit_email' => ['required', 'string', 'email', 'max:255'],
             'edit_phone_number' => 'required|regex:(^07)|digits:10',
             'edit_id_number' => 'required|min:7|max:8',
-          
+
          ]);
 
-         //update employee data using id 
+         //update employee data using id
          Customer::where('id','=',$data['employee_edit_id'])->update([
             'first_name' => $data['edit_first_name'],
             'last_name' => $data['edit_last_name'],
@@ -652,15 +652,15 @@ class CustomerController extends Controller
     /**
      * authorize fuel purchase
      *
-     * 
+     *
      */
     public function authorizeFuelPurchase(Request $request)
-    {          
+    {
 
-        $data = $request->all();         
-        $name = Auth::user()->name; 
+        $data = $request->all();
+        $name = Auth::user()->name;
 
-        //check if the employee/vehicle is authorized and the status is pending 
+        //check if the employee/vehicle is authorized and the status is pending
         $alreadyAuthorizedVehicleandEmployees = AuthorizedPurchase::where(function($query) use ($data)
                     {
                         $query->where('employee_id','=',$data['employees']);
@@ -671,13 +671,13 @@ class CustomerController extends Controller
 
         // if the employee/vehicle is already authorized cancel authorization
         if(count($alreadyAuthorizedVehicleandEmployees) > 0)
-        { 
+        {
             session()->flash('success','The employee or the vehicle is already authorized try again once the sale is completed');
-            return redirect()->back();  
+            return redirect()->back();
         }
         else
         {
-        
+
         //check payment type and compare amount
         if($data['payment_type'] == 'prepaid')
         {
@@ -688,7 +688,7 @@ class CustomerController extends Controller
                     ->get();
 
             if(($account[0]->account_balance > $data['amount']) && ($account[0]->account_balance > 0))
-            {   
+            {
                 //create authorized purchase record for an employee
                 AuthorizedPurchase::create([
                     'organization_id' => $user,
@@ -699,9 +699,9 @@ class CustomerController extends Controller
                     'status' => 'pending',
                     'name' => $name,
                     'organization_id' => $user
-        
+
                 ]);
-        
+
                 //update vehicle with customer id reward type and amount for the authorized purchase
                 Vehicle::where('id','=', $data['vehicles'])->update([
                     'customer_id' => $data['employees'],
@@ -715,7 +715,7 @@ class CustomerController extends Controller
                     'purchase_status' => 'pending'
                 ]);
 
-                
+
                 //update account balance for the corporate customer
                 $new_account_balance = $account[0]->account_balance - $data['amount'];
 
@@ -740,7 +740,7 @@ class CustomerController extends Controller
         }
         else
         {
-         
+
             //check if amount to prepaid account is furnished
             $user = Auth::user()->id;
             $account = Account::where('organization_id','=',$user)
@@ -759,9 +759,9 @@ class CustomerController extends Controller
                     'status' => 'pending',
                     'name' => $name,
                     'organization_id' => $user
-        
+
                 ]);
-        
+
                 //update vehicle with customer id
                 Vehicle::where('id','=', $data['vehicles'])->update([
                     'customer_id' => $data['employees']
@@ -776,7 +776,7 @@ class CustomerController extends Controller
 
                 ]);
 
-                
+
                 $new_account_balance = -1 * (abs($account[0]->account_balance) - $data['amount']);
 
                 Account::where('organization_id','=',$user)
@@ -799,27 +799,27 @@ class CustomerController extends Controller
 
 
         }
-  
+
 
 
         }
-        
-        
+
+
     }
 
     /**
      * authorize fuel purchase
      *
-     * 
+     *
      */
     public function staffAuthorizeFuelPurchase(Request $request)
-    {          
+    {
 
-        $data = $request->all();   
+        $data = $request->all();
         $name = User::where('id','=',$data['companies_id'])->get()[0]['name'];
 
-        
-        //check if the employee/vehicle is authorized and the status is pending 
+
+        //check if the employee/vehicle is authorized and the status is pending
         $alreadyAuthorizedVehicleandEmployees = AuthorizedPurchase::where(function($query) use ($data)
                     {
                         $query->where('employee_id','=',$data['employees']);
@@ -828,16 +828,16 @@ class CustomerController extends Controller
                     ->where('status', '=', 'pending')->get();
 
 
-                    
+
         // if the employee/vehicle is already authorized cancel authorization
         if(count($alreadyAuthorizedVehicleandEmployees) > 0)
-        { 
+        {
             session()->flash('success','The employee or the vehicle is already authorized try again once the sale is completed');
-            return redirect()->back();  
+            return redirect()->back();
         }
         else
         {
-        
+
         //check payment type and compare amount
         if($data['payment_type'] == 'prepaid')
         {
@@ -847,7 +847,7 @@ class CustomerController extends Controller
                     ->get();
 
             if(($account[0]->account_balance > $data['amount']) && ($account[0]->account_balance > 0))
-            {   
+            {
 
                 $document_url = '';
 
@@ -857,9 +857,9 @@ class CustomerController extends Controller
 
                     $document_url = $request->authorize_purchase_document->getClientOriginalName();
                     $request->authorize_purchase_document->move(public_path().'/assets/authorize_purchases/', $document_url);
-            
+
                 }
-                
+
                 //create authorized purchase record for an employee
                 AuthorizedPurchase::create([
                     'organization_id' => $data['companies_id'],
@@ -871,9 +871,9 @@ class CustomerController extends Controller
                     'name' => $name,
                     'organization_id' => $data['companies_id'],
                     'document_url' => $document_url
-        
+
                 ]);
-        
+
                 //update vehicle with customer id reward type and amount for the authorized purchase
                 Vehicle::where('id','=', $data['vehicles'])->update([
                     'customer_id' => $data['employees'],
@@ -887,7 +887,7 @@ class CustomerController extends Controller
                     'purchase_status' => 'pending'
                 ]);
 
-                
+
                 //update account balance for the corporate customer
                 $new_account_balance = $account[0]->account_balance - $data['amount'];
 
@@ -912,7 +912,7 @@ class CustomerController extends Controller
         }
         else
         {
-         
+
             //check if amount to prepaid account is furnished
             $user =  $data['companies_id'];;
             $account = Account::where('organization_id','=',$data['companies_id'])
@@ -921,11 +921,11 @@ class CustomerController extends Controller
 
             //get the account balance as a positive value
             $account_balance = abs($account[0]->account_balance);
-            
+
             if(($account_balance > $data['amount']) && ($account_balance > 0 ))
             {
 
-                
+
                 $document_url = '';
 
                 //upload testimony image
@@ -934,7 +934,7 @@ class CustomerController extends Controller
 
                     $document_url = $request->authorize_purchase_document->getClientOriginalName();
                     $request->authorize_purchase_document->move(public_path().'/assets/authorize_purchases/', $document_url);
-            
+
                 }
 
                 AuthorizedPurchase::create([
@@ -947,9 +947,9 @@ class CustomerController extends Controller
                     'organization_id' => $data['companies_id'],
                     'document_url' => $document_url
 
-        
+
                 ]);
-        
+
                 //update vehicle with customer id
                 Vehicle::where('id','=', $data['vehicles'])->update([
                     'customer_id' => $data['employees']
@@ -962,7 +962,7 @@ class CustomerController extends Controller
                     'reward_type_to_use' => 'credit',
                 ]);
 
-                
+
                 $new_account_balance = -1 * (abs($account[0]->account_balance) - $data['amount']);
 
                 Account::where('organization_id','=',$user)
@@ -985,12 +985,12 @@ class CustomerController extends Controller
 
 
         }
-  
+
 
 
         }
-        
-        
+
+
     }
 
 
@@ -998,48 +998,48 @@ class CustomerController extends Controller
      /**
      * get authorized fuel purchases
      *
-     * 
+     *
      */
     public function getAuthorizedPurchases()
-    {          
+    {
 
-        $name = Auth::user()->name; 
-        $id = Auth::user()->id; 
+        $name = Auth::user()->name;
+        $id = Auth::user()->id;
         $account = Account::where('organization_id','=',$id) ->where('account_type','=','credit')->get();
-        
+
         if(count($account) < 1)
         {
 
             $account = Account::where('organization_id','=',$id) ->where('account_type','=','prepaid')->get();
 
         }
-        
+
         $status = $account[0]->corporate_status;
 
         if($status == 'active')
         {
             $autorizedpurchases = AuthorizedPurchase::where('name','=',$name)->get();
             $employees_authorized_data = array();
-    
+
             foreach ($autorizedpurchases as $autorizedpurchase)
             {
                 $customerid = $autorizedpurchase->employee_id;
                 $vehicleid = $autorizedpurchase->vehicle_id;
                 $personal_data = Customer::where('id','=',$customerid)->get();
                 $vehicle_data = Vehicle::where('id','=',$vehicleid)->get();
-    
-    
+
+
                 $employee = array();
-    
+
                 array_push($employee, $personal_data);
                 array_push($employee, $vehicle_data);
                 array_push($employee,  $autorizedpurchase);
                 array_push($employees_authorized_data,$employee);
-    
+
             }
-    
+
              return view('cooperate-customer.authorizepurchase')->with(['authorized_purchases' => $employees_authorized_data]);
-        
+
 
         }
         else
@@ -1048,49 +1048,49 @@ class CustomerController extends Controller
 
         }
 
-         
+
     }
 
 
      /**
      * get authorized fuel purchases and show staff data
      *
-     * 
+     *
      */
     public function getAuthorizedPurchasesForStaff()
-    {    
+    {
         if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
         {
             $autorizedpurchases = AuthorizedPurchase::all();
             $employees_authorized_data = array();
-    
+
             foreach ($autorizedpurchases as $autorizedpurchase)
             {
                 $customerid = $autorizedpurchase->employee_id;
                 $vehicleid = $autorizedpurchase->vehicle_id;
                 $personal_data = Customer::where('id','=',$customerid)->get();
                 $vehicle_data = Vehicle::where('id','=',$vehicleid)->get();
-    
-    
+
+
                 $employee = array();
-    
+
                 array_push($employee, $personal_data);
                 array_push($employee, $vehicle_data);
                 array_push($employee,  $autorizedpurchase);
                 array_push($employees_authorized_data,$employee);
-    
+
             }
-    
+
              return view('staff.authorized-purchases')->with(['authorized_purchases' => $employees_authorized_data]);
-          
+
 
         }
         else
         {
             return redirect('/choose-option');
-        }      
+        }
 
-       
+
     }
 
 
@@ -1101,7 +1101,7 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function addAnotherVehicle(Request $request)
-    {          
+    {
         $data = $request->all();
 
          //update customer vehicle image
@@ -1109,7 +1109,7 @@ class CustomerController extends Controller
             'customer_id' => $data['customer_id'],
             'vehicle_category' => $data['vehicle_category'],
             'vehicle_type' => $data['vehicle_type'],
-            'vehicle_registration' => $data['vehicle_registration'],   
+            'vehicle_registration' => $data['vehicle_registration'],
              ]);
 
         $vehicles = Vehicle::where('id','=',$data['customer_id'])->get();
@@ -1119,8 +1119,8 @@ class CustomerController extends Controller
             'customer' => $customer,
             'vehicles' => $vehicles
         ]);
-      
-     
+
+
     }
 
     /**
@@ -1129,12 +1129,12 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function getEmployees()
-    {          
-        
+    {
+
         $type = Auth::user()->name;
         $employees = Customer::where('type','=',$type)->get();
         return view('cooperate-customer.employees')->with(['employees' => $employees ]);
-     
+
     }
 
     /**
@@ -1143,9 +1143,9 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function staffDashboard()
-    {    
+    {
         if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
-        {  
+        {
         $customers = Customer::latest()->take(20)->get();;
         $sales = Sale::latest()->take(20)->get();;
         $autorizedpurchases = AuthorizedPurchase::latest()->take(20)->get();;
@@ -1167,9 +1167,9 @@ class CustomerController extends Controller
             array_push($employees_authorized_data,$employee);
 
         }
-        
+
         return view('staff.dashboard')->with(['customers' => $customers, 'sales' => $sales , 'authorized_purchases' => $employees_authorized_data ]);
-        
+
         }
 
         else
@@ -1185,8 +1185,8 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function deleteEmployees(Customer $customer)
-    {          
-        
+    {
+
         //delete employee
         $customer->delete();
 
@@ -1195,7 +1195,7 @@ class CustomerController extends Controller
 
         session()->flash('success','Employee Deleted Successfully');
         return redirect()->back();
-     
+
     }
 
 
@@ -1206,7 +1206,7 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function showCustomers()
-    {          
+    {
         if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
         {
 
@@ -1217,7 +1217,7 @@ class CustomerController extends Controller
         else
         {
             return redirect('/choose-option');
-        }    
+        }
     }
 
 
@@ -1227,12 +1227,12 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function setEnrollmentStatus(Request $request)
-    { 
-        
+    {
+
 
         $data = $request->all();
 
-        //Customer status & Phone Number & FirstName for the sale 
+        //Customer status & Phone Number & FirstName for the sale
         $customer =  Customer::where('id','=',$data['enrollment_customerid'] )->get();
         $enrollment_status =$customer[0]->status;
         $receiversNumber = "+254".substr($customer[0]->phone_number,1);
@@ -1243,7 +1243,7 @@ class CustomerController extends Controller
         {
                 session()->flash('success','Status Already Set');
                 return redirect()->back();
-        }   
+        }
         else{
 
            $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
@@ -1261,7 +1261,7 @@ class CustomerController extends Controller
                 'approved_date' => $todayDateTime
 
             ]);
-            
+
             //send conmfirmation message
             try {
                 $message = "Dear " . $firstname . ", Sorry ! Your enrollment has failed. Please Review the reason and enrollment again";
@@ -1279,8 +1279,8 @@ class CustomerController extends Controller
 
            }
            else{
-              
-                
+
+
                //update customer status
                Customer::where('id','=',$data['enrollment_customerid'] )->update([
                    'status' => $data['enrollment_status'],
@@ -1299,18 +1299,18 @@ class CustomerController extends Controller
                         return redirect()->back();
 
                  } catch (Exception $e) {
-        
+
                          session()->flash('success','Customer Approved Successfully, but there was an error while sending SMS');
                          return redirect()->back();
 
                    }
 
               }
-           
+
 
          }
-          
-           
+
+
     }
 
 
@@ -1320,24 +1320,24 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function setSaleStatus(Request $request)
-    {    
+    {
 
          $data = $request->all();
 
-         //sales details 
+         //sales details
          $sale = Sale::where('id','=',$data['salestatus_id'] )->get();
          $sales_status = $sale[0]->status;
          $firstname = $sale[0]->first_name;
          $rewards_awarded = $sale[0]->rewards_awarded;
          $customer_rewards = Customer::where('phone_number','=',$data['salestatuscustomer_phone'])->get()[0]->rewards;
          $receiverNumber = "+254".substr($data['salestatuscustomer_phone'],1);
-        
+
 
          if(($sales_status == 'Accepted') || ($sales_status == 'Rejected'))
          {
                  session()->flash('success','Status Already Set');
                  return redirect()->back();
-         }   
+         }
          else{
 
             $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
@@ -1346,18 +1346,18 @@ class CustomerController extends Controller
             if($data['sales_status'] == 'Rejected')
             {
 
-             //sales rewards 
+             //sales rewards
              $sales_rewards = Sale::where('id','=',$data['salestatus_id'] )->get()[0]->rewards_awarded;
- 
-             //get cutomer rewards 
+
+             //get cutomer rewards
              $customer_rewards = Customer::where('phone_number','=',$data['salestatuscustomer_phone'])
                                            ->get()[0]->rewards;
- 
+
              $new_rewards =  $customer_rewards - $sales_rewards;
- 
+
              Customer::where('phone_number','=',$data['salestatuscustomer_phone'])
                        ->update(['rewards' => $new_rewards ]);
-            
+
              $less_customer_rewards = Customer::where('phone_number','=',$data['salestatuscustomer_phone'])->get()[0]->rewards;
 
 
@@ -1382,13 +1382,13 @@ class CustomerController extends Controller
 
                     session()->flash('success','Sale Rejected, there was an error while sending SMS');
                     return redirect()->back();
-                
+
                 }
 
 
             }
             else{
-               
+
                 $todayDateTime = Carbon::now()->format('Y-m-d H:i:m');
 
                  Sale::where('id','=',$data['salestatus_id'] )->update([
@@ -1413,16 +1413,16 @@ class CustomerController extends Controller
 
                     session()->flash('success','Sale Approved Successfully, there was an error while sending SMS');
                     return redirect()->back();
-                
+
                 }
 
 
                }
-            
- 
+
+
           }
- 
-          
+
+
     }
 
 
@@ -1432,12 +1432,12 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function deleteCustomer(Customer $customer)
-    {          
-        
+    {
+
         $customer->delete();
         session()->flash('success','Staff Deleted Successfully');
         return redirect()->back();
-     
+
     }
 
 
@@ -1450,14 +1450,14 @@ class CustomerController extends Controller
      * @return "view"
      */
     public function enrollCustomer(Request $request)
-    {   
+    {
 
          //validate customer enrollment details
          $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
+            'email' => ['string', 'email', 'max:255', 'unique:customers'],
             'phone_number' => 'required|regex:(^07)|digits:10|unique:customers',
             'id_number' => 'required|min:7|max:8|unique:customers',
             'category' => ['required', 'string', 'max:255'],
@@ -1480,7 +1480,7 @@ class CustomerController extends Controller
              'status' => "Pending"
          ]);
 
-        
+
         // upload vehicle image
         $fileName =  "image-".time().'.'.$request->vehicle_image->getClientOriginalExtension();
         $request->vehicle_image->move(public_path('images'), $fileName);
@@ -1496,11 +1496,11 @@ class CustomerController extends Controller
 
          ]);
 
-     
+
         return  response()->json([
                     'data' => $request->phone_number,
                 ]);
-   
+
     }
 
 
@@ -1510,7 +1510,7 @@ class CustomerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Customer  $customer
-     * @return 
+     * @return
      */
     public function edit(Request $request, Customer $customer)
     {
@@ -1523,10 +1523,10 @@ class CustomerController extends Controller
             'phone_number' => 'required|regex:(^07)|digits:10',
             'id_number' => 'required|min:7|max:8',
             'rewards' => 'integer'
-    
+
          ]);
-        
-        
+
+
         $data = $request->all();
 
 
@@ -1541,11 +1541,11 @@ class CustomerController extends Controller
             'rewards' => $data['rewards'],
         ]);
 
-    
+
         return response()->json([
 
             'data' => 'success'
-            
+
         ]);
     }
 
@@ -1554,17 +1554,17 @@ class CustomerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Customer  $customer
-     * @return 
+     * @return
      */
     public function editStaff(Request $request, User $user)
     {
         //validate customer enrollment details
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'], 
+            'email' => ['required', 'string', 'email', 'max:255'],
             'major_role' =>  ['required', 'string', 'max:255'],
          ]);
-        
+
         $data = $request->all();
 
         //update customer data using id provided
@@ -1573,10 +1573,10 @@ class CustomerController extends Controller
             'email' => $data['email'],
             'major_role' => ucfirst($data['major_role'])
         ]);
-    
+
         return response()->json([
             'data' => $data['name']
-            
+
         ]);
     }
 
@@ -1584,7 +1584,7 @@ class CustomerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Customer  $customer
-     * @return 
+     * @return
      */
     public function viewCustomerData(Customer $customer)
     {
@@ -1592,7 +1592,7 @@ class CustomerController extends Controller
         $vehicles_data = Vehicle::where('customer_id','=',$customer->id)->get();
 
         return response()->json([
-            
+
             'customer_data' => $customer_data,
             'vehicles_data' => $vehicles_data
 
@@ -1604,19 +1604,19 @@ class CustomerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Customer  $customer
-     * @return 
+     * @return
      */
     public function getStaffData(Request $request)
-    {   
+    {
         $user = User::where('id','=',$request->all()['id'])->get();
         return response()->json([
-            
+
             'user_data' => $user
         ]);
     }
 
 
-    
+
 
    /**
      * Get customer data to be used in sales.
@@ -1625,11 +1625,11 @@ class CustomerController extends Controller
      * @return view with customer and vehicle data
      */
     public function getCustomerData(Request  $request)
-    {           
-         
+    {
+
          $data = $request->all();
          $vehicle = Vehicle::where('vehicle_registration','=',$string = str_replace(' ', '', $data['id_number']))->get();
-        
+
          if(count($vehicle) > 0)
          {
 
@@ -1651,7 +1651,7 @@ class CustomerController extends Controller
          {
 
             $customer = Customer::where('id_number','=',$data['id_number'])->orWhere('phone_number','=',$data['id_number'])->get();
-            
+
             if(($customer[0]->purchase_status == 'complete') || ($customer[0]->status == 'Rejected') )
             {
                 $vehicle = [];
@@ -1668,12 +1668,12 @@ class CustomerController extends Controller
             'customer' =>  $customer,
             'vehicles' =>  $vehicles
         ]);
-      
+
 
     }
 
 
-    
+
    /**
      * Get customer data to be used in sales.
      *
@@ -1681,7 +1681,7 @@ class CustomerController extends Controller
      * @return view with customer and vehicle data
      */
     public function getCustomerSalesData(Request  $request)
-    {           
+    {
 
          $data = $request->all();
          $customer = Customer::where('id','=',$data['customer_id'])->get();
@@ -1695,19 +1695,19 @@ class CustomerController extends Controller
 
     }
 
-   
+
 
     /**
      * Autocomplete sales search
      *
      */
     public function autoCompleteCustomerSearch(Request $request)
-    {   
+    {
         $query = $request->get('query');
         $datas = Vehicle::select('vehicle_registration')
                         ->where('vehicle_registration','LIKE','%'.$query.'%')
                         ->get();
-        
+
         $dataModified = array();
         foreach ($datas as $data)
         {
