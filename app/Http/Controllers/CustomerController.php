@@ -1457,7 +1457,7 @@ class CustomerController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
-            'email' => ['string', 'email', 'max:255', 'unique:customers'],
+            // 'email' => ['string', 'email', 'max:255', 'unique:customers'],
             'phone_number' => 'required|regex:(^07)|digits:10|unique:customers',
             'id_number' => 'required|min:7|max:8|unique:customers',
             'category' => ['required', 'string', 'max:255'],
@@ -1472,7 +1472,7 @@ class CustomerController extends Controller
              'first_name' => $data['first_name'],
              'last_name' => $data['last_name'],
              'gender' => $data['gender'],
-             'email' => $data['email'],
+            //  'email' => $data['email'],
              'phone_number' => $data['phone_number'],
              'id_number' => $data['id_number'],
              'rewards' => 0,
@@ -1491,7 +1491,7 @@ class CustomerController extends Controller
         'customer_id' =>  $customer->id,
         'vehicle_category' => $data['category'],
         'vehicle_type' => $data['type'],
-        'vehicle_registration' => $data['regno'],
+        'vehicle_registration' => strtoupper($data['regno']),
         'image_url' => $fileName
 
          ]);
@@ -1628,7 +1628,8 @@ class CustomerController extends Controller
     {
 
          $data = $request->all();
-         $vehicle = Vehicle::where('vehicle_registration','=',$string = str_replace(' ', '', $data['id_number']))->get();
+        //  $vehicle = Vehicle::where('vehicle_registration','=',$string = str_replace(' ', '', $data['id_number']))->get();
+         $vehicle = Vehicle::where('vehicle_registration','=',$data['id_number'])->get();
 
          if(count($vehicle) > 0)
          {

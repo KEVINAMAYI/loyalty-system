@@ -78,12 +78,12 @@
 										<input type="number" minlength="7" maxlength="8" placeholder="Enter ID Number" class="form-control" id="idnumber" name="idnumber" required>
 									</div>
 								</div>
-								<div class="form-row">
+								{{-- <div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label for="email">Email Address*</label>
 										<input type="email" placeholder="Enter Email" class="form-control" id="email" name="email"  pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
 									</div>
-								</div>
+								</div> --}}
 
 							</div>
 			            </section>

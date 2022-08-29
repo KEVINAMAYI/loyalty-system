@@ -11,21 +11,21 @@
   <!-- End Navbar -->
   <div class="container-fluid py-4">
 
-    
+
       {{-- display success message on a successful action --}}
       @if(Session::has('success'))
       <div class="alert alert-success" role="alert">
         {{ Session::get('success') }}
       </div>
       @endif
-  
+
       {{-- display error on top of the form --}}
       @if ($errors->any())
       <div class="alert alert-danger" role="alert">
           <ul class="list-group">
               @foreach ($errors->all() as $error )
               <li class="list-group-item">
-                {{ $error }}  
+                {{ $error }}
               </li>
               @endforeach
           </ul>
@@ -36,8 +36,14 @@
     <div class="row">
       <div class="col-12">
         <div class="card mb-4">
-          <div class="card-header pb-0">
+          <div class="card-header pb-0 row">
+            <div class="col-md-10">
             <h6>Sales</h6>
+            </div>
+            <div class="col-md-2">
+            <a class="btn btn-primary text-right" href="/make-sale">Add Sale</a>
+        </div>
+        </div>
           </div>
           <div class="card-body px-0 pt-0 pb-2 pr-2 pl-3">
             <div class="table-responsive p-0">
@@ -147,12 +153,12 @@
             <div class="form-holder form-holder-2 mb-2">
               <label for="regno">Customer</label></br>
               <p id="firstname" style="padding-left:5px;"></p>
-             </div>    
+             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Vehicle Registration & Product</label></br>
               <p  id="vehiclereg" style="padding-left:5px;"></p>
             </div>
-            
+
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Rewards (Rewards Awarded, Rewards Used)</label></br>
               <p id="rewards" style="padding-left:5px;"></p>
@@ -175,15 +181,15 @@
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
                  <label for="regno">Image</label></br>
-                <img id="vehicle_image" src="" style="border:4px solid grey; width:200px; height:200px;" alt="">									
+                <img id="vehicle_image" src="" style="border:4px solid grey; width:200px; height:200px;" alt="">
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Pump Image</label></br>
-             <img id="pump_image" src="" style="border:4px solid grey; width:200px; height:200px;" alt="">									
+             <img id="pump_image" src="" style="border:4px solid grey; width:200px; height:200px;" alt="">
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Receipt Image</label></br>
-              <img id="receipt_image" src="" style="border:4px solid grey; width:200px; height:200px;" alt="">									
+              <img id="receipt_image" src="" style="border:4px solid grey; width:200px; height:200px;" alt="">
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -203,7 +209,7 @@
         <div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
           <ul class="list-group" id="errorsul">
           </ul>
-        </div> 
+        </div>
         <div class="modal-header">
           <h5 class="modal-title" id="sale-status-modal">Set Sale Status</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -214,7 +220,7 @@
             <select name="sales_status" id="sales_status" class="form-control">
                 <option value="Accepted">Accept</option>
                 <option value="Rejected">Reject</option>
-            </select>          
+            </select>
           </div>
           <div id="sales_reason_div" style="display:none;" class="form-holder form-holder-2 mt-4 mb-4">
           <label for="sales_status_reason">Reason for Rejecting/Accepting</label></br>
