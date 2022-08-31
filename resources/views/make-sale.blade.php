@@ -113,7 +113,7 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label for="firstname">Reward to Use (Ksh)</label>
-										<input type="number"  placeholder="Enter Amount" class="form-control" id="rewards" name="firstname">
+										<input type="number" min="0" placeholder="Enter Amount" class="form-control" id="rewards" name="firstname">
 									</div>
 								</div>
 								@else
@@ -135,7 +135,7 @@
 								<div class="form-row" style="display:none;">
 									<div class="form-holder form-holder-2">
 										<label for="firstname">Reward to Use(Ksh)</label>
-										<input type="number"  placeholder="Enter Amount" class="form-control" id="rewards" name="firstname">
+										<input type="number" min="0"  placeholder="Enter Amount" class="form-control" id="rewards" name="firstname">
 									</div>
 								</div>
 								@endif

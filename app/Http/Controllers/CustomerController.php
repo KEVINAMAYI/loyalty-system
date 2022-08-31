@@ -1636,7 +1636,7 @@ class CustomerController extends Controller
 
             $customer = Customer::where('id','=',$vehicle[0]->customer_id)->get();
 
-            if(($customer[0]->purchase_status == 'complete') || ($customer[0]->status == 'Rejected'))
+            if(($customer[0]->purchase_status == 'complete') || ($customer[0]->status == 'Rejected') || ($customer[0]->status == 'Pending'))
             {
                 $vehicle = [];
             }
@@ -1653,7 +1653,7 @@ class CustomerController extends Controller
 
             $customer = Customer::where('id_number','=',$data['id_number'])->orWhere('phone_number','=',$data['id_number'])->get();
 
-            if(($customer[0]->purchase_status == 'complete') || ($customer[0]->status == 'Rejected') )
+            if(($customer[0]->purchase_status == 'complete') || ($customer[0]->status == 'Rejected') || ($customer[0]->status == 'Pending'))
             {
                 $vehicle = [];
             }
