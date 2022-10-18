@@ -50,15 +50,15 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {   
+    {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'phonenumber' => 'required|regex:(^07)|digits:10',
             'alternativephonenumber' =>'required|regex:(^07)|digits:10',
             'address' => ['required', 'string', 'max:255'],
             'town' => ['required', 'string', 'max:255'],
-            'krapin' => ['required', 'string', 'max:255','unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'krapin' => ['required', 'string', 'max:255'],
+            'email' => ['string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
 
         ]);
@@ -71,10 +71,10 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {   
+    {
          //define a default account number
-         $default_account_number = intval(substr(str_shuffle('0123456789'),0,7));  
-    
+         $default_account_number = intval(substr(str_shuffle('0123456789'),0,7));
+
          // upload company logo
          $companyLogo =  "image-".time().'.'.$data['company_logo_image']->getClientOriginalExtension();
          $data['company_logo_image']->move(public_path('images'), $companyLogo);
