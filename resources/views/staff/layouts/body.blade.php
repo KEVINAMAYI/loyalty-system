@@ -1049,6 +1049,7 @@
             }
         ]
     });
+
     $('#dashboard_customer_table').DataTable({
         dom: 'Bfrtip',
         buttons: [
@@ -1063,6 +1064,22 @@
             }
         ]
     });
+
+    $('#specific_sales_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    });
+
     $('#customer_table').DataTable({
         dom: 'Bfrtip',
         buttons: [
@@ -1170,6 +1187,11 @@
          });
 
     });
+
+    //prevent default submission
+    // $('#specific_sales_btn').on('click',function(e){
+    //     e.preventDefault();
+    // });
     
     </script>
 

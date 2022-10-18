@@ -7,6 +7,7 @@ use App\Models\Reward;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 
 class SaleController extends Controller
@@ -52,16 +53,33 @@ class SaleController extends Controller
     {
         if((Auth::user()->major_role == 'Admin') || (Auth::user()->major_role == 'Supervisor'))
         {
-            $sales = Sale::all()->sortByDesc("id");
-            // dd($sales);
+            $sales  = Sale::select(
+                "vehicle_registration",
+                DB::raw("(sum(rewards_used)) as rewards_used"),
+                DB::raw("(sum(rewards_awarded)) as rewards_awarded"),
+                DB::raw("(sum(amount_payable)) as amount_payable"),
+                DB::raw("(sum(amount_paid)) as amount_paid"),
+                )
+                ->groupBy('vehicle_registration')
+                ->get();
 
             return view('staff.sales')->with(['sales' => $sales]);
+
         }
         else
         {
             return redirect('/choose-option');
         }
         
+
+    }
+
+
+    //get specific sales for a particular vehicle
+    public function getSpecificSales(Request $request,  $vehicle_registration){
+
+        $sales = Sale::where('vehicle_registration','=',$vehicle_registration)->get();
+        return view('staff.specific-sales')->with(['sales' => $sales ]);
 
     }
 
