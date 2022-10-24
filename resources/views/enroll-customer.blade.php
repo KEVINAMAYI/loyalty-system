@@ -203,10 +203,10 @@
 										<span id="idnumber-val"></span>
 										</p>
 
-										<p class="card-text">
+										{{-- <p class="card-text">
 										<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Email :</span>
 										<span id="email-val"></span>
-										</p>
+										</p> --}}
 
 										<p class="card-text">
 											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Vehicle :</span>

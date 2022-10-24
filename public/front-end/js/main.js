@@ -84,7 +84,7 @@ $(function(){
             $('#gender-val').text(gender);
             $('#phonenumber-val').text(phonenumber);
             $('#idnumber-val').text(idnumber);
-            $('#email-val').text(email);
+            // $('#email-val').text(email);
             $('#vehicle-val').text(category+' '+type);
             $('#vehicle-reg-val').text(regno);
 
@@ -95,6 +95,7 @@ $(function(){
                 let vehicle_registration =$('#regno').val();
                 const selectedFile = document.getElementById('image').files;
                 let error = "";
+
                 
                 // compare amount payable and amount paid
                 if(vehicle_registration == "")
@@ -114,7 +115,7 @@ $(function(){
                 }
                 else
                 {
-                    console.log("amount paid is equal to amount payable");
+                    console.log("The vehicle registration was gotten");
 
 
                 }
@@ -146,13 +147,15 @@ $(function(){
         formData.append('vehicle_image',selectedFile);
         formData.append('first_name',$('#firstname').val());
         formData.append('last_name',$('#lastname').val());
-        formData.append('gender',$('#gender').val());
+        formData.append('gender',$("input[name='gender']:checked").val());
         formData.append('phone_number',$('#phonenumber').val());
         formData.append('id_number',$('#idnumber').val());
-        formData.append('email',$('#email').val());
+        // formData.append('email',$('#email').val());
         formData.append('category',$('#category').val());
         formData.append('type',$('#type').val());
         formData.append('regno',$('#regno').val());
+
+    
 
         $.ajax({
             type:'post',
@@ -174,6 +177,9 @@ $(function(){
                    
                     theerrors = '';
                     errors = data.responseJSON.errors;
+
+                    console.log(data);
+                    
                     $('#progress').css('display','none');
                     $('#errorz').css("display","block");
 
@@ -185,7 +191,7 @@ $(function(){
 
                     }
 
-                
+            
                    swal("Error !", theerrors, "error");
                   
              }
