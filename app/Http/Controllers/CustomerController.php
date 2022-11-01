@@ -38,7 +38,7 @@ class CustomerController extends Controller
             'phonenumber' => 'required',
             'address' => ['required', 'string', 'max:255'],
             'town' => ['required', 'string', 'max:255'],
-            'krapin' => ['max:255','unique:users'],
+            'krapin' => ['max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'contact_person_name' => ['required', 'string', 'max:255'],
             'contact_person_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],

@@ -62,26 +62,26 @@
                   @foreach ( $corporates_accounts as $corporate_account)    
                     <tr>
                       <td style="padding-left:30px;" class="align-middle text-left text-sm">
-                        <a id="{{$corporate_account->organization_id}}" style="cursor:pointer" class="view-organizational-detail-link text-xs font-weight-bold mb-0">{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name; }}</a>
+                        <a id="{{ $corporate_account->organization_id ?? ''}}" style="cursor:pointer" class="view-organizational-detail-link text-xs font-weight-bold mb-0">{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name ?? '' }}</a>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">{{ $corporate_account->account_type }}</span>
+                        <span class="text-secondary text-xs font-weight-bold">{{ $corporate_account->account_type ?? '' }}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold">{{ $corporate_account->account_limit }}</span>
+                        <span class="text-secondary text-xs font-weight-bold">{{ $corporate_account->account_limit ?? '' }}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">{{ $corporate_account->amount_payable ? $corporate_account->amount_payable : 0  }}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">
-                          {{ App\Models\User::where('id', $corporate_account->organization_id)->first()->contact_person_phone; }}<br>
-                          {{ App\Models\User::where('id', $corporate_account->organization_id)->first()->contact_person_name; }}
+                          {{ App\Models\User::where('id', $corporate_account->organization_id)->first()->contact_person_phone ?? '' }}<br>
+                          {{ App\Models\User::where('id', $corporate_account->organization_id)->first()->contact_person_name ?? '' }}
                         </span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                      <span id="{{ $corporate_account->organization_id }}" account_name="{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name; }}" account_type="{{ $corporate_account->account_type }}" account_number={{ $corporate_account->account_number }} account_balance={{ $corporate_account->account_balance }} style="background-color:#4881c0; cursor:pointer;"  class="managecorporatebtn badge badge-sm">Manage</span>
-                      <span org_id="{{ $corporate_account->organization_id }}" account_name="{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name; }}" account_type="{{ $corporate_account->account_type }}" class="show_purchase_payment_btn badge badge-sm bg-gradient-danger" account_number={{ $corporate_account->account_number }} account_balance={{ $corporate_account->account_balance }} style="cursor:pointer;">Payment/Purchase</span>
+                      <span id="{{ $corporate_account->organization_id ?? '' }}" account_name="{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name ?? '' }}" account_type="{{ $corporate_account->account_type ?? '' }}" account_number={{ $corporate_account->account_number ?? '' }} account_balance={{ $corporate_account->account_balance ?? '' }} style="background-color:#4881c0; cursor:pointer;"  class="managecorporatebtn badge badge-sm">Manage</span>
+                      <span org_id="{{ $corporate_account->organization_id ?? '' }}" account_name="{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name ?? '' }}" account_type="{{ $corporate_account->account_type ?? '' }}" class="show_purchase_payment_btn badge badge-sm bg-gradient-danger" account_number={{ $corporate_account->account_number ?? '' }} account_balance={{ $corporate_account->account_balance ?? '' }} style="cursor:pointer;">Payment/Purchase</span>
                     </td>
                     </tr>
                   @endforeach
