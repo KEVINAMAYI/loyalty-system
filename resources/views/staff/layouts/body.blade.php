@@ -569,6 +569,98 @@
 
     });
 
+    //edit vehicle details for editing
+    $(".editvehiclebtn").on('click',function(){
+        
+        const id = parseInt($(this).attr('id'));
+        $("#vehicleid").val(id);
+
+        console.log(id);
+
+        $.ajax({
+            type:'get',
+            url: "/get-the-vehicle-data/"+id,
+            success: (data) => {
+
+
+                // get vehicle data and show in a model
+                vehicle_data = data.vehicle_data;
+
+                console.log(vehicle_data);
+
+                $("#vehicle_category").val(vehicle_data[0].vehicle_category);
+                $("#vehicle_type").val(vehicle_data[0].vehicle_type);
+                $("#vehicle_registration").val(vehicle_data[0].vehicle_registration);
+                $('#edit-vehicle-modal').modal('show');
+
+            },
+            error: function(data){
+                
+                  console.log(data);
+                                   
+                }
+            });
+
+    });
+
+
+    //send edit customer details for editing
+    $("#sendvehicledatabtn").on('click',function(){
+
+        const id = $("#vehicleid").val();
+
+        formData = new FormData
+        const vehicle_category = $("#vehicle_category").val()
+        const vehicle_type = $("#vehicle_type").val();
+        const vehicle_registration = $("#vehicle_registration").val()
+
+
+        formData.append('vehicle_category',vehicle_category);
+        formData.append('vehicle_type',vehicle_type);
+        formData.append('vehicle_registration',vehicle_registration);
+        formData.append('id',id);
+
+        $.ajax({
+            type:'post',
+            url: "/edit-vehicle/"+id,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success: (data) => {
+
+                $('#edit-vehicle-modal').modal('hide');
+                swal("Good job!", "Vehicle details edited successfully", "success").then(() => {
+                        location.reload()
+                        });
+
+            },
+            error: function(data){
+
+                errors = data.responseJSON.errors;
+
+                $('#errorz').css("display","block");
+
+                for(key in errors)
+                {
+
+                    console.log(errors[key][0]);
+
+                    $('#errorsul').append(`
+                    <li class="list-group-item">
+                        "${errors[key][0]}"
+                    </li>
+                    `)
+
+                }
+
+                
+                console.log(data);
+                                
+                }
+            });
+
+});
+
 
     //send edit customer details for editing
     $("#getcustomerdatabtn").on('click',function(){
@@ -1094,6 +1186,22 @@
             }
         ]
     });
+
+    $('#vehicle_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+    });
+
     $('#sales_table').DataTable({
         dom: 'Bfrtip',
         buttons: [

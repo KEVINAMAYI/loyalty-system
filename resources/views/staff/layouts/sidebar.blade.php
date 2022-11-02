@@ -30,6 +30,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link  " href="/vehicles">
+            <i class="fa-solid fa-car"></i>
+            <span class="nav-link-text ms-1">Vehicles</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link  " href="/corporates">
             <i class="fa-solid fa-city"></i>
             <span class="nav-link-text ms-1">Registered Corporates</span>

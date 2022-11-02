@@ -40,6 +40,7 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::get('/authorized-purchases',[CustomerController::class,'getAuthorizedPurchasesForStaff']);
      Route::get('/users', [CustomerController::class,'showStaffs']);
      Route::get('/customers', [CustomerController::class,'showCustomers']);
+     Route::get('/vehicles', [VehicleController::class,'showVehicles']);
      Route::get('/customers/{customer}', [CustomerController::class,'deleteCustomer']);
      Route::get('/sales', [SaleController::class,'getSales']);
      Route::get('/specific-sales/{vehicle_registration}', [SaleController::class,'getSpecificSales']);
@@ -57,8 +58,10 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::post('/upload-vehicle-image', [VehicleController::class,'uploadCarImage']);
      Route::post('/customer-enrollment',  [CustomerController::class,'enrollCustomer']);
      Route::get('/get-customer-data/{customer}',  [CustomerController::class,'viewCustomerData']);
+     Route::get('/get-the-vehicle-data/{vehicle}',  [VehicleController::class,'viewVehicleData']);
      Route::post('/get-staff-data/{id}',  [CustomerController::class,'getStaffData']);
      Route::post('/edit-customer/{cutomer}',  [CustomerController::class,'edit']);
+     Route::post('/edit-vehicle/{vehicle}',  [VehicleController::class,'edit']);
      Route::post('/add-another-vehicle',  [CustomerController::class,'addAnotherVehicle']);
      Route::get('/reward-format',  [RewardFormatController::class,'getRewardFormat']);
      Route::post('/edit-monthly-reward',  [RewardFormatController::class,'editMonthlyreward']);

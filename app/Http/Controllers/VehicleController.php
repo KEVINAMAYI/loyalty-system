@@ -39,6 +39,40 @@ class VehicleController extends Controller
     }
 
 
+
+    /**
+     * Store Vehicle Edited Data.
+     *
+     * @param  \App\Models\Vehicle  $vehicle
+     * @return
+     */
+    public function edit(Request $request, Vehicle $vehicle)
+    {
+        //validate customer enrollment details
+        $request->validate([
+            'vehicle_category' => ['required', 'string', 'max:255'],
+            'vehicle_type' => ['required', 'string', 'max:255'],
+            'vehicle_registration' => ['required', 'string', 'max:255']
+         ]);
+
+
+        $data = $request->all();
+
+
+        //update customer data using id provided
+        Vehicle::where('id','=',$data['id'])->update([
+            'vehicle_category' => $data['vehicle_category'],
+            'vehicle_type' => $data['vehicle_type'],
+            'vehicle_registration' => $data['vehicle_registration'],
+        ]);
+
+
+        return response()->json([
+
+            'data' => 'success'
+
+        ]);
+    }
     
     /**
      * get all corporate vehicles
@@ -120,69 +154,42 @@ class VehicleController extends Controller
                 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
-     * Store a newly created resource in storage.
+     * add a new staff and staff dashboard.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return "view"
      */
-    public function store(Request $request)
+    public function showVehicles()
     {
-        //
+        if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
+        {
+
+        $vehicles = Vehicle::all();
+        return view('staff.vehicles')->with(['vehicles' => $vehicles]);
+
+        }
+        else
+        {
+            return redirect('/choose-option');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Vehicle  $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Vehicle $vehicle)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vehicle  $vehicle
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Vehicle  $customer
+     * @return
      */
-    public function edit(Vehicle $vehicle)
+    public function viewVehicleData(Vehicle $vehicle)
     {
-        //
+        $vehicles_data = Vehicle::where('id','=',$vehicle->id)->get();
+
+        return response()->json([
+            'vehicle_data' => $vehicles_data
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vehicle  $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Vehicle $vehicle)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Vehicle  $vehicle
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Vehicle $vehicle)
-    {
-        //
-    }
+    
 }

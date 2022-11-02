@@ -1201,7 +1201,7 @@ class CustomerController extends Controller
 
 
      /**
-     * add a new staff and staff dashboard.
+     * show customers.
      *
      * @return "view"
      */
