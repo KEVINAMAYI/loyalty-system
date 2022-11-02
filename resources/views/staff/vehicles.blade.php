@@ -54,9 +54,9 @@
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Vehicle Registration Number</th>
-                                            <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            {{-- <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                               Vehicle Image</th>
+                                               Vehicle Image</th> --}}
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Action</th>
@@ -77,12 +77,12 @@
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $vehicle->vehicle_registration }}</span>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
+                                                {{-- <td class="align-middle text-center text-sm">
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">
                                                         <img src="images/{{ $vehicle->image_url }}" height="70" width="90" alt="vehicle_image">
                                                         </span>
-                                                </td>
+                                                </td> --}}
                                                 
 
                                                 <td class="align-middle text-center text-sm">
@@ -105,9 +105,9 @@
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Vehicle Registration Number</th>
-                                            <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            {{-- <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                               Vehicle Image</th>
+                                               Vehicle Image</th> --}}
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Action</th>
