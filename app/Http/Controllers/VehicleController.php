@@ -48,30 +48,38 @@ class VehicleController extends Controller
      */
     public function edit(Request $request, Vehicle $vehicle)
     {
-        //validate customer enrollment details
-        $request->validate([
-            'vehicle_category' => ['required', 'string', 'max:255'],
-            'vehicle_type' => ['required', 'string', 'max:255'],
-            'vehicle_registration' => ['required', 'string', 'max:255']
-         ]);
+        if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
+        {
+            //validate customer enrollment details
+            $request->validate([
+                'vehicle_category' => ['required', 'string', 'max:255'],
+                'vehicle_type' => ['required', 'string', 'max:255'],
+                'vehicle_registration' => ['required', 'string', 'max:255']
+            ]);
 
 
-        $data = $request->all();
+            $data = $request->all();
+
+            //update customer data using id provided
+            Vehicle::where('id','=',$data['id'])->update([
+                'vehicle_category' => $data['vehicle_category'],
+                'vehicle_type' => $data['vehicle_type'],
+                'vehicle_registration' => $data['vehicle_registration'],
+            ]);
 
 
-        //update customer data using id provided
-        Vehicle::where('id','=',$data['id'])->update([
-            'vehicle_category' => $data['vehicle_category'],
-            'vehicle_type' => $data['vehicle_type'],
-            'vehicle_registration' => $data['vehicle_registration'],
-        ]);
+            return response()->json([
 
+                'data' => 'success'
 
-        return response()->json([
+            ]);
 
-            'data' => 'success'
-
-        ]);
+        }
+        else
+        {
+            return redirect('/choose-option');
+        }
+       
     }
     
     /**
@@ -165,13 +173,13 @@ class VehicleController extends Controller
         if(Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor')
         {
 
-        $vehicles = Vehicle::all();
-        return view('staff.vehicles')->with(['vehicles' => $vehicles]);
+           $vehicles = Vehicle::all();
+           return view('staff.vehicles')->with(['vehicles' => $vehicles]);
 
         }
         else
         {
-            return redirect('/choose-option');
+             return redirect('/choose-option');
         }
     }
 
