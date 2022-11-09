@@ -35,13 +35,17 @@
     <link href="staff/assets/css/toggleswitch.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    
     <link href="staff/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="staff/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.12.1/sb-1.3.4/datatables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.3.4/css/common.scss">
     <script src="staff/assets/js/main.js"></script>
 
     <style>
@@ -59,6 +63,9 @@
             margin-top:12px;
             margin-left:10px;
 
+        }
+        .dtsb-searchBuilder{
+            padding-top:100px;
         }
     </style>
 
@@ -245,6 +252,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/searchbuilder/1.3.4/js/dataTables.searchBuilder.js"></script>
 
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
@@ -783,6 +792,8 @@
 
         });
 
+
+
     
     //edit products
     $(".editproductbtn").on('click',function(){
@@ -1139,7 +1150,8 @@
                     columns: 'th:not(:last-child)'
                 }
             }
-        ]
+        ],
+        
     });
 
     $('#dashboard_customer_table').DataTable({
@@ -1204,8 +1216,13 @@
 
     $('#sales_table').DataTable({
         dom: 'Bfrtip',
+        language: {
+            searchBuilder: {
+                button: 'Filter',
+            }
+        },
         buttons: [
-            'copy', 'csv', 'pdf', 'print',
+            'copy', 'csv', 'pdf', 'print','searchBuilder',
             {
                 extend: 'excel',
                 text: 'Excel Export Search Results',
@@ -1215,7 +1232,9 @@
                 }
             }
         ]
+        
     });
+    
     $('#corporates_table').DataTable({
         dom: 'Bfrtip',
         buttons: [

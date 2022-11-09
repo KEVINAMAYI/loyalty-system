@@ -43,7 +43,6 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::get('/vehicles', [VehicleController::class,'showVehicles']);
      Route::get('/customers/{customer}', [CustomerController::class,'deleteCustomer']);
      Route::get('/sales', [SaleController::class,'getSales']);
-     Route::get('/specific-sales/{vehicle_registration}', [SaleController::class,'getSpecificSales']);
      Route::get('/get-sale-data/{sale}', [SaleController::class,'getSaleData']);
      Route::get('/make-sale',[SaleController::class,'makeSale']);
      Route::post('/set-status', [RewardController::class,'setStatus']);

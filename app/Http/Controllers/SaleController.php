@@ -53,16 +53,7 @@ class SaleController extends Controller
     {
         if((Auth::user()->major_role == 'Admin') || (Auth::user()->major_role == 'Supervisor'))
         {
-            $sales  = Sale::select(
-                "vehicle_registration",
-                DB::raw("(sum(rewards_used)) as rewards_used"),
-                DB::raw("(sum(rewards_awarded)) as rewards_awarded"),
-                DB::raw("(sum(amount_payable)) as amount_payable"),
-                DB::raw("(sum(amount_paid)) as amount_paid"),
-                )
-                ->groupBy('vehicle_registration')
-                ->get();
-
+            $sales  = Sale::all();
             return view('staff.sales')->with(['sales' => $sales]);
 
         }
@@ -75,13 +66,6 @@ class SaleController extends Controller
     }
 
 
-    //get specific sales for a particular vehicle
-    public function getSpecificSales(Request $request,  $vehicle_registration){
-
-        $sales = Sale::where('vehicle_registration','=',$vehicle_registration)->get();
-        return view('staff.specific-sales')->with(['sales' => $sales ]);
-
-    }
 
     /**
      * Show the form for creating a new resource.
