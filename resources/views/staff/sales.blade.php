@@ -60,6 +60,7 @@
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Rewards Awarded</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">Sold By</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">Date</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">Phone</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">Status</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">Action</th>
                   </tr>
@@ -92,9 +93,9 @@
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
                   </td>
-                  {{-- <td class="align-middle text-center text-sm">
-                    <span class="text-secondary text-xs font-weight-bold">{{ App\Models\Customer::where('phone_number','=',$sale->phone_number)->value('rewards') }}</span>
-                  </td> --}}
+                  <td class="text-sm">
+                    <span class="text-secondary text-xs font-weight-bold">{{ $sale->phone_number }}</span>
+                  </td>
                   @if((Auth::user()->major_role == 'Supervisor') || (Auth::user()->major_role == 'Admin'))
                          @if($sale->status == 'Accepted')
                             <td class="align-middle text-center text-sm">
@@ -114,6 +115,7 @@
                           <span style="cursor:pointer;" phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="badge badge-sm bg-gradient-success">{{ $sale->status }}</span>
                         </td>
                       @endif
+                  
                   <td class="text-sm">
                     <input type="hidden" id="saleid" value={{ $sale->id }}>
                     <button  id="{{ $sale->id }}"  style="background-color:#f9a14d;" class="moresalesdetails btn btn-sm btn-primary" >more info</button>
@@ -130,6 +132,7 @@
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Rewards Awarded</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Sold By</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Date</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Phone</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Status</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Action</th>
               </tr>
