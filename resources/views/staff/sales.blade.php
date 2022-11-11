@@ -91,7 +91,7 @@
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->sold_by }}</span>
                   </td>
                   <td class="text-sm">
-                    <span class="text-secondary text-xs font-weight-bold">{{ $sale->created_at }}</span>
+                    <span class="text-secondary text-xs font-weight-bold">{{ date('Y-m-d', strtotime($sale->created_at ))}}</span>
                   </td>
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->phone_number }}</span>

@@ -1215,6 +1215,18 @@
     });
 
     $('#sales_table').DataTable({
+        "columns": [
+            { "type": "string" },
+            { "type": "string" },
+            { "type": "num-fmt" },
+            { "type": "num-fmt" },
+            { "type": "num-fmt" },
+            { "type": "string" },
+            { "type": "num-fmt" },
+            { "type": "string" },
+            { "type": "string" },
+            { "type": "string" }
+        ],
         dom: 'Bfrtip',
         language: {
             searchBuilder: {
