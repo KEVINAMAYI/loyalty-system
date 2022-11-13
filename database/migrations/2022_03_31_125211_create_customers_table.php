@@ -29,8 +29,12 @@ class CreateCustomersTable extends Migration
             $table->integer('authorized_amount')->nullable();
             $table->string('purchase_status')->nullable();
             $table->string('status');
-            $table->string('reason');
+            $table->string('reason')->nullable();
+            $table->string('enrolled_by');
+            $table->string('approved_by')->nullable();
+            $table->string('approved_date')->nullable();
             $table->timestamps();
+
         });
     }
 

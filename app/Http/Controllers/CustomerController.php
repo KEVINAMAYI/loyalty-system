@@ -12,11 +12,13 @@ use App\Models\Vehicle;
 use Twilio\Rest\Client;
 use App\Models\Customer;
 use App\Models\Account;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Models\AuthorizedPurchase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+
 
 
 
@@ -88,8 +90,7 @@ class CustomerController extends Controller
             'another_contact_person_name' => $data['another_contact_person_name'],
             'another_contact_person_email' => $data['another_contact_person_email'],
             'another_contact_person_phone' => $data['another_contact_person_phone'],
-            'another_contact_person_alternative_phone' => $data['another_contact_person_alternative_phone']
-
+            'another_contact_person_alternative_phone' => $data['another_contact_person_alternative_phone'],
         ]);
 
 
@@ -103,7 +104,8 @@ class CustomerController extends Controller
                     'account_balance' =>0,
                     'limit_utilized' => 0,
                     'discount' => 0,
-                    'account_type' => 'credit'
+                    'account_type' => 'credit',
+                    'corporate_status' => 'inactive'
                 ]);
               break;
             case "prepaid":
@@ -114,7 +116,8 @@ class CustomerController extends Controller
                     'account_balance' =>0,
                     'limit_utilized' => 0,
                     'discount' => 0,
-                    'account_type' => 'prepaid'
+                    'account_type' => 'prepaid',
+                    'corporate_status' => 'inactive'
                 ]);
               break;
             case "both":
@@ -125,7 +128,8 @@ class CustomerController extends Controller
                     'account_balance' =>0,
                     'limit_utilized' => 0,
                     'discount' => 0,
-                    'account_type' => 'credit'
+                    'account_type' => 'credit',
+                    'corporate_status' => 'inactive'
                 ]);
                 Account::create([
                     'organization_id' => $user->id,
@@ -134,7 +138,9 @@ class CustomerController extends Controller
                     'account_balance' =>0,
                     'limit_utilized' => 0,
                     'discount' => 0,
-                    'account_type' => 'prepaid'
+                    'account_type' => 'prepaid',
+                    'corporate_status' => 'inactive'
+
                 ]);;
               break;
             default:
@@ -362,6 +368,7 @@ class CustomerController extends Controller
             'sold_by' => $data['sold_by'],
             'rewards_balance' => $data['new_cutomer_rewards'],
             'status' => "Pending",
+            'reason' => "No reason",
             'product' => $data['product_text']
         ]);
 
@@ -443,6 +450,8 @@ class CustomerController extends Controller
             'phone_number' => $data['phone_number'],
             'id_number' => $data['id_number'],
             'type' => Auth::user()->name,
+            'enrolled_by' => Auth::user()->name,
+            'status' => 'pending',
             'rewards' => 0
         ]);
 
@@ -698,7 +707,8 @@ class CustomerController extends Controller
                     'payment_type' =>  $data['payment_type'],
                     'status' => 'pending',
                     'name' => $name,
-                    'organization_id' => $user
+                    'organization_id' => $user,
+                    'document_url' => 'no-document'
 
                 ]);
 
@@ -758,7 +768,8 @@ class CustomerController extends Controller
                     'payment_type' =>  $data['payment_type'],
                     'status' => 'pending',
                     'name' => $name,
-                    'organization_id' => $user
+                    'organization_id' => $user,
+                    'document_url' => 'no-document'
 
                 ]);
 
@@ -956,10 +967,12 @@ class CustomerController extends Controller
                 ]);
 
 
-                //update customer amount authrized and reward type to use
+                //update customer amount authorized and reward type to use
                 Customer::where('id','=', $data['employees'])->update([
                     'authorized_amount' => $data['amount'],
                     'reward_type_to_use' => 'credit',
+                    'purchase_status' => 'pending'
+
                 ]);
 
 
@@ -1044,7 +1057,7 @@ class CustomerController extends Controller
         }
         else
         {
-            return redirect('/cooperate-customer-dashboard');
+            return redirect()->back();
 
         }
 
@@ -1109,6 +1122,7 @@ class CustomerController extends Controller
             'customer_id' => $data['customer_id'],
             'vehicle_category' => $data['vehicle_category'],
             'vehicle_type' => $data['vehicle_type'],
+            'fuel_type' => $data['fuel_type'],
             'vehicle_registration' => $data['vehicle_registration'],
              ]);
 
@@ -1491,6 +1505,7 @@ class CustomerController extends Controller
         'vehicle_category' => $data['category'],
         'vehicle_type' => $data['type'],
         'vehicle_registration' => strtoupper($data['regno']),
+        'fuel_type' => $data['fuel_type'],
         'image_url' => $fileName
 
          ]);
@@ -1636,6 +1651,7 @@ class CustomerController extends Controller
     {
 
          $data = $request->all();
+
         //  $vehicle = Vehicle::where('vehicle_registration','=',$string = str_replace(' ', '', $data['id_number']))->get();
          $vehicle = Vehicle::where('vehicle_registration','=',$data['id_number'])->get();
 
@@ -1696,11 +1712,15 @@ class CustomerController extends Controller
          $data = $request->all();
          $customer = Customer::where('id','=',$data['customer_id'])->get();
          $vehicle =  Vehicle::where('id','=',$data['vehicle_id'])->get();
+         $fuel_details = Products::all();        
+
 
          return  response()->json([
 
             'customer' =>  $customer,
-            'vehicle' =>   $vehicle
+            'vehicle' =>   $vehicle,
+            'fuel_details' => $fuel_details
+
         ]);
 
     }

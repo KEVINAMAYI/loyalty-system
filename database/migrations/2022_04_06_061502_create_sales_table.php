@@ -19,7 +19,7 @@ class CreateSalesTable extends Migration
             $table->string('last_name');
             $table->string('phone_number');
             $table->string('vehicle_registration');
-            $table->string('product');
+            $table->string('product')->nullable();
             $table->string('rewards_used');
             $table->string('rewards_awarded');
             $table->integer('amount_payable');
@@ -30,7 +30,7 @@ class CreateSalesTable extends Migration
             $table->string('sold_by');
             $table->string('rewards_balance');
             $table->string('status');
-            $table->string('reason');
+            $table->string('reason')->nullable();
             $table->timestamps();
         });
     }

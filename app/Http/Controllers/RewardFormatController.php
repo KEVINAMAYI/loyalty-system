@@ -16,7 +16,6 @@ class RewardFormatController extends Controller
     {
         $rewards_format = RewardFormat::all();
         return response()->json([
-
             'rewards_format' => $rewards_format
         ]);
     }

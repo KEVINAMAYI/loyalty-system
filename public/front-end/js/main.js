@@ -54,6 +54,8 @@ $(function(){
             var category = $('#category').val();
             var regno = $('#regno').val();
             var type = $('#type').val();
+            var fuel_type = $('#fuel_type').val();
+
 
 
 
@@ -87,6 +89,8 @@ $(function(){
             // $('#email-val').text(email);
             $('#vehicle-val').text(category+' '+type);
             $('#vehicle-reg-val').text(regno);
+            $('#fuel-type').text(fuel_type);
+
 
             
             //execute amount and image check on the second step 
@@ -146,10 +150,12 @@ $(function(){
         formData = new FormData();
         formData.append('vehicle_image',selectedFile);
         formData.append('first_name',$('#firstname').val());
+    
         formData.append('last_name',$('#lastname').val());
         formData.append('gender',$("input[name='gender']:checked").val());
         formData.append('phone_number',$('#phonenumber').val());
         formData.append('id_number',$('#idnumber').val());
+        formData.append('fuel_type',$('#fuel_type').val());
         // formData.append('email',$('#email').val());
         formData.append('category',$('#category').val());
         formData.append('type',$('#type').val());

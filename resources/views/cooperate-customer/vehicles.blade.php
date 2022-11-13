@@ -56,6 +56,9 @@
                                             <th
                                             style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Vehicle Registration</th>
+                                             <th
+                                                style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Vehicle Fuel Type</th>
                                             <th
                                             style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Action</th>
@@ -77,6 +80,9 @@
                                                     <span class="text-secondary text-xs font-weight-bold">{{ strtoupper($vehicle->vehicle_registration) }}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
+                                                  <span class="text-secondary text-xs font-weight-bold">{{ strtoupper($vehicle->fuel_type) }}</span>
+                                              </td>
+                                                <td class="align-middle text-center text-sm">
                                                     <a href="" class="showeditvehiclemodal"  id="{{ $vehicle->id }}">
                                                      <span style="background-color:#3875b6;"
                                                             class="badge badge-sm">edit</span></a>
@@ -95,6 +101,9 @@
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Vehicle Registration</th>
+                                                <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Fuel Type</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Action</th>
@@ -180,8 +189,14 @@
     
             </select>
             </div>
-    
-            <div class="form-holder form-holder-2 mt-4 mb-4">
+            <div  class="form-holder form-holder-2">
+              <label for="fuel_type" style="font-weight:bold;">Vehicle Fuel Type</label>
+              <select name="fuel_type" id="fuel_type" class="form-control">
+                      <option value="Diesel">Diesel</option>
+                      <option value="Petrol">Petrol</option>
+              </select> 
+          </div>    
+            <div class="form-holder form-holder-2 mb-4">
               <label for="regno">Vehicle Registration</label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="vehicle_registration" id="vehicle_registration" placeholder="" required>
             </div>
@@ -263,8 +278,14 @@
                 <option value="volvo">Volvo</option>
         </select>
         </div>
-
-        <div class="form-holder form-holder-2 mt-4 mb-4">
+        <div style="" class="form-holder form-holder-2">
+          <label for="fuel_type" style="font-weight:bold;">Vehicle Fuel Type</label>
+          <select name="edit_fuel_type" id="edit_fuel_type" class="form-control">
+                  <option value="Diesel">Diesel</option>
+                  <option value="Petrol">Petrol</option>
+          </select> 
+      </div>
+        <div class="form-holder form-holder-2 mb-4">
           <label for="regno">Vehicle Registration</label></br>
           <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="edit_vehicle_registration" id="edit_vehicle_registration" placeholder="KAG 445" required>
         </div>

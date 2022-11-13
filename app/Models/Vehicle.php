@@ -20,6 +20,7 @@ class Vehicle extends Model
         'vehicle_type',
         'vehicle_registration',
         'ownership',
-        'image_url'
+        'image_url',
+        'fuel_type'
        ];
 }

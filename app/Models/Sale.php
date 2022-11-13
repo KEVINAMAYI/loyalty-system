@@ -29,7 +29,8 @@ class Sale extends Model
         'receipt_image_url',
         'sold_by',
         'rewards_balance',
-        'status'  
+        'status',
+        'reason'  
 
     ];
 }

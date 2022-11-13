@@ -599,6 +599,7 @@
 
                 $("#vehicle_category").val(vehicle_data[0].vehicle_category);
                 $("#vehicle_type").val(vehicle_data[0].vehicle_type);
+                $("#fuel_type").val(vehicle_data[0].fuel_type);
                 $("#vehicle_registration").val(vehicle_data[0].vehicle_registration);
                 $('#edit-vehicle-modal').modal('show');
 
@@ -621,11 +622,13 @@
         formData = new FormData
         const vehicle_category = $("#vehicle_category").val()
         const vehicle_type = $("#vehicle_type").val();
+        const fuel_type = $("#fuel_type").val();
         const vehicle_registration = $("#vehicle_registration").val()
 
 
         formData.append('vehicle_category',vehicle_category);
         formData.append('vehicle_type',vehicle_type);
+        formData.append('fuel_type',fuel_type);
         formData.append('vehicle_registration',vehicle_registration);
         formData.append('id',id);
 

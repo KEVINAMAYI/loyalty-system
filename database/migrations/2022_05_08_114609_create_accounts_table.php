@@ -22,7 +22,7 @@ class CreateAccountsTable extends Migration
             $table->integer('limit_utilized');
             $table->integer('discount');
             $table->string('account_type');
-            $table->string('corporate_status');
+            $table->string('corporate_status')->nullable();
             $table->timestamps();
         });
     }

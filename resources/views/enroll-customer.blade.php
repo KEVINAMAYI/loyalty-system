@@ -151,6 +151,14 @@
 										</select>
 									</div>
 								</div>
+								<div style="margin-bottom:25px;" class="form-holder form-holder-2">
+									<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Vehicle Fuel Type*</label>
+                                    <select name="fuel_type" id="fuel_type" class="form-control">
+                                            <option value="Diesel">Diesel</option>
+                                            <option value="Petrol">Petrol</option>
+                                    </select> 
+								</div>
+								  
 								<div class="form-holder form-holder-2">
 									<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Vehicle Registration Number*</label>
 									<input type="text" placeholder="Enter Number Plate" class="form-control" id="regno" name="regno" style="text-transform: uppercase" required>
@@ -211,6 +219,11 @@
 										<p class="card-text">
 											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Vehicle :</span>
 											<span id="vehicle-val"></span>
+										</p>
+
+										<p class="card-text">
+											<span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Vehicle Fuel Type :</span>
+											<span id="fuel-type"></span>
 										</p>
 
 										<p class="card-text">

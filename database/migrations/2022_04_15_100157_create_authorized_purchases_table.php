@@ -25,6 +25,8 @@ class CreateAuthorizedPurchasesTable extends Migration
             $table->string('document_url');
             $table->timestamps();
             $table->string('sales_date')->nullable();
+            $table->string('document_url')->nullable();
+
         });
     }
 

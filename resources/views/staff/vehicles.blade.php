@@ -54,9 +54,9 @@
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Vehicle Registration Number</th>
-                                            {{-- <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                                <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                               Vehicle Image</th> --}}
+                                                Vehicle Fuel Type</th>
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Action</th>
@@ -77,14 +77,11 @@
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $vehicle->vehicle_registration }}</span>
                                                 </td>
-                                                {{-- <td class="align-middle text-center text-sm">
+                                                <td class="align-middle text-center text-sm">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">
-                                                        <img src="images/{{ $vehicle->image_url }}" height="70" width="90" alt="vehicle_image">
-                                                        </span>
-                                                </td> --}}
-                                                
-
+                                                        class="text-secondary text-xs font-weight-bold">{{ $vehicle->fuel_type }}</span>
+                                                </td>
+                                    
                                                 <td class="align-middle text-center text-sm">
                                                     <span id="{{ $vehicle->id }}"
                                                         style="background-color:#4881c0; cursor:pointer;"
@@ -105,9 +102,9 @@
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Vehicle Registration Number</th>
-                                            {{-- <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                                <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                               Vehicle Image</th> --}}
+                                                Vehicle Fuel Type</th>
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Action</th>
@@ -195,7 +192,13 @@
                                 <option value="volvo">Volvo</option>
                             </select>
                         </div>
-
+                        <div style="margin-bottom:25px;" class="form-holder form-holder-2">
+                            <label for="fuel_type" style="font-weight:bold;">Vehicle Fuel Type</label>
+                            <select name="fuel_type" id="fuel_type" class="form-control">
+                                    <option selected value="Diesel">Diesel</option>
+                                    <option value="Petrol">Petrol</option>
+                            </select> 
+                        </div>
                         <div class="form-holder form-holder-2 mt-4 mb-4">
                             <label for="regno">Vehicle Registration Number</label></br>
                             <input

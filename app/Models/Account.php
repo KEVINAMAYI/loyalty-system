@@ -16,6 +16,7 @@ class Account extends Model
         'account_balance',
         'limit_utilized',
         'account_type',
-        'discount'
+        'discount',
+        'corporate_status'
     ];
 }

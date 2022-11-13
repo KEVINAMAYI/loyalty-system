@@ -27,6 +27,7 @@ class VehicleController extends Controller
          Vehicle::create([
             'vehicle_category' => $data['vehicle_category'],
             'vehicle_type' => $data['vehicle_type'],
+            'fuel_type' => $data['fuel_type'],
             'vehicle_registration' => $data['vehicle_registration'],   
             'ownership' => Auth::user()->name 
              ]);
@@ -54,6 +55,7 @@ class VehicleController extends Controller
             $request->validate([
                 'vehicle_category' => ['required', 'string', 'max:255'],
                 'vehicle_type' => ['required', 'string', 'max:255'],
+                'fuel_type' => ['required', 'string', 'max:255'],
                 'vehicle_registration' => ['required', 'string', 'max:255']
             ]);
 
@@ -64,6 +66,7 @@ class VehicleController extends Controller
             Vehicle::where('id','=',$data['id'])->update([
                 'vehicle_category' => $data['vehicle_category'],
                 'vehicle_type' => $data['vehicle_type'],
+                'fuel_type' => $data['fuel_type'],
                 'vehicle_registration' => $data['vehicle_registration'],
             ]);
 
@@ -132,6 +135,7 @@ class VehicleController extends Controller
          Vehicle::where('id','=',$data['vehicle_edit_id'])->update([
             'vehicle_category' => $data['edit_vehicle_category'],
             'vehicle_type' => $data['edit_vehicle_type'],
+            'fuel_type' => $data['edit_fuel_type'],
             'vehicle_registration' => $data['edit_vehicle_registration'],   
              ]);
 

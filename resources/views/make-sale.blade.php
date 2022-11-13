@@ -81,12 +81,12 @@
                             <div class="inner">
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
-                                        <label for="card-type">Product</label>
-                                        <select name="make" id="product" class="form-control">
-                                            <option value={{ $fuel_details[1]->cost }}>Diesel</option>
-                                            <option value={{ $fuel_details[0]->cost }}>Petrol</option>
-
-                                        </select>
+                                        <label for="card-type">Vehicle Fuel Type</label>
+                                        <input type="text" id="fuel_type_label" value="Petrol" placeholder="Petrol"
+                                            class="form-control" readonly>
+                                        <input type="hidden" id="product" value="107.5" placeholder="Petrol"
+                                            class="form-control" readonly>
+                    
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -390,6 +390,13 @@
                                 <option value="volvo">Volvo</option>
 
                             </select>
+                        </div>
+                        <div class="mt-2 form-holder form-holder-2">
+                            <label for="firstname" style="color:black;">Vehicle Fuel Type*</label>
+                            <select name="fuel_type" id="fuel_type" class="form-control">
+                                    <option value="Diesel">Diesel</option>
+                                    <option value="Petrol">Petrol</option>
+                            </select> 
                         </div>
                         <div class="form-holder form-holder-2 mt-2 mb-2">
                             <label for="regno">Vehicle Registration</label></br>

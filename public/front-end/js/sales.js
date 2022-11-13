@@ -45,9 +45,12 @@ $(function(){
 
                     customer = data.customer;
                     vehicle = data.vehicle;
+                    fuel_details = data.fuel_details
 
                     console.log(customer);
                     console.log(vehicle);
+                    console.log(fuel_details);
+
 
                     date_time = new Date().toLocaleString();
 
@@ -57,7 +60,19 @@ $(function(){
                     $('#sales-email-val').text(customer[0].email);
                     $('#sales-vehicle-category').text(vehicle[0].vehicle_category);
                     $('#sales-vehicle-registration').text(vehicle[0].vehicle_registration);
+                    
+                    if(vehicle[0].fuel_type == 'Petrol')
+                    {
+                        $('#fuel_type_label').val(fuel_details[0].product);
+                        $('#product').val(fuel_details[0].cost);
 
+                    }
+                    else{
+
+                        $('#fuel_type_label').val(fuel_details[1].product);
+                        $('#product').val(fuel_details[1].cost);
+
+                    }
 
                     var myrewards = parseInt(customer[0].rewards);
                     $('.rewards-available').text(myrewards);
@@ -316,8 +331,6 @@ $(function(){
                vehicles.forEach(vehicle => {
                    i = i+1;
 
-                  
-
                     $('.main-section').append(
                         `
                             <div class="card-body px-0 pt-0 pb-2">
@@ -449,6 +462,7 @@ $(function(){
             
             // get Rewards format
             rewards_format = data.rewards_format;
+            console.log(rewards_format);
 
             // calculate amount payable
             var rewards =parseInt($('#rewards').val());
@@ -479,7 +493,9 @@ $(function(){
 
                     if(reward_format.reward_type == authorized_reward_type)
                     {
-                        
+                        console.log(reward_format.reward_type );
+                        console.log(authorized_reward_type);
+
 
                         //calculate amount of litres
                         product_amount = parseFloat($('#product').val());
@@ -2001,24 +2017,7 @@ $(function(){
     });
 
 
-    //calculate litres if product changes
-    $('#product').on('change',function(){
 
-        total_amount = parseFloat($("#total_amount").val());
-
-        if(!(total_amount == ''))
-        {
-            product_amount = parseFloat($('#product').val());
-            total_amount = parseFloat($("#total_amount").val());
-            total_amount_ltr = parseFloat( total_amount / product_amount);
-            $("#liters_val").val(total_amount_ltr.toFixed(2));
-        }
-        else
-        {
-            return;
-        }
-
-    });
 
 
      //display an alert message redirect user back to choose-option page 
@@ -2036,7 +2035,7 @@ $(function(){
         const receiptFile = document.getElementById('receipt_image').files[0];
 
 
-        const product = localStorage.getItem('product');
+        // const product = localStorage.getItem('product');
         const last_name = localStorage.getItem('last_name');
         const first_name = localStorage.getItem('first_name');
         const amount_paid = localStorage.getItem('amount_paid');
@@ -2050,7 +2049,7 @@ $(function(){
         const sale_start_date = localStorage.getItem('sale_start_date');
         const sale_end_date = localStorage.getItem('sale_end_date');
         const sold_by = $('#sales-person-name').text();
-        const product_text = $( "#product option:selected" ).text();
+        const product_text = $( "#fuel_type_label" ).val();
         
       
 
@@ -2134,6 +2133,7 @@ $(function(){
         e.preventDefault();
         vehicle_category = $("#vehicle_category").val();
         vehicle_type = $("#vehicle_type").val();
+        fuel_type = $("#fuel_type").val();
         vehicle_registration = $("#vehicle_registration").val();
         customer_id = localStorage.getItem('customer_id');
 
@@ -2144,6 +2144,8 @@ $(function(){
         formData.append('vehicle_type',vehicle_type);
         formData.append('vehicle_registration',vehicle_registration);
         formData.append('customer_id',customer_id);
+        formData.append('fuel_type',fuel_type);
+
 
 
         $.ajax({
