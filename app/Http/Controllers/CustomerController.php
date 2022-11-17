@@ -347,8 +347,8 @@ class CustomerController extends Controller
         $request->pump_image->move(public_path('images'), $pumpImage);
 
         // upload receipt image
-        $receiptImage =  "image-".time().'-'.$request->receipt_image->getClientOriginalName();
-        $request->receipt_image->move(public_path('images'), $receiptImage);
+        // $receiptImage =  "image-".time().'-'.$request->receipt_image->getClientOriginalName();
+        // $request->receipt_image->move(public_path('images'), $receiptImage);
 
 
         //store sales details
@@ -364,7 +364,7 @@ class CustomerController extends Controller
             'amount_paid' => $data['amount_paid'],
             'image_url' => $vehicleImage,
             'pump_image_url' => $pumpImage,
-            'receipt_image_url' => $receiptImage,
+            'receipt_image_url' => "receipt_image_url",
             'sold_by' => $data['sold_by'],
             'rewards_balance' => $data['new_cutomer_rewards'],
             'status' => "Pending",

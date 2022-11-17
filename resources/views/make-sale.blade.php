@@ -227,7 +227,7 @@
                                 </div>
 
                                 {{-- receipt image --}}
-                                <div class="form-holder">
+                                {{-- <div class="form-holder">
                                     <img id="vehicle_receipt_image" loading="lazy" class="img-fluid img-thumbnail"
                                         src="" style="border:2px solid white; width:200px; height:200px;"
                                         alt="Receipt Photo">
@@ -243,7 +243,7 @@
                                             Take Photo
                                         </label>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <input type="hidden" name="reward_percentage" id="reward_percentage"
                                     value={{ $rewards_details[0]->percentage }}>
                             </div>

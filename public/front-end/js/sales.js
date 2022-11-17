@@ -2032,7 +2032,7 @@ $(function(){
 
         const selectedFile = document.getElementById('image').files[0];
         const pumpFile = document.getElementById('pump_image').files[0];
-        const receiptFile = document.getElementById('receipt_image').files[0];
+        // const receiptFile = document.getElementById('receipt_image').files[0];
 
 
         // const product = localStorage.getItem('product');
@@ -2057,7 +2057,7 @@ $(function(){
         formData = new FormData();
         formData.append('vehicle_image',selectedFile);
         formData.append('pump_image',pumpFile);
-        formData.append('receipt_image',receiptFile);
+        // formData.append('receipt_image',receiptFile);
         formData.append('product',product);
         formData.append('last_name',last_name);
         formData.append('first_name',first_name);
@@ -2209,19 +2209,19 @@ $(function(){
            });
 
            //set pump image
-         $('#receipt_image').on('change',function(){
+        //  $('#receipt_image').on('change',function(){
            
-            let reader = new FileReader();
+        //     let reader = new FileReader();
         
-            reader.onload = (e) => { 
+        //     reader.onload = (e) => { 
         
-              $('#vehicle_receipt_image').attr('src', e.target.result); 
+        //       $('#vehicle_receipt_image').attr('src', e.target.result); 
 
-            }
+        //     }
         
-            reader.readAsDataURL(this.files[0]); 
+        //     reader.readAsDataURL(this.files[0]); 
           
-           });
+        //    });
 
            //autocomplete when searching vehicle
            var path = "/get-number-plate";

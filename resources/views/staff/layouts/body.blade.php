@@ -433,7 +433,7 @@
                     $("#sold_by").text(sale_data[0].created_at+",  "+sale_data[0].sold_by);
                     $('#vehicle_image').attr('src',`images/${sale_data[0].image_url}`); 
                     $('#pump_image').attr('src',`images/${sale_data[0].pump_image_url}`); 
-                    $('#receipt_image').attr('src',`images/${sale_data[0].receipt_image_url}`); 
+                    // $('#receipt_image').attr('src',`images/${sale_data[0].receipt_image_url}`); 
                     
                     if(sale_data[0].status == 'Rejected')
                     {
