@@ -18,6 +18,7 @@ use App\Models\AuthorizedPurchase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 
@@ -338,13 +339,49 @@ class CustomerController extends Controller
             'sales_date' => date("d-m-y")
         ]);
 
-        // upload vehicle image
-        $vehicleImage =  "image-".time().'-'.$request->vehicle_image->getClientOriginalName();
-        $request->vehicle_image->move(public_path('images'), $vehicleImage);
 
-        // upload pump image
-        $pumpImage =  "image-".time().'-'.$request->pump_image->getClientOriginalName();
-        $request->pump_image->move(public_path('images'), $pumpImage);
+        // upload vehicle and image
+        $vehicleImage = $request->vehicle_image;
+        $pumpImage = $request->pump_image;
+        $vehicleImageName =  "image-".time().'-'.$vehicleImage->getClientOriginalName();
+        $pumpImageName =  "image-".time().'-'.$pumpImage->getClientOriginalName();
+        $destinationPath = public_path('/images');
+
+
+        //compress image and store image if size is greater than 512KB
+        $vehiclefileSize = $vehicleImage->getSize();    //get vehicle  size of image 
+        $pumpfileSize = $pumpImage->getSize();      //get pump size of image 
+
+    
+        if(($vehiclefileSize < 512000) && ($pumpfileSize < 512000)){
+
+            //strore  images if they do not need compression
+            $vehicleImage->move(public_path('images'), $vehicleImageName);
+            $pumpImage->move(public_path('images'), $pumpImageName);
+
+        }else{
+
+            if($vehiclefileSize > 512000){
+
+                Log::info('Vehicle Image size in bytes --- '.$vehiclefileSize);
+                $vehicle_actual_image = Image::make($vehicleImage->getRealPath());
+                $height = $vehicle_actual_image->height()/4;	    //get 1/4th of image height
+                $width = $vehicle_actual_image->width()/4;			//get 1/4th of image width
+                $vehicleImageFile = $vehicle_actual_image->resize($width, $height)->save($destinationPath . '/' . $vehicleImageName);
+            }
+    
+             if($pumpfileSize > 512000){
+    
+                Log::info('Pump Image size in bytes --- '.$pumpfileSize);
+                $pump_actual_image = Image::make($pumpImage->getRealPath());
+                $height = $pump_actual_image->height()/4;	    //get 1/4th of image height
+                $width = $pump_actual_image->width()/4;			//get 1/4th of image width
+                $pumpImageFile = $pump_actual_image->resize($width, $height)->save($destinationPath . '/' . $pumpImageName);
+        
+            }
+
+
+        }
 
         // upload receipt image
         // $receiptImage =  "image-".time().'-'.$request->receipt_image->getClientOriginalName();
