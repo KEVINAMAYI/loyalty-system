@@ -13,14 +13,14 @@ use DB;
 class SaleController extends Controller
 {
     /**
-     * 
+     *
      *
      * @return vkiew
      */
     public function makeSale()
-    {   
+    {
 
-        $fuel_details = Products::all();        
+        $fuel_details = Products::all();
         $reward_details = Reward::all();
         return view('make-sale')->with(['rewards_details' => $reward_details,'fuel_details' => $fuel_details]);
 
@@ -28,12 +28,12 @@ class SaleController extends Controller
 
 
      /**
-     * 
      *
-     * @return vkiew
+     *
+     * @return view
      */
     public function getSaleData(Sale $sale)
-    {   
+    {
 
         $sale_data = $sale->where('id','=',$sale->id)->get();
 
@@ -53,7 +53,7 @@ class SaleController extends Controller
     {
         if((Auth::user()->major_role == 'Admin') || (Auth::user()->major_role == 'Supervisor'))
         {
-            $sales  = Sale::all();
+            $sales  = Sale::orderBy('created_at','DESC')->get();
             return view('staff.sales')->with(['sales' => $sales]);
 
         }
@@ -61,7 +61,7 @@ class SaleController extends Controller
         {
             return redirect('/choose-option');
         }
-        
+
 
     }
 
