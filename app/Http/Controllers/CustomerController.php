@@ -349,10 +349,10 @@ class CustomerController extends Controller
 
 
         //compress image and store image if size is greater than 512KB
-        $vehiclefileSize = $vehicleImage->getSize();    //get vehicle  size of image 
-        $pumpfileSize = $pumpImage->getSize();      //get pump size of image 
+        $vehiclefileSize = $vehicleImage->getSize();    //get vehicle  size of image
+        $pumpfileSize = $pumpImage->getSize();      //get pump size of image
 
-    
+
         if(($vehiclefileSize < 512000) && ($pumpfileSize < 512000)){
 
             //strore  images if they do not need compression
@@ -369,15 +369,15 @@ class CustomerController extends Controller
                 $width = $vehicle_actual_image->width()/4;			//get 1/4th of image width
                 $vehicleImageFile = $vehicle_actual_image->resize($width, $height)->save($destinationPath . '/' . $vehicleImageName);
             }
-    
+
              if($pumpfileSize > 512000){
-    
+
                 Log::info('Pump Image size in bytes --- '.$pumpfileSize);
                 $pump_actual_image = Image::make($pumpImage->getRealPath());
                 $height = $pump_actual_image->height()/4;	    //get 1/4th of image height
                 $width = $pump_actual_image->width()/4;			//get 1/4th of image width
                 $pumpImageFile = $pump_actual_image->resize($width, $height)->save($destinationPath . '/' . $pumpImageName);
-        
+
             }
 
 
@@ -1618,12 +1618,28 @@ class CustomerController extends Controller
 
         $data = $request->all();
 
-        //update customer data using id provided
-        User::where('id','=',$user->id)->update([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'major_role' => ucfirst($data['major_role'])
-        ]);
+        if(!$data['password'])
+        {
+            //update customer data using id provided
+            User::where('id','=',$user->id)->update([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'major_role' => ucfirst($data['major_role'])
+            ]);
+
+        }
+        else{
+
+            //update customer data using id provided
+            User::where('id','=',$user->id)->update([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'major_role' => ucfirst($data['major_role']),
+                'password' => Hash::make($data['password'])
+            ]);
+
+        }
+
 
         return response()->json([
             'data' => $data['name']
@@ -1711,7 +1727,7 @@ class CustomerController extends Controller
          }
          else
          {
-        
+
 
             $customer = Customer::where('id_number','=',$data['id_number'])->orWhere('phone_number','=',$data['id_number'])->get();
 
@@ -1749,7 +1765,7 @@ class CustomerController extends Controller
          $data = $request->all();
          $customer = Customer::where('id','=',$data['customer_id'])->get();
          $vehicle =  Vehicle::where('id','=',$data['vehicle_id'])->get();
-         $fuel_details = Products::all();        
+         $fuel_details = Products::all();
 
 
          return  response()->json([

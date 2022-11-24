@@ -36,7 +36,7 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    
+
     <link href="staff/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="staff/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
@@ -306,9 +306,9 @@
 
                },
                error: function(data){
-                
+
                     swal("Error!", "There was an error while performing the operstion", "error");
-                
+
                 }
                 });
 
@@ -317,7 +317,7 @@
                status = "disabled";
                formData = new FormData();
                formData.append('status',status);
-                
+
                 $.ajax({
                 type:'post',
                 url: "/set-status",
@@ -330,10 +330,10 @@
 
                 },
                 error: function(data){
-            
+
                     swal("Error!", "There was an error while performing the operstion", "error");
 
-                    
+
                     }
                 });
 
@@ -347,7 +347,7 @@
 
             formData = new FormData();
             formData.append('id',id);
-            
+
             $('#edit-staff').modal('show');
 
             $.ajax({
@@ -367,9 +367,9 @@
                     $("#staffemail").val(staff_data[0].email);
                 },
                 error: function(data){
-                    
+
                       console.log(data);
-                                       
+
                     }
                 });
 
@@ -398,7 +398,7 @@
                         });
                },
                error: function(data){
-                
+
                     swal("Error!", "Setting Reward percentage failed", "error").then(() => {
                         location.reload();
                     });
@@ -410,9 +410,9 @@
         });
 
 
-        //get specific sales data 
+        //get specific sales data
         $(".moresalesdetails").on('click',function(){
-        
+
             const id = parseInt($(this).attr("id"));
 
             console.log(id);
@@ -431,24 +431,24 @@
                     $("#rewards").text(sale_data[0].rewards_awarded+",  "+sale_data[0].rewards_used);
                     $("#amountpayable").text(sale_data[0].amount_payable+",  "+sale_data[0].amount_paid);
                     $("#sold_by").text(sale_data[0].created_at+",  "+sale_data[0].sold_by);
-                    $('#vehicle_image').attr('src',`images/${sale_data[0].image_url}`); 
-                    $('#pump_image').attr('src',`images/${sale_data[0].pump_image_url}`); 
-                    // $('#receipt_image').attr('src',`images/${sale_data[0].receipt_image_url}`); 
-                    
+                    $('#vehicle_image').attr('src',`images/${sale_data[0].image_url}`);
+                    $('#pump_image').attr('src',`images/${sale_data[0].pump_image_url}`);
+                    // $('#receipt_image').attr('src',`images/${sale_data[0].receipt_image_url}`);
+
                     if(sale_data[0].status == 'Rejected')
                     {
 
-                        $('#sale_rejection_reason').text(sale_data[0].reason); 
+                        $('#sale_rejection_reason').text(sale_data[0].reason);
                         $('#sales_rejection_div').css('display','');
                         $('#sales_status_title').text('Rejected By');
                         $("#sale_approved_by").text(sale_data[0].approved_date+",  "+sale_data[0].approved_by);
- 
+
 
 
                     }
                     else{
 
-                        $('#sales_status_title').text('Approved By'); 
+                        $('#sales_status_title').text('Approved By');
                         $("#sale_approved_by").text(sale_data[0].approved_date+",  "+sale_data[0].approved_by);
 
                     }
@@ -459,20 +459,20 @@
 
                 },
                 error: function(data){
-                    
+
                       console.log(data);
-                                       
+
                     }
                 });
 
-         
+
 
         });
 
 
-     //get specific sales data 
+     //get specific sales data
      $(".morecustomerdetails").on('click',function(){
-        
+
         const id = parseInt($(this).attr('id'));
 
         console.log(id);
@@ -482,7 +482,7 @@
             url: "/get-customer-data/"+id,
             success: (data) => {
 
-                console.log(data); 
+                console.log(data);
 
                 // get sale data and show in a model
                 customer_data = data.customer_data;
@@ -492,13 +492,13 @@
                 $("#phone_email").text(customer_data[0].phone_number+",  "+customer_data[0].email);
                 $("#rewards").text(customer_data[0].rewards);
                 $("#enrolled_by").text(customer_data[0].created_at+",  "+customer_data[0].enrolled_by);
-                
+
                 if(customer_data[0].status == 'Rejected')
                 {
 
-                        $('#customer_rejection_reason').text(customer_data[0].reason); 
-                        $('#rejection_div').css('display',''); 
-                        $('#customer_status_title').text('Rejected By'); 
+                        $('#customer_rejection_reason').text(customer_data[0].reason);
+                        $('#rejection_div').css('display','');
+                        $('#customer_status_title').text('Rejected By');
                         $("#approved_by").text(customer_data[0].approved_date+",  "+customer_data[0].approved_by);
 
 
@@ -506,44 +506,44 @@
                 }
                 else{
 
-                    $('#customer_status_title').text('Approved By'); 
+                    $('#customer_status_title').text('Approved By');
                     $("#approved_by").text(customer_data[0].approved_date+",  "+customer_data[0].approved_by);
 
                 }
 
-          
+
                 $('.customer_vehicle').remove();
                 vehicles_data.forEach(vehicle_data => {
                             $('#customer_vehicles_details').append(
                                 `<div class="customer_vehicle form-holder form-holder-2 mt-4 mb-4">
                                     <p id="vehicle Registration" style="padding-left:5px;">vehicle Registration : ${vehicle_data.vehicle_registration} </p>
-                                    <img id="vehicle_image" src="images/${vehicle_data.image_url}" style="border:4px solid grey; width:200px; height:200px;" alt="">									
+                                    <img id="vehicle_image" src="images/${vehicle_data.image_url}" style="border:4px solid grey; width:200px; height:200px;" alt="">
                                 </div`
                             )
                     });
-               
-                
-            
+
+
+
                $('#customer-details').modal('show');
 
             },
             error: function(data){
-                
+
                   console.log(data);
-                                   
+
                 }
             });
 
-     
+
 
     });
 
 
-    
+
 
     //edit customer details for editing
      $(".editcustomerbtn").on('click',function(){
-        
+
         const id = parseInt($(this).attr('id'));
         $("#customerid").val(id);
 
@@ -554,7 +554,7 @@
             url: "/get-customer-data/"+id,
             success: (data) => {
 
-                console.log(data); 
+                console.log(data);
 
                 // get sale data and show in a model
                 customer_data = data.customer_data;
@@ -570,9 +570,9 @@
 
             },
             error: function(data){
-                
+
                   console.log(data);
-                                   
+
                 }
             });
 
@@ -580,7 +580,7 @@
 
     //edit vehicle details for editing
     $(".editvehiclebtn").on('click',function(){
-        
+
         const id = parseInt($(this).attr('id'));
         $("#vehicleid").val(id);
 
@@ -605,9 +605,9 @@
 
             },
             error: function(data){
-                
+
                   console.log(data);
-                                   
+
                 }
             });
 
@@ -665,9 +665,9 @@
 
                 }
 
-                
+
                 console.log(data);
-                                
+
                 }
             });
 
@@ -730,9 +730,9 @@
 
                   }
 
-                
+
                   console.log(data);
-                                   
+
                 }
             });
 
@@ -747,12 +747,16 @@
         formData = new FormData
         const name = $("#staffname").val()
         const email = $("#staffemail").val()
-        const major_role =  $("#major_role").val() 
-      
+        const major_role =  $("#major_role").val()
+        const password = $("#staffpassword").val()
+
+
         formData.append('id',id);
         formData.append('name',name);
         formData.append('email',email);
         formData.append('major_role',major_role);
+        formData.append('password',password);
+
 
         $.ajax({
             type:'post',
@@ -787,9 +791,9 @@
 
                 }
 
-                
+
                 console.log(data);
-                                
+
                 }
             });
 
@@ -797,12 +801,12 @@
 
 
 
-    
+
     //edit products
     $(".editproductbtn").on('click',function(){
 
         const id = parseInt($(this).attr('id'));
-        
+
         $.ajax({
             type:'get',
             url: "/get-product/"+id,
@@ -811,7 +815,7 @@
                 $('#product_cost').val(data.product[0].cost)
                 $('#month').val(data.product[0].price_period.split(" ")[0])
                 $('#product_year').val(data.product[0].price_period.split(" ")[1])
-    
+
 
                 console.log(data);
                 $("#edit-product").modal('show');
@@ -821,11 +825,11 @@
             error: function(data){
 
                 console.log(data);
-                                
+
                 }
             });
 
-       
+
     });
 
 
@@ -852,11 +856,11 @@
 
                 console.log(data);
 
-                                
+
                 }
             });
 
-        
+
 
     });
 
@@ -881,7 +885,7 @@
             error: function(data){
 
                 console.log(data);
-                                
+
                 }
             });
 
@@ -914,7 +918,7 @@
 
 
 
-            
+
     });
 
     //show purchase/payment model
@@ -940,17 +944,17 @@
 
      //set vehicle image
      $('#company_logo_image').on('change',function(){
-           
+
 		   let reader = new FileReader();
-	   
-		   reader.onload = (e) => { 
-	   
-			 $('#company_logo').attr('src', e.target.result); 
+
+		   reader.onload = (e) => {
+
+			 $('#company_logo').attr('src', e.target.result);
 
 		   }
-	   
-		   reader.readAsDataURL(this.files[0]); 
-		 
+
+		   reader.readAsDataURL(this.files[0]);
+
 		  });
 
 
@@ -961,7 +965,7 @@
             url: "get-status",
             success: (data) => {
 
-                    
+
                 if(data.reward[0].status == 'enabled')
                 {
 
@@ -978,9 +982,9 @@
 
             },
             error: function(data){
-                
+
                     console.log(data);
-                                    
+
                 }
                 });
     })();
@@ -1010,18 +1014,18 @@
                 $('#companies_id').append(
                         `<option value="" selected>Select...</option>`
                 )
-                    
+
 
             },
             error: function(data){
-                     
+
             }
          });
 
     });
 
     $('#companies_id').on('change',function(){
-       
+
        id = $('#companies_id').val();
 
        //clear the employee and vehicle option on changing the corporate option
@@ -1058,10 +1062,10 @@
                 console.log(vehicles);
                 console.log(employees);
 
-                    
+
             },
             error: function(data){
-                     
+
             }
          });
     });
@@ -1088,8 +1092,8 @@
 
 
     $('#sales_status').on('change', function () {
-        
-        status = $(this).val(); 
+
+        status = $(this).val();
 
         console.log(status);
 
@@ -1103,12 +1107,12 @@
             $('#sales_reason_div').css('display','none');
 
         }
-        
+
     });
 
     $('#enrollment_status').on('change', function () {
-        
-        status = $(this).val(); 
+
+        status = $(this).val();
 
         if (status == 'Rejected'){
 
@@ -1124,7 +1128,7 @@
     });
 
 
-   
+
 
     //datatable
     $('#dashboard_authorization_table').DataTable({
@@ -1154,7 +1158,7 @@
                 }
             }
         ],
-        
+
     });
 
     $('#dashboard_customer_table').DataTable({
@@ -1247,9 +1251,9 @@
                 }
             }
         ]
-        
+
     });
-    
+
     $('#corporates_table').DataTable({
         dom: 'Bfrtip',
         buttons: [
@@ -1295,7 +1299,7 @@
 
 
     $('.view-organizational-detail-link').on('click',function(){
-       
+
         id = $(this).attr('id');
         formData = new FormData();
         formData.append('id',id);
@@ -1319,12 +1323,12 @@
                     $('#orgaddress').text(corporate.country+'  '+corporate.town+'  '+corporate.address);
                     $('#orgkrapin').text(corporate.krapin);
                     $('#orgcontactperson1').text(corporate.contact_person_name+'   '+corporate.contact_person_email+'   '+corporate.contact_person_phone);
-                    $('#orgcontactperson2').text(corporate.another_contact_person_name+'  '+corporate.another_contact_person_email+'   '+corporate.another_contact_person_phone);    
+                    $('#orgcontactperson2').text(corporate.another_contact_person_name+'  '+corporate.another_contact_person_email+'   '+corporate.another_contact_person_phone);
 
-                   
+
             },
             error: function(data){
-                     
+
             }
          });
 
@@ -1334,10 +1338,10 @@
     // $('#specific_sales_btn').on('click',function(e){
     //     e.preventDefault();
     // });
-    
+
     </script>
 
-    
+
 
 </body>
 

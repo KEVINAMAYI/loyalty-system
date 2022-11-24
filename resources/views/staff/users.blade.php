@@ -25,7 +25,7 @@
         <ul class="list-group">
             @foreach ($errors->all() as $error )
             <li class="list-group-item">
-              {{ $error }}  
+              {{ $error }}
             </li>
             @endforeach
         </ul>
@@ -104,12 +104,12 @@
           <div class="form-holder form-holder-2 mb-2">
             <label for="regno">Name</label></br>
             <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="name"  id="name" placeholder="">
-          </div>  
+          </div>
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="regno">Email</label></br>
             <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="email" id="email"  placeholder="">
           </div>
-          
+
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="regno">Password</label></br>
             <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="password" id="password" id="password" placeholder="">
@@ -125,7 +125,7 @@
                 <option value="staff">Staff</option>
                 <option value="admin">Admin</option>
                 <option value="Supervisor">Supervisor</option>
-            </select>          
+            </select>
           </div>
           <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -145,7 +145,7 @@
           <div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
             <ul class="list-group" id="errorsul">
             </ul>
-          </div> 
+          </div>
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Edit Staff Details</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -154,7 +154,7 @@
             <div class="form-holder form-holder-2 mb-2">
               <label for="regno">Name</label></br>
               <input id="staffname" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="name"  id="name" placeholder="Kevin">
-            </div>  
+            </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Email</label></br>
               <input id="staffemail" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="email" id="email"  placeholder="kevinamayi20@gmail.com">
@@ -165,8 +165,12 @@
                   <option value="Staff">Staff</option>
                   <option value="Admin">Admin</option>
                   <option value="Supervisor">Supervisor</option>
-              </select>          
-          </div>
+              </select>
+            </div>
+            <div class="form-holder form-holder-2 mt-4 mb-4">
+                <label for="password">New Password</label></br>
+                <input id="staffpassword" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="password" id="password" >
+              </div>
             <div class="modal-footer">
             <input type="hidden" id="staffid" value="">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -176,5 +180,5 @@
         </div>
       </div>
     </div>
- 
+
 @endsection

@@ -87,7 +87,7 @@ class RegisterController extends Controller
             'krapin' => $data['krapin'],
             'alternative_phone_number' => $data['alternativephonenumber'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' =>Hash::make($data['password']),
             'role' => 'Corperate',
             'logo_url' => $companyLogo,
             'contact_person_name' =>"test",
