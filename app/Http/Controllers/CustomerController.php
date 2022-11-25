@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Mail;
+use Image;
 use Config;
 use Exception;
 use Carbon\Carbon;
@@ -18,10 +19,6 @@ use App\Models\AuthorizedPurchase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Image;
-
-
-
 
 
 
@@ -404,7 +401,7 @@ class CustomerController extends Controller
             'receipt_image_url' => "receipt_image_url",
             'sold_by' => $data['sold_by'],
             'rewards_balance' => $data['new_cutomer_rewards'],
-            'status' => "Pending",
+            'status' => "Accepted",
             'reason' => "No reason",
             'product' => $data['product_text']
         ]);
@@ -1527,7 +1524,7 @@ class CustomerController extends Controller
              'id_number' => $data['id_number'],
              'rewards' => 0,
              'enrolled_by' => Auth::user()->name,
-             'status' => "Pending"
+             'status' => "Accepted"
          ]);
 
 
