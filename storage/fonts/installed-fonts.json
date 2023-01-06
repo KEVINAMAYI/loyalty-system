@@ -1,0 +1,19 @@
+{
+    "font awesome 6 brands": {
+        "normal": "font_awesome_6_brands_normal_fe9f8889de14dac4e5423b59c7c9c4d7"
+    },
+    "font awesome 6 free": {
+        "normal": "C:\\laragon\\www\\loyalty-system\\storage\\fonts\/font_awesome_6_free_normal_63ceaa3a26a25d15acc67a2a92a86505",
+        "900": "font_awesome_6_free_900_e28be8b0559d1fb8cc4e17872df29e2a"
+    },
+    "font awesome 5 brands": {
+        "normal": "font_awesome_5_brands_normal_fe9f8889de14dac4e5423b59c7c9c4d7"
+    },
+    "font awesome 5 free": {
+        "900": "C:\\laragon\\www\\loyalty-system\\storage\\fonts\/font_awesome_5_free_900_e28be8b0559d1fb8cc4e17872df29e2a",
+        "normal": "font_awesome_5_free_normal_63ceaa3a26a25d15acc67a2a92a86505"
+    },
+    "fontawesome": {
+        "normal": "fontawesome_normal_06860fa9961d464ff5b77a2ec3345004"
+    }
+}

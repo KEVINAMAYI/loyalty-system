@@ -27,4 +27,9 @@ class Customer extends Model
         'status',
     ];
 
+    public  function discounts(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Discount::class,'customer_id');
+    }
+
 }

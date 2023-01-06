@@ -21,6 +21,13 @@
     <link rel="icon" href="front-end/images/logo.jpg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        .actions > ul > li{
+            width:120px;
+            height:50px;
+            border-radius:0px;
+        }
+    </style>
 </head>
 
 <body>
@@ -86,7 +93,7 @@
                                             class="form-control" readonly>
                                         <input type="hidden" id="product" value="107.5" placeholder="Petrol"
                                             class="form-control" readonly>
-                    
+
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -396,7 +403,7 @@
                             <select name="fuel_type" id="fuel_type" class="form-control">
                                     <option value="Diesel">Diesel</option>
                                     <option value="Petrol">Petrol</option>
-                            </select> 
+                            </select>
                         </div>
                         <div class="form-holder form-holder-2 mt-2 mb-2">
                             <label for="regno">Vehicle Registration</label></br>

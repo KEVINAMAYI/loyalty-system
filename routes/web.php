@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthorizedPurchaseController;
 use App\Http\Controllers\RewardFormatController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\DiscountController;
 
 
 
@@ -27,12 +28,12 @@ use App\Http\Controllers\AccountController;
 
 //Staff middleware --> can only be acccessed by users with the role of Staff
 Route::group(['middleware' => ['staff','optimizeImages']], function()
-{    
+{
      //front end routes
      Route::get('/choose-option', function () { return view('choose-option'); });
      Route::get('/enroll-customer', function () { return view('enroll-customer'); });
      Route::post('/edit-staff/{user}',  [CustomerController::class,'editStaff']);
- 
+
      //back end routes
      Route::post('/get-organization-data', [CustomerController::class,'getRegisteredCorporateDetails']);
      Route::get('/staff-dashboard', [CustomerController::class,'staffDashboard']);
@@ -43,6 +44,11 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::get('/vehicles', [VehicleController::class,'showVehicles']);
      Route::get('/customers/{customer}', [CustomerController::class,'deleteCustomer']);
      Route::get('/sales', [SaleController::class,'getSales']);
+     Route::get('/discounts', [DiscountController::class,'getDiscounts']);
+     Route::get('/redeem-discount', [DiscountController::class,'getCustomers']);
+     Route::get('/get-discount-data/{customer}',  [DiscountController::class,'getDiscountData']);
+     Route::post('/set-discount',  [DiscountController::class,'setDiscount']);
+     Route::post('/set-discount-status',  [DiscountController::class,'setDiscountStatus']);
      Route::get('/get-sale-data/{sale}', [SaleController::class,'getSaleData']);
      Route::get('/make-sale',[SaleController::class,'makeSale']);
      Route::post('/set-status', [RewardController::class,'setStatus']);
@@ -76,6 +82,7 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::post('/set-sale-status', [CustomerController::class,'setSaleStatus']);
      Route::post('/staff-authorize-fuel-purchase',[CustomerController::class,'staffAuthorizeFuelPurchase']);
      Route::get('/get-number-plate',[CustomerController::class,'autoCompleteCustomerSearch']);
+     Route::get('/discount-pdf/{discountId}',[DiscountController::class,'loadDiscountPDF']);
 
 });
 
@@ -101,7 +108,7 @@ Route::group(['middleware' => 'corporate'], function()
     Route::post('/edit-coorporate-vehicle',[VehicleController::class,'editVehicleData']);
     Route::get('/delete-authorized-purchase/{authorizedPurchase}',[AuthorizedPurchaseController::class,'deleteAuthorizeFuelPurchase']);
     Route::get('/my-account',[AccountController::class,'getAccountData']);
-    
+
 });
 
 

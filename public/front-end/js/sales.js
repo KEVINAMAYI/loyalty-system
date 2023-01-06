@@ -7,7 +7,7 @@ $(function(){
     });
 
 
-    
+
     $("#form-total").steps({
         headerTag: "h2",
         bodyTag: "section",
@@ -17,11 +17,11 @@ $(function(){
         titleTemplate : '<div class="title">#title#</div>',
         labels: {
             previous : 'Back',
-            next : '<i class="zmdi zmdi-arrow-right"></i>',
-            finish : '<i id="completed" class="zmdi zmdi-arrow-right"></i>',
+            next : '<span style="font-weight:bold">NEXT</span><i style="margin-left:10px;" class="zmdi zmdi-arrow-right"></i>',
+            finish : '<div id="completed"><span style="font-weight:bold">FINISH</span><i style="margin-left:10px;" id="completed" class="zmdi zmdi-arrow-right"></i></div>',
             current : ''
         },
-        onStepChanging: function (event, currentIndex, newIndex) { 
+        onStepChanging: function (event, currentIndex, newIndex) {
 
             const customer_id = localStorage.getItem('customer_id');
             const vehicle_id = localStorage.getItem('vehicle_id');
@@ -32,7 +32,7 @@ $(function(){
             formData = new FormData();
             formData.append('customer_id',customer_id);
             formData.append('vehicle_id',vehicle_id);
-            
+
             //get customer and vehicle data
             $.ajax({
                 type:'post',
@@ -60,7 +60,7 @@ $(function(){
                     $('#sales-email-val').text(customer[0].email);
                     $('#sales-vehicle-category').text(vehicle[0].vehicle_category);
                     $('#sales-vehicle-registration').text(vehicle[0].vehicle_registration);
-                    
+
                     if(vehicle[0].fuel_type == 'Petrol')
                     {
                         $('#fuel_type_label').val(fuel_details[0].product);
@@ -85,7 +85,7 @@ $(function(){
 
 
 
-            
+
                     $('#sales-amount-payable').text(amount_payable);
                     $('#sales-amount-paid').text(amount_paid);
 
@@ -129,7 +129,7 @@ $(function(){
 
 
                     }
-               
+
 
                     localStorage.setItem('amount_paid',amount_paid);
                     localStorage.setItem('amount_payable',amount_payable);
@@ -155,24 +155,24 @@ $(function(){
                 console.log("vehicle selected");
             }
 
-            
-            
-            //execute amount and image check on the second step 
+
+
+            //execute amount and image check on the second step
             if( currentIndex == 1) {
 
                 let amount_paid =parseInt($('#amount_paid').val());
                 let amount_payable =parseInt($('#amount_payable').val());
                 const selectedFile = document.getElementById('image').files;
                 let error = "";
-                
+
                 // compare amount payable and amount paid
                 if(!(amount_paid == amount_payable))
                 {
-             
+
                     error += "Amount paid must be equal to amount payable !";
                     swal("Error!", error , "error");
                     return;
-                    
+
                 }
                 else if(selectedFile.length == 0)
                 {
@@ -190,18 +190,18 @@ $(function(){
 
 
 
-               
-            
+
+
             }
 
-            
+
 
             $("#form-register").validate().settings.ignore = ":disabled,:hidden";
             return $("#form-register").valid();
         }
     });
 
-    
+
     isSubmitting = false;
 
     //get data to be used for sales
@@ -244,13 +244,13 @@ $(function(){
                {
 
 
-                
+
                //display customer details
                $('#display-details').remove();
                $('.main-section').append(
                    `
                    <div class="inner" style="margin-left:20px; margin-">
-                            
+
                    <div class="form-row">
                        <div class="form-holder form-holder-2">
                            <label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">ID/Phone/Vehicle Registration*</label>
@@ -265,10 +265,10 @@ $(function(){
                    <h3 style="color:white;">Customer Details</h3>
                    <div class="card" style="width: 100%; margin-bottom:25px; color:white; background-color:#2f8be0;">
                     <div class="card-body">
-                        
+
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Name :</span>
-                        <span> ${customer[0].first_name}  ${customer[0].last_name} </span> 
+                        <span> ${customer[0].first_name}  ${customer[0].last_name} </span>
                         </p>
 
                         <p class="card-text">
@@ -278,24 +278,24 @@ $(function(){
 
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Id Number :</span>
-                        <span>${customer[0].id_number}</span>                        
+                        <span>${customer[0].id_number}</span>
                         </p>
 
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Rewards :</span>
-                        <span>${customer[0].rewards}</span>                        
+                        <span>${customer[0].rewards}</span>
                         </p>
 
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Customer :</span>
-                        <span class="customer-type">${customer[0].reward_type_to_use}</span>                        
+                        <span class="customer-type">${customer[0].reward_type_to_use}</span>
                         </p>
 
                         <p class="card-text authorized-amount-paragraph">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Authorized Amount :</span>
-                        <span class="authorized-amount">${customer[0].reward_type_to_use}</span>                        
+                        <span class="authorized-amount">${customer[0].reward_type_to_use}</span>
                         </p>
-    
+
                     </div>
                     </div>
                     <h3 style="color:white; margin-top:40px; padding-left:5px;">Select Vehicle</h3>
@@ -304,7 +304,7 @@ $(function(){
 
                    `
                );
-                
+
                //set customer type
                if(customer[0].reward_type_to_use !== null)
                {
@@ -358,29 +358,29 @@ $(function(){
                                     ${vehicle.vehicle_category}
                                     </td>
                                     </tr>
-                                    
+
                                 </tbody>
                             </table>
                             </div>
                         </div>
-                    
+
                         `
                     );
-            
+
                });
 
                $('.main-section').append(`
-                <div  class="form-holder form-holder-2">
-                            <button type="button" id="addvehicle" style="max-width:150px; background-color:#f9a14d; border:0px; width:100%; font-size:15px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">ADD NEW</button>
-                        </div>
+                    <div  class="form-holder form-holder-2">
+                       <!-- <button type="button" id="addvehicle" style="max-width:150px; background-color:#f9a14d; border:0px; width:100%; font-size:15px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">ADD NEW</button>-->
+                  </div>
                `);
-               
+
 
                //Get vehicle data to be fueled
                $("#addvehicle").on('click',function() {
                  $('#add_vehicle_modal').modal('show');
                });
-               
+
 
                 //Get vehicle data to be fueled
                 $(".vehicle_sale_id").on('change',function() {
@@ -404,35 +404,35 @@ $(function(){
                }
 
             isSubmitting = false;
-            
+
             },
             error: function(data){
 
                 console.log(data);
                 swal("Error!", "Unauthorized user : please enter authorized id number, authorized phone number or authorized vehicle details and try again!", "error");
-                isSubmitting = false;        
+                isSubmitting = false;
 
              },
-          
+
            });
 
            return false;
 
     });
-  
+
 
     //get the status of the reward
     $(".usereward").on('change',function(){
-        
+
         var rewardStatus = $("input[type='radio']:checked").val();
-        
+
         if(rewardStatus == 'yes')
-        {   
+        {
             $( "#rewards" ).prop( "disabled", false );
 
         }
         else
-        {   
+        {
             $( "#rewards" ).val("");
             $( "#rewards" ).prop( "disabled", true );
 
@@ -441,12 +441,12 @@ $(function(){
     });
 
 
-    
+
       // calculate amount payable using the rewards of the customer
       $("#amountpayablebtn").on('click',function(){
 
         customer_type = $('.customer-type').text();
-        
+
         if(customer_type == 'Corporate')
         {
             $('#amount_payable').prop('readonly', false);
@@ -459,7 +459,7 @@ $(function(){
             url: "/reward-format",
             success: (data) => {
 
-            
+
             // get Rewards format
             rewards_format = data.rewards_format;
             console.log(rewards_format);
@@ -476,14 +476,14 @@ $(function(){
             authorized_amount = localStorage.getItem('authorized_amount');
             authorized_reward_type = localStorage.getItem('reward_type_to_use');
 
-            
+
             console.log(authorized_amount);
             console.log(authorized_reward_type);
-            
+
             //define the reward format to use
             if(!(isNaN(authorized_amount)) && ((authorized_reward_type == 'credit') || (authorized_reward_type == 'prepaid')))
             {
-                
+
                 var reward_format_to_use = {};
                 console.log(authorized_amount);
                 console.log(authorized_reward_type);
@@ -506,15 +506,15 @@ $(function(){
                         litres = parseFloat($("#liters_val").val());
                         total_amount =parseInt($('#total_amount').val());
 
-               
+
                         if((total_amount_ltr >= reward_format.low) && (total_amount_ltr <= reward_format.high))
-                        {   
-                            
+                        {
+
                             reward_percentage = parseFloat(reward_format.shillings_per_litre);
                             reward_type = reward_format.reward_type;
                             reward_format_to_use[reward_type] = reward_percentage;
 
-                        
+
                         }
                     }
 
@@ -534,20 +534,20 @@ $(function(){
 
                     if((litres >= reward_format.low) && (litres <= reward_format.high) && (reward_format.reward_type != 'credit') && (reward_format.reward_type != 'prepaid'))
                     {
-                        
+
                         reward_percentage = parseFloat(reward_format.shillings_per_litre);
                         reward_type = reward_format.reward_type;
                         reward_format_to_use[reward_type] = reward_percentage;
                         reward_format_length = Object.keys(reward_format_to_use).length;
-                    
+
 
                     }
 
                 });
 
             }
-           
-            
+
+
             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
             if(rewards != null && isNaN(rewards) !== true)
@@ -556,18 +556,18 @@ $(function(){
                 // check if the rewards entered is not less than the customer reward value
                 if(rewards > customer_rewards)
                 {
-                   
+
                     swal("Error!", "Please Input less reward value, your rewards are less than the rewards set!", "error");
                 }
                 else
-                {   
-                     
+                {
+
                     if('bulk' in reward_format_to_use)
-                    {  
+                    {
                         console.log('bulk');
 
                         if(firstsale == 1)
-                        { 
+                        {
                             console.log(true);
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -590,14 +590,14 @@ $(function(){
                              date = new Date();
                              start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                              end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                             
+
                              localStorage.setItem('sale_start_date',start_date);
                              localStorage.setItem('sale_end_date',end_date);
                              console.log(rewards_awarded)
                         }
                         else
-                        {  
-                            
+                        {
+
                             console.log(false);
 
 
@@ -630,17 +630,17 @@ $(function(){
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
                         }
-                       
+
 
 
 
                     }
                     else if('credit' in reward_format_to_use)
                     {
-                        
+
 
                         if(firstsale == 1)
-                        { 
+                        {
                             console.log(true);
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -666,7 +666,7 @@ $(function(){
                              date = new Date();
                              start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                              end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                             
+
                              localStorage.setItem('sale_start_date',start_date);
                              localStorage.setItem('sale_end_date',end_date);
                              console.log(rewards_awarded);
@@ -674,10 +674,10 @@ $(function(){
                              console.log(sale_end_date);
                         }
                         else
-                        {  
-                            
+                        {
+
                             console.log(total_amount);
-                            console.log(reward_format_to_use['credit']); 
+                            console.log(reward_format_to_use['credit']);
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -712,7 +712,7 @@ $(function(){
                             console.log(sale_start_date);
                             console.log(sale_end_date);
                         }
-                       
+
 
 
 
@@ -721,7 +721,7 @@ $(function(){
                     {
 
                         if(firstsale == 1)
-                        { 
+                        {
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -736,7 +736,7 @@ $(function(){
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['prepaid'] * litres).toFixed(2);
-                           
+
                             console.log(customer_rewards);
 
                             $('#sales-rewards-awarded').text(rewards_awarded);
@@ -745,14 +745,14 @@ $(function(){
                              date = new Date();
                              start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                              end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                             
+
                              localStorage.setItem('sale_start_date',start_date);
                              localStorage.setItem('sale_end_date',end_date);
                              console.log(rewards_awarded)
                         }
                         else
-                        {  
-                            
+                        {
+
                             console.log(false);
 
 
@@ -787,10 +787,10 @@ $(function(){
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
                         }
-                       
+
                     }
                     else
-                    {   
+                    {
                         console.log('reter');
 
                         if(firstsale == 1){
@@ -815,7 +815,7 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                            
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -823,7 +823,7 @@ $(function(){
 
                         }
                         else
-                        {    
+                        {
 
                            let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -865,7 +865,7 @@ $(function(){
                            }
                            else
                            {
-                            
+
                                 swal("Error!", "You are not eligble to use rewards, you must complete one month!", "error")
 
                                 let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -897,15 +897,15 @@ $(function(){
                                 localStorage.setItem('sale_end_date',end_date);
                                 console.log(rewards_awarded)
 
-                          
+
                             }
-                           
+
                         }
-                        
+
 
                     }
-           
-                     
+
+
                      localStorage.setItem('new_cutomer_rewards',new_cutomer_rewards);
                      localStorage.setItem('used_rewards',rewards);
                      localStorage.setItem('rewards_awarded',rewards_awarded);
@@ -913,11 +913,11 @@ $(function(){
 
                 }
 
-                
+
             }
             else
             {
-                
+
                     if('bulk' in reward_format_to_use)
                     {
                         if(firstsale == 1)
@@ -942,7 +942,7 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                           
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -966,11 +966,11 @@ $(function(){
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['bulk'] * litres);
 
-                           
+
                             date = new Date();
                             start_date = localStorage.getItem('db_start_date');
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                           
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -1003,7 +1003,7 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                           
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -1034,13 +1034,13 @@ $(function(){
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['credit'] * litres);
                             console.log(rewards_awarded);
-                           
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
 
                             date = new Date();
                             start_date = localStorage.getItem('db_start_date');
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                            
+
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
                             console.log(start_date);
@@ -1076,7 +1076,7 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                           
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -1116,7 +1116,7 @@ $(function(){
 
                     }
                     else
-                    {  
+                    {
 
                         if('monthly' in reward_format_to_use)
                         {
@@ -1128,21 +1128,21 @@ $(function(){
                                 let amount_to_pay = total_amount - 0;
                                 $('#amount_payable').val(amount_to_pay);
                                 rewards_used = 0;
-        
+
                                 console.log(customer_rewards);
-        
+
                                 //bulk rewards
                                 new_cutomer_rewards = (parseInt(customer_rewards) - 0) + (reward_format_to_use['monthly'] * litres);
                                 $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                                 new_cutomer_rewards.toFixed(2);
                                 rewards_awarded =(reward_format_to_use['monthly']*litres).toFixed(2);
-        
-        
+
+
                                  //get current day
                                  date = new Date();
                                  start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                                  end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                               
+
                                  $('#sales-rewards-awarded').text(rewards_awarded);
                                  localStorage.setItem('sale_start_date',start_date);
                                  localStorage.setItem('sale_end_date',end_date);
@@ -1158,25 +1158,25 @@ $(function(){
                                 rewards = 0;
 
                                 let customer_rewards = localStorage.getItem('cutomer_rewards');
-        
+
                                 //calculate amount payable with the rewards set only when the reward option is enabled
                                 let amount_to_pay = total_amount - 0;
                                 $('#amount_payable').val(amount_to_pay);
                                 rewards_used = rewards;
-        
+
                                 console.log(customer_rewards);
-        
+
                                 //bulk rewards
                                 new_cutomer_rewards = (parseInt(customer_rewards) - rewards) + (reward_format_to_use['monthly'] * litres);
                                 $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                                 new_cutomer_rewards.toFixed(2);
                                 rewards_awarded = (reward_format_to_use['monthly'] * litres).toFixed(2);
-        
+
                                 //get current day
                                 date = new Date();
                                 start_date = localStorage.getItem('db_start_date');
                                 end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                                
+
                                 $('#sales-rewards-awarded').text(rewards_awarded);
                                 localStorage.setItem('sale_start_date',start_date);
                                 localStorage.setItem('sale_end_date',end_date);
@@ -1186,17 +1186,17 @@ $(function(){
 
 
 
-        
-                               }
-        
-                        }
-                        
 
-                      
+                               }
+
+                        }
+
+
+
 
                     }
-           
-                     
+
+
                      $('#sales-rewards-awarded').text(rewards_awarded);
                      localStorage.setItem('new_cutomer_rewards',new_cutomer_rewards);
                      localStorage.setItem('used_rewards',rewards_used);
@@ -1205,17 +1205,17 @@ $(function(){
 
 
             }
-                
-               
+
+
             },
             error: function(data){
-                   
+
                 console.log(data);
 
              }
            })
 
-           
+
 
 
     });
@@ -1229,7 +1229,7 @@ $(function(){
     });
 
 
-    
+
     //calculate cash if litres is entered
     $('#liters_val').on('keyup',function(){
         product_amount = parseFloat($('#product').val());
@@ -1241,12 +1241,12 @@ $(function(){
 
     //calculate cash if litres is entered
     $('#amount_payable').on('keyup keypress',function(){
-        
+
         authorized_amount =  parseInt(localStorage.getItem('authorized_amount'));
         var amount_payable = $('#amount_payable').val();
-        
+
         if(amount_payable > authorized_amount)
-        {  
+        {
 
             product_amount = parseFloat($('#product').val());
             liters = authorized_amount/product_amount
@@ -1268,7 +1268,7 @@ $(function(){
             url: "/reward-format",
             success: (data) => {
 
-            
+
             // get Rewards format
             rewards_format = data.rewards_format;
 
@@ -1284,14 +1284,14 @@ $(function(){
             authorized_amount = localStorage.getItem('authorized_amount');
             authorized_reward_type = localStorage.getItem('reward_type_to_use');
 
-            
+
             console.log(authorized_amount);
             console.log(authorized_reward_type);
-            
+
             //define the reward format to use
             if(!(isNaN(authorized_amount)) && ((authorized_reward_type == 'credit') || (authorized_reward_type == 'prepaid')))
             {
-                
+
                 var reward_format_to_use = {};
                 console.log(authorized_amount);
                 console.log(authorized_reward_type);
@@ -1301,7 +1301,7 @@ $(function(){
 
                     if(reward_format.reward_type == authorized_reward_type)
                     {
-                        
+
 
                         //calculate amount of litres
                         product_amount = parseFloat($('#product').val());
@@ -1312,15 +1312,15 @@ $(function(){
                         litres = parseFloat($("#liters_val").val());
                         total_amount =parseInt($('#total_amount').val());
 
-               
+
                         if((total_amount_ltr >= reward_format.low) && (total_amount_ltr <= reward_format.high))
-                        {   
-                            
+                        {
+
                             reward_percentage = parseFloat(reward_format.shillings_per_litre);
                             reward_type = reward_format.reward_type;
                             reward_format_to_use[reward_type] = reward_percentage;
 
-                        
+
                         }
                     }
 
@@ -1340,20 +1340,20 @@ $(function(){
 
                     if((litres >= reward_format.low) && (litres <= reward_format.high) && (reward_format.reward_type != 'credit') && (reward_format.reward_type != 'prepaid'))
                     {
-                        
+
                         reward_percentage = parseFloat(reward_format.shillings_per_litre);
                         reward_type = reward_format.reward_type;
                         reward_format_to_use[reward_type] = reward_percentage;
                         reward_format_length = Object.keys(reward_format_to_use).length;
-                    
+
 
                     }
 
                 });
 
             }
-           
-            
+
+
             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
             if(rewards != null && isNaN(rewards) != true)
@@ -1362,18 +1362,18 @@ $(function(){
                 // check if the rewards entered is not less than the customer reward value
                 if(rewards > customer_rewards)
                 {
-                   
+
                     swal("Error!", "Please Input less reward value, your rewards are less than the rewards set!", "error");
                 }
                 else
-                {   
-                     
+                {
+
                     if('bulk' in reward_format_to_use)
-                    {  
+                    {
                         console.log('bulk');
 
                         if(firstsale == 1)
-                        { 
+                        {
                             console.log(true);
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -1396,14 +1396,14 @@ $(function(){
                              date = new Date();
                              start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                              end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                             
+
                              localStorage.setItem('sale_start_date',start_date);
                              localStorage.setItem('sale_end_date',end_date);
                              console.log(rewards_awarded)
                         }
                         else
-                        {  
-                            
+                        {
+
                             console.log(false);
 
 
@@ -1436,17 +1436,17 @@ $(function(){
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
                         }
-                       
+
 
 
 
                     }
                     else if('credit' in reward_format_to_use)
                     {
-                        
+
 
                         if(firstsale == 1)
-                        { 
+                        {
                             console.log(true);
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -1472,7 +1472,7 @@ $(function(){
                              date = new Date();
                              start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                              end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                             
+
                              localStorage.setItem('sale_start_date',start_date);
                              localStorage.setItem('sale_end_date',end_date);
                              console.log(rewards_awarded);
@@ -1480,10 +1480,10 @@ $(function(){
                              console.log(sale_end_date);
                         }
                         else
-                        {  
-                            
+                        {
+
                             console.log(total_amount);
-                            console.log(reward_format_to_use['credit']); 
+                            console.log(reward_format_to_use['credit']);
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -1518,7 +1518,7 @@ $(function(){
                             console.log(sale_start_date);
                             console.log(sale_end_date);
                         }
-                       
+
 
 
 
@@ -1528,7 +1528,7 @@ $(function(){
                         console.log('prepaid');
 
                         if(firstsale == 1)
-                        { 
+                        {
                             console.log(true);
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -1544,7 +1544,7 @@ $(function(){
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['prepaid'] * litres).toFixed(2);
-                           
+
                             console.log(customer_rewards);
 
                             $('#sales-rewards-awarded').text(rewards_awarded);
@@ -1553,14 +1553,14 @@ $(function(){
                              date = new Date();
                              start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                              end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                             
+
                              localStorage.setItem('sale_start_date',start_date);
                              localStorage.setItem('sale_end_date',end_date);
                              console.log(rewards_awarded)
                         }
                         else
-                        {  
-                            
+                        {
+
                             console.log(false);
 
 
@@ -1595,10 +1595,10 @@ $(function(){
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
                         }
-                       
+
                     }
                     else
-                    {   
+                    {
 
                         if(firstsale == 1){
 
@@ -1622,7 +1622,7 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                            
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -1630,7 +1630,7 @@ $(function(){
 
                         }
                         else
-                        {    
+                        {
 
                            let customer_rewards = localStorage.getItem('cutomer_rewards');
 
@@ -1672,7 +1672,7 @@ $(function(){
                            }
                            else
                            {
-                            
+
                                 swal("Error!", "You are not eligble to use rewards, you must complete one month!", "error")
 
                                 let customer_rewards = localStorage.getItem('cutomer_rewards');
@@ -1704,15 +1704,15 @@ $(function(){
                                 localStorage.setItem('sale_end_date',end_date);
                                 console.log(rewards_awarded)
 
-                          
+
                             }
-                           
+
                         }
-                        
+
 
                     }
-           
-                     
+
+
                      localStorage.setItem('new_cutomer_rewards',new_cutomer_rewards);
                      localStorage.setItem('used_rewards',rewards);
                      localStorage.setItem('rewards_awarded',rewards_awarded);
@@ -1720,11 +1720,11 @@ $(function(){
 
                 }
 
-                
+
             }
             else
             {
-                
+
                     if('bulk' in reward_format_to_use)
                     {
                         if(firstsale == 1)
@@ -1749,7 +1749,7 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                           
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -1773,11 +1773,11 @@ $(function(){
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['bulk'] * litres);
 
-                           
+
                             date = new Date();
                             start_date = localStorage.getItem('db_start_date');
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                           
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -1810,7 +1810,7 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                           
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -1841,13 +1841,13 @@ $(function(){
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['credit'] * litres);
                             console.log(rewards_awarded);
-                           
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
 
                             date = new Date();
                             start_date = localStorage.getItem('db_start_date');
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                            
+
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
                             console.log(start_date);
@@ -1883,7 +1883,7 @@ $(function(){
                             date = new Date();
                             start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                             end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                           
+
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
@@ -1922,7 +1922,7 @@ $(function(){
 
                     }
                     else
-                    {  
+                    {
 
                         if('monthly' in reward_format_to_use)
                         {
@@ -1934,25 +1934,25 @@ $(function(){
                                 let amount_to_pay = total_amount - 0;
                                 $('#amount_payable').val(amount_to_pay);
                                 rewards_used = 0;
-        
+
                                 console.log(customer_rewards);
-        
+
                                 //bulk rewards
                                 new_cutomer_rewards = (parseInt(customer_rewards) - 0) + (reward_format_to_use['monthly'] * litres);
                                 $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                                 new_cutomer_rewards.toFixed(2);
                                 rewards_awarded =(reward_format_to_use['monthly']*litres).toFixed(2);
-        
-        
+
+
                                  //get current day
                                  date = new Date();
                                  start_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                                  end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                               
+
                                  $('#sales-rewards-awarded').text(rewards_awarded);
                                  localStorage.setItem('sale_start_date',start_date);
                                  localStorage.setItem('sale_end_date',end_date);
-        
+
                                }
                                else
                                {
@@ -1960,40 +1960,40 @@ $(function(){
                                 rewards = 0;
 
                                 let customer_rewards = localStorage.getItem('cutomer_rewards');
-        
+
                                 //calculate amount payable with the rewards set only when the reward option is enabled
                                 let amount_to_pay = total_amount - 0;
                                 $('#amount_payable').val(amount_to_pay);
                                 rewards_used = rewards;
-        
+
                                 console.log(customer_rewards);
-        
+
                                 //bulk rewards
                                 new_cutomer_rewards = (parseInt(customer_rewards) - rewards) + (reward_format_to_use['monthly'] * litres);
                                 $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                                 new_cutomer_rewards.toFixed(2);
                                 rewards_awarded = (reward_format_to_use['monthly'] * litres).toFixed(2);
-        
+
                                 //get current day
                                 date = new Date();
                                 start_date = localStorage.getItem('db_start_date');
                                 end_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-                                
+
                                 $('#sales-rewards-awarded').text(rewards_awarded);
                                 localStorage.setItem('sale_start_date',start_date);
                                 localStorage.setItem('sale_end_date',end_date);
-        
-        
-                               }
-        
-                        }
-                        
 
-                      
+
+                               }
+
+                        }
+
+
+
 
                     }
-           
-                     
+
+
                      $('#sales-rewards-awarded').text(rewards_awarded);
                      localStorage.setItem('new_cutomer_rewards',new_cutomer_rewards);
                      localStorage.setItem('used_rewards',rewards_used);
@@ -2002,32 +2002,32 @@ $(function(){
 
 
             }
-                
-               
+
+
             },
             error: function(data){
-                   
+
                 console.log(data);
 
              }
            })
 
         }
-        
+
     });
 
 
 
 
 
-     //display an alert message redirect user back to choose-option page 
+     //display an alert message redirect user back to choose-option page
      $("#completed").on('click',function(){
 
 
         $('html, body').animate({
             scrollTop: $("#progress").offset().top
         }, 500);
-        
+
         $('#progress').css('display','');
 
         const selectedFile = document.getElementById('image').files[0];
@@ -2050,8 +2050,8 @@ $(function(){
         const sale_end_date = localStorage.getItem('sale_end_date');
         const sold_by = $('#sales-person-name').text();
         const product_text = $( "#fuel_type_label" ).val();
-        
-      
+
+
 
 
         formData = new FormData();
@@ -2074,7 +2074,7 @@ $(function(){
         formData.append('sold_by',sold_by);
         formData.append('product_text',product_text);
 
-  
+
 
         console.log(sold_by);
         console.log(sale_start_date);
@@ -2119,8 +2119,8 @@ $(function(){
 
                     }
 
-                  console.log(data);            
-            
+                  console.log(data);
+
              }
            });
 
@@ -2161,13 +2161,13 @@ $(function(){
                 .then(() => {
                     location.reload();
                 });
-                
 
-             
+
+
             },
             error: function(data){
-                   
-                  
+
+
                 swal("Error!", "There was an error adding vehicle Please try again!", "error");
 
 
@@ -2179,48 +2179,48 @@ $(function(){
 
          //set vehicle image
          $('#image').on('change',function(){
-           
+
             let reader = new FileReader();
-        
-            reader.onload = (e) => { 
-        
-              $('#vehicle_image').attr('src', e.target.result); 
+
+            reader.onload = (e) => {
+
+              $('#vehicle_image').attr('src', e.target.result);
 
             }
-        
-            reader.readAsDataURL(this.files[0]); 
-          
+
+            reader.readAsDataURL(this.files[0]);
+
            });
 
 
         //set pump image
          $('#pump_image').on('change',function(){
-           
+
             let reader = new FileReader();
-        
-            reader.onload = (e) => { 
-        
-              $('#vehicle_pump_image').attr('src', e.target.result); 
+
+            reader.onload = (e) => {
+
+              $('#vehicle_pump_image').attr('src', e.target.result);
 
             }
-        
-            reader.readAsDataURL(this.files[0]); 
-          
+
+            reader.readAsDataURL(this.files[0]);
+
            });
 
            //set pump image
         //  $('#receipt_image').on('change',function(){
-           
+
         //     let reader = new FileReader();
-        
-        //     reader.onload = (e) => { 
-        
-        //       $('#vehicle_receipt_image').attr('src', e.target.result); 
+
+        //     reader.onload = (e) => {
+
+        //       $('#vehicle_receipt_image').attr('src', e.target.result);
 
         //     }
-        
-        //     reader.readAsDataURL(this.files[0]); 
-          
+
+        //     reader.readAsDataURL(this.files[0]);
+
         //    });
 
            //autocomplete when searching vehicle
@@ -2234,5 +2234,5 @@ $(function(){
                }
            });
 
-        
+
 });

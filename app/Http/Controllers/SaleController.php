@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Sale;
 use App\Models\Reward;
 use App\Models\Products;
@@ -64,6 +65,9 @@ class SaleController extends Controller
 
 
     }
+
+
+
 
 
 
