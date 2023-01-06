@@ -507,7 +507,7 @@
 
                 $("#pending_name").text(customer[0].first_name+" "+customer[0].last_name+" "+customer[0].phone_number );
                 $("#pending_vehiclereg").text(vehicle[0].vehicle_registration);
-                $("#pending_rewards").text(`${customer[0].rewards},  2000`);
+                $("#pending_rewards").text(`${customer[0].rewards},  ${customer[0].rewards}`);
                 $("#pending_discount_value").text(discount[0].amount);
                 $('#pending-discount-details-modal').modal('show');
 
@@ -544,7 +544,7 @@
 
                 $("#name").text(customer[0].first_name+" "+customer[0].last_name+" "+customer[0].phone_number );
                 $("#vehiclereg").text(vehicle[0].vehicle_registration);
-                $("#rewards").text(`${customer[0].rewards},  2000`);
+                $("#rewards").text(`${customer[0].rewards},  ${customer[0].rewards}`);
                 $("#discount_value").text(discount[0].amount);
                 $('#confirm-discount-details-modal').modal('show');
 
@@ -577,7 +577,7 @@
 
                 $("#name").text(customer[0].first_name+" "+customer[0].last_name+" "+customer[0].phone_number );
                 $("#vehiclereg").text(vehicle[0].vehicle_registration);
-                $("#rewards").text(`${customer[0].rewards},  2000`);
+                $("#rewards").text(`${customer[0].rewards},  ${customer[0].rewards}`);
                 $("#customer_id").val(id);
 
                 $('#discount-details-modal').modal('show');
