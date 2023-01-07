@@ -249,6 +249,7 @@
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="staff/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
 <script>
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -403,11 +404,11 @@
                 formData = new FormData;
                 formData.append('customer_id',customer_id);
                 formData.append('discount',discount);
-                
+
 
                 $.ajax({
-                    type:'post',
-                    url: "/set-discount/",
+                    type:'get',
+                    url: "/set-discount",
                     data:formData,
                     processData: false,
                     contentType: false,
