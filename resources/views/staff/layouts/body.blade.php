@@ -403,6 +403,7 @@
                 formData = new FormData;
                 formData.append('customer_id',customer_id);
                 formData.append('discount',discount);
+                
 
                 $.ajax({
                     type:'post',
