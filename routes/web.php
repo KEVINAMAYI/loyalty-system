@@ -48,7 +48,7 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::get('/redeem-discount', [DiscountController::class,'getCustomers']);
      Route::get('/get-discount-data/{customer}',  [DiscountController::class,'getDiscountData']);
      Route::get('/set-discount',  [DiscountController::class,'setDiscount']);
-     Route::post('/set-discount-status',  [DiscountController::class,'setDiscountStatus']);
+     Route::get('/set-discount-status',  [DiscountController::class,'setDiscountStatus']);
      Route::get('/get-sale-data/{sale}', [SaleController::class,'getSaleData']);
      Route::get('/make-sale',[SaleController::class,'makeSale']);
      Route::post('/set-status', [RewardController::class,'setStatus']);

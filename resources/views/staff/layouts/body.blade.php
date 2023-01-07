@@ -401,17 +401,15 @@
 
             if (confirm(confirmation_value) == true) {
 
-                formData = new FormData;
-                formData.append('customer_id',customer_id);
-                formData.append('discount',discount);
-
 
                 $.ajax({
                     type:'get',
                     url: "/set-discount",
-                    data:formData,
-                    processData: false,
-                    contentType: false,
+                    data:{
+                        customer_id : customer_id,
+                        discount : discount
+                    },
+                    dataType: 'json',
                     success: (data) => {
 
                         console.log(data);
@@ -453,16 +451,14 @@
 
             if (confirm(confirmation_value) == true) {
 
-                formData = new FormData;
-                formData.append('discount_id',discount_id);
-                formData.append('status','approved');
-
                 $.ajax({
-                    type:'post',
-                    url: "/set-discount-status/",
-                    data:formData,
-                    processData: false,
-                    contentType: false,
+                    type:'get',
+                    url: "/set-discount-status",
+                    data:{
+                       discount_id : discount_id,
+                       status : 'approved'
+                    },
+                    dataType: 'json',
                     success: (data) => {
 
                         console.log(data);
