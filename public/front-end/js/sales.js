@@ -453,10 +453,12 @@ $(function(){
 
         }
 
-        // get rewards
+        let product_text = $( "#fuel_type_label" ).val();
+
+        //get rewards
         $.ajax({
             type:'get',
-            url: "/reward-format",
+            url: "/reward-format/"+product_text,
             success: (data) => {
 
 
@@ -513,7 +515,7 @@ $(function(){
                             reward_percentage = parseFloat(reward_format.shillings_per_litre);
                             reward_type = reward_format.reward_type;
                             reward_format_to_use[reward_type] = reward_percentage;
-
+                            console.log(reward_format_to_use);
 
                         }
                     }
@@ -547,7 +549,7 @@ $(function(){
 
             }
 
-
+           console.log(reward_format_to_use);
             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
             if(rewards != null && isNaN(rewards) !== true)
@@ -1261,13 +1263,13 @@ $(function(){
             liters = amount_payable/product_amount
             litres = $("#liters_val").val(liters.toFixed(2));
             $("#total_amount").val(parseInt(amount_payable));
+            let product_text = $( "#fuel_type_label" ).val();
 
-        // get rewards
+            // get rewards
         $.ajax({
             type:'get',
-            url: "/reward-format",
+            url: "/reward-format/"+product_text,
             success: (data) => {
-
 
             // get Rewards format
             rewards_format = data.rewards_format;
@@ -1353,6 +1355,7 @@ $(function(){
 
             }
 
+            console.log(reward_format_to_use);
 
             let customer_rewards = localStorage.getItem('cutomer_rewards');
 

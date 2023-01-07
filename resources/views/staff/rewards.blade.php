@@ -24,7 +24,7 @@
         <ul class="list-group">
             @foreach ($errors->all() as $error )
             <li class="list-group-item">
-            {{ $error }}  
+            {{ $error }}
             </li>
             @endforeach
         </ul>
@@ -76,8 +76,8 @@
                                   Action</th>
                           </tr>
                       </thead>
-                      <tbody>  
-                        @foreach($products_details as $product_details)                
+                      <tbody>
+                        @foreach($products_details as $product_details)
                           <tr>
                               <td class="align-middle text-center text-sm">
                                   <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $product_details->product }}</p>
@@ -106,6 +106,11 @@
     </div>
     </div>
   </div>
+
+          <div class="container">
+              <p style="margin-bottom:5px; font-weight:bold; font-size:24px;">Petrol Rewards</p>
+
+          </div>
   <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
@@ -134,13 +139,13 @@
                         Action</th>
                 </tr>
             </thead>
-                <tbody>  
-                  @foreach($rewards_monthly as $reward_monthly)                
+                <tbody>
+                  @foreach($petrol_monthly_rewards as $reward_monthly)
                     <tr>
                         <td class="align-middle text-center text-sm">
                             <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $reward_monthly->low }} - {{ $reward_monthly->high }} </p>
                         </td>
-                        
+
                         <td class="align-middle text-center text-sm">
                             <span
                                 class="text-secondary text-xs font-weight-bold">{{ $reward_monthly->reward_type }}</span>
@@ -194,13 +199,13 @@
                       Action</th>
               </tr>
           </thead>
-              <tbody>  
-                @foreach($rewards_bulk as $reward_bulk)                
+              <tbody>
+                @foreach($petrol_bulk_rewards as $reward_bulk)
                   <tr>
                       <td class="align-middle text-center text-sm">
                           <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $reward_bulk->low }} - {{ $reward_bulk->high }} </p>
                       </td>
-                      
+
                       <td class="align-middle text-center text-sm">
                           <span
                               class="text-secondary text-xs font-weight-bold">{{ $reward_bulk->reward_type }}</span>
@@ -256,13 +261,13 @@
                       Action</th>
               </tr>
           </thead>
-              <tbody>  
-                @foreach($rewards_credits as $rewards_credit)                
+              <tbody>
+                @foreach($petrol_credits_rewards as $rewards_credit)
                   <tr>
                       <td class="align-middle text-center text-sm">
                           <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $rewards_credit->low }} - {{ $rewards_credit->high }} </p>
                       </td>
-                      
+
                       <td class="align-middle text-center text-sm">
                           <span
                               class="text-secondary text-xs font-weight-bold">{{ $rewards_credit->reward_type }}</span>
@@ -317,13 +322,13 @@
                       Action</th>
               </tr>
           </thead>
-              <tbody>  
-                @foreach($rewards_prepaids as $rewards_prepaid)                
+              <tbody>
+                @foreach($petrol_prepaid_rewards as $rewards_prepaid)
                   <tr>
                       <td class="align-middle text-center text-sm">
                           <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $rewards_prepaid->low }} - {{ $rewards_prepaid->high }} </p>
                       </td>
-                      
+
                       <td class="align-middle text-center text-sm">
                           <span
                               class="text-secondary text-xs font-weight-bold">{{ $rewards_prepaid->reward_type }}</span>
@@ -349,6 +354,255 @@
       </div>
     </div>
   </div>
+
+          <div class="container">
+              <p style="margin-bottom:5px; font-weight:bold; font-size:24px;">Diesel Rewards</p>
+          </div>
+
+          <div class="container-fluid py-4">
+              <div class="row">
+                  <div class="col-12">
+                      <div class="card mb-4">
+                          <div class="card-header pb-0">
+                              <h6>Monthly Rewards</h6>
+                          </div>
+                          <div class="table-responsive p-0">
+                              <table class="table align-items-center mb-0">
+                                  <thead>
+                                  <tr>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Range</th>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                          Reward Type</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Rewards in Shillings</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Reward Period</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Action</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  @foreach($diesel_monthly_rewards as $reward_monthly)
+                                      <tr>
+                                          <td class="align-middle text-center text-sm">
+                                              <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $reward_monthly->low }} - {{ $reward_monthly->high }} </p>
+                                          </td>
+
+                                          <td class="align-middle text-center text-sm">
+                            <span
+                                class="text-secondary text-xs font-weight-bold">{{ $reward_monthly->reward_type }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                            <span
+                                class="text-secondary text-xs font-weight-bold">{{ $reward_monthly->shillings_per_litre }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $reward_monthly->price_period }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                                              <button id="{{ $reward_monthly->id }}" style="border:0px; background-color:#3875b6;" class="editmonthlyrewardbtn badge badge-sm">edit</button>
+                                              {{-- <a href="/delete-cooperate-employee/" class="badge badge-sm bg-gradient-danger">delete</a> --}}
+                                          </td>
+                                      </tr>
+                                  @endforeach
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="container-fluid py-4">
+              <div class="row">
+                  <div class="col-12">
+                      <div class="card mb-4">
+                          <div class="card-header pb-0">
+                              <h6>Bulk Rewards</h6>
+                          </div>
+                          <div class="table-responsive p-0">
+                              <table class="table align-items-center mb-0">
+                                  <thead>
+                                  <tr>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Range</th>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                          Reward Type</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Rewards in Shillings</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Reward Period</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Action</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  @foreach($diesel_bulk_rewards as $reward_bulk)
+                                      <tr>
+                                          <td class="align-middle text-center text-sm">
+                                              <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $reward_bulk->low }} - {{ $reward_bulk->high }} </p>
+                                          </td>
+
+                                          <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $reward_bulk->reward_type }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $reward_bulk->shillings_per_litre }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                        <span
+                            class="text-secondary text-xs font-weight-bold">{{ $reward_bulk->price_period }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                                              <button id="{{ $reward_bulk->id }}" style="border:0px; background-color:#3875b6;" class="editbulkrewardbtn badge badge-sm">edit</button>
+                                              {{-- <a href="/delete-cooperate-employee/" class="badge badge-sm bg-gradient-danger">delete</a> --}}
+                                          </td>
+                                      </tr>
+                                  @endforeach
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="container-fluid py-4">
+              <div class="row">
+                  <div class="col-12">
+                      <div class="card mb-4">
+                          <div class="card-header pb-0">
+                              <h6>Corporate Credit Rewards</h6>
+                          </div>
+                          <div class="table-responsive p-0">
+                              <table class="table align-items-center mb-0">
+                                  <thead>
+                                  <tr>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Range</th>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                          Reward Type</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Rewards in Shillings</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Reward Period</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Action</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  @foreach($diesel_credits_rewards as $rewards_credit)
+                                      <tr>
+                                          <td class="align-middle text-center text-sm">
+                                              <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $rewards_credit->low }} - {{ $rewards_credit->high }} </p>
+                                          </td>
+
+                                          <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $rewards_credit->reward_type }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $rewards_credit->shillings_per_litre }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                        <span
+                            class="text-secondary text-xs font-weight-bold">{{ $rewards_credit->price_period }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                                              <button id="{{ $rewards_credit->id }}" style="border:0px; background-color:#3875b6;" class="editbulkrewardbtn badge badge-sm">edit</button>
+                                              {{-- <a href="/delete-cooperate-employee/" class="badge badge-sm bg-gradient-danger">delete</a> --}}
+                                          </td>
+                                      </tr>
+                                  @endforeach
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="container-fluid py-4">
+              <div class="row">
+                  <div class="col-12">
+                      <div class="card mb-4">
+                          <div class="card-header pb-0">
+                              <h6>Corporate Prepaid  Rewards</h6>
+                          </div>
+                          <div class="table-responsive p-0">
+                              <table class="table align-items-center mb-0">
+                                  <thead>
+                                  <tr>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Range</th>
+                                      <th
+                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                          Reward Type</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Rewards in Shillings</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Reward Period</th>
+                                      <th
+                                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          Action</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  @foreach($diesel_prepaid_rewards as $rewards_prepaid)
+                                      <tr>
+                                          <td class="align-middle text-center text-sm">
+                                              <p style="text-align:left; padding-left:20px;" class="text-xs font-weight-bold mb-0">{{ $rewards_prepaid->low }} - {{ $rewards_prepaid->high }} </p>
+                                          </td>
+
+                                          <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $rewards_prepaid->reward_type }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                          <span
+                              class="text-secondary text-xs font-weight-bold">{{ $rewards_prepaid->shillings_per_litre }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                        <span
+                            class="text-secondary text-xs font-weight-bold">{{ $rewards_prepaid->price_period }}</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                                              <button id="{{ $rewards_prepaid->id }}" style="border:0px; background-color:#3875b6;" class="editbulkrewardbtn badge badge-sm">edit</button>
+                                              {{-- <a href="/delete-cooperate-employee/" class="badge badge-sm bg-gradient-danger">delete</a> --}}
+                                          </td>
+                                      </tr>
+                                  @endforeach
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
 </div>
       </div>
     </div>
@@ -365,7 +619,7 @@
       <div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
         <ul class="list-group" id="errorsul">
         </ul>
-      </div> 
+      </div>
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Edit Product Details</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -374,7 +628,7 @@
         <div class="form-holder form-holder-2 mb-2">
           <label for="regno">Cost</label></br>
           <input id="product_cost" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="product_cost"  id="product_cost" placeholder="144.05">
-        </div>  
+        </div>
         <div class="form-holder form-holder-2">
           <label for="month">Month</label>
           <select name="month" id="month" class="form-control">
@@ -395,7 +649,7 @@
         <div class="form-holder form-holder-2 mb-2">
           <label for="year">Year</label></br>
           <input type="number" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " id="product_year" name="product_year" min="2022" max="2050" step="1">
-        </div>  
+        </div>
         <div class="modal-footer">
         <input type="hidden" id="staffid" value="">
         <input type="hidden" name="product_id" id="product_id">
@@ -418,7 +672,7 @@
       <div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
         <ul class="list-group" id="errorsul">
         </ul>
-      </div> 
+      </div>
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Edit Rewards</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -427,11 +681,11 @@
         <div class="form-holder form-holder-2 mb-2">
           <label for="regno">Lower Range(Ltrs)</label></br>
           <input id="staffname" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="lower_range"  class="lower_range" placeholder="100">
-        </div>  
+        </div>
         <div class="form-holder form-holder-2 mb-2">
           <label for="regno">Higher Range(Ltrs)</label></br>
           <input id="staffname" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="higher_range"  class="higher_range" placeholder="200">
-        </div> 
+        </div>
         <div class="form-holder form-holder-2 mb-2">
           <label for="regno">Reward Per Litre(KES)</label></br>
           <input id="staffname" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="reward_per_litre"  class="reward_per_litre" placeholder="2.5">
@@ -456,7 +710,7 @@
         <div class="form-holder form-holder-2 mb-2">
           <label for="year">Year</label></br>
           <input type="number" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " class="reward_year" name="reward_year" min="2022" max="2050" step="1">
-        </div>  
+        </div>
         <div class="modal-footer">
         <input type="hidden" id="monthly_reward_id" name="monthly_reward_id">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -478,7 +732,7 @@
       <div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;" class="alert alert-danger" id="errorz" role="alert">
         <ul class="list-group" id="errorsul">
         </ul>
-      </div> 
+      </div>
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Edit Rewards</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -487,11 +741,11 @@
         <div class="form-holder form-holder-2 mb-2">
           <label for="regno">Lower Range(Ltrs)</label></br>
           <input id="staffname" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="lower_range" class="lower_range"  id="bulk_lower_range" placeholder="100">
-        </div>  
+        </div>
         <div class="form-holder form-holder-2 mb-2">
           <label for="regno">Higher Range(Ltrs)</label></br>
           <input id="staffname" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="higher_range" class="higher_range"  id="bulk_higher_range" placeholder="200">
-        </div> 
+        </div>
         <div class="form-holder form-holder-2 mb-2">
           <label for="regno">Reward Per Litre(KES)</label></br>
           <input id="staffname" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="reward_per_litre" class="reward_per_litre" id="bulk_reward_per_litre" placeholder="2.5">
@@ -516,7 +770,7 @@
         <div class="form-holder form-holder-2 mb-2">
           <label for="year">Year</label></br>
           <input type="number" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " id="bulk_reward_year" name="reward_year" class="reward_year" min="2022" max="2050" step="1">
-        </div>  
+        </div>
         <div class="modal-footer">
         <input type="hidden" id="bulk_reward_id" name="bulk_reward_id">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

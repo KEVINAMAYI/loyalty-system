@@ -12,9 +12,9 @@ class RewardFormatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getRewardFormat()
+    public function getRewardFormat($product_type)
     {
-        $rewards_format = RewardFormat::all();
+        $rewards_format = RewardFormat::where('product_type',$product_type)->get();
         return response()->json([
             'rewards_format' => $rewards_format
         ]);
@@ -65,7 +65,7 @@ class RewardFormatController extends Controller
          ]);
 
          $data = $request->all();
-    
+
          RewardFormat::where('id',$data['bulk_reward_id'])->update([
              'low' => $data['lower_range'],
              'high' => $data['higher_range'],
@@ -79,7 +79,7 @@ class RewardFormatController extends Controller
         return redirect()->back();
     }
 
-   
+
     public function getSingleRewardFormat(RewardFormat $rewardFormat)
     {
 
@@ -88,8 +88,8 @@ class RewardFormatController extends Controller
 
             'rewardformat' => $rewardformat
         ]);
-        
-        
+
+
     }
 
     /**

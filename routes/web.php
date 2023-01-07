@@ -68,7 +68,7 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::post('/edit-customer/{cutomer}',  [CustomerController::class,'edit']);
      Route::post('/edit-vehicle/{vehicle}',  [VehicleController::class,'edit']);
      Route::post('/add-another-vehicle',  [CustomerController::class,'addAnotherVehicle']);
-     Route::get('/reward-format',  [RewardFormatController::class,'getRewardFormat']);
+     Route::get('/reward-format/{product_type}',  [RewardFormatController::class,'getRewardFormat']);
      Route::post('/edit-monthly-reward',  [RewardFormatController::class,'editMonthlyreward']);
      Route::post('/edit-bulk-reward',  [RewardFormatController::class,'editBulkreward']);
      Route::post('/set-credit-limit',  [AccountController::class,'setCreditLimit']);
