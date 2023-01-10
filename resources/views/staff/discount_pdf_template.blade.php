@@ -32,7 +32,7 @@
     </div>
     <div class="row mt-4">
         <div class="col-6">
-            <p ><span style="font-weight:bold;">Customer Name : </span><span> {{ $customer->first_name.' '.$customer->second_name }}</span></p>
+            <p ><span style="font-weight:bold;">Customer Name : </span><span> {{ $customer->first_name.' '.$customer->last_name }}</span></p>
         </div>
         <div class="col-6">
             <p><span style="font-weight:bold;">Customer Phone :</span> <span>{{ $customer->phone_number }}</span></p>
@@ -52,7 +52,7 @@
     </div>
     <div class="row mt-4">
         <div class="col-6">
-            <p ><span style="font-weight:bold;">Prepared By :</span> <span> {{ \Illuminate\Support\Facades\Auth::user()->name }} </span></p>
+            <p ><span style="font-weight:bold;">Customer :</span> <span> {{ $customer->first_name.' '.$customer->last_name }} </span></p>
         </div>
         <div class="col-6">
             <p ><span style="font-weight:bold;">Checked By :</span> <span> {{ $discount->redeemed_by }}</span></p>
@@ -69,6 +69,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 <script src="staff/assets/js/core/bootstrap.min.js"></script>
 <script src="/front-end/vendor/jquery/jquery-3.2.1.min.js"></script>
