@@ -69,7 +69,7 @@
                                     <tr>
 
                                         <td class="text-sm">
-                                            <span class="text-secondary text-xs font-weight-bold">{{ $discount->customer->first_name.' '.$discount->customer->second_name }}</span>
+                                            <span class="text-secondary text-xs font-weight-bold">{{ $discount->customer->first_name.' '.$discount->customer->last_name }}</span>
                                         </td>
                                         <td class="text-sm">
                                             <span class="text-secondary text-xs font-weight-bold">{{ $discount->customer->phone_number }}</span>
