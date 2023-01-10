@@ -52,7 +52,7 @@ class DiscountController extends Controller
 
         $customer_rewards = Customer::where('id',$data['customer_id'])->get()[0]->rewards;
 
-        if($customer_rewards > $data['discount'])
+        if($customer_rewards >= $data['discount'])
         {
             Discount::create([
                 'customer_id' => $data['customer_id'],

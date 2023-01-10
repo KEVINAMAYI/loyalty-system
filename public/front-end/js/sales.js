@@ -371,7 +371,7 @@ $(function(){
 
                $('.main-section').append(`
                     <div  class="form-holder form-holder-2">
-                       <!-- <button type="button" id="addvehicle" style="max-width:150px; background-color:#f9a14d; border:0px; width:100%; font-size:15px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">ADD NEW</button>-->
+                        <button type="button" id="addvehicle" style="max-width:150px; background-color:#f9a14d; border:0px; width:100%; font-size:15px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">ADD NEW</button>
                   </div>
                `);
 
