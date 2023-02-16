@@ -115,6 +115,7 @@ $(function(){
                     //set amount and litres if customer is authoried by the corporate
                     if(!(isNaN(customer[0].authorized_amount)) && ((customer[0].reward_type_to_use == 'credit') || (customer[0].reward_type_to_use == 'prepaid')))
                     {
+
                         //calculate amount of litres
                         product_amount = parseFloat($('#product').val());
                         total_amount_ltr = parseFloat( customer[0].authorized_amount / product_amount);
@@ -123,9 +124,18 @@ $(function(){
                         rewards = parseInt($('#rewards').val());
                         litres = parseFloat($("#liters_val").val());
                         total_amount =parseInt($('#total_amount').val());
-                        $('#total_amount').attr('readonly', true);
-                        $('#liters_val').attr('readonly', true);
 
+                        //allow sales agent to edit amount if amount is 0
+                        if(customer[0].authorized_amount == 0)
+                        {
+                            $('#total_amount').attr('readonly', false);
+                            $('#liters_val').attr('readonly', false);
+                        }
+                        else
+                        {
+                            $('#total_amount').attr('readonly', true);
+                            $('#liters_val').attr('readonly', true);
+                        }
 
 
                     }
@@ -270,27 +280,22 @@ $(function(){
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white">Name :</span>
                         <span> ${customer[0].first_name}  ${customer[0].last_name} </span>
                         </p>
-
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Phone Number :</span>
                         <span>${customer[0].phone_number}</span>
                         </p>
-
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Id Number :</span>
                         <span>${customer[0].id_number}</span>
                         </p>
-
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Rewards :</span>
                         <span>${customer[0].rewards}</span>
                         </p>
-
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Customer :</span>
                         <span class="customer-type">${customer[0].reward_type_to_use}</span>
                         </p>
-
                         <p class="card-text authorized-amount-paragraph">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Authorized Amount :</span>
                         <span class="authorized-amount">${customer[0].reward_type_to_use}</span>
@@ -498,12 +503,29 @@ $(function(){
                         console.log(reward_format.reward_type );
                         console.log(authorized_reward_type);
 
+                        //set product value
+                        const product_amount = parseFloat($('#product').val());
+                        let total_amount_ltr = 0;
+
+
+                        //calculate amount in ltrs using sales agent value if amount is 0
+                        if(authorized_amount == 0){
+
+                            authorized_amount = $("#total_amount").val();
+                            total_amount_ltr = parseFloat( authorized_amount / product_amount);
+                            console.log(authorized_amount);
+
+                        }
+                        else{
+
+                            total_amount_ltr = parseFloat( authorized_amount / product_amount);
+                            $("#total_amount").val(authorized_amount);
+                            $("#liters_val").val(total_amount_ltr.toFixed(2));
+                            console.log(authorized_amount);
+
+                        }
 
                         //calculate amount of litres
-                        product_amount = parseFloat($('#product').val());
-                        total_amount_ltr = parseFloat( authorized_amount / product_amount);
-                        $("#total_amount").val(authorized_amount);
-                        $("#liters_val").val(total_amount_ltr.toFixed(2));
                         rewards = parseInt($('#rewards').val());
                         litres = parseFloat($("#liters_val").val());
                         total_amount =parseInt($('#total_amount').val());
@@ -1305,14 +1327,27 @@ $(function(){
                     {
 
 
-                        //calculate amount of litres
-                        product_amount = parseFloat($('#product').val());
-                        total_amount_ltr = parseFloat( amount_payable / product_amount);
-                        $("#total_amount").val(amount_payable);
-                        $("#liters_val").val(total_amount_ltr.toFixed(2));
-                        rewards = parseInt($('#rewards').val());
-                        litres = parseFloat($("#liters_val").val());
-                        total_amount =parseInt($('#total_amount').val());
+                        //set product value
+                        const product_amount = parseFloat($('#product').val());
+                        let total_amount_ltr = 0;
+
+
+                        //calculate amount in ltrs using sales agent value if amount is 0
+                        if(authorized_amount == 0){
+
+                            authorized_amount = $("#total_amount").val();
+                            total_amount_ltr = parseFloat( authorized_amount / product_amount);
+                            console.log(authorized_amount);
+
+                        }
+                        else{
+
+                            total_amount_ltr = parseFloat( authorized_amount / product_amount);
+                            $("#total_amount").val(authorized_amount);
+                            $("#liters_val").val(total_amount_ltr.toFixed(2));
+                            console.log(authorized_amount);
+
+                        }
 
 
                         if((total_amount_ltr >= reward_format.low) && (total_amount_ltr <= reward_format.high))

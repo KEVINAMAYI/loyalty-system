@@ -24,7 +24,7 @@
              <ul class="list-group">
                  @foreach ($errors->all() as $error )
                  <li class="list-group-item">
-                 {{ $error }}  
+                 {{ $error }}
                  </li>
                  @endforeach
              </ul>
@@ -35,10 +35,10 @@
             <span style="margin-left:5px;">Authorize Fuel Purchase</span></button>
 
         <div class="container-fluid py-4">
-    
+
 
             <div class="row">
-            
+
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
@@ -67,7 +67,13 @@
                                                 Vehicle</th>
                                             <th
                                             style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Amount</th>
+                                                Amount Authorized</th>
+                                            <th
+                                                style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Amount Paid</th>
+                                            <th
+                                                style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Account Type</th>
                                              <th
                                              style="border-bottom:1px solid" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Status
@@ -79,7 +85,7 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach( $authorized_purchases as $authorized_purchase) 
+                                        @foreach( $authorized_purchases as $authorized_purchase)
 
                                             <tr>
                                                 <td style="padding-left:20px;" class="align-middle text-left text-sm">
@@ -95,9 +101,18 @@
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->amount }}</span>
                                                 </td>
-                                             
+                                                <td class="align-middle text-center text-sm">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->amount }}</span>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->payment_type }}</span>
+                                                </td>
 
-                                                @if( $authorized_purchase[2]->status == 'complete' )
+
+
+                                            @if( $authorized_purchase[2]->status == 'complete' )
 
                                                 <td style="color:green; font-weight:bold;" class="align-middle text-center text-sm">
                                                  {{ $authorized_purchase[2]->status }}
@@ -110,7 +125,7 @@
                                                 </td>
 
                                                 @endif
-                                                
+
                                                 <td class="align-middle text-center text-sm">
                                                     <a href="/delete-authorized-purchase/{{ $authorized_purchase[2]->id }}" class="badge badge-sm bg-gradient-danger">delete</a>
                                                 </td>
@@ -177,12 +192,19 @@
             <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="number" name="amount"  id="amount" placeholder="">
           </div>
 
+            <div class="form-check form-holder">
+                <input class="form-check-input" name="jaza_tank[]" type="checkbox" value="" id="jazaTank">
+                <label class="font-weight-bold form-check-label" for="jazaTank">
+                    Jaza Tank
+                </label>
+            </div>
+
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="payment_type">Account Type</label></br>
             <select name="payment_type" id="payment_type" class="form-control">
                 <option value="credit">Credit</option>
                 <option value="prepaid">Prepaid</option>
-            </select>          
+            </select>
         </div>
 
         </div>

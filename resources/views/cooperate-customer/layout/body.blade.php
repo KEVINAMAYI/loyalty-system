@@ -51,7 +51,7 @@
             margin-left:20px;
             margin-right:20px;
         }
-    </style>  
+    </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -190,17 +190,17 @@
 
     <script>
 
-        
+
         $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
-        
-        // show authorized purchase model with coorporate data 
+
+        // show authorized purchase model with coorporate data
         $("#authorizepurchasemodelbtn").on('click', function(){
-    
+
             $.ajax({
                 type:'get',
                 url: "/get-corporate-data",
@@ -224,12 +224,12 @@
 
 
                       $("#authorize-purchase").modal('show');
-                  
+
                 },
-                error: function(data){  
-                    
+                error: function(data){
+
                       console.log(data);
-                                       
+
                     }
                 });
 
@@ -257,7 +257,7 @@
                    $('#employee_edit_id').val(id);
 
                 },
-                error: function(data){  
+                error: function(data){
                       console.log(data);
                    }
 
@@ -280,9 +280,9 @@
                    $("#vehiclesedit").modal('show');
                    $('#vehicle_edit_id').val(id);
                 },
-                error: function(data){  
+                error: function(data){
                     console.log(data);
-                                       
+
                  }
 
                 });
@@ -313,10 +313,35 @@
         $('#vehicles_table').DataTable();
 
 
+        //check if the jazaTank checkbox is checked
+        $('#jazaTank').on('change',function() {
+            if(this.checked){
+                $(this).val(1);
+                $('#amount').val(0);
+                $('#amount').prop('readonly', true);
+                let confirmation_value = `Are you sure you want to authorize Full Tank ? Amount will be billed to your account after Fuel is dispensed.`;
+                if(confirm(confirmation_value) == true)
+                {
+                    //set authorization value
+                    console.log("Amount will be billed on sale");
+                }
+                else
+                {
+                    console.log("Amount will not be billed on sale");
+                    return;
+                }
+            }
+            else{
+
+                $(this).val(0);
+                $('#amount').prop('readonly', false);
+            }
+
+        })
 
 
     </script>
-  
+
 </body>
 
 </html>

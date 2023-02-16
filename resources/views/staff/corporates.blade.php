@@ -1,7 +1,7 @@
 @extends('staff.layouts.body')
 @section('content')
 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
-  
+
   <div class="container-fluid py-1 px-3">
       <nav aria-label="breadcrumb">
         <h6 class="font-weight-bolder mb-0">Registered Corporates</h6>
@@ -18,14 +18,14 @@
         {{ Session::get('success') }}
       </div>
       @endif
-  
+
       {{-- display error on top of the form --}}
       @if ($errors->any())
       <div class="alert alert-danger" role="alert">
           <ul class="list-group">
               @foreach ($errors->all() as $error )
               <li class="list-group-item">
-                {{ $error }}  
+                {{ $error }}
               </li>
               @endforeach
           </ul>
@@ -35,7 +35,7 @@
       <button type="button" style="background-color:#f9a14d;" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#add-corporate-modal"><i class="fa-solid fa-plus"></i>
         <span style="margin-left:5px;">Add Corporate</span>
     </button>
-      
+
     <div class="container-fluid py-4">
     <div class="row">
       <div class="col-12">
@@ -59,7 +59,7 @@
                 </thead>
                 <tbody>
 
-                  @foreach ( $corporates_accounts as $corporate_account)    
+                  @foreach ( $corporates_accounts as $corporate_account)
                     <tr>
                       <td style="padding-left:30px;" class="align-middle text-left text-sm">
                         <a id="{{ $corporate_account->organization_id ?? ''}}" style="cursor:pointer" class="view-organizational-detail-link text-xs font-weight-bold mb-0">{{ App\Models\User::where('id', $corporate_account->organization_id)->first()->name ?? '' }}</a>
@@ -122,9 +122,9 @@
             <div class="form-row" style="margin-top:15px; display:flex; margin-bottom:40px; justify-content:center; text-align:center;">
               <div style="background-color:#f9a14d; margin-left:0px; border-radius:10px; padding-right:20px; padding-left:20px; padding-top:2px;" class="form-holder">
                 <label class="custom-file-upload">
-                  <img id="camera" src="front-end/images/camera.png" id="company_logo" style="max-width:50px; max-height:50px;" alt="">									
-                  <input type="file" style="display:none;" class="" id="company_logo_image" name="company_logo_image" id="uploader"                               
-                  accept="image/*" 
+                  <img id="camera" src="front-end/images/camera.png" id="company_logo" style="max-width:50px; max-height:50px;" alt="">
+                  <input type="file" style="display:none;" class="" id="company_logo_image" name="company_logo_image" id="uploader"
+                  accept="image/*"
                   capture="camera" />
                   Upload  Logo
                 </label>
@@ -136,7 +136,7 @@
                   <option value="credit">Credit</option>
                   <option value="prepaid">Prepaid</option>
                   <option value="both">Prepaid & Credit</option>
-              </select>          
+              </select>
             </div>
             <div class="form-row col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization Name  <span style="color:red;">*</span></label></br>
@@ -154,7 +154,7 @@
               <label for="regno">Organization Email <span style="color:red;">( login credentials will be sent to this email address ) *</span></label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="email"  name="email" value="{{ old('email') }}"  required autocomplete="email">
             </div>
-            
+
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization Address<span style="color:red;">*</span></label></br>
               <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"  type="text" id="address"     name="address" value="{{ old('address') }}" required  autocomplete="name" autofocus>
@@ -413,7 +413,7 @@
                 <option value="Zaire">Zaire</option>
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
-              </select>          
+              </select>
             </div>
             <div class="form-holder col-md-12 col-sm-12 form-holder-2 mt-4 mb-1">
               <label for="regno">Organization KRA PIN</label></br>
@@ -437,7 +437,7 @@
               <input type="text" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;"   id="contact_person_alternative_phone"   name="contact_person_alternative_phone" autocomplete="phonenumber" autofocus>
             </div>
 
-            
+
             <span style="color:red; font-size:11px; font-weight:bold;">Optional</span>
             <button id="add_another_contact_peson" type="button" style="width:100%; margin-top:0px; margin-bottom:-10px;  background-color:#f9a14d;" class="btn btn-primary btn-md"><i class="fa-solid fa-plus"></i>
               <span style="margin-left:5px;">Add Another contact person</span>
@@ -495,7 +495,7 @@
             <div class="form-holder form-holder-2 mt-4 mb-4">
                 <label for="regno">Account Number</label></br>
                 <input class="acc_number" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="account_number" id="account_number"  placeholder="7770169016805">
-            </div> 
+            </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno" class="limit_label">Credit Limit Amount</label></br>
               <input  style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px;" name="account_limit" id="account_limit" placeholder="0">
@@ -508,13 +508,13 @@
                 <option value="prepaid">Prepaid</option>
               </select>
            </div>
-           
+
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="major_role">Manage Status</label></br>
               <select name="corporate_status" id="corporate_status" class="form-control">
                   <option value="active">Activate</option>
                   <option value="inactive">Disable</option>
-              </select>          
+              </select>
             </div>
             <div class="modal-footer">
               <input type="hidden" class="corporate_main_id" name="corporate_id" value="">
@@ -529,7 +529,7 @@
   </form>
 
 
-  
+
  <!--  Add Payment/Purchase modal -->
 <form class="form-register" method="POST" action="/make-payment-or-purchase">
   @csrf
@@ -560,7 +560,7 @@
                 <label for="regno">Current Balance</label></br>
                 <p class="acc_bal_type" style="padding-left:5px;">-10000</p>
               </div>
-            </div> 
+            </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
               <label for="regno">Amount Paid</label></br>
               <input type="number" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " name="amount_paid" id="amount_paid"  required>
@@ -579,7 +579,7 @@
                 <option value="Cheque">Cheque</option>
                 <option value="Cash">Cash</option>
                 <option value="Mpesa">Mpesa</option>
-            </select>            
+            </select>
            </div>
            <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="regno">Reference Number</label></br>
@@ -587,8 +587,8 @@
           </div>
            <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="regno">Payment details</label></br>
-            <textarea name="payment_details" id="payment_details" style="width:100%; padding-left:0px;" rows="3" required>             
-            </textarea>            
+            <textarea name="payment_details" id="payment_details" style="width:100%; padding-left:0px;" rows="3" required>
+            </textarea>
             </div>
             <div class="modal-footer">
               <input type="hidden" class="corporate_main_id" name="corporate_id" value="">
@@ -614,12 +614,12 @@
           <div class="form-holder form-holder-2 mb-2">
             <label for="orgname">Organization Name</label></br>
             <p id="orgname" style="padding-left:5px;"></p>
-           </div>  
+           </div>
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="orgemail">Organization Email</label></br>
             <p  id="orgemail" style="padding-left:5px;"></p>
           </div>
-          
+
           <div class="form-holder form-holder-2 mt-4 mb-4">
             <label for="orgphonenumber">Organization Phone Number</label></br>
             <p id="orgphonenumber" style="padding-left:5px;"></p>
