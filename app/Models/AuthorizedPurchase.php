@@ -19,6 +19,7 @@ class AuthorizedPurchase extends Model
         'employee_id',
         'vehicle_id',
         'amount',
+        'amount_sold',
         'payment_type',
         'status',
         'name',

@@ -103,7 +103,7 @@
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->amount }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[2]->amount_sold ? $authorized_purchase[2]->amount_sold : 0 }}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <span

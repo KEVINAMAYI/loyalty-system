@@ -358,6 +358,7 @@ class CustomerController extends Controller
                 ->update([
                     'status' => $sales_status,
                     'amount' => $new_amount,
+                    'amount_sold' => $data['amount_payable'],
                     'sales_date' => date("d-m-y")
                 ]);
 
@@ -369,6 +370,7 @@ class CustomerController extends Controller
                 ->where('status','=','pending')
                 ->update([
                     'status' => $sales_status,
+                    'amount_sold' => $data['amount_payable'],
                     'sales_date' => date("d-m-y")
                 ]);
 
@@ -776,6 +778,7 @@ class CustomerController extends Controller
                                 'employee_id' =>  $data['employees'],
                                 'vehicle_id' =>  $data['vehicles'],
                                 'amount' =>  $data['amount'],
+                                'amount_sold' =>  0,
                                 'payment_type' =>  $data['payment_type'],
                                 'status' => 'pending',
                                 'name' => $name,
@@ -837,6 +840,7 @@ class CustomerController extends Controller
                                 'employee_id' =>  $data['employees'],
                                 'vehicle_id' =>  $data['vehicles'],
                                 'amount' =>  $data['amount'],
+                                'amount_sold' => 0,
                                 'payment_type' =>  $data['payment_type'],
                                 'status' => 'pending',
                                 'name' => $name,
@@ -932,6 +936,7 @@ class CustomerController extends Controller
                             'employee_id' =>  $data['employees'],
                             'vehicle_id' =>  $data['vehicles'],
                             'amount' =>  $data['amount'],
+                            'amount_sold' =>  0,
                             'payment_type' =>  $data['payment_type'],
                             'status' => 'pending',
                             'name' => $name,
@@ -993,6 +998,7 @@ class CustomerController extends Controller
                             'employee_id' =>  $data['employees'],
                             'vehicle_id' =>  $data['vehicles'],
                             'amount' =>  $data['amount'],
+                            'amount_sold' => 0,
                             'payment_type' =>  $data['payment_type'],
                             'status' => 'pending',
                             'name' => $name,
@@ -1109,6 +1115,7 @@ class CustomerController extends Controller
                                 'employee_id' =>  $data['employees'],
                                 'vehicle_id' =>  $data['vehicles'],
                                 'amount' =>  $data['amount'],
+                                'amount_sold' => 0,
                                 'payment_type' =>  $data['payment_type'],
                                 'status' => 'pending',
                                 'name' => $name,
@@ -1184,6 +1191,7 @@ class CustomerController extends Controller
                                 'employee_id' =>  $data['employees'],
                                 'vehicle_id' =>  $data['vehicles'],
                                 'amount' =>  $data['amount'],
+                                'amount_sold' => 0,
                                 'payment_type' =>  $data['payment_type'],
                                 'status' => 'pending',
                                 'name' => $name,
@@ -1291,6 +1299,7 @@ class CustomerController extends Controller
                             'employee_id' =>  $data['employees'],
                             'vehicle_id' =>  $data['vehicles'],
                             'amount' =>  $data['amount'],
+                            'amount_sold' =>  0,
                             'payment_type' =>  $data['payment_type'],
                             'status' => 'pending',
                             'name' => $name,
@@ -1366,6 +1375,7 @@ class CustomerController extends Controller
                             'employee_id' =>  $data['employees'],
                             'vehicle_id' =>  $data['vehicles'],
                             'amount' =>  $data['amount'],
+                            'amount_sold' =>  0,
                             'payment_type' =>  $data['payment_type'],
                             'status' => 'pending',
                             'name' => $name,
