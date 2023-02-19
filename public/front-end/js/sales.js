@@ -126,17 +126,11 @@ $(function(){
                         total_amount =parseInt($('#total_amount').val());
 
                         //allow sales agent to edit amount if amount is 0
-                        if(customer[0].authorized_amount == 0)
+                        if(customer[0].authorized_amount)
                         {
                             $('#total_amount').attr('readonly', false);
                             $('#liters_val').attr('readonly', false);
                         }
-                        else
-                        {
-                            $('#total_amount').attr('readonly', true);
-                            $('#liters_val').attr('readonly', true);
-                        }
-
 
                     }
 
@@ -518,10 +512,27 @@ $(function(){
                         }
                         else{
 
-                            total_amount_ltr = parseFloat( authorized_amount / product_amount);
-                            $("#total_amount").val(authorized_amount);
-                            $("#liters_val").val(total_amount_ltr.toFixed(2));
-                            console.log(authorized_amount);
+                            new_authorized_amount = $("#total_amount").val();
+                            console.log("new_authorized_amount " + new_authorized_amount);
+                            console.log("authorized_amount " + authorized_amount);
+
+
+                            if(parseInt(new_authorized_amount) <= parseInt(authorized_amount))
+                            {
+
+                                authorized_amount = new_authorized_amount
+                                total_amount_ltr = parseFloat( authorized_amount / product_amount);
+                                $("#liters_val").val(total_amount_ltr.toFixed(2));
+
+                            }
+                            else{
+
+                                $("#total_amount").val(authorized_amount);
+                                total_amount_ltr = parseFloat( authorized_amount / product_amount);
+                                alert("The amount entered should be less than or equal to the authorized amount");
+                            }
+
+
 
                         }
 
@@ -1342,10 +1353,22 @@ $(function(){
                         }
                         else{
 
-                            total_amount_ltr = parseFloat( authorized_amount / product_amount);
-                            $("#total_amount").val(authorized_amount);
-                            $("#liters_val").val(total_amount_ltr.toFixed(2));
-                            console.log(authorized_amount);
+                            new_authorized_amount = $("#total_amount").val();
+
+                            if(parseInt(new_authorized_amount) <= parseInt(authorized_amount))
+                            {
+
+                                authorized_amount = new_authorized_amount
+                                total_amount_ltr = parseFloat( authorized_amount / product_amount);
+                                $("#liters_val").val(total_amount_ltr.toFixed(2));
+
+                            }
+                            else{
+
+                                $("#total_amount").val(authorized_amount);
+                                total_amount_ltr = parseFloat( authorized_amount / product_amount);
+                                alert("The amount entered should be less than or equal to the authorized amount");
+                            }
 
                         }
 

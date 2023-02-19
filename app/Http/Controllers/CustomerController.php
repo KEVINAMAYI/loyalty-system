@@ -296,7 +296,8 @@ class CustomerController extends Controller
                     'sale_start_date' => $data['sale_start_date'],
                     'sale_end_date' => $data['sale_end_date'],
                     'purchase_status' => "pending",
-                    'authorized_amount' => $authorized_amount - $data['amount_payable']
+                    'authorized_amount' => $authorized_amount - $data['amount_payable'],
+
                 ]);
 
                 $sales_status = 'pending';
@@ -326,7 +327,8 @@ class CustomerController extends Controller
                     'rewards' => $data['new_cutomer_rewards'],
                     'sale_start_date' => $data['sale_start_date'],
                     'sale_end_date' => $data['sale_end_date'],
-                    'purchase_status' => "complete"
+                    'purchase_status' => "complete",
+
                 ]);
 
                 $sales_status = 'complete';
@@ -366,11 +368,12 @@ class CustomerController extends Controller
         else
         {
             //update status for authorized purchases if the sale was completed for an employee
-            AuthorizedPurchase::where('employee_id','=',$customer[0]->id)
-                ->where('status','=','pending')
-                ->update([
+            $authorized_purchase = AuthorizedPurchase::where('employee_id','=',$customer[0]->id)
+                                    ->where('status','=','pending');
+            $amount_sold = $authorized_purchase->get()[0]->amount_sold;
+            $authorized_purchase->update([
                     'status' => $sales_status,
-                    'amount_sold' => $data['amount_payable'],
+                    'amount_sold' => $amount_sold + $data['amount_payable'],
                     'sales_date' => date("d-m-y")
                 ]);
 
