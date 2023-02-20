@@ -1042,6 +1042,8 @@ $(function(){
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
+                            localStorage.setItem('new_cutomer_rewards',end_date);
+
                             console.log(rewards_awarded);
                             console.log(sale_start_date);
                             console.log(sale_end_date);
