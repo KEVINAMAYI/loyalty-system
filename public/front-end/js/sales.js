@@ -1856,16 +1856,18 @@ $(function(){
 
                             let customer_rewards = localStorage.getItem('cutomer_rewards');
 
+                            console.log(customer_rewards);
+
                             //calculate amount payable with the rewards set only when the reward option is enabled
                             // let amount_to_pay = total_amount - (0 + reward_format_to_use['credit'] * litres);
                             $('#amount_payable').val(total_amount);
-
 
                             //bulk rewards
                             new_cutomer_rewards = parseInt(customer_rewards) + (reward_format_to_use['credit'] * litres);
                             $('#sales-reward-balance').text(new_cutomer_rewards.toFixed(2));
                             new_cutomer_rewards.toFixed(2);
                             rewards_awarded = (reward_format_to_use['credit'] * litres).toFixed(2);
+                            console.log(new_cutomer_rewards);
 
                             //get current day
                             date = new Date();
@@ -1875,6 +1877,9 @@ $(function(){
                             $('#sales-rewards-awarded').text(rewards_awarded);
                             localStorage.setItem('sale_start_date',start_date);
                             localStorage.setItem('sale_end_date',end_date);
+                            localStorage.setItem('new_cutomer_rewards',new_cutomer_rewards);
+
+                            console.log(new_cutomer_rewards);
                             console.log(rewards_awarded);
                             console.log(sale_start_date);
                             console.log(sale_end_date);
