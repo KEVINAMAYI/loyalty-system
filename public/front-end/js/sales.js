@@ -2115,6 +2115,7 @@ $(function(){
 
 
 
+
         formData = new FormData();
         formData.append('vehicle_image',selectedFile);
         formData.append('pump_image',pumpFile);
@@ -2142,6 +2143,7 @@ $(function(){
         console.log(sale_end_date);
         console.log(vehicle_registration);
         console.log(product_text);
+        console.log(new_cutomer_rewards);
 
 
         $.ajax({
