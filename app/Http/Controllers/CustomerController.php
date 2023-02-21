@@ -578,8 +578,7 @@ class CustomerController extends Controller
     public function getCorporateUsers()
     {
 
-        $corporates = User::where('krapin','!=','')->get();
-
+        $corporates = User::where('role','Corperate')->get();
         return response()->json([
             'corporates' => $corporates
         ]);
