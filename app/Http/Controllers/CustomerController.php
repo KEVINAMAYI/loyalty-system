@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use http\Env\Response;
 use Mail;
 use Image;
 use Config;
@@ -285,9 +286,9 @@ class CustomerController extends Controller
         $amount_status_update = false;
         $new_amount = 0;
 
-
-        if($authorized_amount != '')
+        if(!is_null($authorized_amount))
         {
+
             if($data['amount_payable'] < $authorized_amount)
             {
                 //get customer purchase
@@ -304,7 +305,8 @@ class CustomerController extends Controller
                 $amount_status_update = true;
 
             }
-            elseif($authorized_amount == 0)
+
+            if($authorized_amount == 0)
             {
                 //get customer purchase
                 Customer::where('id','=',$data['customer_id'])->update([
@@ -313,7 +315,6 @@ class CustomerController extends Controller
                     'sale_end_date' => $data['sale_end_date'],
                     'purchase_status' => "complete",
                     'authorized_amount' => $data['amount_payable'],
-
                 ]);
 
                 $sales_status = 'complete';
@@ -321,7 +322,8 @@ class CustomerController extends Controller
                 $new_amount = $data['amount_payable'];
 
             }
-            else
+
+            if($data['amount_payable'] == $authorized_amount)
             {
                 //get customer purchase
                 Customer::where('id','=',$data['customer_id'])->update([
