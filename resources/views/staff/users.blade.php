@@ -51,6 +51,7 @@
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
+                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Shift</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </thead>
@@ -67,6 +68,9 @@
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">{{ $staff->major_role }}</span>
                       </td>
+                       <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs font-weight-bold">{{ $staff->shift }}</span>
+                      </td>
                       <td class="align-middle text-center text-sm">
                         <button id="{{ $staff->id }}" style="background-color:#4881c0; border:0px;"  class="editstaff badge badge-sm">edit</button>
                         <a href="/delete-staff/{{ $staff->id }}" class="badge badge-sm bg-gradient-danger">delete</a>
@@ -79,6 +83,7 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Shift</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   </tr>
                 </tfoot>
@@ -127,6 +132,13 @@
                 <option value="Supervisor">Supervisor</option>
             </select>
           </div>
+            <div class="form-holder form-holder-2 mt-4 mb-4">
+                <label for="shift">Shift</label></br>
+                <select name="shift" id="shift" class="form-control">
+                    <option value="Chui">Chui</option>
+                    <option value="Simba">Simba</option>
+                </select>
+            </div>
           <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" style="background-color:#f9a14d; color:white;" type="button" class="btn">Add Staff</button>
@@ -153,23 +165,30 @@
           <div class="modal-body">
             <div class="form-holder form-holder-2 mb-2">
               <label for="regno">Name</label></br>
-              <input id="staffname" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="name"  id="name" placeholder="Kevin">
+              <input style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="edited_staffname"  id="edited_staffname" placeholder="Kevin">
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
-              <label for="regno">Email</label></br>
-              <input id="staffemail" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="email" id="email"  placeholder="kevinamayi20@gmail.com">
+              <label for="edited_staffemail">Email</label></br>
+              <input  style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="text" name="edited_staffemail" id="edited_staffemail"  placeholder="kevinamayi20@gmail.com">
             </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
-              <label for="major_role">Role</label></br>
-              <select name="major_role" id="major_role" class="form-control">
+              <label for="edited_major_role">Role</label></br>
+              <select name="edited_major_role" id="edited_major_role" class="form-control">
                   <option value="Staff">Staff</option>
                   <option value="Admin">Admin</option>
                   <option value="Supervisor">Supervisor</option>
               </select>
             </div>
+              <div class="form-holder form-holder-2 mt-4 mb-4">
+                  <label for="edited_shift">Shift</label></br>
+                  <select name="edited_shift" id="edited_shift" class="form-control">
+                      <option value="Chui">Chui</option>
+                      <option value="Simba">Simba</option>
+                  </select>
+              </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
-                <label for="password">New Password</label></br>
-                <input id="staffpassword" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="password" id="password" >
+                <label for="edited_password">New Password</label></br>
+                <input id="edited_staffpassword" style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; " type="password" name="edited_staffpassword" id="password" >
               </div>
             <div class="modal-footer">
             <input type="hidden" id="staffid" value="">

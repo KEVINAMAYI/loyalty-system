@@ -423,6 +423,42 @@
         </div>
     </form>
 
+    <!-- Reedem Reward Modal -->
+    <div class="modal" id="discount-details-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Redeem Rewards</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-holder form-holder-2 mt-4 mb-4">
+                        <label for="rewards">Rewards (Total Rewards, Rewards Available)</label></br>
+                        <p id="rewards" style="padding-left:5px;"></p>
+                    </div>
+                    <div class="form-holder form-holder-2 mt-4 mb-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="Discount">Enter Rewards To Redeem</label></br>
+                            </div>
+                            <div class="col-6">
+                                <input
+                                    style="width:90%; margin-right:10%; margin-left:-40px; padding:5px;  border-color: black; border-width:1px; "
+                                    type="number" name="discount" id="discount" required>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="/front-end/js/jquery-3.3.1.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -23,22 +24,16 @@ class User extends Authenticatable
         'password',
         'role',
         'major_role',
+        'shift',
         'phone_number',
         'alternative_phone_number',
         'address',
         'town',
         'krapin',
         'logo_url',
-        'country',
-        'contact_person_name',
-        'contact_person_email',
-        'contact_person_phone',
-        'contact_person_alternative_phone',
-        'another_contact_person_name',
-        'another_contact_person_email',
-        'another_contact_person_phone',
-        'another_contact_person_alternative_phone'
+        'contact_person_email'
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.

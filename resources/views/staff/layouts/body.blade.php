@@ -343,8 +343,11 @@
 
                 console.log(data);
 
-                $("#staffname").val(staff_data[0].name);
-                $("#staffemail").val(staff_data[0].email);
+                $("#edited_staffname").val(staff_data[0].name);
+                $("#edited_staffemail").val(staff_data[0].email);
+                $("#edited_major_role").val(staff_data[0].major_role);
+                $("#edited_shift").val(staff_data[0].shift);
+
             },
             error: function(data){
 
@@ -929,18 +932,22 @@
         const id = $("#staffid").val();
 
         formData = new FormData
-        const name = $("#staffname").val()
-        const email = $("#staffemail").val()
-        const major_role =  $("#major_role").val()
-        const password = $("#staffpassword").val()
+        const name = $("#edited_staffname").val()
+        const email = $("#edited_staffemail").val()
+        const major_role =  $('#edited_major_role').val();
+        const password = $("#edited_staffpassword").val()
+        const shift = $('#edited_shift').val();
 
 
         formData.append('id',id);
         formData.append('name',name);
         formData.append('email',email);
         formData.append('major_role',major_role);
+        formData.append('shift',shift);
         formData.append('password',password);
 
+
+        console.log(name);
 
         $.ajax({
             type:'post',
@@ -952,7 +959,7 @@
 
                 $('#edit-staff').modal('hide');
                 swal("Good job!", "Staff details edited successfully", "success").then(() => {
-                    // location.reload()
+                    location.reload()
                 });
 
             },

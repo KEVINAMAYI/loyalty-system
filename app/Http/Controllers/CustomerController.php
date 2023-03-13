@@ -465,30 +465,32 @@ class CustomerController extends Controller
     public function addNewStaff(Request $request)
     {
 
-        // dd($request->all());
-
         //validate new staff details
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'major_role' => ['required', 'string', 'max:255']
+            'major_role' => ['required', 'string', 'max:255'],
+            'shift' => ['required', 'string', 'max:255']
          ]);
 
          $data = $request->all();
 
-         User::create([
+
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => 'Staff',
+            'shift' => $data['shift'],
             'major_role' => ucfirst($data['major_role']),
             'phone_number' => '0719020100',
             'alternative_phone_number' => '0719020100',
             'address' => '00100',
             'town' => 'Nairobi',
             'krapin' => 'A010116927I',
-            'logo_url' => 'IMG_URL'
+            'logo_url' => 'IMG_URL',
+            'contact_person_email' => $data['email']
         ]);
 
 
@@ -2009,11 +2011,13 @@ class CustomerController extends Controller
      */
     public function editStaff(Request $request, User $user)
     {
+
         //validate customer enrollment details
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'major_role' =>  ['required', 'string', 'max:255'],
+            'shift' =>  ['required', 'string', 'max:255'],
          ]);
 
         $data = $request->all();
@@ -2024,7 +2028,8 @@ class CustomerController extends Controller
             User::where('id','=',$user->id)->update([
                 'name' => $data['name'],
                 'email' => $data['email'],
-                'major_role' => ucfirst($data['major_role'])
+                'major_role' => ucfirst($data['major_role']),
+                'shift' => $data['shift']
             ]);
 
         }
@@ -2035,6 +2040,7 @@ class CustomerController extends Controller
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'major_role' => ucfirst($data['major_role']),
+                'shift' => ['shift'],
                 'password' => Hash::make($data['password'])
             ]);
 
@@ -2042,8 +2048,7 @@ class CustomerController extends Controller
 
 
         return response()->json([
-            'data' => $data['name']
-
+            'data' => $data
         ]);
     }
 
