@@ -135,7 +135,6 @@
        setTimeout(function () {
            window.close();
            location.href = "/discounts";
-
            }, 100);
    }
 

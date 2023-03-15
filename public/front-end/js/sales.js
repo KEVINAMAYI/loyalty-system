@@ -209,7 +209,8 @@ $(function () {
                 vehicles = data.vehicles;
                 console.log(vehicles);
                 console.log(customer);
-
+                $('#redeemable_rewards').text(`${customer[0].rewards}, ${customer[0].rewards}`);
+                $('#customer_id').val(customer[0].id);
 
                 if (vehicles.length == 0) {
 
@@ -294,7 +295,7 @@ $(function () {
                     //display vehicle details
                     vehicles.forEach(vehicle => {
                         i = i + 1;
-                        if(i == 1){
+                        if (i == 1) {
                             $('.main-section').append(
                                 `
                             <div class="card-body px-0 pt-0 pb-2">
@@ -331,9 +332,9 @@ $(function () {
                         `
                             );
                         }
-
-                        $('.main-section').append(
-                            `
+                        else{
+                            $('.main-section').append(
+                                `
                             <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
                             <table style="border:0px;" class="table align-items-center mb-0">
@@ -366,12 +367,10 @@ $(function () {
                         </div>
 
                         `
-                        );
+                            );
 
-
-
-
-                    });
+                        }
+                        });
 
                     $('.main-section').append(`
                     <div  class="form-holder row form-holder-2">
@@ -2155,6 +2154,50 @@ $(function () {
     //     reader.readAsDataURL(this.files[0]);
 
     //    });
+
+
+    //set discount btn
+    $('#submit_disc_btn').on('click', function () {
+        let discount = $('#discount_amount').val();
+        console.log(discount);
+
+        if (discount && (discount != 0)) {
+            let customer_id = $('#customer_id').val();
+            let confirmation_value = `Are you sure you want to redeem ${discount}`;
+            $('#discount-details-modal').modal('hide');
+
+            if (confirm(confirmation_value) == true) {
+
+                $.ajax({
+                    type: 'get',
+                    url: "/set-discount",
+                    data: {
+                        customer_id: customer_id,
+                        discount: discount
+                    },
+                    dataType: 'json',
+                    success: (data) => {
+
+                        console.log(data);
+                        swal(`${data.code}`, `${data.message}`, `${data.code.toLowerCase()}`);
+
+                    },
+                    error: function (data) {
+
+                        console.log(data);
+                        swal("Error!", "There was an error setting the discount", "error");
+
+                    }
+                });
+            } else {
+                console.log(`Discount Cancelled`)
+                return;
+            }
+        } else {
+            swal("Error!", "Please provide a valid value for discount", "error");
+        }
+
+    });
 
     //autocomplete when searching vehicle
     var path = "/get-number-plate";

@@ -440,8 +440,6 @@
             swal("Error!", "Please provide a valid value for discount","error");
         }
 
-
-
     });
 
     //set discount btn
@@ -1581,6 +1579,7 @@
 
     })
 
+    
 </script>
 </body>
 </html>

@@ -95,7 +95,7 @@
                                         </td>
                                         @else
                                             <td class="text-sm">
-                                                <a href="/discount-pdf/{{ $discount->id  }}" style="background-color:#4881c0" class="print-discount-data-btn btn btn-sm btn-primary">Print</a>
+                                                <a id="{{ "discount_item_$discount->id "}}" href="/discount-pdf/{{ $discount->id  }}" style="background-color:#4881c0" class="discount_item print-discount-data-btn btn btn-sm btn-primary">Print</a>
                                             </td>
                                         @endif
                                     </tr>
