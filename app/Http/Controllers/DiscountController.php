@@ -100,6 +100,12 @@ class DiscountController extends Controller
         return view('staff.discounts', compact('discounts'));
     }
 
+    public function updatePrintState($discount): \Illuminate\Http\JsonResponse
+    {
+        Discount::where('id',$discount)->update(['printed' => 'Completed']);
+        return \response()->json([ 'printed' => $discount ]);
+    }
+
 
     public function loadDiscountPDF($discountId)
     {

@@ -129,14 +129,13 @@
 
 <script>
 
-
    window.onload = function() {
        window.print();
        setTimeout(function () {
            window.close();
            location.href = "/discounts";
            }, 100);
-   }
+       }
 
 
 

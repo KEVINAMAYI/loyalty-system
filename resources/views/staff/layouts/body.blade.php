@@ -16,27 +16,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" sizes="76x76" href="staff/assets/img/apple-icon.png">
-    <link rel="icon"  href="front-end/images/logo.jpg">
+    <link rel="icon" href="front-end/images/logo.jpg">
     <title>
         Staff Dashboard
     </title>
     <base href="{{ URL::to('/') }}">
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     <!-- Nucleo Icons -->
-    <link href="staff/assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="staff/assets/css/nucleo-svg.css" rel="stylesheet" />
-    <link href="staff/assets/css/toggleswitch.css" rel="stylesheet" />
+    <link href="staff/assets/css/nucleo-icons.css" rel="stylesheet"/>
+    <link href="staff/assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <link href="staff/assets/css/toggleswitch.css" rel="stylesheet"/>
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    <link href="staff/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="staff/assets/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- CSS Files -->
-    <link id="pagestyle" href="staff/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+    <link id="pagestyle" href="staff/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -45,22 +45,25 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.3.4/css/common.scss">
     <script src="staff/assets/js/main.js"></script>
     <style>
-        .dataTables_wrapper{
-            margin-left:20px;
-            margin-right:20px;
+        .dataTables_wrapper {
+            margin-left: 20px;
+            margin-right: 20px;
         }
-        th::after, th::before{
-            color:black;
-            font-weight:bold;
-            font-size:20px;
-            border:1px solid black;
+
+        th::after, th::before {
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+            border: 1px solid black;
         }
-        .btn-default{
-            margin-top:12px;
-            margin-left:10px;
+
+        .btn-default {
+            margin-top: 12px;
+            margin-left: 10px;
         }
-        .dtsb-searchBuilder{
-            padding-top:100px;
+
+        .dtsb-searchBuilder {
+            padding-top: 100px;
         }
     </style>
 </head>
@@ -130,9 +133,11 @@
             </div>
             <div class="d-flex">
                 <button class="btn bg-gradient-primary w-100 px-3 mb-2 active" data-class="bg-transparent"
-                        onclick="sidebarType(this)">Transparent</button>
+                        onclick="sidebarType(this)">Transparent
+                </button>
                 <button class="btn bg-gradient-primary w-100 px-3 mb-2 ms-2" data-class="bg-white"
-                        onclick="sidebarType(this)">White</button>
+                        onclick="sidebarType(this)">White
+                </button>
             </div>
             <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
             <!-- Navbar Fixed -->
@@ -258,23 +263,23 @@
 
 
     //show another contact person information
-    $('#add_another_contact_peson').on('click',function(){
-        $("#another_contact_person_name_div").css("display","");
-        $("#another_contact_person_email_div").css("display","");
-        $("#another_contact_person_phone_div").css("display","");
-        $("#another_contact_person_alternative_phone_div").css("display","");
+    $('#add_another_contact_peson').on('click', function () {
+        $("#another_contact_person_name_div").css("display", "");
+        $("#another_contact_person_email_div").css("display", "");
+        $("#another_contact_person_phone_div").css("display", "");
+        $("#another_contact_person_alternative_phone_div").css("display", "");
     });
 
     //jQuery listen for checkbox change
-    $("#rewards_checkbox").change(function() {
-        if(this.checked) {
+    $("#rewards_checkbox").change(function () {
+        if (this.checked) {
 
             status = "enabled";
             formData = new FormData();
-            formData.append('status',status);
+            formData.append('status', status);
 
             $.ajax({
-                type:'post',
+                type: 'post',
                 url: "set-status",
                 data: formData,
                 processData: false,
@@ -285,21 +290,21 @@
 
 
                 },
-                error: function(data){
+                error: function (data) {
 
                     swal("Error!", "There was an error while performing the operstion", "error");
 
                 }
             });
 
-        }else{
+        } else {
 
             status = "disabled";
             formData = new FormData();
-            formData.append('status',status);
+            formData.append('status', status);
 
             $.ajax({
-                type:'post',
+                type: 'post',
                 url: "/set-status",
                 data: formData,
                 processData: false,
@@ -309,7 +314,7 @@
                     swal("Good job!", "You have disabled using reward", "success");
 
                 },
-                error: function(data){
+                error: function (data) {
 
                     swal("Error!", "There was an error while performing the operstion", "error");
 
@@ -320,19 +325,19 @@
         }
     });
 
-    $('.editstaff').on('click',function(){
+    $('.editstaff').on('click', function () {
 
         const id = parseInt($(this).attr("id"));
         $("#staffid").val(id)
 
         formData = new FormData();
-        formData.append('id',id);
+        formData.append('id', id);
 
         $('#edit-staff').modal('show');
 
         $.ajax({
-            type:'post',
-            url: "/get-staff-data/"+id,
+            type: 'post',
+            url: "/get-staff-data/" + id,
             data: formData,
             processData: false,
             contentType: false,
@@ -349,7 +354,7 @@
                 $("#edited_shift").val(staff_data[0].shift);
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -357,19 +362,18 @@
         });
 
 
-
     });
 
     //when the reward button is clicked
-    $('#rewardpass').on('click',function(event){
+    $('#rewardpass').on('click', function (event) {
         event.preventDefault()
         reward_percentage = $('#reward_percentage').val()
 
         formData = new FormData();
-        formData.append('reward_percentage',reward_percentage);
+        formData.append('reward_percentage', reward_percentage);
 
         $.ajax({
-            type:'post',
+            type: 'post',
             url: "set-reward",
             data: formData,
             processData: false,
@@ -380,7 +384,7 @@
                     location.reload()
                 });
             },
-            error: function(data){
+            error: function (data) {
 
                 swal("Error!", "Setting Reward percentage failed", "error").then(() => {
                     location.reload();
@@ -394,10 +398,10 @@
 
 
     //set discount btn
-    $('#set_discount_btn').on('click',function (){
+    $('#set_discount_btn').on('click', function () {
 
         let discount = $('#discount').val();
-        if(discount && (discount != 0)){
+        if (discount && (discount != 0)) {
             let customer_id = $('#customer_id').val();
             let confirmation_value = `Are you sure you want to redeem ${discount}`;
             $('#discount-details-modal').modal('hide');
@@ -406,25 +410,25 @@
 
 
                 $.ajax({
-                    type:'get',
+                    type: 'get',
                     url: "/set-discount",
-                    data:{
-                        customer_id : customer_id,
-                        discount : discount
+                    data: {
+                        customer_id: customer_id,
+                        discount: discount
                     },
                     dataType: 'json',
                     success: (data) => {
 
                         console.log(data);
-                        swal(`${data.code}`,`${data.message}`, `${data.code.toLowerCase()}`).then(() => {
+                        swal(`${data.code}`, `${data.message}`, `${data.code.toLowerCase()}`).then(() => {
                             location.reload()
                         });
 
                     },
-                    error: function(data){
+                    error: function (data) {
 
                         console.log(data);
-                        swal("Error!", "There was an error setting the discount","error").then(() => {
+                        swal("Error!", "There was an error setting the discount", "error").then(() => {
                             location.reload()
                         });
 
@@ -435,57 +439,56 @@
                 console.log(`Discount Cancelled`)
                 return;
             }
-        }
-        else{
-            swal("Error!", "Please provide a valid value for discount","error");
+        } else {
+            swal("Error!", "Please provide a valid value for discount", "error");
         }
 
     });
 
     //set discount btn
-    $('#set_discount_status_btn').on('click',function (){
+    $('#set_discount_status_btn').on('click', function () {
 
         let discount_id = $('#discount_id').val();
         let discount = $('#discount_value').text();
         let confirmation_value = `Are you sure you want to Approve KES ${discount}`;
-            $('#confirm-discount-details-modal').modal('hide');
+        $('#confirm-discount-details-modal').modal('hide');
 
-            if (confirm(confirmation_value) == true) {
+        if (confirm(confirmation_value) == true) {
 
-                $.ajax({
-                    type:'get',
-                    url: "/set-discount-status",
-                    data:{
-                       discount_id : discount_id,
-                       status : 'approved'
-                    },
-                    dataType: 'json',
-                    success: (data) => {
+            $.ajax({
+                type: 'get',
+                url: "/set-discount-status",
+                data: {
+                    discount_id: discount_id,
+                    status: 'approved'
+                },
+                dataType: 'json',
+                success: (data) => {
 
-                        console.log(data);
-                        swal("Good job!", "Discount Approved successfully", "success").then(() => {
-                            location.reload()
-                        });
+                    console.log(data);
+                    swal("Good job!", "Discount Approved successfully", "success").then(() => {
+                        location.reload()
+                    });
 
-                    },
-                    error: function(data){
+                },
+                error: function (data) {
 
-                        console.log(data);
-                        swal("Error!", "There was an error approving the discount","error").then(() => {
-                            location.reload()
-                        });
+                    console.log(data);
+                    swal("Error!", "There was an error approving the discount", "error").then(() => {
+                        location.reload()
+                    });
 
-                    }
-                });
-            } else {
+                }
+            });
+        } else {
 
-                console.log(`Discount Approval Cancelled`)
-                return;
-            }
+            console.log(`Discount Approval Cancelled`)
+            return;
+        }
 
     });
 
-    $(".discount-pending-btn").on('click',function(){
+    $(".discount-pending-btn").on('click', function () {
 
         const customer_id = parseInt($(this).attr("id"));
         const discount_id = parseInt($(this).attr("discount_id"));
@@ -493,25 +496,25 @@
         $('#discount_id').val(discount_id);
 
         $.ajax({
-            type:'get',
-            url: "/get-discount-data/"+customer_id,
+            type: 'get',
+            url: "/get-discount-data/" + customer_id,
             success: (data) => {
 
                 //get sale data and show in a model
                 customer = data.customer_data;
-                vehicle =  data.vehicles_data;
+                vehicle = data.vehicles_data;
                 discount = data.discount_data;
 
                 console.log(discount);
 
-                $("#pending_name").text(customer[0].first_name+" "+customer[0].last_name+" "+customer[0].phone_number );
+                $("#pending_name").text(customer[0].first_name + " " + customer[0].last_name + " " + customer[0].phone_number);
                 $("#pending_vehiclereg").text(vehicle[0].vehicle_registration);
                 $("#pending_rewards").text(`${customer[0].rewards},  ${customer[0].rewards}`);
                 $("#pending_discount_value").text(discount[0].amount);
                 $('#pending-discount-details-modal').modal('show');
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -519,10 +522,9 @@
         });
 
 
-
     });
 
-    $(".approve-discount-btn").on('click',function(){
+    $(".approve-discount-btn").on('click', function () {
 
 
         const customer_id = parseInt($(this).attr("id"));
@@ -530,25 +532,25 @@
         $('#discount_id').val(discount_id);
 
         $.ajax({
-            type:'get',
-            url: "/get-discount-data/"+customer_id,
+            type: 'get',
+            url: "/get-discount-data/" + customer_id,
             success: (data) => {
 
                 //get sale data and show in a model
                 customer = data.customer_data;
-                vehicle =  data.vehicles_data;
+                vehicle = data.vehicles_data;
                 discount = data.discount_data;
 
                 console.log(discount);
 
-                $("#name").text(customer[0].first_name+" "+customer[0].last_name+" "+customer[0].phone_number );
+                $("#name").text(customer[0].first_name + " " + customer[0].last_name + " " + customer[0].phone_number);
                 $("#vehiclereg").text(vehicle[0].vehicle_registration);
                 $("#rewards").text(`${customer[0].rewards},  ${customer[0].rewards}`);
                 $("#discount_value").text(discount[0].amount);
                 $('#confirm-discount-details-modal').modal('show');
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -556,25 +558,24 @@
         });
 
 
-
     });
 
     //get specific sales data
-    $(".discount-details").on('click',function(){
+    $(".discount-details").on('click', function () {
 
         const id = parseInt($(this).attr("id"));
 
         $.ajax({
-            type:'get',
-            url: "/get-discount-data/"+id,
+            type: 'get',
+            url: "/get-discount-data/" + id,
             success: (data) => {
 
                 //get sale data and show in a model
                 customer = data.customer_data;
-                vehicle =  data.vehicles_data;
+                vehicle = data.vehicles_data;
 
 
-                $("#name").text(customer[0].first_name+" "+customer[0].last_name+" "+customer[0].phone_number );
+                $("#name").text(customer[0].first_name + " " + customer[0].last_name + " " + customer[0].phone_number);
                 $("#vehiclereg").text(vehicle[0].vehicle_registration);
                 $("#rewards").text(`${customer[0].rewards},  ${customer[0].rewards}`);
                 $("#customer_id").val(id);
@@ -583,7 +584,7 @@
 
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -591,50 +592,46 @@
         });
 
 
-
     });
 
 
     //get specific sales data
-    $(".moresalesdetails").on('click',function(){
+    $(".moresalesdetails").on('click', function () {
 
         const id = parseInt($(this).attr("id"));
 
         console.log(id);
 
         $.ajax({
-            type:'get',
-            url: "/get-sale-data/"+id,
+            type: 'get',
+            url: "/get-sale-data/" + id,
             success: (data) => {
 
                 //get sale data and show in a model
                 sale_data = data.sale_data;
                 console.log(sale_data);
 
-                $("#firstname").text(sale_data[0].first_name+" "+sale_data[0].last_name+" "+sale_data[0].phone_number );
-                $("#vehiclereg").text(sale_data[0].vehicle_registration+",  "+sale_data[0].product);
-                $("#rewards").text(sale_data[0].rewards_awarded+",  "+sale_data[0].rewards_used);
-                $("#amountpayable").text(sale_data[0].amount_payable+",  "+sale_data[0].amount_paid);
-                $("#sold_by").text(sale_data[0].created_at+",  "+sale_data[0].sold_by);
-                $('#vehicle_image').attr('src',`images/${sale_data[0].image_url}`);
-                $('#pump_image').attr('src',`images/${sale_data[0].pump_image_url}`);
+                $("#firstname").text(sale_data[0].first_name + " " + sale_data[0].last_name + " " + sale_data[0].phone_number);
+                $("#vehiclereg").text(sale_data[0].vehicle_registration + ",  " + sale_data[0].product);
+                $("#rewards").text(sale_data[0].rewards_awarded + ",  " + sale_data[0].rewards_used);
+                $("#amountpayable").text(sale_data[0].amount_payable + ",  " + sale_data[0].amount_paid);
+                $("#sold_by").text(sale_data[0].created_at + ",  " + sale_data[0].sold_by);
+                $('#vehicle_image').attr('src', `images/${sale_data[0].image_url}`);
+                $('#pump_image').attr('src', `images/${sale_data[0].pump_image_url}`);
                 // $('#receipt_image').attr('src',`images/${sale_data[0].receipt_image_url}`);
 
-                if(sale_data[0].status == 'Rejected')
-                {
+                if (sale_data[0].status == 'Rejected') {
 
                     $('#sale_rejection_reason').text(sale_data[0].reason);
-                    $('#sales_rejection_div').css('display','');
+                    $('#sales_rejection_div').css('display', '');
                     $('#sales_status_title').text('Rejected By');
-                    $("#sale_approved_by").text(sale_data[0].approved_date+",  "+sale_data[0].approved_by);
+                    $("#sale_approved_by").text(sale_data[0].approved_date + ",  " + sale_data[0].approved_by);
 
 
-
-                }
-                else{
+                } else {
 
                     $('#sales_status_title').text('Approved By');
-                    $("#sale_approved_by").text(sale_data[0].approved_date+",  "+sale_data[0].approved_by);
+                    $("#sale_approved_by").text(sale_data[0].approved_date + ",  " + sale_data[0].approved_by);
 
                 }
 
@@ -643,7 +640,7 @@
 
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -651,20 +648,19 @@
         });
 
 
-
     });
 
 
     //get specific sales data
-    $(".morecustomerdetails").on('click',function(){
+    $(".morecustomerdetails").on('click', function () {
 
         const id = parseInt($(this).attr('id'));
 
         console.log(id);
 
         $.ajax({
-            type:'get',
-            url: "/get-customer-data/"+id,
+            type: 'get',
+            url: "/get-customer-data/" + id,
             success: (data) => {
 
                 console.log(data);
@@ -673,26 +669,23 @@
                 customer_data = data.customer_data;
                 vehicles_data = data.vehicles_data;
 
-                $("#name_id").text(customer_data[0].first_name+" "+customer_data[0].last_name+",  "+customer_data[0].id_number);
-                $("#phone_email").text(customer_data[0].phone_number+",  "+customer_data[0].email);
+                $("#name_id").text(customer_data[0].first_name + " " + customer_data[0].last_name + ",  " + customer_data[0].id_number);
+                $("#phone_email").text(customer_data[0].phone_number + ",  " + customer_data[0].email);
                 $("#rewards").text(customer_data[0].rewards);
-                $("#enrolled_by").text(customer_data[0].created_at+",  "+customer_data[0].enrolled_by);
+                $("#enrolled_by").text(customer_data[0].created_at + ",  " + customer_data[0].enrolled_by);
 
-                if(customer_data[0].status == 'Rejected')
-                {
+                if (customer_data[0].status == 'Rejected') {
 
                     $('#customer_rejection_reason').text(customer_data[0].reason);
-                    $('#rejection_div').css('display','');
+                    $('#rejection_div').css('display', '');
                     $('#customer_status_title').text('Rejected By');
-                    $("#approved_by").text(customer_data[0].approved_date+",  "+customer_data[0].approved_by);
+                    $("#approved_by").text(customer_data[0].approved_date + ",  " + customer_data[0].approved_by);
 
 
-
-                }
-                else{
+                } else {
 
                     $('#customer_status_title').text('Approved By');
-                    $("#approved_by").text(customer_data[0].approved_date+",  "+customer_data[0].approved_by);
+                    $("#approved_by").text(customer_data[0].approved_date + ",  " + customer_data[0].approved_by);
 
                 }
 
@@ -708,11 +701,10 @@
                 });
 
 
-
                 $('#customer-details').modal('show');
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -720,14 +712,11 @@
         });
 
 
-
     });
 
 
-
-
     //edit customer details for editing
-    $(".editcustomerbtn").on('click',function(){
+    $(".editcustomerbtn").on('click', function () {
 
         const id = parseInt($(this).attr('id'));
         $("#customerid").val(id);
@@ -735,8 +724,8 @@
         console.log(id);
 
         $.ajax({
-            type:'get',
-            url: "/get-customer-data/"+id,
+            type: 'get',
+            url: "/get-customer-data/" + id,
             success: (data) => {
 
                 console.log(data);
@@ -754,7 +743,7 @@
                 $('#edit-customer-modal').modal('show');
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -764,7 +753,7 @@
     });
 
     //edit vehicle details for editing
-    $(".editvehiclebtn").on('click',function(){
+    $(".editvehiclebtn").on('click', function () {
 
         const id = parseInt($(this).attr('id'));
         $("#vehicleid").val(id);
@@ -772,8 +761,8 @@
         console.log(id);
 
         $.ajax({
-            type:'get',
-            url: "/get-the-vehicle-data/"+id,
+            type: 'get',
+            url: "/get-the-vehicle-data/" + id,
             success: (data) => {
 
 
@@ -789,7 +778,7 @@
                 $('#edit-vehicle-modal').modal('show');
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -800,7 +789,7 @@
 
 
     //send edit customer details for editing
-    $("#sendvehicledatabtn").on('click',function(){
+    $("#sendvehicledatabtn").on('click', function () {
 
         const id = $("#vehicleid").val();
 
@@ -811,16 +800,16 @@
         const vehicle_registration = $("#vehicle_registration").val()
 
 
-        formData.append('vehicle_category',vehicle_category);
-        formData.append('vehicle_type',vehicle_type);
-        formData.append('fuel_type',fuel_type);
-        formData.append('vehicle_registration',vehicle_registration);
-        formData.append('id',id);
+        formData.append('vehicle_category', vehicle_category);
+        formData.append('vehicle_type', vehicle_type);
+        formData.append('fuel_type', fuel_type);
+        formData.append('vehicle_registration', vehicle_registration);
+        formData.append('id', id);
 
         $.ajax({
-            type:'post',
-            url: "/edit-vehicle/"+id,
-            data:formData,
+            type: 'post',
+            url: "/edit-vehicle/" + id,
+            data: formData,
             processData: false,
             contentType: false,
             success: (data) => {
@@ -831,14 +820,13 @@
                 });
 
             },
-            error: function(data){
+            error: function (data) {
 
                 errors = data.responseJSON.errors;
 
-                $('#errorz').css("display","block");
+                $('#errorz').css("display", "block");
 
-                for(key in errors)
-                {
+                for (key in errors) {
 
                     console.log(errors[key][0]);
 
@@ -860,7 +848,7 @@
 
 
     //send edit customer details for editing
-    $("#getcustomerdatabtn").on('click',function(){
+    $("#getcustomerdatabtn").on('click', function () {
 
         const id = $("#customerid").val();
 
@@ -873,19 +861,19 @@
         const rewards = $("#edit_rewards").val()
         const gender = $("#edit_gender").val()
 
-        formData.append('first_name',first_name);
-        formData.append('last_name',last_name);
-        formData.append('phone_number',phone_number);
-        formData.append('id_number',id_number);
-        formData.append('email',email);
-        formData.append('rewards',rewards);
-        formData.append('gender',gender);
-        formData.append('id',id);
+        formData.append('first_name', first_name);
+        formData.append('last_name', last_name);
+        formData.append('phone_number', phone_number);
+        formData.append('id_number', id_number);
+        formData.append('email', email);
+        formData.append('rewards', rewards);
+        formData.append('gender', gender);
+        formData.append('id', id);
 
         $.ajax({
-            type:'post',
-            url: "/edit-customer/"+id,
-            data:formData,
+            type: 'post',
+            url: "/edit-customer/" + id,
+            data: formData,
             processData: false,
             contentType: false,
             success: (data) => {
@@ -896,14 +884,13 @@
                 });
 
             },
-            error: function(data){
+            error: function (data) {
 
                 errors = data.responseJSON.errors;
 
-                $('#errorz').css("display","block");
+                $('#errorz').css("display", "block");
 
-                for(key in errors)
-                {
+                for (key in errors) {
 
                     console.log(errors[key][0]);
 
@@ -925,32 +912,32 @@
 
 
     //edit staff data
-    $("#editstaffbtn").on('click',function(){
+    $("#editstaffbtn").on('click', function () {
 
         const id = $("#staffid").val();
 
         formData = new FormData
         const name = $("#edited_staffname").val()
         const email = $("#edited_staffemail").val()
-        const major_role =  $('#edited_major_role').val();
+        const major_role = $('#edited_major_role').val();
         const password = $("#edited_staffpassword").val()
         const shift = $('#edited_shift').val();
 
 
-        formData.append('id',id);
-        formData.append('name',name);
-        formData.append('email',email);
-        formData.append('major_role',major_role);
-        formData.append('shift',shift);
-        formData.append('password',password);
+        formData.append('id', id);
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('major_role', major_role);
+        formData.append('shift', shift);
+        formData.append('password', password);
 
 
         console.log(name);
 
         $.ajax({
-            type:'post',
-            url: "/edit-staff/"+id,
-            data:formData,
+            type: 'post',
+            url: "/edit-staff/" + id,
+            data: formData,
             processData: false,
             contentType: false,
             success: (data) => {
@@ -961,14 +948,13 @@
                 });
 
             },
-            error: function(data){
+            error: function (data) {
 
                 errors = data.responseJSON.errors;
 
-                $('#errorz').css("display","block");
+                $('#errorz').css("display", "block");
 
-                for(key in errors)
-                {
+                for (key in errors) {
 
                     console.log(errors[key][0]);
 
@@ -989,16 +975,14 @@
     });
 
 
-
-
     //edit products
-    $(".editproductbtn").on('click',function(){
+    $(".editproductbtn").on('click', function () {
 
         const id = parseInt($(this).attr('id'));
 
         $.ajax({
-            type:'get',
-            url: "/get-product/"+id,
+            type: 'get',
+            url: "/get-product/" + id,
             success: (data) => {
 
                 $('#product_cost').val(data.product[0].cost)
@@ -1011,7 +995,7 @@
                 $("#product_id").val(id);
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -1023,13 +1007,13 @@
 
 
     //edit monthly rewards
-    $(".editmonthlyrewardbtn").on('click',function(){
+    $(".editmonthlyrewardbtn").on('click', function () {
 
         const id = parseInt($(this).attr('id'));
 
         $.ajax({
-            type:'get',
-            url: "/get-reward-format/"+id,
+            type: 'get',
+            url: "/get-reward-format/" + id,
             success: (data) => {
 
                 $('.lower_range').val(data.rewardformat[0].low)
@@ -1041,7 +1025,7 @@
                 $("#monthly_reward_id").val(id);
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -1050,16 +1034,15 @@
         });
 
 
-
     });
 
     //edit bulk rewards
-    $(".editbulkrewardbtn").on('click',function(){
+    $(".editbulkrewardbtn").on('click', function () {
         const id = parseInt($(this).attr('id'));
 
         $.ajax({
-            type:'get',
-            url: "/get-reward-format/"+id,
+            type: 'get',
+            url: "/get-reward-format/" + id,
             success: (data) => {
 
                 $('.lower_range').val(data.rewardformat[0].low)
@@ -1071,7 +1054,7 @@
                 $("#bulk_reward_id").val(id);
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -1083,7 +1066,7 @@
     });
 
     //show corporate management model
-    $('.managecorporatebtn').on('click',function(){
+    $('.managecorporatebtn').on('click', function () {
 
         corporate_id = $(this).attr("id");
         account_type = $(this).attr("account_type");
@@ -1101,17 +1084,15 @@
         $('.acc_no_disp').text(account_number);
         $('.acc_bal_type').text(account_balance);
         $('.acc_number').text(account_number);
-        $('.limit_label').text(account_type.charAt(0).toUpperCase()+account_type.substring(1)+" Limit");
+        $('.limit_label').text(account_type.charAt(0).toUpperCase() + account_type.substring(1) + " Limit");
         $('.acc_number').val(account_number);
         $('#manage-corporate').modal('show');
-
-
 
 
     });
 
     //show purchase/payment model
-    $('.show_purchase_payment_btn').on('click',function(){
+    $('.show_purchase_payment_btn').on('click', function () {
 
         corporate_id = $(this).attr("org_id");
         account_type = $(this).attr("account_type");
@@ -1132,7 +1113,7 @@
 
 
     //set vehicle image
-    $('#company_logo_image').on('change',function(){
+    $('#company_logo_image').on('change', function () {
 
         let reader = new FileReader();
 
@@ -1148,29 +1129,26 @@
 
 
     //retain the reward status when loading the page
-    (function(){
+    (function () {
         $.ajax({
-            type:'get',
+            type: 'get',
             url: "get-status",
             success: (data) => {
 
 
-                if(data.reward[0].status == 'enabled')
-                {
+                if (data.reward[0].status == 'enabled') {
 
-                    $('#rewards_checkbox').prop('checked',true);
-                }
-                else
-                {
+                    $('#rewards_checkbox').prop('checked', true);
+                } else {
 
-                    $('#rewards_checkbox').prop('checked',false);
+                    $('#rewards_checkbox').prop('checked', false);
 
 
                 }
 
 
             },
-            error: function(data){
+            error: function (data) {
 
                 console.log(data);
 
@@ -1180,12 +1158,12 @@
 
 
     //function for authorizing purchase from admin portal
-    $('#authorize_purchase_btn').on('click',function(){
+    $('#authorize_purchase_btn').on('click', function () {
         $('#authorize_purchase').modal('show');
 
         //get corporate users
         $.ajax({
-            type:'get',
+            type: 'get',
             url: "/get-corporate-users",
             success: (data) => {
 
@@ -1206,14 +1184,14 @@
 
 
             },
-            error: function(data){
+            error: function (data) {
 
             }
         });
 
     });
 
-    $('#companies_id').on('change',function(){
+    $('#companies_id').on('change', function () {
 
         id = $('#companies_id').val();
 
@@ -1222,11 +1200,11 @@
         $('#vehicles').find('option').remove().end()
 
         formData = new FormData();
-        formData.append('id',id);
+        formData.append('id', id);
         //get corporate data
         $.ajax({
-            type:'post',
-            data:formData,
+            type: 'post',
+            data: formData,
             processData: false,
             contentType: false,
             url: "/get-corporate-data",
@@ -1253,14 +1231,14 @@
 
 
             },
-            error: function(data){
+            error: function (data) {
 
             }
         });
     });
 
 
-    $('.customerstatusbtn').on('click',function(){
+    $('.customerstatusbtn').on('click', function () {
 
         customer_id = $(this).attr("customer_id");
         $('#enrollment_customerid').val(customer_id);
@@ -1269,7 +1247,7 @@
     });
 
 
-    $('.salestatusbtn').on('click',function(){
+    $('.salestatusbtn').on('click', function () {
 
         sale_id = $(this).attr("sale_id");
         $('#salestatus_id').val(sale_id);
@@ -1286,14 +1264,13 @@
 
         console.log(status);
 
-        if (status == 'Rejected'){
+        if (status == 'Rejected') {
 
-            $('#sales_reason_div').css('display','');
+            $('#sales_reason_div').css('display', '');
 
-        }
-        else {
+        } else {
 
-            $('#sales_reason_div').css('display','none');
+            $('#sales_reason_div').css('display', 'none');
 
         }
 
@@ -1303,20 +1280,17 @@
 
         status = $(this).val();
 
-        if (status == 'Rejected'){
+        if (status == 'Rejected') {
 
-            $('#enrollment_reason_div').css('display','');
+            $('#enrollment_reason_div').css('display', '');
 
-        }
-        else {
+        } else {
 
-            $('#enrollment_reason_div').css('display','none');
+            $('#enrollment_reason_div').css('display', 'none');
 
         }
 
     });
-
-
 
 
     //datatable
@@ -1364,7 +1338,8 @@
             }
         ],
 
-    });$('#customer_discount_table').DataTable({
+    });
+    $('#customer_discount_table').DataTable({
         dom: 'Bfrtip',
         buttons: [
             'copy', 'csv', 'pdf', 'print',
@@ -1442,16 +1417,16 @@
 
     $('#sales_table').DataTable({
         "columns": [
-            { "type": "string" },
-            { "type": "string" },
-            { "type": "num-fmt" },
-            { "type": "num-fmt" },
-            { "type": "num-fmt" },
-            { "type": "string" },
-            { "type": "num-fmt" },
-            { "type": "string" },
-            { "type": "string" },
-            { "type": "string" }
+            {"type": "string"},
+            {"type": "string"},
+            {"type": "num-fmt"},
+            {"type": "num-fmt"},
+            {"type": "num-fmt"},
+            {"type": "string"},
+            {"type": "num-fmt"},
+            {"type": "string"},
+            {"type": "string"},
+            {"type": "string"}
         ],
         dom: 'Bfrtip',
         language: {
@@ -1460,7 +1435,7 @@
             }
         },
         buttons: [
-            'copy', 'csv', 'pdf', 'print','searchBuilder',
+            'copy', 'csv', 'pdf', 'print', 'searchBuilder',
             {
                 extend: 'excel',
                 text: 'Excel Export Search Results',
@@ -1517,16 +1492,16 @@
     });
 
 
-    $('.view-organizational-detail-link').on('click',function(){
+    $('.view-organizational-detail-link').on('click', function () {
 
         id = $(this).attr('id');
         formData = new FormData();
-        formData.append('id',id);
+        formData.append('id', id);
 
         //get corporate data
         $.ajax({
-            type:'post',
-            data:formData,
+            type: 'post',
+            data: formData,
             processData: false,
             contentType: false,
             url: "/get-organization-data",
@@ -1539,14 +1514,14 @@
                 $('#orgname').text(corporate.name);
                 $('#orgemail').text(corporate.email);
                 $('#orgphonenumber').text(corporate.phone_number);
-                $('#orgaddress').text(corporate.country+'  '+corporate.town+'  '+corporate.address);
+                $('#orgaddress').text(corporate.country + '  ' + corporate.town + '  ' + corporate.address);
                 $('#orgkrapin').text(corporate.krapin);
-                $('#orgcontactperson1').text(corporate.contact_person_name+'   '+corporate.contact_person_email+'   '+corporate.contact_person_phone);
-                $('#orgcontactperson2').text(corporate.another_contact_person_name+'  '+corporate.another_contact_person_email+'   '+corporate.another_contact_person_phone);
+                $('#orgcontactperson1').text(corporate.contact_person_name + '   ' + corporate.contact_person_email + '   ' + corporate.contact_person_phone);
+                $('#orgcontactperson2').text(corporate.another_contact_person_name + '  ' + corporate.another_contact_person_email + '   ' + corporate.another_contact_person_phone);
 
 
             },
-            error: function(data){
+            error: function (data) {
 
             }
         });
@@ -1554,24 +1529,20 @@
     });
 
     //check if the jazaTank checkbox is checked
-    $('#jazaTank').on('change',function() {
-        if(this.checked){
+    $('#jazaTank').on('change', function () {
+        if (this.checked) {
             $(this).val(1);
             $('#amount').val(0);
             $('#amount').prop('readonly', true);
             let confirmation_value = `Are you sure you want to authorize Full Tank ? Amount will be billed to your account after Fuel is dispensed.`;
-            if(confirm(confirmation_value) == true)
-            {
+            if (confirm(confirmation_value) == true) {
                 //set authorization value
                 console.log("Amount will be billed on sale");
-            }
-            else
-            {
+            } else {
                 console.log("Amount will not be billed on sale");
                 return;
             }
-        }
-        else{
+        } else {
 
             $(this).val(0);
             $('#amount').prop('readonly', false);
@@ -1579,7 +1550,28 @@
 
     })
 
-    
+    $('.discount_item').on('click', function () {
+        let anchor_id = $(this).attr('id');
+        localStorage.clear();
+        localStorage.setItem('anchor_id', anchor_id);
+    });
+
+    let anchor_id = parseInt(localStorage.getItem('anchor_id'));
+    if (anchor_id) {
+        $.ajax({
+            type: 'get',
+            url: "/discount-print-status/" + anchor_id,
+            success: (data) => {
+                if (window.location.href.indexOf('reload') == -1) {
+                    window.location.replace(window.location.href + '?reload');
+                }
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        });
+    }
+
 </script>
 </body>
 </html>

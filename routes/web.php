@@ -83,6 +83,7 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::post('/staff-authorize-fuel-purchase',[CustomerController::class,'staffAuthorizeFuelPurchase']);
      Route::get('/get-number-plate',[CustomerController::class,'autoCompleteCustomerSearch']);
      Route::get('/discount-pdf/{discountId}',[DiscountController::class,'loadDiscountPDF']);
+     Route::get('/discount-print-status/{discountId}',[DiscountController::class,'updatePrintState']);
 
 });
 
