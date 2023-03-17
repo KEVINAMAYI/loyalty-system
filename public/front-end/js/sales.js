@@ -370,16 +370,16 @@ $(function () {
                             );
 
                         }
-                        });
+                    });
 
                     $('.main-section').append(`
                     <div  class="form-holder row form-holder-2">
                      <div class="col-lg-6">
                         <button type="button" id="addvehicle" style="max-width:150px; background-color:#f9a14d; border:0px; width:100%; font-size:15px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">ADD NEW</button>
                         </div>
-<!--                        <div class="col-lg-6">-->
-<!--                        <button type="button" id="redeempointsbtn" style="max-width:150px; background-color:rebeccapurple; border:0px; width:100%; font-size:15px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">REDEEM</button>-->
-<!--                       </div>-->
+                        <div class="col-lg-6">
+                        <button type="button" id="redeempointsbtn" style="max-width:150px; background-color:rebeccapurple; border:0px; width:100%; font-size:15px; margin-top:40px;" class="btn btn-primary btn-lg btn-block">REDEEM</button>
+                       </div>
                   </div>
                `);
 
@@ -394,11 +394,15 @@ $(function () {
                         $('#discount-details-modal').modal('show');
                     });
 
+                    //by default
+                    let id = $(".vehicle_sale_id:first").attr("id");
+                    localStorage.setItem('vehicle_id', id);
+
 
                     //Get vehicle data to be fueled
                     $(".vehicle_sale_id").on('change', function () {
                         if (this.checked) {
-
+                            console.log('etetetetetet');
                             const id = parseInt($(this).attr("id"));
                             localStorage.setItem('vehicle_id', id);
 
