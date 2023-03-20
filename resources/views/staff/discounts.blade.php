@@ -55,30 +55,22 @@
                                 <tr>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
-                                        Name
+                                        Customer Name
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
-                                        Phone
+                                        User (CSA)
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Vehicle
+                                        Amount Redeemed
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Product
+                                        Approver
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">
-                                        Rewards Available
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Discount
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Date
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
@@ -99,23 +91,15 @@
                                         </td>
                                         <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $discount->customer->phone_number }}</span>
-                                        </td>
-                                        <td class="text-sm">
-                                            <span
-                                                class="text-secondary text-xs font-weight-bold">{{ App\Models\Vehicle::where('customer_id', '=', $discount->customer->id)->value('vehicle_registration') != null ? App\Models\Vehicle::where('customer_id', '=', $discount->customer->id)->value('vehicle_registration') : 'No Vehicle Assigned' }}</span>
-                                        </td>
-                                        <td class="text-sm">
-                                            <span
-                                                class="text-secondary text-xs font-weight-bold">{{ App\Models\Vehicle::where('customer_id', '=', $discount->customer->id)->value('fuel_type') != null ? App\Models\Vehicle::where('customer_id', '=', $discount->customer->id)->value('fuel_type') : 'No Vehicle Assigned' }}</span>
-                                        </td>
-                                        <td class="text-sm">
-                                            <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $discount->customer->rewards }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $discount->csa }}</span>
                                         </td>
                                         <td class="text-sm">
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $discount->amount }}</span>
+                                        </td>
+                                        <td class="text-sm">
+                                            <span
+                                                class="text-secondary text-xs font-weight-bold">{{ $discount->approver }}</span>
                                         </td>
                                         <td class="text-sm">
                                             <span
@@ -150,36 +134,29 @@
                                 <tr>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
-                                        Name
+                                        Customer Name
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
-                                        Phone
+                                        User (CSA)
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Vehicle
+                                        Amount Redeemed
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Product
+                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
+                                        Approver
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">
-                                        Rewards Available
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Discount
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Date
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Action
                                     </th>
+
                                 </tr>
                                 </tfoot>
                             </table>
@@ -231,7 +208,7 @@
                         <input type="hidden" id="discount_id" name="discount_id" value="">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         <button id="set_discount_status_btn" style="margin-left:60%;" type="button"
-                                class="btn  btn-secondary">Save
+                                class="btn  btn-secondary">save
                         </button>
                     </div>
                 </div>

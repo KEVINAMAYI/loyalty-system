@@ -150,6 +150,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="customer_id" name="customer_id" value="">
+                        <input type="hidden" id="csa" name="csa" value="{{ auth()->user()->name }}">
                         <button type="button"  class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         <button id="set_discount_btn" style="margin-left:60%;"   type="button" class="btn  btn-secondary" >Save</button>
                     </div>

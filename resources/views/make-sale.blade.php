@@ -452,6 +452,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="customer_id" value="">
+                <input type="hidden" name="csa" id="csa" value="{{ auth()->user()->name }}">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" id="submit_disc_btn" class="btn btn-primary">Proceed</button>
             </div>

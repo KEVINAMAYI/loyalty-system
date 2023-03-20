@@ -49,7 +49,6 @@ class DiscountController extends Controller
     public function setDiscount(Request $request): \Illuminate\Http\JsonResponse
     {
         $data = $request->all();
-
         $customer_rewards = Customer::where('id',$data['customer_id'])->get()[0]->rewards;
 
         if($customer_rewards >= $data['discount'])
@@ -58,6 +57,7 @@ class DiscountController extends Controller
                 'customer_id' => $data['customer_id'],
                 'amount' => $data['discount'],
                 'status' => 'pending',
+                'csa'  => $data['csa'],
                 'redeemed_by' => Auth::user()->name
             ]);
 
@@ -80,8 +80,9 @@ class DiscountController extends Controller
 
     public function setDiscountStatus(Request $request): \Illuminate\Http\JsonResponse
     {
+
         $data = $request->all();
-        Discount::where('id', $data['discount_id'])->update(['status' => 'approved']);
+        Discount::where('id', $data['discount_id'])->update(['status' => 'approved','approver' => Auth::user()->name ]);
         $discount = Discount::where('id', $data['discount_id'])->get()[0];
         $customer_id = $discount->customer_id;
         $amount = $discount->amount;

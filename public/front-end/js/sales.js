@@ -2167,6 +2167,7 @@ $(function () {
 
         if (discount && (discount != 0)) {
             let customer_id = $('#customer_id').val();
+            let csa = $('#csa').val();
             let confirmation_value = `Are you sure you want to redeem ${discount}`;
             $('#discount-details-modal').modal('hide');
 
@@ -2177,7 +2178,8 @@ $(function () {
                     url: "/set-discount",
                     data: {
                         customer_id: customer_id,
-                        discount: discount
+                        discount: discount,
+                        csa:csa
                     },
                     dataType: 'json',
                     success: (data) => {
