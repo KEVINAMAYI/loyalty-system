@@ -445,7 +445,8 @@ class CustomerController extends Controller
             'receipt_image_url' => "receipt_image_url",
             'sold_by' => $data['sold_by'],
             'rewards_balance' => $data['new_cutomer_rewards'],
-            'status' => "Accepted",
+            'status' => "Pending",
+            'approved_by' => Auth::user()->name,
             'reason' => "No reason",
             'product' => $data['product_text']
         ]);
@@ -1816,10 +1817,9 @@ class CustomerController extends Controller
 
              Sale::where('id','=',$data['salestatus_id'] )->update([
                     'status' => $data['sales_status'],
-                    'reason' => $data['sales_status_reason'],
+                    'reason' => $data['sales_status_reason'] == null ? "No Reason" : $data['sales_status_reason'],
                     'approved_by' => $personnel,
                     'approved_date' => $todayDateTime
-
                 ]);
 
                 //send a confirmation SMS
@@ -1846,7 +1846,7 @@ class CustomerController extends Controller
 
                  Sale::where('id','=',$data['salestatus_id'] )->update([
                             'status' => $data['sales_status'],
-                            'reason' => $data['sales_status_reason'],
+                            'reason' => $data['sales_status_reason'] == null ? "No Reason" : $data['sales_status_reason'],
                             'approved_by' => $personnel,
                             'approved_date' => $todayDateTime
 

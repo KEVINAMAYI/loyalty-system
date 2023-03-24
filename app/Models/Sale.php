@@ -25,12 +25,13 @@ class Sale extends Model
         'amount_payable',
         'amount_paid',
         'image_url',
+        'approved_by',
         'pump_image_url',
         'receipt_image_url',
         'sold_by',
         'rewards_balance',
         'status',
-        'reason'  
+        'reason'
 
     ];
 }
