@@ -56,7 +56,6 @@
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Vehicle Registration</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Product</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">Amount</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">Rewards Used</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Rewards Awarded</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">Sold By</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">Date</th>
@@ -80,9 +79,6 @@
                   </td>
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->amount_paid }}</span>
-                  </td>
-                  <td class="align-middle  text-sm">
-                    <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_used }}</span>
                   </td>
                   <td class="text-sm">
                     <span class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_awarded }}</span>
@@ -115,7 +111,7 @@
                           <span style="cursor:pointer;" phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="badge badge-sm bg-gradient-success">{{ $sale->status }}</span>
                         </td>
                       @endif
-                  
+
                   <td class="text-sm">
                     <input type="hidden" id="saleid" value={{ $sale->id }}>
                     <button  id="{{ $sale->id }}"  style="background-color:#f9a14d;" class="moresalesdetails btn btn-sm btn-primary" >more info</button>
@@ -128,7 +124,6 @@
                   <tr>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Vehicle Registration</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Amount</th>
-                    <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">Rewards Used</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">Rewards Awarded</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Sold By</th>
                     <th style="border-bottom:1px solid rgb(200, 195, 195);"  class="text-center text-uppercase text-left text-secondary text-xxs font-weight-bolder">Date</th>
@@ -184,18 +179,14 @@
               <label for="regno">Reason for Rejection</label></br>
               <p id="sale_rejection_reason" style="padding-left:5px;"></p>
             </div>
+              <div class="form-holder form-holder-2 mt-4 mb-4">
+                  <label for="pump">Pump</label></br>
+                  <p id="pump" style="padding-left:5px;"></p>
+              </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">
                  <label for="regno">Image</label></br>
                 <img id="vehicle_image" src="" style="border:4px solid grey; width:200px; height:200px;" alt="">
             </div>
-            <div class="form-holder form-holder-2 mt-4 mb-4">
-              <label for="regno">Pump Image</label></br>
-             <img id="pump_image" src="" style="border:4px solid grey; width:200px; height:200px;" alt="">
-            </div>
-            {{-- <div class="form-holder form-holder-2 mt-4 mb-4">
-              <label for="regno">Receipt Image</label></br>
-              <img id="receipt_image" src="" style="border:4px solid grey; width:200px; height:200px;" alt="">
-            </div> --}}
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
            </div>

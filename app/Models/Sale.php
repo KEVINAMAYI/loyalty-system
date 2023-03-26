@@ -26,7 +26,7 @@ class Sale extends Model
         'amount_paid',
         'image_url',
         'approved_by',
-        'pump_image_url',
+        'pump',
         'receipt_image_url',
         'sold_by',
         'rewards_balance',

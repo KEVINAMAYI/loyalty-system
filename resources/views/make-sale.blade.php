@@ -195,6 +195,25 @@
                                 </div>
                             </div>
 
+                            {{-- pump image --}}
+                            <div style="margin-left:-2px; margin-bottom:60px;" class="form-holder form-holder-2 mt-2">
+                                <label style="font-size:17px; color:white; margin-bottom:7px;" for="pump">Pump Number</label>
+                                <select name="pump" id="pump" class="form-control">
+                                    <option value="">Select...</option>
+                                    <option value="pump_1">Pump 1</option>
+                                    <option value="pump_2">Pump 2</option>
+                                    <option value="pump_3">Pump 3</option>
+                                    <option value="pump_4">Pump 4</option>
+                                    <option value="pump_5">Pump 5</option>
+                                    <option value="pump_6">Pump 6</option>
+                                    <option value="pump_7">Pump 7</option>
+                                    <option value="pump_8">Pump 8</option>
+                                    <option value="pump_9">Pump 9</option>
+                                    <option value="pump_10">Pump 10</option>
+
+                                </select>
+                            </div>
+
                             {{-- vehicle image --}}
                             <div class="form-holder">
                                 <img id="vehicle_image" loading="lazy" class="img-fluid img-thumbnail"
@@ -214,43 +233,8 @@
                                 </div>
                             </div>
 
-                            {{-- pump image --}}
-                            <div class="form-holder">
-                                <img id="vehicle_pump_image" loading="lazy" class="img-fluid img-thumbnail"
-                                     src="" style="border:2px solid white; width:200px; height:200px;"
-                                     alt="Pump Photo">
-                            </div>
-                            <div class="form-row" style="margin-top:30px;">
-                                <div style="margin-left:0px; padding-left:0px; padding-top:5px;"
-                                     class="form-holder">
-                                    <label class="custom-file-upload">
-                                        <img id="camera" src="front-end/images/camera.png"
-                                             style="max-width:50px; max-height:50px;" alt="">
-                                        <input type="file" style="display:none;" id="pump_image"
-                                               name="pump_image" accept="image/*" capture="camera" />
-                                        Take Photo
-                                    </label>
-                                </div>
-                            </div>
 
-                            {{-- receipt image --}}
-                            {{-- <div class="form-holder">
-                                <img id="vehicle_receipt_image" loading="lazy" class="img-fluid img-thumbnail"
-                                    src="" style="border:2px solid white; width:200px; height:200px;"
-                                    alt="Receipt Photo">
-                            </div>
-                            <div class="form-row" style="margin-top:30px;">
-                                <div style="margin-left:0px; padding-left:0px; padding-top:5px;"
-                                    class="form-holder">
-                                    <label class="custom-file-upload">
-                                        <img id="camera" src="front-end/images/camera.png"
-                                            style="max-width:50px; max-height:50px;" alt="">
-                                        <input type="file" style="display:none;" id="receipt_image"
-                                            name="receipt_image" accept="image/*" capture="camera" />
-                                        Take Photo
-                                    </label>
-                                </div>
-                            </div> --}}
+
                             <input type="hidden" name="reward_percentage" id="reward_percentage"
                                    value={{ $rewards_details[0]->percentage }}>
                         </div>

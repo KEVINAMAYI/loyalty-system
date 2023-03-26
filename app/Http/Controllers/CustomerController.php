@@ -387,45 +387,26 @@ class CustomerController extends Controller
 
         // upload vehicle and image
         $vehicleImage = $request->vehicle_image;
-        $pumpImage = $request->pump_image;
         $vehicleImageName =  "image-".time().'-'.$vehicleImage->getClientOriginalName();
-        $pumpImageName =  "image-".time().'-'.$pumpImage->getClientOriginalName();
         $destinationPath = public_path('/images');
 
 
         //compress image and store image if size is greater than 512KB
         $vehiclefileSize = $vehicleImage->getSize();    //get vehicle  size of image
-        $pumpfileSize = $pumpImage->getSize();      //get pump size of image
 
 
-        if(($vehiclefileSize < 512000) && ($pumpfileSize < 512000)){
+        if(($vehiclefileSize < 512000)){
 
-            //strore  images if they do not need compression
+            //store  images if they do not need compression
             $vehicleImage->move(public_path('images'), $vehicleImageName);
-            $pumpImage->move(public_path('images'), $pumpImageName);
 
         }else{
-
-            if($vehiclefileSize > 512000){
 
                 Log::info('Vehicle Image size in bytes --- '.$vehiclefileSize);
                 $vehicle_actual_image = Image::make($vehicleImage->getRealPath());
                 $height = $vehicle_actual_image->height()/4;	    //get 1/4th of image height
                 $width = $vehicle_actual_image->width()/4;			//get 1/4th of image width
                 $vehicle_actual_image->resize($width, $height)->save($destinationPath . '/' . $vehicleImageName);
-            }
-
-             if($pumpfileSize > 512000){
-
-                Log::info('Pump Image size in bytes --- '.$pumpfileSize);
-                $pump_actual_image = Image::make($pumpImage->getRealPath());
-                $height = $pump_actual_image->height()/4;	    //get 1/4th of image height
-                $width = $pump_actual_image->width()/4;			//get 1/4th of image width
-                $pump_actual_image->resize($width, $height)->save($destinationPath . '/' . $pumpImageName);
-
-            }
-
-
         }
 
 
@@ -441,7 +422,7 @@ class CustomerController extends Controller
             'amount_payable' => $data['amount_payable'],
             'amount_paid' => $data['amount_paid'],
             'image_url' => $vehicleImageName,
-            'pump_image_url' => $pumpImageName,
+            'pump' => $data['pump'],
             'receipt_image_url' => "receipt_image_url",
             'sold_by' => $data['sold_by'],
             'rewards_balance' => $data['new_cutomer_rewards'],

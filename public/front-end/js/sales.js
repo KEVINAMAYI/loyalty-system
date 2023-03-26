@@ -1972,10 +1972,6 @@ $(function () {
         $('#progress').css('display', '');
 
         const selectedFile = document.getElementById('image').files[0];
-        const pumpFile = document.getElementById('pump_image').files[0];
-        // const receiptFile = document.getElementById('receipt_image').files[0];
-
-
         // const product = localStorage.getItem('product');
         const last_name = localStorage.getItem('last_name');
         const first_name = localStorage.getItem('first_name');
@@ -1990,13 +1986,13 @@ $(function () {
         const sale_start_date = localStorage.getItem('sale_start_date');
         const sale_end_date = localStorage.getItem('sale_end_date');
         const sold_by = $('#sales-person-name').text();
+        const pump = $('#pump').val();
         const product_text = $("#fuel_type_label").val();
 
 
         formData = new FormData();
         formData.append('vehicle_image', selectedFile);
-        formData.append('pump_image', pumpFile);
-        // formData.append('receipt_image',receiptFile);
+        formData.append('pump', pump);
         formData.append('product', product);
         formData.append('last_name', last_name);
         formData.append('first_name', first_name);
@@ -2015,6 +2011,7 @@ $(function () {
 
 
         console.log(sold_by);
+        console.log(pump);
         console.log(sale_start_date);
         console.log(sale_end_date);
         console.log(vehicle_registration);
