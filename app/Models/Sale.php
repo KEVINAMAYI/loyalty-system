@@ -27,6 +27,8 @@ class Sale extends Model
         'image_url',
         'approved_by',
         'pump',
+        'pump_side',
+        'nozzle',
         'receipt_image_url',
         'sold_by',
         'rewards_balance',

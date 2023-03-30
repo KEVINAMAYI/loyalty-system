@@ -180,7 +180,7 @@
               <p id="sale_rejection_reason" style="padding-left:5px;"></p>
             </div>
               <div class="form-holder form-holder-2 mt-4 mb-4">
-                  <label for="pump">Pump</label></br>
+                  <label for="pump">Pump, Side, Nozzle</label></br>
                   <p id="pump" style="padding-left:5px;"></p>
               </div>
             <div class="form-holder form-holder-2 mt-4 mb-4">

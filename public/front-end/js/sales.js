@@ -1987,12 +1987,16 @@ $(function () {
         const sale_end_date = localStorage.getItem('sale_end_date');
         const sold_by = $('#sales-person-name').text();
         const pump = $('#pump').val();
+        const pump_side = $('#pump_side').val();
+        const nozzle = $('#nozzle').val();
         const product_text = $("#fuel_type_label").val();
 
 
         formData = new FormData();
         formData.append('vehicle_image', selectedFile);
         formData.append('pump', pump);
+        formData.append('pump_side', pump_side);
+        formData.append('nozzle', nozzle);
         formData.append('product', product);
         formData.append('last_name', last_name);
         formData.append('first_name', first_name);

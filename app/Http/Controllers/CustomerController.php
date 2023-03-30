@@ -423,6 +423,8 @@ class CustomerController extends Controller
             'amount_paid' => $data['amount_paid'],
             'image_url' => $vehicleImageName,
             'pump' => $data['pump'],
+            'pump_side' => $data['pump_side'],
+            'nozzle' => $data['nozzle'],
             'receipt_image_url' => "receipt_image_url",
             'sold_by' => $data['sold_by'],
             'rewards_balance' => $data['new_cutomer_rewards'],

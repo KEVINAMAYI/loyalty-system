@@ -196,21 +196,33 @@
                             </div>
 
                             {{-- pump image --}}
-                            <div style="margin-left:-2px; margin-bottom:60px;" class="form-holder form-holder-2 mt-2">
-                                <label style="font-size:17px; color:white; margin-bottom:7px;" for="pump">Pump Number</label>
+                            <div style="margin-left:-2px; margin-bottom:30px;" class="form-holder form-holder-2 mt-2">
+                                <label style="font-size:17px; color:white; margin-bottom:7px;" for="pump">Step 1: Pump Number</label>
                                 <select name="pump" id="pump" class="form-control">
-                                    <option value="">Select...</option>
-                                    <option value="pump_1">Pump 1</option>
-                                    <option value="pump_2">Pump 2</option>
-                                    <option value="pump_3">Pump 3</option>
-                                    <option value="pump_4">Pump 4</option>
-                                    <option value="pump_5">Pump 5</option>
-                                    <option value="pump_6">Pump 6</option>
-                                    <option value="pump_7">Pump 7</option>
-                                    <option value="pump_8">Pump 8</option>
-                                    <option value="pump_9">Pump 9</option>
-                                    <option value="pump_10">Pump 10</option>
+                                    <option value="pump 1">Pump 1</option>
+                                    <option value="pump 2">Pump 2</option>
+                                    <option value="pump 3">Pump 3</option>
+                                    <option value="pump 4">Pump 4</option>
+                                    <option value="pump 5">Pump 5</option>
+                                    <option value="pump 6">Pump 6</option>
+                                </select>
+                            </div>
 
+                            {{-- pump Side --}}
+                            <div style="margin-left:-2px; margin-bottom:30px;" class="form-holder form-holder-2">
+                                <label style="font-size:17px; color:white; margin-bottom:7px;" for="pump">Step 2: Pump Side</label>
+                                <select name="pump_side" id="pump_side" class="form-control">
+                                    <option value="Side 1">Side 1</option>
+                                    <option value="Side 2">Side 2</option>
+                                </select>
+                            </div>
+
+                            {{-- pump Side --}}
+                            <div style="margin-left:-2px; margin-bottom:60px;" class="form-holder form-holder-2">
+                                <label style="font-size:17px; color:white; margin-bottom:7px;" for="pump">Step 3: Pump Nozzle</label>
+                                <select name="nozzle" id="nozzle" class="form-control">
+                                    <option value="Petrol Nozzle">Petrol Nozzle</option>
+                                    <option value="Diesel Nozzle">Diesel Nozzle</option>
                                 </select>
                             </div>
 

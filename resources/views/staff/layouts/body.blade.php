@@ -620,7 +620,7 @@
                 $("#amountpayable").text(sale_data[0].amount_payable + ",  " + sale_data[0].amount_paid);
                 $("#sold_by").text(sale_data[0].created_at + ",  " + sale_data[0].sold_by);
                 $('#vehicle_image').attr('src', `images/${sale_data[0].image_url}`);
-                $('#pump').text(sale_data[0].pump);
+                $('#pump').text(`${sale_data[0].pump}, ${sale_data[0].pump_side}, ${sale_data[0].nozzle} `);
 
                 if (sale_data[0].status == 'Rejected') {
 
