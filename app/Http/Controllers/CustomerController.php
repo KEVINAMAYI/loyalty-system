@@ -1897,7 +1897,7 @@ class CustomerController extends Controller
             'id_number' => 'required|min:7|max:8|unique:customers',
             'category' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string', 'max:255'],
-            'regno' => ['required', 'string', 'max:255'],
+            'regno' => ['required', 'string', 'max:255','unique:vehicles,vehicle_registration'],
          ]);
 
          $data = $request->all();
