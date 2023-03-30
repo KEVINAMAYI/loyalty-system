@@ -1423,12 +1423,11 @@
             {"type": "string"},
             {"type": "num-fmt"},
             {"type": "num-fmt"},
-            {"type": "num-fmt"},
-            {"type": "string"},
-            {"type": "num-fmt"},
             {"type": "string"},
             {"type": "string"},
-            {"type": "string"}
+            {"type": "string"},
+            {"type": "string"},
+            {"type": "string"},
         ],
         dom: 'Bfrtip',
         language: {

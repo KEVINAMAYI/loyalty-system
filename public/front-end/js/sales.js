@@ -209,7 +209,7 @@ $(function () {
                 vehicles = data.vehicles;
                 console.log(vehicles);
                 console.log(customer);
-                $('#redeemable_rewards').text(`${customer[0].rewards}, ${customer[0].rewards}`);
+                $('#redeemable_rewards').text(`${customer[0].rewards}`);
                 $('#customer_id').val(customer[0].id);
 
                 if (vehicles.length == 0) {

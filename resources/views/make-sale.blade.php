@@ -429,7 +429,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-holder form-holder-2 mt-4 mb-4">
-                    <label for="rewards">Rewards (Total Rewards, Rewards Available)</label></br>
+                    <label for="redeemable_rewards">Rewards (Total Rewards)</label></br>
                     <p id="redeemable_rewards" style="padding-left:5px;"></p>
                 </div>
                 <div class="form-holder form-holder-2 mt-4 mb-4">
