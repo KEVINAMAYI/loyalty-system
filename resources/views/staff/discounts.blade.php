@@ -42,9 +42,9 @@
                                 <h6>Discounts</h6>
                             </div>
                             <div class="col-md-2">
-                                {{-- <a class="btn btn-primary text-right" style="background-color:#f9a14d;" href="/sales">
-                                    <i class="fa-solid fa-arrow-left"></i>
-                                    Back</a> --}}
+                                {{--                                --}}{{-- <a class="btn btn-primary text-right" style="background-color:#f9a14d;" href="/sales">--}}
+                                {{--                                    <i class="fa-solid fa-arrow-left"></i>--}}
+                                {{--                                    Back</a> --}}
                             </div>
                         </div>
                     </div>
@@ -114,17 +114,21 @@
                                                 </button>
                                             </td>
                                         @else
-                                            <td class="text-sm">
-                                                @if($discount->printed == 'Pending')
-                                                <a  id="{{ "$discount->id"}}" href="/discount-pdf/{{ $discount->id  }}"
-                                                   style="background-color:#4881c0"
-                                                   class="discount_item print-discount-data-btn btn btn-sm btn-primary">Print</a>
-                                                @else
-                                                    <a  id="{{ "discount_item_$discount->id"}}" href=""
-                                                        style="background-color:#4881c0"
-                                                        class="discount_item disabled print-discount-data-btn btn btn-sm btn-primary">Printed</a>
-                                                @endif
-                                            </td>
+                                            @if($discount->printed == 'Completed')
+                                                <td class="text-sm">
+                                                    <a id="{{ "discount_item_$discount->id"}}" href=""
+                                                       style="background-color:#4881c0"
+                                                       class="discount_item disabled print-discount-data-btn btn btn-sm btn-primary">Printed</a>
+                                                </td>
+                                            @else
+                                                <td class="text-sm">
+                                                    <a id="{{ "$discount->id"}}"
+                                                       href="/discount-pdf/{{ $discount->id  }}"
+                                                       style="background-color:#4881c0"
+                                                       class="discount_item print-discount-data-btn btn btn-sm btn-primary">Print</a>
+                                                </td>
+
+                                            @endif
                                         @endif
                                     </tr>
                                 @endforeach

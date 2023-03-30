@@ -529,7 +529,7 @@
 
     $(".approve-discount-btn").on('click', function () {
 
-
+       console.log("test");
         const customer_id = parseInt($(this).attr("id"));
         const discount_id = parseInt($(this).attr("discount_id"));
         $('#discount_id').val(discount_id);
@@ -1551,11 +1551,17 @@
 
     })
 
-    $('.discount_item').on('click', function () {
-        let anchor_id = $(this).attr('id');
-        localStorage.clear();
-        localStorage.setItem('anchor_id', anchor_id);
+    $(document).on('click','.discount_item',function () {
+
+        let confirmation_value = `Are you sure you want to print discount details`;
+        if (confirm(confirmation_value) == true) {
+            let anchor_id = $(this).attr('id');
+            localStorage.clear();
+            localStorage.setItem('anchor_id', anchor_id);
+        }
+
     });
+
 
     let anchor_id = parseInt(localStorage.getItem('anchor_id'));
     if (anchor_id) {
