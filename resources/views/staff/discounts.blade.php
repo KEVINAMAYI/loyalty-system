@@ -71,7 +71,7 @@
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">
-                                        Date
+                                        Approval Date
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
@@ -103,7 +103,7 @@
                                         </td>
                                         <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $discount->created_at->format('d/m/Y h:i:s ') }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $discount->approved_date == null ? "" : \Carbon\Carbon::parse($discount->approved_date)->format('d/m/Y H:i:s') }}</span>
                                         </td>
                                         @if($discount->status == 'pending')
                                             <td class="text-sm">

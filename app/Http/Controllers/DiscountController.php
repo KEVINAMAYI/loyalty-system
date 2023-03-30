@@ -8,7 +8,7 @@ use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\Discount;
 use Illuminate\Support\Facades\Auth;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon;
 
 class DiscountController extends Controller
 {
@@ -103,7 +103,11 @@ class DiscountController extends Controller
 
     public function updatePrintState($discount): \Illuminate\Http\JsonResponse
     {
-        Discount::where('id',$discount)->update(['printed' => 'Completed']);
+        $approved_date = Carbon\Carbon::now();
+        Discount::where('id',$discount)->update([
+                'printed' => 'Completed',
+                'approved_date' =>$approved_date->toDateTimeString()
+        ]);
         return \response()->json([ 'printed' => $discount ]);
     }
 
