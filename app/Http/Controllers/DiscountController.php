@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Discount;
 use Illuminate\Support\Facades\Auth;
 use Carbon;
+use Stevebauman\Location\Facades\Location;
 
 class DiscountController extends Controller
 {
@@ -53,12 +54,28 @@ class DiscountController extends Controller
 
         if($customer_rewards >= $data['discount'])
         {
+            $ip = $request->ip();
+            $position = Location::get($ip);
+            $country = $position->countryName;
+            $city = $position->cityName;
+            $zipCode = $position->zipCode;
+            $latitude  = $position->latitude;
+            $longitude  = $position->longitude;
+
             Discount::create([
                 'customer_id' => $data['customer_id'],
                 'amount' => $data['discount'],
                 'status' => 'pending',
                 'csa'  => $data['csa'],
-                'redeemed_by' => Auth::user()->name
+                'pump'  => $data['pump'],
+                'pump_side'  => $data['pump_side'] ,
+                'nozzle'  => $data['nozzle'],
+                'redeemed_by' => Auth::user()->name,
+                'country' => $country ?? 'Kenya',
+                'city' => $city ?? 'Nairobi',
+                'zipCode' => $zipCode ?? '00100',
+                'latitude' => $latitude ?? '-1.2814',
+                'longitude' => $longitude ?? '36.905',
             ]);
 
             return response()->json([

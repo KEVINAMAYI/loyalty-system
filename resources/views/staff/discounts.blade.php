@@ -192,10 +192,10 @@
                     </div>
 
                     <div class="form-holder form-holder-2 mt-4 mb-4">
-                        <label for="rewards">Rewards (Total Rewards, Rewards Available)</label></br>
+                        <label for="rewards">Rewards (Total Rewards)</label></br>
                         <p id="rewards" style="padding-left:5px;"></p>
                     </div>
-                    <div class="form-holder form-holder-2 mt-4 mb-4">
+                    <div class="form-holder form-holder-2 mt-4">
                         <div class="row">
                             <div class="col-6">
                                 <label for="Discount">Amount Reedemed (KES)</label></br>
@@ -207,6 +207,14 @@
                             </div>
                         </div>
 
+                    </div>
+                    <div class="form-holder form-holder-2 mb-4">
+                        <label for="discount_pump">Pump</label></br>
+                        <p id="discount_pump" style="padding-left:5px;"></p>
+                    </div>
+                    <div class="form-holder form-holder-2 mt-4 mb-4">
+                        <label for="discount_pump">GeoLocation</label></br>
+                        <p id="geolocation" style="padding-left:5px;"></p>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="discount_id" name="discount_id" value="">

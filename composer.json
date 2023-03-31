@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "spatie/laravel-image-optimizer": "^1.6",
+        "stevebauman/location": "^6.6",
         "twilio/sdk": "^6.36"
     },
     "require-dev": {

@@ -404,6 +404,9 @@
         if (discount && (discount != 0)) {
             let customer_id = $('#customer_id').val();
             let csa = $('#csa').val();
+            let pump = $('#pump').val();
+            let pump_side = $('#pump_side').val();
+            let nozzle = $('#nozzle').val();
 
             let confirmation_value = `Are you sure you want to redeem ${discount}`;
             $('#discount-details-modal').modal('hide');
@@ -417,7 +420,10 @@
                     data: {
                         customer_id: customer_id,
                         discount: discount,
-                        csa: csa
+                        csa:csa,
+                        pump:pump,
+                        pump_side:pump_side,
+                        nozzle:nozzle
                     },
                     dataType: 'json',
                     success: (data) => {
@@ -512,7 +518,7 @@
 
                 $("#pending_name").text(customer[0].first_name + " " + customer[0].last_name + " " + customer[0].phone_number);
                 $("#pending_vehiclereg").text(vehicle[0].vehicle_registration);
-                $("#pending_rewards").text(`${customer[0].rewards},  ${customer[0].rewards}`);
+                $("#pending_rewards").text(`${customer[0].rewards}`);
                 $("#pending_discount_value").text(discount[0].amount);
                 $('#pending-discount-details-modal').modal('show');
 
@@ -550,6 +556,8 @@
                 $("#vehiclereg").text(vehicle[0].vehicle_registration);
                 $("#rewards").text(`${customer[0].rewards},  ${customer[0].rewards}`);
                 $("#discount_value").text(discount[0].amount);
+                $("#discount_pump").text(`${discount[0].pump}, ${discount[0].pump_side}, ${discount[0].nozzle}`);
+                $("#geolocation").text(`${discount[0].country}, ${discount[0].city}, ${discount[0].zipCode}, ${discount[0].latitude}, ${discount[0].longitude}`);
                 $('#confirm-discount-details-modal').modal('show');
 
             },

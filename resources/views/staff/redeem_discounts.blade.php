@@ -132,7 +132,7 @@
                     </div>
 
                     <div class="form-holder form-holder-2 mt-4 mb-4">
-                        <label for="rewards">Rewards (Total Rewards, Rewards Available)</label></br>
+                        <label for="rewards">Rewards (Total Rewards)</label></br>
                         <p id="rewards" style="padding-left:5px;"></p>
                     </div>
                     <div class="form-holder form-holder-2 mt-4 mb-4">
@@ -146,7 +146,36 @@
                                     type="number" name="discount" id="discount" required>
                             </div>
                         </div>
+                    </div>
+                    {{-- pump image --}}
+                    <div style="margin-left:-2px; margin-bottom:15px;" class="form-holder form-holder-2 mt-2">
+                        <label style="font-size:17px; color:black; font-weight:lighter; margin-bottom:7px;" for="pump">Pump Number</label>
+                        <select name="pump" id="pump" class="form-control">
+                            <option value="pump 1">Pump 1</option>
+                            <option value="pump 2">Pump 2</option>
+                            <option value="pump 3">Pump 3</option>
+                            <option value="pump 4">Pump 4</option>
+                            <option value="pump 5">Pump 5</option>
+                            <option value="pump 6">Pump 6</option>
+                        </select>
+                    </div>
 
+                    {{-- pump Side --}}
+                    <div style="margin-left:-2px; margin-bottom:15px;" class="form-holder form-holder-2">
+                        <label style="font-size:17px; color:black; font-weight:lighter; margin-bottom:7px;" for="pump">Pump Side</label>
+                        <select name="pump_side" id="pump_side" class="form-control">
+                            <option value="Side 1">Side 1</option>
+                            <option value="Side 2">Side 2</option>
+                        </select>
+                    </div>
+
+                    {{-- Nozzle --}}
+                    <div style="margin-left:-2px; margin-bottom:15px;" class="form-holder form-holder-2">
+                        <label style="font-size:17px; font-weight:lighter; color:black; margin-bottom:7px;" for="pump">Pump Nozzle</label>
+                        <select name="nozzle" id="nozzle" class="form-control">
+                            <option value="Petrol Nozzle">Petrol Nozzle</option>
+                            <option value="Diesel Nozzle">Diesel Nozzle</option>
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" id="customer_id" name="customer_id" value="">
@@ -180,7 +209,7 @@
                     </div>
 
                     <div class="form-holder form-holder-2 mt-4 mb-4">
-                        <label for="rewards">Rewards (Total Rewards, Rewards Available)</label></br>
+                        <label for="rewards">Rewards (Total Rewards)</label></br>
                         <p id="pending_rewards" style="padding-left:5px;"></p>
                     </div>
                     <div class="form-holder form-holder-2 mt-4 mb-4">
@@ -196,6 +225,7 @@
                         </div>
 
                     </div>
+
                     <div class="modal-footer">
                         <button type="button"  class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>

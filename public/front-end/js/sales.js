@@ -2169,6 +2169,9 @@ $(function () {
         if (discount && (discount != 0)) {
             let customer_id = $('#customer_id').val();
             let csa = $('#csa').val();
+            let pump = $('#pump').val();
+            let pump_side = $('#pump_side').val();
+            let nozzle = $('#nozzle').val();
             let confirmation_value = `Are you sure you want to redeem ${discount}`;
             $('#discount-details-modal').modal('hide');
 
@@ -2180,7 +2183,10 @@ $(function () {
                     data: {
                         customer_id: customer_id,
                         discount: discount,
-                        csa:csa
+                        csa:csa,
+                        pump:pump,
+                        pump_side:pump_side,
+                        nozzle:nozzle
                     },
                     dataType: 'json',
                     success: (data) => {
