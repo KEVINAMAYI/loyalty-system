@@ -212,6 +212,10 @@
                         <label for="discount_pump">Pump</label></br>
                         <p id="discount_pump" style="padding-left:5px;"></p>
                     </div>
+                    <div class="form-holder form-holder-2 mb-4">
+                        <label for="created_at">Created At</label></br>
+                        <p id="created_at" style="padding-left:5px;"></p>
+                    </div>
                     <div class="form-holder form-holder-2 mt-4 mb-4">
                         <label for="discount_pump">GeoLocation</label></br>
                         <p id="geolocation" style="padding-left:5px;"></p>

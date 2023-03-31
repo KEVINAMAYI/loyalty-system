@@ -558,6 +558,7 @@
                 $("#discount_value").text(discount[0].amount);
                 $("#discount_pump").text(`${discount[0].pump}, ${discount[0].pump_side}, ${discount[0].nozzle}`);
                 $("#geolocation").text(`${discount[0].country}, ${discount[0].city}, ${discount[0].zipCode}, ${discount[0].latitude}, ${discount[0].longitude}`);
+                $("#created_at").text(`${discount[0].created_at}`);
                 $('#confirm-discount-details-modal').modal('show');
 
             },
