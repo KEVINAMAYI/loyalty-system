@@ -290,15 +290,9 @@ $(function () {
                     }
 
 
-                    let i = 0;
-
-                    //display vehicle details
-                    vehicles.forEach(vehicle => {
-                        i = i + 1;
-                        if (i == 1) {
-                            $('.main-section').append(
-                                `
-                            <div class="card-body px-0 pt-0 pb-2">
+                    // create table first then attach rows
+                    $('.main-section').append(
+                        `  <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
                             <table style="border:0px;" class="table align-items-center mb-0">
                                 <thead style="border:0px;">
@@ -309,68 +303,63 @@ $(function () {
                                     <th style="border:0px;" class="text-center text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                 </tr>
                                 </thead>
-                                <tbody style="border:0px; border-bottom:0px;">
-                                    <tr style="border:0px;">
-                                    <th style="display:flex; border:0px;">
-                                        <input id="${vehicle.id}" style="width:17px; height:17px;"  class="form-check-input vehicle_sale_id" type="checkbox" value="${vehicle.id}" checked/>
-                                    </th>
-                                    <td  style="border:0px; color:white; " class="align-middle text-left text-sm">
-                                       ${vehicle.vehicle_registration}
-                                    <td style="border:0px; color:white;" class="align-middle text-center text-sm">
-                                        ${vehicle.vehicle_type}
-                                    </td>
-                                    <td style="border:0px; color:white;" class="align-middle text-center text-sm">
-                                    ${vehicle.vehicle_category}
-                                    </td>
-                                    </tr>
-
+                                <tbody class="vehicles-body" style="border:0px; border-bottom:0px;">
                                 </tbody>
                             </table>
                             </div>
                         </div>
-
                         `
-                            );
-                        } else {
-                            $('.main-section').append(
-                                `
-                            <div class="card-body px-0 pt-0 pb-2">
-                            <div class="table-responsive p-0">
-                            <table style="border:0px;" class="table align-items-center mb-0">
-                                <thead style="border:0px;">
-                                <tr style="border:0px;">
-                                <th style="border:0px;" class="text-uppercase text-white text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                                    <th style="border:0px;" class="text-uppercase text-white text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                                    <th style="border:0px;"  class="text-center text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                                    <th style="border:0px;" class="text-center text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                                </tr>
-                                </thead>
-                                <tbody style="border:0px; border-bottom:0px;">
-                                    <tr style="border:0px;">
+                    );
+
+                    let i = 0;
+                    //display vehicle details
+                    vehicles.forEach(vehicle => {
+                        i = i + 1;
+                        if (i == 1) {
+                            var vehicleTR = `<tr style="border:0px;">
                                     <th style="display:flex; border:0px;">
                                         <input id="${vehicle.id}" style="width:17px; height:17px;"  class="form-check-input vehicle_sale_id" type="checkbox" value="${vehicle.id}"/>
                                     </th>
                                     <td  style="border:0px; color:white; " class="align-middle text-left text-sm">
                                        ${vehicle.vehicle_registration}
-                                    <td style="border:0px; color:white;" class="align-middle text-center text-sm">
+                                    <td style="border:0px; color:white;" class="align-middle text-left text-sm">
                                         ${vehicle.vehicle_type}
                                     </td>
-                                    <td style="border:0px; color:white;" class="align-middle text-center text-sm">
+                                    <td style="border:0px; color:white;" class="align-middle text-left text-sm">
                                     ${vehicle.vehicle_category}
                                     </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                            </div>
-                        </div>
-
-                        `
-                            );
+                                    </tr>`;
+                        } else {
+                            var vehicleTR = `<tr style="border:0px;">
+                                <th style="display:flex; border:0px;">
+                                    <input id="${vehicle.id}" style="width:17px; height:17px;"
+                                           class="form-check-input vehicle_sale_id" type="checkbox"
+                                           value="${vehicle.id}"/>
+                                </th>
+                                <td style="border:0px; color:white; " className="align-middle text-left text-sm">
+                                    ${vehicle.vehicle_registration}
+                                    <td style="border:0px; color:white;" className="align-middle text-left text-sm">
+                                        ${vehicle.vehicle_type}
+                                    </td>
+                                    <td style="border:0px; color:white;" className="align-middle text-left text-sm">
+                                        ${vehicle.vehicle_category}
+                                    </td>
+                            </tr>`;
 
                         }
+
+                        $('.vehicles-body').append(`${vehicleTR}`);
+
                     });
 
+                    //by default
+                    let firstVehicle = $(".vehicle_sale_id:first");
+                    let vehicleID = firstVehicle.attr("id");
+                    localStorage.setItem('vehicle_id', vehicleID);
+                    firstVehicle.prop("checked", true);
+
+
+                    //append button for adding vehicle and redeeming discount
                     $('.main-section').append(`
                     <div  class="form-holder row form-holder-2">
                      <div class="col-lg-6">
@@ -393,16 +382,12 @@ $(function () {
                         $('#discount-details-modal').modal('show');
                     });
 
-                    //by default
-                    let id = $(".vehicle_sale_id:first").attr("id");
-                    localStorage.setItem('vehicle_id', id);
 
-
-                    //Get vehicle data to be fueled
-                    $(".vehicle_sale_id").on('change', function () {
+                    //allow selection of only one vehicle
+                    $(document).on('click', 'input[type="checkbox"]', function () {
+                        $('input[type="checkbox"]').not(this).prop('checked', false);
                         if (this.checked) {
                             const id = parseInt($(this).attr("id"));
-                            $('.vehicle_sale_id').not(this).attr('checked', false);
                             localStorage.setItem('vehicle_id', id);
                         }
                     });
@@ -2145,7 +2130,6 @@ $(function () {
     });
 
 
-
     //set discount btn
     $('#submit_disc_btn').on('click', function () {
         let discount = $('#discount_amount').val();
@@ -2227,7 +2211,6 @@ $(function () {
             $("#pump_side").append($(`<option value="${sides[i]}"></option>`).text(sides[i]));
         }
     });
-
 
 
     //define pumpSides
