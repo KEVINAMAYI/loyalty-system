@@ -331,8 +331,7 @@ $(function () {
 
                         `
                             );
-                        }
-                        else{
+                        } else {
                             $('.main-section').append(
                                 `
                             <div class="card-body px-0 pt-0 pb-2">
@@ -402,10 +401,9 @@ $(function () {
                     //Get vehicle data to be fueled
                     $(".vehicle_sale_id").on('change', function () {
                         if (this.checked) {
-                            console.log('etetetetetet');
                             const id = parseInt($(this).attr("id"));
+                            $('.vehicle_sale_id').not(this).attr('checked', false);
                             localStorage.setItem('vehicle_id', id);
-
                         }
                     });
 
@@ -1202,6 +1200,7 @@ $(function () {
 
     //calculate amount of litres
     $('#total_amount').on('keyup', function () {
+        $('#amount_paid').val(0);
         product_amount = parseFloat($('#product').val());
         total_amount = parseFloat($("#total_amount").val());
         total_amount_ltr = parseFloat(total_amount / product_amount);
@@ -2145,20 +2144,6 @@ $(function () {
 
     });
 
-    //set pump image
-    //  $('#receipt_image').on('change',function(){
-
-    //     let reader = new FileReader();
-
-    //     reader.onload = (e) => {
-
-    //       $('#vehicle_receipt_image').attr('src', e.target.result);
-
-    //     }
-
-    //     reader.readAsDataURL(this.files[0]);
-
-    //    });
 
 
     //set discount btn
@@ -2169,8 +2154,8 @@ $(function () {
         if (discount && (discount != 0)) {
             let customer_id = $('#customer_id').val();
             let csa = $('#csa').val();
-            let pump = $('#pump').val();
-            let pump_side = $('#pump_side').val();
+            let pump = $('#pump_reward').val();
+            let pump_side = $('#pump_side_reward').val();
             let nozzle = $('#nozzle').val();
             let confirmation_value = `Are you sure you want to redeem ${discount}`;
             $('#discount-details-modal').modal('hide');
@@ -2183,10 +2168,9 @@ $(function () {
                     data: {
                         customer_id: customer_id,
                         discount: discount,
-                        csa:csa,
-                        pump:pump,
-                        pump_side:pump_side,
-                        nozzle:nozzle
+                        csa: csa,
+                        pump_reward: pump,
+                        pump_side_reward: pump_side,
                     },
                     dataType: 'json',
                     success: (data) => {
@@ -2223,5 +2207,47 @@ $(function () {
         }
     });
 
+
+    //define pumpSides
+    const pumpSides = [
+        ["Side 1", "Side 2"],
+        ["Side 3", "Side 4"],
+        ["Side 5", "Side 6"],
+        ["Side 7", "Side 8"],
+        ["Side 9", "Side 10"],
+        ["Side 11", "Side 12"]
+    ];
+
+    //populate side for pump
+    $("#pump").change(function () {
+        var pump = this.selectedIndex;
+        $("#pump_side").empty();
+        var sides = pumpSides[pump];
+        for (var i = 0; i < sides.length; i++) {
+            $("#pump_side").append($(`<option value="${sides[i]}"></option>`).text(sides[i]));
+        }
+    });
+
+
+
+    //define pumpSides
+    const pumpSidesReward = [
+        ["Side 1", "Side 2"],
+        ["Side 3", "Side 4"],
+        ["Side 5", "Side 6"],
+        ["Side 7", "Side 8"],
+        ["Side 9", "Side 10"],
+        ["Side 11", "Side 12"]
+    ];
+
+    //populate side for pump
+    $("#pump_reward").change(function () {
+        let pump = this.selectedIndex;
+        $("#pump_side_reward").empty();
+        let sides = pumpSidesReward[pump];
+        for (let i = 0; i < sides.length; i++) {
+            $("#pump_side_reward").append($(`<option value="${sides[i]}"></option>`).text(sides[i]));
+        }
+    });
 
 });

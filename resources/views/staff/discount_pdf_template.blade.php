@@ -20,15 +20,24 @@
 <body class="g-sidenav-show  bg-gray-100">
 
 <div class="container">
-    <div class="row  mt-1 text-center">
+    <div class="row  mt-2 text-center">
         <div class="col-12 mt-1">
             <img src="staff/assets/img/logo.jpg" style="border-radius:100%;" width="90" height="90">
-        </div><div class="col-12">
+        </div><div class="col-12 mt-1">
             <p style="font-weight:bold">EPREN PETROL STATION</p>
         </div>
-        <div class="col-12" style="margin-top:-19px;">
-            <p style="font-weight:bold">CASH REDEMPTION PAYMENT VOUCHER</p>
+        <div class="row">
+            <div class="col-3" style="margin-top:-19px;">
+                <p style="font-weight:bold">DISCOUNT NO : {{ $discount->id }} </p>
+            </div>
+            <div class="col-6" style="margin-top:-19px;">
+                <p style="font-weight:bold">CASH REDEMPTION PAYMENT VOUCHER</p>
+            </div>
+            <div class="col-3" style="margin-top:-19px;">
+                <p style="font-weight:bold">{{ \Carbon\Carbon::now()->format('d/m/Y') }}</p>
+            </div>
         </div>
+
     </div>
     <div class="row mt-2">
         <div class="col-6">
@@ -39,16 +48,12 @@
         </div>
     </div>
     <div class="row mt-2">
-        <div class="col-12">
+        <div class="col-6">
             <p ><span style="font-weight:bold;">Vehicle Registration :</span><span> {{ App\Models\Vehicle::where('customer_id', '=', $customer->id)->value('vehicle_registration') != null ? App\Models\Vehicle::where('customer_id', '=', $customer->id)->value('vehicle_registration') : 'No Vehicle Assigned' }} </span></p>
         </div>
-
-    </div>
-    <div class="row  mt-2">
-        <div class="col-12">
-            <p ><span style="font-weight:bold;">Amount Redeemed (KES) : </span> <span style="margin-left:30px;"> {{ $discount->amount }} </span></p>
+        <div class="col-6">
+            <p ><span style="font-weight:bold;">Amount (KES) : </span> <span style="margin-left:30px;"> {{ $discount->amount }} </span></p>
         </div>
-
     </div>
     <div class="row mt-2">
         <div class="col-6">
@@ -61,14 +66,15 @@
     <div class="row mt-2">
         <div class="col-6">
             <label for="sign1" style="margin-bottom:30px;">Signature</label></br>
-            <p id="sign1" >_____________________________</p>
+            <p id="sign1" >___________________________</p>
         </div>
         <div class="col-6">
             <label for="sign2" style="margin-bottom:30px;">Signature</label></br>
-            <p id="sign2" >_____________________________</p>
+            <p id="sign2" >___________________________</p>
         </div>
     </div>
 </div>
+
 
 <div class="container">
     <div class="row  mt-2 text-center">
@@ -77,9 +83,18 @@
         </div><div class="col-12 mt-1">
             <p style="font-weight:bold">EPREN PETROL STATION</p>
         </div>
-        <div class="col-12" style="margin-top:-19px;">
-            <p style="font-weight:bold">CASH REDEMPTION PAYMENT VOUCHER</p>
+        <div class="row">
+            <div class="col-3" style="margin-top:-19px;">
+                <p style="font-weight:bold">DISCOUNT NO : {{ $discount->id }} </p>
+            </div>
+            <div class="col-6" style="margin-top:-19px;">
+                <p style="font-weight:bold">CASH REDEMPTION PAYMENT VOUCHER</p>
+            </div>
+            <div class="col-3" style="margin-top:-19px;">
+                <p style="font-weight:bold">{{ \Carbon\Carbon::now()->format('d/m/Y') }}</p>
+            </div>
         </div>
+
     </div>
     <div class="row mt-2">
         <div class="col-6">
@@ -90,16 +105,12 @@
         </div>
     </div>
     <div class="row mt-2">
-        <div class="col-12">
+        <div class="col-6">
             <p ><span style="font-weight:bold;">Vehicle Registration :</span><span> {{ App\Models\Vehicle::where('customer_id', '=', $customer->id)->value('vehicle_registration') != null ? App\Models\Vehicle::where('customer_id', '=', $customer->id)->value('vehicle_registration') : 'No Vehicle Assigned' }} </span></p>
         </div>
-
-    </div>
-    <div class="row  mt-2">
-        <div class="col-12">
-            <p ><span style="font-weight:bold;">Amount Redeemed (KES) : </span> <span style="margin-left:30px;"> {{ $discount->amount }} </span></p>
+        <div class="col-6">
+            <p ><span style="font-weight:bold;">Amount (KES) : </span> <span style="margin-left:30px;"> {{ $discount->amount }} </span></p>
         </div>
-
     </div>
     <div class="row mt-2">
         <div class="col-6">
@@ -112,11 +123,11 @@
     <div class="row mt-2">
         <div class="col-6">
             <label for="sign1" style="margin-bottom:30px;">Signature</label></br>
-            <p id="sign1" >_____________________________</p>
+            <p id="sign1" >___________________________</p>
         </div>
         <div class="col-6">
             <label for="sign2" style="margin-bottom:30px;">Signature</label></br>
-            <p id="sign2" >_____________________________</p>
+            <p id="sign2" >___________________________</p>
         </div>
     </div>
 </div>

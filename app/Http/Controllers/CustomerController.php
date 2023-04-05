@@ -424,7 +424,6 @@ class CustomerController extends Controller
             'image_url' => $vehicleImageName,
             'pump' => $data['pump'],
             'pump_side' => $data['pump_side'],
-            'nozzle' => $data['nozzle'],
             'receipt_image_url' => "receipt_image_url",
             'sold_by' => $data['sold_by'],
             'rewards_balance' => $data['new_cutomer_rewards'],
@@ -644,9 +643,6 @@ class CustomerController extends Controller
         $company = User::where('id','=',$user)->get();
         $employees_count = Customer::where('type','=',$user)->get();
         $vehicles_count = Vehicle::where('ownership','=', $user)->get();
-
-
-
         $autorizedpurchases_count = AuthorizedPurchase::where('name','=', $user)->get();
 
 

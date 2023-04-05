@@ -55,6 +55,10 @@
                                 <tr>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
+                                        Discount Number
+                                    </th>
+                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                        class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
                                         Customer Name
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
@@ -65,26 +69,30 @@
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Amount Redeemed
                                     </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Approver
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">
-                                        Approval Date
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Action
-                                    </th>
-
+                                    @if(auth()->user()->major_role == 'Admin')
+                                        <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
+                                            Approver
+                                        </th>
+                                        <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">
+                                            Approval Date
+                                        </th>
+                                        <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
+                                            Action
+                                        </th>
+                                    @endif
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 @foreach ( $discounts as $discount )
                                     <tr>
-
+                                        <td class="text-sm">
+                                            <span
+                                                class="text-secondary text-xs font-weight-bold">{{ $discount->id }}</span>
+                                        </td>
                                         <td class="text-sm">
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $discount->customer->first_name.' '.$discount->customer->last_name }}</span>
@@ -97,37 +105,39 @@
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $discount->amount }}</span>
                                         </td>
-                                        <td class="text-sm">
+                                        @if(auth()->user()->major_role == 'Admin')
+                                            <td class="text-sm">
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $discount->approver }}</span>
-                                        </td>
-                                        <td class="text-sm">
+                                            </td>
+                                            <td class="text-sm">
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $discount->approved_date == null ? "" : \Carbon\Carbon::parse($discount->approved_date)->format('d/m/Y H:i:s') }}</span>
-                                        </td>
-                                        @if($discount->status == 'pending')
-                                            <td class="text-sm">
-                                                <button discount_id="{{ $discount->id }}"
-                                                        id="{{ $discount->customer->id }}"
-                                                        style="background-color:#f9a14d;"
-                                                        class="approve-discount-btn btn btn-sm btn-primary">Approve
-                                                </button>
                                             </td>
-                                        @else
-                                            @if($discount->printed == 'Completed')
+                                            @if($discount->status == 'pending')
                                                 <td class="text-sm">
-                                                    <a id="{{ "discount_item_$discount->id"}}" href=""
-                                                       style="background-color:#4881c0"
-                                                       class="discount_item disabled print-discount-data-btn btn btn-sm btn-primary">Printed</a>
+                                                    <button discount_id="{{ $discount->id }}"
+                                                            id="{{ $discount->customer->id }}"
+                                                            style="background-color:#f9a14d;"
+                                                            class="approve-discount-btn btn btn-sm btn-primary">Approve
+                                                    </button>
                                                 </td>
                                             @else
-                                                <td class="text-sm">
-                                                    <a id="{{ "$discount->id"}}"
-                                                       href="/discount-pdf/{{ $discount->id  }}"
-                                                       style="background-color:#4881c0"
-                                                       class="discount_item print-discount-data-btn btn btn-sm btn-primary">Print</a>
-                                                </td>
+                                                @if($discount->printed == 'Completed')
+                                                    <td class="text-sm">
+                                                        <a id="{{ "discount_item_$discount->id"}}" href=""
+                                                           style="background-color:#4881c0"
+                                                           class="discount_item disabled print-discount-data-btn btn btn-sm btn-primary">Printed</a>
+                                                    </td>
+                                                @else
+                                                    <td class="text-sm">
+                                                        <a id="{{ "$discount->id"}}"
+                                                           href="/discount-pdf/{{ $discount->id  }}"
+                                                           style="background-color:#4881c0"
+                                                           class="discount_item print-discount-data-btn btn btn-sm btn-primary">Print</a>
+                                                    </td>
 
+                                                @endif
                                             @endif
                                         @endif
                                     </tr>
@@ -136,6 +146,10 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
+                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                        class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
+                                        Discount Number
+                                    </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
                                         Customer Name
@@ -148,19 +162,20 @@
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Amount Redeemed
                                     </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Approver
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">
-                                        Date
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Action
-                                    </th>
-
+                                    @if(auth()->user()->major_role == 'Admin')
+                                        <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
+                                            Approver
+                                        </th>
+                                        <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            class="text-uppercase text-secondary text-left text-xxs font-weight-bolder  ps-2">
+                                            Date
+                                        </th>
+                                        <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
+                                            Action
+                                        </th>
+                                    @endif
                                 </tr>
                                 </tfoot>
                             </table>
@@ -187,7 +202,7 @@
                         <p id="name" style="padding-left:5px;"></p>
                     </div>
                     <div class="form-holder form-holder-2 mt-4 mb-4">
-                        <label for="vehiclereg">Vehicle Registration & Product</label></br>
+                        <label for="vehiclereg">Vehicle Registration</label></br>
                         <p id="vehiclereg" style="padding-left:5px;"></p>
                     </div>
 
@@ -209,7 +224,7 @@
 
                     </div>
                     <div class="form-holder form-holder-2 mb-4">
-                        <label for="discount_pump">Pump</label></br>
+                        <label for="discount_pump">Pump, Side</label></br>
                         <p id="discount_pump" style="padding-left:5px;"></p>
                     </div>
                     <div class="form-holder form-holder-2 mb-4">

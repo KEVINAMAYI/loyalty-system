@@ -404,8 +404,8 @@
         if (discount && (discount != 0)) {
             let customer_id = $('#customer_id').val();
             let csa = $('#csa').val();
-            let pump = $('#pump').val();
-            let pump_side = $('#pump_side').val();
+            let pump = $('#pump_reward').val();
+            let pump_side = $('#pump_side_reward').val();
             let nozzle = $('#nozzle').val();
 
             let confirmation_value = `Are you sure you want to redeem ${discount}`;
@@ -420,10 +420,9 @@
                     data: {
                         customer_id: customer_id,
                         discount: discount,
-                        csa:csa,
-                        pump:pump,
-                        pump_side:pump_side,
-                        nozzle:nozzle
+                        csa: csa,
+                        pump_reward: pump,
+                        pump_side_reward: pump_side,
                     },
                     dataType: 'json',
                     success: (data) => {
@@ -535,7 +534,7 @@
 
     $(".approve-discount-btn").on('click', function () {
 
-       console.log("test");
+        console.log("test");
         const customer_id = parseInt($(this).attr("id"));
         const discount_id = parseInt($(this).attr("discount_id"));
         $('#discount_id').val(discount_id);
@@ -548,17 +547,21 @@
                 //get sale data and show in a model
                 customer = data.customer_data;
                 vehicle = data.vehicles_data;
-                discount = data.discount_data;
+                discounts = data.discount_data;
 
-                console.log(discount);
+                console.log(discounts);
 
                 $("#name").text(customer[0].first_name + " " + customer[0].last_name + " " + customer[0].phone_number);
                 $("#vehiclereg").text(vehicle[0].vehicle_registration);
                 $("#rewards").text(`${customer[0].rewards},  ${customer[0].rewards}`);
-                $("#discount_value").text(discount[0].amount);
-                $("#discount_pump").text(`${discount[0].pump}, ${discount[0].pump_side}, ${discount[0].nozzle}`);
-                $("#geolocation").text(`${discount[0].country}, ${discount[0].city}, ${discount[0].zipCode}, ${discount[0].latitude}, ${discount[0].longitude}`);
-                $("#created_at").text(`${discount[0].created_at}`);
+                discounts.forEach(function (discount) {
+                    if (discount.id == discount_id) {
+                        $("#discount_value").text(discount.amount);
+                        $("#discount_pump").text(`${discount.pump}, ${discount.pump_side}`);
+                        $("#geolocation").text(`${discount.country}, ${discount.city}, ${discount.zipCode}, ${discount.latitude}, ${discount.longitude}`);
+                        $("#created_at").text(`${discount.created_at}`);
+                    }
+                });
                 $('#confirm-discount-details-modal').modal('show');
 
             },
@@ -629,7 +632,7 @@
                 $("#amountpayable").text(sale_data[0].amount_payable + ",  " + sale_data[0].amount_paid);
                 $("#sold_by").text(sale_data[0].created_at + ",  " + sale_data[0].sold_by);
                 $('#vehicle_image').attr('src', `images/${sale_data[0].image_url}`);
-                $('#pump').text(`${sale_data[0].pump}, ${sale_data[0].pump_side}, ${sale_data[0].nozzle} `);
+                $('#pump').text(`${sale_data[0].pump}, ${sale_data[0].pump_side}`);
 
                 if (sale_data[0].status == 'Rejected') {
 
@@ -1560,7 +1563,7 @@
 
     })
 
-    $(document).on('click','.discount_item',function () {
+    $(document).on('click', '.discount_item', function () {
 
         let confirmation_value = `Are you sure you want to print discount details`;
         if (confirm(confirmation_value) == true) {
@@ -1587,6 +1590,28 @@
             }
         });
     }
+
+
+    //define pumpSides
+    const pumpSides = [
+        ["Side 1", "Side 2"],
+        ["Side 3", "Side 4"],
+        ["Side 5", "Side 6"],
+        ["Side 7", "Side 8"],
+        ["Side 9", "Side 10"],
+        ["Side 11", "Side 12"]
+    ];
+
+    //populate side for pump
+    $("#pump_reward").change(function () {
+        var pump = this.selectedIndex;
+        $("#pump_side_reward").empty();
+        var sides = pumpSides[pump];
+        for (var i = 0; i < sides.length; i++) {
+            $("#pump_side_reward").append($(`<option value="${sides[i]}"></option>`).text(sides[i]));
+        }
+    });
+
 
 </script>
 </body>
