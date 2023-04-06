@@ -114,7 +114,7 @@ class DiscountController extends Controller
     public function getDiscounts()
     {
 
-        $discounts = Discount::with('customer')->get();
+        $discounts = Discount::with('customer')->orderBy('id','desc')->get();
         return view('staff.discounts', compact('discounts'));
     }
 

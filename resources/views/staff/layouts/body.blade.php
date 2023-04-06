@@ -549,7 +549,6 @@
                 vehicle = data.vehicles_data;
                 discounts = data.discount_data;
 
-                console.log(discounts);
 
                 $("#name").text(customer[0].first_name + " " + customer[0].last_name + " " + customer[0].phone_number);
                 $("#vehiclereg").text(vehicle[0].vehicle_registration);
