@@ -42,12 +42,14 @@
                     <span class="nav-link-text ms-1">Authorized Purchases</span>
                 </a>
             </li>
+            @if(auth()->user()->major_role == 'Admin')
             <li class="nav-item">
                 <a class="nav-link  "href="/sales">
                     <i class="fa-solid fa-dollar"></i>
                     <span class="nav-link-text ms-1">Sales</span>
                 </a>
             </li>
+            @endif
             <li class="nav-item">
                 <a class="nav-link  "href="/redeem-discount">
                     <i class="fa-solid fa-money-bill-wave"></i>

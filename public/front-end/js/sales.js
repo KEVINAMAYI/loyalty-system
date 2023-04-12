@@ -1187,7 +1187,7 @@ $(function () {
     $('#total_amount').on('keyup', function () {
         $('#amount_paid').val(0);
         product_amount = parseFloat($('#product').val());
-        total_amount = parseFloat($("#total_amount").val());
+        total_amount = Math.ceil(parseFloat($("#total_amount").val()));
         total_amount_ltr = parseFloat(total_amount / product_amount);
         $("#liters_val").val(total_amount_ltr.toFixed(2));
     });
@@ -1197,8 +1197,8 @@ $(function () {
     $('#liters_val').on('keyup', function () {
         product_amount = parseFloat($('#product').val());
         litres = parseFloat($("#liters_val").val());
-        total_amount = parseFloat(litres * product_amount);
-        $("#total_amount").val(total_amount.toFixed(2));
+        total_amount = Math.ceil(parseFloat(litres * product_amount));
+        $("#total_amount").val(total_amount);
     });
 
 

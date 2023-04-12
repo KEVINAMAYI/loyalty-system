@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,6 +35,14 @@ class Sale extends Model
         'rewards_balance',
         'status',
         'reason'
-
     ];
+
+
+    public function getCreatedAtAttribute($date) {
+        return Carbon::parse($date)->format('d-m-Y H:i:s');
+    }
+
+    public function getApprovedDateAttribute($date) {
+        return Carbon::parse($date)->format('d-m-Y H:i:s');
+    }
 }
