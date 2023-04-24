@@ -1352,6 +1352,23 @@
         ],
 
     });
+
+    $('#automatic_discount_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ],
+
+    });
+
     $('#customer_discount_table').DataTable({
         dom: 'Bfrtip',
         buttons: [
