@@ -50,12 +50,12 @@
                 </a>
             </li>
             @endif
-            <li class="nav-item">
-                <a class="nav-link  "href="/redeem-discount">
-                    <i class="fa-solid fa-money-bill-wave"></i>
-                    <span class="nav-link-text ms-1">Redeem Discount</span>
-                </a>
-            </li>
+{{--            <li class="nav-item">--}}
+{{--                <a class="nav-link  "href="/redeem-discount">--}}
+{{--                    <i class="fa-solid fa-money-bill-wave"></i>--}}
+{{--                    <span class="nav-link-text ms-1">Redeem Discount</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
             <li class="nav-item">
                 <a class="nav-link" href="/discounts">
                     <i class="fa-solid fa-money-bill"></i>
