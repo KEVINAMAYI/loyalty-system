@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AutomaticDiscount;
 use App\Models\Customer;
 use App\Models\Vehicle;
 use http\Env\Response;
@@ -38,7 +39,6 @@ class DiscountController extends Controller
         $customer_data = Customer::where('id', $customer->id)->get();
         $discount_data = Discount::where('customer_id', $customer->id)->where('status', 'pending')->get();
         $vehicles_data = Vehicle::where('customer_id', '=', $customer->id)->get();
-
         return response()->json([
             'customer_data' => $customer_data,
             'vehicles_data' => $vehicles_data,
@@ -115,7 +115,8 @@ class DiscountController extends Controller
     {
 
         $discounts = Discount::with('customer')->orderBy('id','desc')->get();
-        return view('staff.discounts', compact('discounts'));
+        $automatic_discount_data = AutomaticDiscount::orderBy('discount_number','desc')->get();
+        return view('staff.discounts', compact('discounts','automatic_discount_data'));
     }
 
     public function updatePrintState($discount): \Illuminate\Http\JsonResponse

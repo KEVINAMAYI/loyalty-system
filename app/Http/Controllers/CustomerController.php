@@ -16,6 +16,7 @@ use App\Models\Customer;
 use App\Models\Account;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use App\Models\AutomaticDiscount;
 use App\Models\AuthorizedPurchase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -279,6 +280,7 @@ class CustomerController extends Controller
     {
 
         $data = $request->all();
+        $sales_type = $data['sales_type'];
 
         //get amount store in database
         $authorized_amount = Customer::where('id','=',$data['customer_id'])->get()[0]->authorized_amount;
@@ -416,7 +418,6 @@ class CustomerController extends Controller
             'last_name' => $data['last_name'],
             'phone_number' => $data['phone_number'],
             'vehicle_registration' => $data['vehicle_registration'],
-            'product' => $data['product'],
             'rewards_used' => $data['used_rewards'],
             'rewards_awarded' => $data['rewards_awarded'],
             'amount_payable' => $data['amount_payable'],
@@ -432,6 +433,20 @@ class CustomerController extends Controller
             'reason' => "No reason",
             'product' => $data['product_text']
         ]);
+
+
+       //if the sales_type is defined as bulk
+        if($sales_type == 'bulk'){
+            AutomaticDiscount::create([
+                 "customer_name" =>	$data['first_name'].' '.$data['last_name'],
+                 "customer_phone" => $data['phone_number'],
+                 "product"	=> $data['product_text'],
+                 "litres_sold" => $data['litres_sold'],
+                 "discount"	=> $data['rewards_awarded'],
+                 "csa"	=> Auth::user()->name,
+                 "transaction_date"	=> Carbon::now()->format('Y-m-d H:i:m')
+                ]);
+        }
 
         return  response()->json([
                     'data' => $request->all(),
