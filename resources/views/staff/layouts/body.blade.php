@@ -1591,6 +1591,34 @@
     });
 
 
+    $(document).on('click', '.automatic_discount_item', function () {
+
+        let confirmation_value = `Are you sure you want to print discount details`;
+        if (confirm(confirmation_value) == true) {
+            let automatic_discount_id = $(this).attr('id');
+            window.location.href = '/automatic-discount-pdf/'+automatic_discount_id;
+            localStorage.clear();
+            localStorage.setItem('automatic_discount_id', automatic_discount_id);
+        }
+    });
+
+
+    let automatic_discount_id = parseInt(localStorage.getItem('automatic_discount_id'));
+    if (automatic_discount_id) {
+        $.ajax({
+            type: 'get',
+            url: "/automatic-discount-print-status/" + automatic_discount_id,
+            success: (data) => {
+                if (window.location.href.indexOf('reload') == -1) {
+                    window.location.replace(window.location.href + '?reload');
+                }
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        });
+    }
+
     let anchor_id = parseInt(localStorage.getItem('anchor_id'));
     if (anchor_id) {
         $.ajax({

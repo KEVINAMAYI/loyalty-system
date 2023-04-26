@@ -28,10 +28,10 @@
         </div>
         <div class="row">
             <div class="col-3" style="margin-top:-19px;">
-                <p style="font-weight:bold">DISCOUNT NO : {{ $discount->id }} </p>
+                <p style="font-weight:bold">DISCOUNT NO : {{ $discount->discount_number }} </p>
             </div>
             <div class="col-6" style="margin-top:-19px;">
-                <p style="font-weight:bold">CASH REDEMPTION PAYMENT VOUCHER</p>
+                <p style="font-weight:bold">BULK DISCOUNT</p>
             </div>
             <div class="col-3" style="margin-top:-19px;">
                 <p style="font-weight:bold">{{ \Carbon\Carbon::now()->format('d/m/Y') }}</p>
@@ -41,26 +41,26 @@
     </div>
     <div class="row mt-2">
         <div class="col-6">
-            <p ><span style="font-weight:bold;">Customer Name : </span><span> {{ $customer->first_name.' '.$customer->last_name }}</span></p>
+            <p ><span style="font-weight:bold;">Customer Name : </span><span> {{ $discount->customer_name }}</span></p>
         </div>
         <div class="col-6">
-            <p><span style="font-weight:bold;">Customer Phone :</span> <span>{{ $customer->phone_number }}</span></p>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col-6">
-            <p ><span style="font-weight:bold;">Vehicle Registration :</span><span> {{ App\Models\Vehicle::where('customer_id', '=', $customer->id)->value('vehicle_registration') != null ? App\Models\Vehicle::where('customer_id', '=', $customer->id)->value('vehicle_registration') : 'No Vehicle Assigned' }} </span></p>
-        </div>
-        <div class="col-6">
-            <p ><span style="font-weight:bold;">Amount (KES) : </span> <span style="margin-left:30px;"> {{ $discount->amount }} </span></p>
+            <p><span style="font-weight:bold;">Customer Phone :</span> <span>{{ $discount->customer_phone }}</span></p>
         </div>
     </div>
     <div class="row mt-2">
         <div class="col-6">
-            <p ><span style="font-weight:bold;">Customer :</span> <span> {{ $customer->first_name.' '.$customer->last_name }} </span></p>
+            <p ><span style="font-weight:bold;">litres Sold :</span><span> {{ $discount->litres_sold }} </span></p>
         </div>
         <div class="col-6">
-            <p ><span style="font-weight:bold;">Checked By :</span> <span> {{ $discount->redeemed_by }}</span></p>
+            <p ><span style="font-weight:bold;">Product (KES) : </span> <span style="margin-left:30px;"> {{ $discount->product }} </span></p>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-6">
+            <p ><span style="font-weight:bold;">Discount :</span> <span> {{ $discount->discount }} </span></p>
+        </div>
+        <div class="col-6">
+            <p ><span style="font-weight:bold;">Sold By(CSA) :</span> <span> {{ $discount->csa }}</span></p>
         </div>
     </div>
     <div class="row mt-2">
@@ -85,10 +85,10 @@
         </div>
         <div class="row">
             <div class="col-3" style="margin-top:-19px;">
-                <p style="font-weight:bold">DISCOUNT NO : {{ $discount->id }} </p>
+                <p style="font-weight:bold">DISCOUNT NO : {{ $discount->discount_number }} </p>
             </div>
             <div class="col-6" style="margin-top:-19px;">
-                <p style="font-weight:bold">CASH REDEMPTION PAYMENT VOUCHER</p>
+                <p style="font-weight:bold">BULK DISCOUNT</p>
             </div>
             <div class="col-3" style="margin-top:-19px;">
                 <p style="font-weight:bold">{{ \Carbon\Carbon::now()->format('d/m/Y') }}</p>
@@ -98,26 +98,26 @@
     </div>
     <div class="row mt-2">
         <div class="col-6">
-            <p ><span style="font-weight:bold;">Customer Name : </span><span> {{ $customer->first_name.' '.$customer->last_name }}</span></p>
+            <p ><span style="font-weight:bold;">Customer Name : </span><span> {{ $discount->customer_name }}</span></p>
         </div>
         <div class="col-6">
-            <p><span style="font-weight:bold;">Customer Phone :</span> <span>{{ $customer->phone_number }}</span></p>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col-6">
-            <p ><span style="font-weight:bold;">Vehicle Registration :</span><span> {{ App\Models\Vehicle::where('customer_id', '=', $customer->id)->value('vehicle_registration') != null ? App\Models\Vehicle::where('customer_id', '=', $customer->id)->value('vehicle_registration') : 'No Vehicle Assigned' }} </span></p>
-        </div>
-        <div class="col-6">
-            <p ><span style="font-weight:bold;">Amount (KES) : </span> <span style="margin-left:30px;"> {{ $discount->amount }} </span></p>
+            <p><span style="font-weight:bold;">Customer Phone :</span> <span>{{ $discount->customer_phone }}</span></p>
         </div>
     </div>
     <div class="row mt-2">
         <div class="col-6">
-            <p ><span style="font-weight:bold;">Customer :</span> <span> {{ $customer->first_name.' '.$customer->last_name }} </span></p>
+            <p ><span style="font-weight:bold;">litres Sold :</span><span> {{ $discount->litres_sold }} </span></p>
         </div>
         <div class="col-6">
-            <p ><span style="font-weight:bold;">Checked By :</span> <span> {{ $discount->redeemed_by }}</span></p>
+            <p ><span style="font-weight:bold;">Product (KES) : </span> <span style="margin-left:30px;"> {{ $discount->product }} </span></p>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-6">
+            <p ><span style="font-weight:bold;">Discount :</span> <span> {{ $discount->discount }} </span></p>
+        </div>
+        <div class="col-6">
+            <p ><span style="font-weight:bold;">Sold By(CSA) :</span> <span> {{ $discount->csa }}</span></p>
         </div>
     </div>
     <div class="row mt-2">
@@ -133,8 +133,6 @@
 </div>
 
 
-
-
 <script src="staff/assets/js/core/bootstrap.min.js"></script>
 <script src="/front-end/vendor/jquery/jquery-3.2.1.min.js"></script>
 
@@ -144,7 +142,7 @@
        window.print();
        setTimeout(function () {
            window.close();
-           location.href = "/discounts";
+           location.href = "/automatic-discounts";
            }, 100);
        }
 

@@ -59,7 +59,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="/discounts">
                     <i class="fa-solid fa-money-bill"></i>
-                    <span class="nav-link-text ms-1">Discounts</span>
+                    <span class="nav-link-text ms-1">Manual Discounts</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/automatic-discounts">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span class="nav-link-text ms-1">Automatic Discounts</span>
                 </a>
             </li>
             <li class="nav-item">

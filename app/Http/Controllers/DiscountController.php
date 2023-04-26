@@ -119,6 +119,13 @@ class DiscountController extends Controller
         return view('staff.discounts', compact('discounts','automatic_discount_data'));
     }
 
+    public function getAutomaticDiscounts()
+    {
+
+        $automatic_discount_data = AutomaticDiscount::orderBy('discount_number','desc')->get();
+        return view('staff.automatic_discounts', compact('automatic_discount_data'));
+    }
+
     public function updatePrintState($discount): \Illuminate\Http\JsonResponse
     {
         $approved_date = Carbon\Carbon::now();
@@ -129,12 +136,27 @@ class DiscountController extends Controller
         return \response()->json(['printed' => $discount]);
     }
 
+    public function updateAutomaticPrintState($discount): \Illuminate\Http\JsonResponse
+    {
+        AutomaticDiscount::where('discount_number', $discount)->update([
+            'printed' => 'Completed',
+        ]);
+        return \response()->json(['printed' => $discount]);
+    }
+
 
     public function loadDiscountPDF($discountId)
     {
         $discount = Discount::with('customer')->where('id', $discountId)->get()[0];
         $customer = $discount->customer;
         return view('staff.discount_pdf_template', compact('discount', 'customer'));
+
+    }
+
+    public function loadAutomaticDiscountPDF($discountId)
+    {
+        $discount = AutomaticDiscount::where('discount_number', $discountId)->get()[0];
+        return view('staff.automatic_discount_pdf_template', compact('discount'));
 
     }
 

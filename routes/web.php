@@ -45,6 +45,7 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::get('/customers/{customer}', [CustomerController::class,'deleteCustomer']);
      Route::get('/sales', [SaleController::class,'getSales']);
      Route::get('/discounts', [DiscountController::class,'getDiscounts']);
+     Route::get('/automatic-discounts', [DiscountController::class,'getAutomaticDiscounts']);
      Route::get('/redeem-discount', [DiscountController::class,'getCustomers']);
      Route::get('/get-discount-data/{customer}',  [DiscountController::class,'getDiscountData']);
      Route::get('/set-discount',  [DiscountController::class,'setDiscount']);
@@ -83,7 +84,9 @@ Route::group(['middleware' => ['staff','optimizeImages']], function()
      Route::post('/staff-authorize-fuel-purchase',[CustomerController::class,'staffAuthorizeFuelPurchase']);
      Route::get('/get-number-plate',[CustomerController::class,'autoCompleteCustomerSearch']);
      Route::get('/discount-pdf/{discountId}',[DiscountController::class,'loadDiscountPDF']);
+     Route::get('/automatic-discount-pdf/{discountId}',[DiscountController::class,'loadAutomaticDiscountPDF']);
      Route::get('/discount-print-status/{discountId}',[DiscountController::class,'updatePrintState']);
+     Route::get('/automatic-discount-print-status/{discountId}',[DiscountController::class,'updateAutomaticPrintState']);
 
 });
 
