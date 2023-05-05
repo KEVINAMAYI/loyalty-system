@@ -186,12 +186,12 @@
                                 <div class="form-holder">
                                     <label for="password">Amount Payable (KSH)*</label>
                                     <input type="text" placeholder="Enter Amount" class="form-control"
-                                           id="amount_payable" name="phonenumber" readonly required>
+                                           id="amount_payable"  readonly required>
                                 </div>
                                 <div class="form-holder">
                                     <label for="password">Amount Paid (KSH)*</label>
                                     <input type="text" placeholder="Enter Amount" class="form-control"
-                                           id="amount_paid" name="phonenumber" required>
+                                           id="amount_paid"  required>
                                 </div>
                             </div>
 

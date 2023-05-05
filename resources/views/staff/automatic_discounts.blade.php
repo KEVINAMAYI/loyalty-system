@@ -45,7 +45,8 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2 pr-2 pl-3">
                         <div class="table-responsive p-0">
-                            <table data-ordering="false" id="automatic_discount_table" class="table align-items-center mb-0">
+                            <table data-ordering="false" id="automatic_discount_table"
+                                   class="table align-items-center mb-0">
                                 <thead>
                                 <tr>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
@@ -80,11 +81,12 @@
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Transaction Date
                                     </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Action
-                                    </th>
-
+                                    @if(auth()->user()->major_role == 'Admin')
+                                        <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
+                                            Action
+                                        </th>
+                                    @endif
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -123,22 +125,25 @@
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ \Carbon\Carbon::parse($automatic_discount->transaction_date)->format('d/m/Y H:i:s')  }}</span>
                                         </td>
-                                        @if($automatic_discount->printed == 'Completed')
-                                            <td class="text-sm">
-                                                <button id="{{ $automatic_discount->discount_number }}"
-                                                   style="background-color:#4881c0"
-                                                   class="discount_item disabled print-discount-data-btn btn btn-sm btn-primary">Printed</button>
-                                            </td>
+                                        @if(auth()->user()->major_role == 'Admin')
+                                            @if($automatic_discount->printed == 'Completed')
+                                                <td class="text-sm">
+                                                    <button id="{{ $automatic_discount->discount_number }}"
+                                                            style="background-color:#4881c0"
+                                                            class="discount_item disabled print-discount-data-btn btn btn-sm btn-primary">
+                                                        Printed
+                                                    </button>
+                                                </td>
                                             @else
-                                            <td class="text-sm">
-                                                <button id="{{ $automatic_discount->discount_number }}"
-                                                        style="background-color:#4881c0"
-                                                        class="automatic_discount_item print-automatic-discount-data-btn btn btn-sm btn-primary">{{  ucfirst($automatic_discount->printed) }}</button>
-                                            </td>
+                                                <td class="text-sm">
+                                                    <button id="{{ $automatic_discount->discount_number }}"
+                                                            style="background-color:#4881c0"
+                                                            class="automatic_discount_item print-automatic-discount-data-btn btn btn-sm btn-primary">{{  ucfirst($automatic_discount->printed) }}</button>
+                                                </td>
+                                            @endif
                                         @endif
                                     </tr>
                                 @endforeach
-
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -174,10 +179,12 @@
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Transaction Date
                                     </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
-                                        Action
-                                    </th>
+                                    @if(auth()->user()->major_role == 'Admin')
+                                        <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
+                                            Action
+                                        </th>
+                                    @endif
                                 </tr>
                                 </tfoot>
                             </table>

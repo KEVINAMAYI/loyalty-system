@@ -444,7 +444,8 @@ class CustomerController extends Controller
                  "litres_sold" => $data['litres_sold'],
                  "discount"	=> $data['rewards_awarded'],
                  "csa"	=> Auth::user()->name,
-                 "transaction_date"	=> Carbon::now()->format('Y-m-d H:i:m')
+                 "transaction_date"	=> Carbon::now()->format('Y-m-d H:i:m'),
+                 "sales_id" => $sale->id
                 ]);
         }
 

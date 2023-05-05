@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AutomaticDiscount;
 use App\Models\Customer;
+use App\Models\Sale;
 use App\Models\Vehicle;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -138,10 +139,24 @@ class DiscountController extends Controller
 
     public function updateAutomaticPrintState($discount): \Illuminate\Http\JsonResponse
     {
-        AutomaticDiscount::where('discount_number', $discount)->update([
+        $todayDateTime = \Carbon\Carbon::now()->format('Y-m-d H:i:m');
+        $personnel = Auth::user()->name;
+        $automatic_discount = AutomaticDiscount::where('discount_number', $discount);
+
+        $automatic_discount->update([
             'printed' => 'Completed',
         ]);
-        return \response()->json(['printed' => $discount]);
+
+        $sales_id = $automatic_discount->get()[0]->sales_id;
+
+        Sale::where('id','=',$sales_id )->update([
+            'reason' => "No Reason",
+            'status' => "Accepted",
+            'approved_by' => $personnel,
+            'approved_date' => $todayDateTime
+        ]);
+
+        return \response()->json(['printed' => $sales_id]);
     }
 
 

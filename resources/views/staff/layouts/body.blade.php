@@ -1614,6 +1614,7 @@
                 }
             },
             error: function (data) {
+                console.log("The sales ID is")
                 console.log(data)
             }
         });
