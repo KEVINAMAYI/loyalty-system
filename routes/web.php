@@ -29,6 +29,7 @@ use App\Http\Controllers\DiscountController;
 
 //Staff middleware --> can only be acccessed by users with the role of Staff
 Route::group(['middleware' => ['staff', 'optimizeImages']], function () {
+
     //front end routes
     Route::get('/choose-option', function () {
         return view('choose-option');
@@ -118,22 +119,6 @@ Route::group(['middleware' => 'corporate'], function () {
     Route::post('/edit-coorporate-vehicle', [VehicleController::class, 'editVehicleData']);
     Route::get('/delete-authorized-purchase/{authorizedPurchase}', [AuthorizedPurchaseController::class, 'deleteAuthorizeFuelPurchase']);
     Route::get('/my-account', [AccountController::class, 'getAccountData']);
-
-});
-
-
-//can be accessed by anyone
-Route::get('/insert-required-reward-type', function () {
-
-    $customers = \App\Models\Customer::all();
-
-    foreach ($customers as $customer) {
-        $customer->update([
-                'custom_reward_type' => 'default',
-            ]);
-    }
-
-    dd('done');
 
 });
 

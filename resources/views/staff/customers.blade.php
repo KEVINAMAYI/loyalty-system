@@ -258,6 +258,13 @@
                                     type="number" name="edit_rewards" id="edit_rewards">
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-holder col-lg-12 col-md-12 col-sm-12 form-holder-2 mb-4">
+                                <label for="reward_type">Organization</label></br>
+                                <select name="organization_id" id="organizations" class="form-control">
+                                </select>
+                            </div>
+                        </div>
                         <div class="modal-footer">
                             <input type="hidden" id="customerid" value="">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

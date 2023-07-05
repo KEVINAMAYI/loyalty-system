@@ -743,6 +743,7 @@
 
                 // get sale data and show in a model
                 customer_data = data.customer_data;
+                organizations = data.organization_data
 
                 $("#first_name").val(customer_data[0].first_name);
                 $("#last_name").val(customer_data[0].last_name);
@@ -751,6 +752,14 @@
                 $("#edit_email").val(customer_data[0].email);
                 $("#edit_rewards").val(customer_data[0].rewards);
                 $("#edit_gender").val(customer_data[0].gender);
+
+                const options = $("#organizations");
+
+                organizations.forEach((organization) => {
+                    console.log(organizations);
+                    options.append($("<option />").val(organization.id).text(organization.name));
+                });
+
                 $('#edit-customer-modal').modal('show');
 
             },
@@ -871,6 +880,7 @@
         const email = $("#edit_email").val()
         const rewards = $("#edit_rewards").val()
         const gender = $("#edit_gender").val()
+        const organization_id = $("#organizations").val()
         const custom_reward_type = $("#custom_reward_type").val()
 
         formData.append('first_name', first_name);
@@ -880,6 +890,7 @@
         formData.append('email', email);
         formData.append('rewards', rewards);
         formData.append('gender', gender);
+        formData.append('organization_id', organization_id);
         formData.append('custom_reward_type', custom_reward_type);
         formData.append('id', id);
 

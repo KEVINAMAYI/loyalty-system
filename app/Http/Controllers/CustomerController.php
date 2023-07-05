@@ -1869,6 +1869,7 @@ class CustomerController extends Controller
             'email' => $data['email'],
             'gender' => $data['gender'],
             'rewards' => $data['rewards'],
+            'organization_id' => $data['organization_id'],
             'custom_reward_type' => $data['custom_reward_type'],
         ]);
 
@@ -1938,11 +1939,13 @@ class CustomerController extends Controller
     {
         $customer_data = Customer::where('id', $customer->id)->get();
         $vehicles_data = Vehicle::where('customer_id', '=', $customer->id)->get();
+        $organizations = Organization::all();
 
         return response()->json([
 
             'customer_data' => $customer_data,
-            'vehicles_data' => $vehicles_data
+            'vehicles_data' => $vehicles_data,
+            'organization_data' => $organizations,
 
         ]);
     }
