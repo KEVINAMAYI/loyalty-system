@@ -93,9 +93,11 @@
                                                     <span style="cursor:pointer;" id="{{ $customer->id }}"
                                                           class="morecustomerdetails badge badge-sm bg-gradient-secondary">more
                                                         info</span>
-                                                <span id="{{ $customer->id }}"
-                                                      style="background-color:#4881c0; cursor:pointer;"
-                                                      class="editcustomerbtn badge badge-sm">edit</span>
+                                                @if(auth()->user()->major_role == 'Admin')
+                                                    <span id="{{ $customer->id }}"
+                                                          style="background-color:#4881c0; cursor:pointer;"
+                                                          class="editcustomerbtn badge badge-sm">edit</span>
+                                                @endif
                                                 <a href="{{ route('edit-customer-rewards',$customer->id) }}"
                                                    style="background-color:#4881c0; cursor:pointer;"
                                                    class="badge badge-sm">set rewards</a>

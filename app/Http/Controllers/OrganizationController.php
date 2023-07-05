@@ -7,56 +7,72 @@ use App\Http\Requests\UpdateOrganizationRequest;
 use App\Models\Customer;
 use App\Models\Organization;
 use App\Models\OrganizationReward;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OrganizationController extends Controller
 {
     public function index()
     {
-        $organizations = Organization::all();
-        return view('staff.organizations', compact('organizations'));
+        if (Auth::user()->major_role == 'Admin') {
+            $organizations = Organization::all();
+            return view('staff.organizations', compact('organizations'));
+        }
+        return redirect()->back();
     }
 
     public function store(StoreOrganizationRequest $request)
     {
-        $organization = Organization::create($request->validated());
-        $this->storeDefaultOrganizationRewards($organization);
-        session()->flash('success', 'Organization created successfully');
+        if (Auth::user()->major_role == 'Admin') {
+            $organization = Organization::create($request->validated());
+            $this->storeDefaultOrganizationRewards($organization);
+            session()->flash('success', 'Organization created successfully');
+        }
         return redirect()->back();
     }
 
-    public function show(Organization $organization){
-        return response()->json([
-           'organization' => $organization
-        ]);
+    public function show(Organization $organization)
+    {
+        if (Auth::user()->major_role == 'Admin') {
+            return response()->json([
+                'organization' => $organization
+            ]);
+        }
     }
 
     public function destroy(Organization $organization)
     {
-
-        $organization->delete();
-        session()->flash('success', 'Organization created successfully');
-        return redirect()->back();
-
-    }
-
-    public function update(UpdateOrganizationRequest $request, Organization $organization){
-        $organization->update($request->validated());
-        session()->flash('success', 'Organization updated successfully');
+        if (Auth::user()->major_role == 'Admin') {
+            $organization->delete();
+            session()->flash('success', 'Organization created successfully');
+        }
         return redirect()->back();
     }
 
-    public function editOrganizationRewards(Organization  $organization){
+    public function update(UpdateOrganizationRequest $request, Organization $organization)
+    {
+        if (Auth::user()->major_role == 'Admin') {
+            $organization->update($request->validated());
+            session()->flash('success', 'Organization updated successfully');
+        }
+        return redirect()->back();
+    }
 
-        $petrol_reward_formats = OrganizationReward::where('organization_id',$organization->id)
-                                                    ->where('product_type','petrol')->get();
-        $diesel_reward_formats = OrganizationReward::where('organization_id',$organization->id)
-                                                     ->where('product_type','diesel')->get();;
-        return view('staff.organizational_rewards',compact('organization','petrol_reward_formats','diesel_reward_formats'));
+    public function editOrganizationRewards(Organization $organization)
+    {
+        if (Auth::user()->major_role == 'Admin') {
+
+            $petrol_reward_formats = OrganizationReward::where('organization_id', $organization->id)
+                ->where('product_type', 'petrol')->get();
+            $diesel_reward_formats = OrganizationReward::where('organization_id', $organization->id)
+                ->where('product_type', 'diesel')->get();;
+            return view('staff.organizational_rewards', compact('organization', 'petrol_reward_formats', 'diesel_reward_formats'));
+        }
+        return redirect()->back();
     }
 
 
-    private function storeDefaultOrganizationRewards(Organization  $organization)
+    private function storeDefaultOrganizationRewards(Organization $organization)
     {
 
         DB::table('organization_rewards')->insert([
