@@ -1,4 +1,4 @@
-@extends('staff.layouts.body')
+@extends('staff.body')
 @section('content')
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
         navbar-scroll="true">
@@ -81,7 +81,7 @@
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $vehicle->fuel_type }}</span>
                                                 </td>
-                                    
+
                                                 <td class="align-middle text-center text-sm">
                                                     <span id="{{ $vehicle->id }}"
                                                         style="background-color:#4881c0; cursor:pointer;"
@@ -118,7 +118,7 @@
             </div>
         </div>
 
-     
+
 
         {{-- Edit vehicle details --}}
         <!-- Modal -->
@@ -197,7 +197,7 @@
                             <select name="fuel_type" id="fuel_type" class="form-control">
                                     <option selected value="Diesel">Diesel</option>
                                     <option value="Petrol">Petrol</option>
-                            </select> 
+                            </select>
                         </div>
                         <div class="form-holder form-holder-2 mt-4 mb-4">
                             <label for="regno">Vehicle Registration Number</label></br>
@@ -217,5 +217,5 @@
             </div>
         </div>
 
-       
+
     @endsection

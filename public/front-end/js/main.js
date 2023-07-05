@@ -44,7 +44,7 @@ $(function(){
             finish : '<i id="completed" class="zmdi zmdi-arrow-right"></i>',
             current : ''
         },
-        onStepChanging: function (event, currentIndex, newIndex) { 
+        onStepChanging: function (event, currentIndex, newIndex) {
             var firstname = $('#firstname').val();
             var lastname = $('#lastname').val();
             var gender =  $("input[name='gender']:checked").val();
@@ -67,18 +67,18 @@ $(function(){
 
 
             $('#image').on('change',function(){
-           
+
                 let reader = new FileReader();
-            
-                reader.onload = (e) => { 
-            
-                  $('#vehicle_image').attr('src', e.target.result); 
-                  $('#confirm-vehicle-image').attr('src', e.target.result); 
+
+                reader.onload = (e) => {
+
+                  $('#vehicle_image').attr('src', e.target.result);
+                  $('#confirm-vehicle-image').attr('src', e.target.result);
 
                 }
-            
-                reader.readAsDataURL(this.files[0]); 
-              
+
+                reader.readAsDataURL(this.files[0]);
+
                });
 
 
@@ -92,23 +92,23 @@ $(function(){
             $('#fuel-type').text(fuel_type);
 
 
-            
-            //execute amount and image check on the second step 
+
+            //execute amount and image check on the second step
             if( currentIndex == 1) {
 
                 let vehicle_registration =$('#regno').val();
                 const selectedFile = document.getElementById('image').files;
                 let error = "";
 
-                
+
                 // compare amount payable and amount paid
                 if(vehicle_registration == "")
                 {
-             
+
                     error += "Please enter vehicle registration!";
                     swal("Error!", error , "error");
                     return;
-                    
+
                 }
                 else if(selectedFile.length == 0)
                 {
@@ -126,15 +126,15 @@ $(function(){
 
 
 
-               
-            
+
+
             }
 
             $("#form-register").validate().settings.ignore = ":disabled,:hidden";
             return $("#form-register").valid();
         }
     });
-    
+
     //submit enrollment details
     $("#completed").on('click',function(){
 
@@ -145,23 +145,22 @@ $(function(){
         $('#progress').css('display','');
 
         const selectedFile = document.getElementById('image').files[0];
-        console.log(selectedFile);
 
         formData = new FormData();
         formData.append('vehicle_image',selectedFile);
         formData.append('first_name',$('#firstname').val());
-    
         formData.append('last_name',$('#lastname').val());
         formData.append('gender',$("input[name='gender']:checked").val());
         formData.append('phone_number',$('#phonenumber').val());
         formData.append('id_number',$('#idnumber').val());
         formData.append('fuel_type',$('#fuel_type').val());
-        // formData.append('email',$('#email').val());
+        formData.append('organization',$('#organization').val());
         formData.append('category',$('#category').val());
         formData.append('type',$('#type').val());
         formData.append('regno',$('#regno').val());
 
-    
+        console.log($('#organization').val());
+
 
         $.ajax({
             type:'post',
@@ -170,36 +169,36 @@ $(function(){
             processData: false,
             contentType: false,
             success: (data) => {
-                 
+
                 console.log(data);
                 $('#progress').css('display','none');
-                //display an alert message redirect user back to choose-option page 
+                //display an alert message redirect user back to choose-option page
                 swal("Success !", "Enrollment completed successfully, A Confirmation message was sent !", "success")
                 .then(() => {
                     location.href = "/choose-option";
                 });
             },
             error: function(data){
-                   
+
                     theerrors = '';
                     errors = data.responseJSON.errors;
 
                     console.log(data);
-                    
+
                     $('#progress').css('display','none');
                     $('#errorz').css("display","block");
 
                     for(key in errors)
                     {
-                        
+
                         theerrors += errors[key][0];
                         theerrors += '\n'
 
                     }
 
-            
+
                    swal("Error !", theerrors, "error");
-                  
+
              }
            })
 

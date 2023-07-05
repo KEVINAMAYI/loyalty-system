@@ -1,4 +1,4 @@
-@extends('staff.layouts.body')
+@extends('staff.body')
 
 @section('content')
     <!-- Navbar -->

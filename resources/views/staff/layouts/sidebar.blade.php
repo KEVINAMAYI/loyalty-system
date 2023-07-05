@@ -37,6 +37,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link  "href="/organizations">
+                    <i class="fa-solid fa-city"></i>
+                    <span class="nav-link-text ms-1">Organizations</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link  "href="/authorized-purchases">
                     <i class="fa-solid fa-building"></i>
                     <span class="nav-link-text ms-1">Authorized Purchases</span>

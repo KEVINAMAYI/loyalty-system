@@ -9,6 +9,12 @@ class Customer extends Model
 {
     use HasFactory;
 
+
+    protected $casts = [
+        'created_at' => 'datetime:m/d/Y',
+        'updated_at' => 'datetime:m/d/Y',
+    ];
+
      /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +30,8 @@ class Customer extends Model
         'type',
         'rewards',
         'enrolled_by',
+        'organization_id',
+        'custom_reward_type',
         'status',
     ];
 

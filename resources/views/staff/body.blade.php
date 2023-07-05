@@ -692,13 +692,11 @@
                     $('#customer_rejection_reason').text(customer_data[0].reason);
                     $('#rejection_div').css('display', '');
                     $('#customer_status_title').text('Rejected By');
-                    $("#approved_by").text(customer_data[0].approved_date + ",  " + customer_data[0].approved_by);
 
 
                 } else {
 
                     $('#customer_status_title').text('Approved By');
-                    $("#approved_by").text(customer_data[0].approved_date + ",  " + customer_data[0].approved_by);
 
                 }
 
@@ -708,7 +706,7 @@
                     $('#customer_vehicles_details').append(
                         `<div class="customer_vehicle form-holder form-holder-2 mt-4 mb-4">
                                      <p id="vehicle Registration" style="padding-left:5px;">vehicle Registration : ${vehicle_data.vehicle_registration} </p>
-                                     <img id="vehicle_image" src="images/${vehicle_data.image_url}" style="border:4px solid grey; width:200px; height:200px;" alt="">
+                                     <img id="vehicle_image" src="images/${vehicle_data.image_url}" style="border:4px solid grey; width:400px; height:400px;" alt="">
                                  </div`
                     )
                 });
@@ -873,6 +871,7 @@
         const email = $("#edit_email").val()
         const rewards = $("#edit_rewards").val()
         const gender = $("#edit_gender").val()
+        const custom_reward_type = $("#custom_reward_type").val()
 
         formData.append('first_name', first_name);
         formData.append('last_name', last_name);
@@ -881,6 +880,7 @@
         formData.append('email', email);
         formData.append('rewards', rewards);
         formData.append('gender', gender);
+        formData.append('custom_reward_type', custom_reward_type);
         formData.append('id', id);
 
         $.ajax({
@@ -1036,6 +1036,72 @@
                 $('.reward_year').val(data.rewardformat[0].price_period.split(" ")[1])
                 $("#edit-monthly-reward").modal('show');
                 $("#monthly_reward_id").val(id);
+
+            },
+            error: function (data) {
+
+                console.log(data);
+
+
+            }
+        });
+
+
+    });
+
+
+    //edit monthly rewards
+    $(".editorganizationRewardBtn").on('click', function () {
+
+        const organization_reward_id = parseInt($(this).attr('id'));
+        console.log(organization_reward_id);
+
+        $.ajax({
+            type: 'get',
+            url: "/organization-rewards/" + organization_reward_id,
+            success: (data) => {
+
+                $('.lower_range').val(data.rewardformat.low)
+                $('.higher_range').val(data.rewardformat.high)
+                $('.reward_per_litre').val(data.rewardformat.shillings_per_litre)
+                $('.monthly').val(data.rewardformat.period.split(" ")[0])
+                $('.reward_year').val(data.rewardformat.period.split(" ")[1])
+                $("#editOrganizationRewardModel").modal('show');
+                $("#organizational_reward_id").val(organization_reward_id);
+                $('#editOrganizationRewardForm').attr('action', '/organization-rewards/'+organization_reward_id);
+
+            },
+            error: function (data) {
+
+                console.log(data);
+
+
+            }
+        });
+
+
+    });
+
+
+    //edit monthly rewards
+    $(".editCustomerRewardBtn").on('click', function () {
+
+        const customer_reward_id = parseInt($(this).attr('id'));
+        console.log(customer_reward_id);
+
+        $.ajax({
+            type: 'get',
+            url: "/customer-rewards/" + customer_reward_id,
+            success: (data) => {
+
+                $('.lower_range').val(data.rewardformat.low)
+                $('.higher_range').val(data.rewardformat.high)
+                $('.reward_per_litre').val(data.rewardformat.shillings_per_litre)
+                $('.monthly').val(data.rewardformat.period.split(" ")[0])
+                $('.reward_year').val(data.rewardformat.period.split(" ")[1])
+                $("#editCustomerRewardModel").modal('show');
+                $("#customer_reward_id").val(customer_reward_id);
+                $('#editCustomerRewardForm').attr('action', '/customer-rewards/'+customer_reward_id);
 
             },
             error: function (data) {
@@ -1655,6 +1721,31 @@
         for (var i = 0; i < sides.length; i++) {
             $("#pump_side_reward").append($(`<option value="${sides[i]}"></option>`).text(sides[i]));
         }
+    });
+
+    $('.editOrganizationBtn').on('click',function(){
+
+        const organization_id = $(this).attr('id');
+        console.log(organization_id);
+
+        $.ajax({
+            url: "/organizations/" + organization_id,
+            type: "get",
+            success: function (response) {
+
+                console.log(response.organization.id);
+                $('#organizationName').val(response.organization.name);
+                $('#organizationDescription').val(response.organization.description);
+                $('#organizationPetrolReward').val(response.organization.petrol_reward_per_litre);
+                $('#organizationDieselReward').val(response.organization.diesel_reward_per_litre);
+                $('#editOrganizationModal').modal('show');
+                $('#editOrganizationForm').attr('action', '/organizations/' + response.organization.id);
+
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
     });
 
 

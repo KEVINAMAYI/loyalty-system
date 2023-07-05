@@ -1,4 +1,4 @@
-@extends('staff.layouts.body')
+@extends('staff.body')
 
 @section('content')
     <!-- Navbar -->
@@ -139,54 +139,59 @@
         <form class="form-register" action="/add-staff" method="post">
             @csrf
             <div class="modal fade" id="staff-modal" tabindex="-1" aria-labelledby="staff-modal" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Add New Staff</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="form-holder form-holder-2 mb-2">
-                                <label for="regno">Name</label></br>
-                                <input
-                                    style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
-                                    type="text" name="name" id="name" placeholder="">
+                            <div class="row">
+                                <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2 mb-4">
+                                    <label for="regno">Name</label></br>
+                                    <input
+                                        style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
+                                        type="text" name="name" id="name" placeholder="">
+                                </div>
+                                <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2 mb-4">
+                                    <label for="regno">Email</label></br>
+                                    <input
+                                        style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
+                                        type="text" name="email" id="email" placeholder="">
+                                </div>
                             </div>
-                            <div class="form-holder form-holder-2 mt-4 mb-4">
-                                <label for="regno">Email</label></br>
-                                <input
-                                    style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
-                                    type="text" name="email" id="email" placeholder="">
-                            </div>
+                            <div class="row">
+                                <div class="form-holder  col-lg-6 col-md-12 col-sm-12 form-holder-2  mb-4">
+                                    <label for="regno">Password</label></br>
+                                    <input
+                                        style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
+                                        type="password" name="password" id="password" id="password" placeholder="">
+                                </div>
 
-                            <div class="form-holder form-holder-2 mt-4 mb-4">
-                                <label for="regno">Password</label></br>
-                                <input
-                                    style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
-                                    type="password" name="password" id="password" id="password" placeholder="">
+                                <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2  mb-4">
+                                    <label for="regno">Confirm Password</label></br>
+                                    <input
+                                        style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
+                                        type="password" name="password_confirmation" id="password_confirmation"
+                                        id="password_confirmation" placeholder="">
+                                </div>
                             </div>
-
-                            <div class="form-holder form-holder-2 mt-4 mb-4">
-                                <label for="regno">Confirm Password</label></br>
-                                <input
-                                    style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
-                                    type="password" name="password_confirmation" id="password_confirmation"
-                                    id="password_confirmation" placeholder="">
-                            </div>
-                            <div class="form-holder form-holder-2 mt-4 mb-4">
-                                <label for="major_role">Role</label></br>
-                                <select name="major_role" id="payment_type" class="form-control">
-                                    <option value="staff">Staff</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="Supervisor">Supervisor</option>
-                                </select>
-                            </div>
-                            <div class="form-holder form-holder-2 mt-4 mb-4">
-                                <label for="shift">Shift</label></br>
-                                <select name="shift" id="shift" class="form-control">
-                                    <option value="Chui">Chui</option>
-                                    <option value="Simba">Simba</option>
-                                </select>
+                            <div class="row">
+                                <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2 mb-4">
+                                    <label for="major_role">Role</label></br>
+                                    <select name="major_role" id="payment_type" class="form-control">
+                                        <option value="staff">Staff</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="Supervisor">Supervisor</option>
+                                    </select>
+                                </div>
+                                <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2  mb-4">
+                                    <label for="shift">Shift</label></br>
+                                    <select name="shift" id="shift" class="form-control">
+                                        <option value="Chui">Chui</option>
+                                        <option value="Simba">Simba</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -203,7 +208,7 @@
 
         <!--  edit employees modal -->
         <div class="modal fade" id="edit-staff" tabindex="-1" aria-labelledby="edit-staff" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div style="margin-top:10px; margin-left:10px; margin-right:10px; display:none;"
                          class="alert alert-danger" id="errorz" role="alert">
@@ -215,39 +220,45 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-holder form-holder-2 mb-2">
-                            <label for="regno">Name</label></br>
-                            <input
-                                style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
-                                type="text" name="edited_staffname" id="edited_staffname" placeholder="Kevin">
+                        <div class="row">
+                            <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2 mb-4">
+                                <label for="regno">Name</label></br>
+                                <input
+                                    style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
+                                    type="text" name="edited_staffname" id="edited_staffname" placeholder="Kevin">
+                            </div>
+                            <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2  mb-4">
+                                <label for="edited_staffemail">Email</label></br>
+                                <input
+                                    style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
+                                    type="text" name="edited_staffemail" id="edited_staffemail"
+                                    placeholder="kevinamayi20@gmail.com">
+                            </div>
                         </div>
-                        <div class="form-holder form-holder-2 mt-4 mb-4">
-                            <label for="edited_staffemail">Email</label></br>
-                            <input
-                                style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
-                                type="text" name="edited_staffemail" id="edited_staffemail"
-                                placeholder="kevinamayi20@gmail.com">
+                        <div class="row">
+                            <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2 mb-4">
+                                <label for="edited_major_role">Role</label></br>
+                                <select name="edited_major_role" id="edited_major_role" class="form-control">
+                                    <option value="Staff">Staff</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Supervisor">Supervisor</option>
+                                </select>
+                            </div>
+                            <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2 mb-4">
+                                <label for="edited_shift">Shift</label></br>
+                                <select name="edited_shift" id="edited_shift" class="form-control">
+                                    <option value="Chui">Chui</option>
+                                    <option value="Simba">Simba</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-holder form-holder-2 mt-4 mb-4">
-                            <label for="edited_major_role">Role</label></br>
-                            <select name="edited_major_role" id="edited_major_role" class="form-control">
-                                <option value="Staff">Staff</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Supervisor">Supervisor</option>
-                            </select>
-                        </div>
-                        <div class="form-holder form-holder-2 mt-4 mb-4">
-                            <label for="edited_shift">Shift</label></br>
-                            <select name="edited_shift" id="edited_shift" class="form-control">
-                                <option value="Chui">Chui</option>
-                                <option value="Simba">Simba</option>
-                            </select>
-                        </div>
-                        <div class="form-holder form-holder-2 mt-4 mb-4">
-                            <label for="edited_password">New Password</label></br>
-                            <input id="edited_staffpassword"
-                                   style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
-                                   type="password" name="edited_staffpassword" id="password">
+                        <div class="row">
+                            <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2  mb-4">
+                                <label for="edited_password">New Password</label></br>
+                                <input id="edited_staffpassword"
+                                       style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
+                                       type="password" name="edited_staffpassword" id="password">
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" id="staffid" value="">
