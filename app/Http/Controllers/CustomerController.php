@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\customerReward;
+use App\Models\CustomerReward;
 use App\Models\Organization;
 use App\Models\OrganizationReward;
 use http\Env\Response;
