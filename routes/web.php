@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerRewardController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationRewardController;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\RewardController;
@@ -25,6 +26,19 @@ use App\Http\Controllers\DiscountController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/custom',function (){
+
+    $customers = Customer::all();
+    foreach ($customers as $customer){
+        $customer->update([
+            'custom_reward_type' => 'customer'
+        ]);
+    }
+
+    dd('done');
+
+});
 
 
 //Staff middleware --> can only be acccessed by users with the role of Staff
