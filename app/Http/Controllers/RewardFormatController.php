@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use App\Models\customerReward;
+use App\Models\CustomerReward;
 use App\Models\OrganizationReward;
 use App\Models\RewardFormat;
 use Illuminate\Http\Request;
