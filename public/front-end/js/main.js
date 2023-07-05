@@ -154,7 +154,7 @@ $(function(){
         formData.append('phone_number',$('#phonenumber').val());
         formData.append('id_number',$('#idnumber').val());
         formData.append('fuel_type',$('#fuel_type').val());
-        formData.append('organization',$('#organization').val());
+        formData.append('organization',$('#organizationID').val());
         formData.append('category',$('#category').val());
         formData.append('type',$('#type').val());
         formData.append('regno',$('#regno').val());

@@ -20,21 +20,22 @@ class RewardFormatController extends Controller
 
         $rewards_format = null;
 
-        if ($customer->custom_reward_type == 'organization') {
-            $rewards_format = OrganizationReward::where('product_type', $product_type)
-                ->where('organization_id', $customer->organization_id)
-                ->get();
-        }
+        if ($litres_bought < 100 ) {
+            if ($customer->custom_reward_type == 'organization') {
+                $rewards_format = OrganizationReward::where('product_type', $product_type)
+                    ->where('organization_id', $customer->organization_id)
+                    ->get();
+            }
 
-        if ($customer->custom_reward_type == 'customer') {
-            $rewards_format = CustomerReward::where('product_type',$product_type)
-                ->where('customer_id', $customer->id)
-                ->get();
-        }
+            if ($customer->custom_reward_type == 'customer') {
+                $rewards_format = CustomerReward::where('product_type', $product_type)
+                    ->where('customer_id', $customer->id)
+                    ->get();
+            }
+        } else {
 
-
-        if (($customer->custom_reward_type == 'default') || ($litres_bought > 1000)) {
             $rewards_format = RewardFormat::where('product_type', $product_type)->get();
+
         }
 
         return response()->json([

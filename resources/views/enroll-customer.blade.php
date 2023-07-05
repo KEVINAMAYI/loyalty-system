@@ -94,7 +94,17 @@
 			            	<span class="step-text">Vehicle Infomation</span>
 			            </h2>
 			            <section>
-			                <div class="inner">
+                            <div class="form-holder mb-4 form-holder-2">
+                                <label style="font-weight:bold; color:white;">Organization</label>
+                                <select name="organization_id" id="organizationID" class="form-control">
+                                    @foreach($organizations as $organization)
+                                    <option value="0">No Organization</option>
+                                    <option value="{{ $organization->id }}">{{ $organization->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="inner">
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label for="card-type">Vehicle Category</label>
@@ -156,9 +166,9 @@
                                     <select name="fuel_type" id="fuel_type" class="form-control">
                                             <option value="Diesel">Diesel</option>
                                             <option value="Petrol">Petrol</option>
-                                    </select> 
+                                    </select>
 								</div>
-								  
+
 								<div class="form-holder form-holder-2">
 									<label for="firstname" style="color:white; font-weight:bold; margin-bottom:10px;">Vehicle Registration Number*</label>
 									<input type="text" placeholder="Enter Number Plate" class="form-control" id="regno" name="regno" style="text-transform: uppercase" required>

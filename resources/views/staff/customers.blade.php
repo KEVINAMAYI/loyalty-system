@@ -250,7 +250,6 @@
                                 <select name="custom_reward_type" id="custom_reward_type" class="form-control">
                                     <option value="organization">Organization</option>
                                     <option value="customer">Customer</option>
-                                    <option value="default">Default</option>
                                 </select>
                             </div>
                             <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2 mb-4">

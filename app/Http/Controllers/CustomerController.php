@@ -1804,7 +1804,7 @@ class CustomerController extends Controller
             'id_number' => $data['id_number'],
             'rewards' => 0,
             'organization_id' => intval($data['organization']),
-            'custom_reward_type' => is_null(intval($data['organization'])) ? 'default' : 'organization',
+            'custom_reward_type' => intval($data['organization']) == 0 ? 'customer' : 'organization',
             'enrolled_by' => Auth::user()->name,
             'status' => "Accepted"
         ]);
