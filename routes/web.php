@@ -123,107 +123,14 @@ Route::group(['middleware' => 'corporate'], function () {
 
 
 //can be accessed by anyone
-Route::get('/insert-required-rewards', function () {
+Route::get('/insert-required-reward-type', function () {
 
     $customers = \App\Models\Customer::all();
 
     foreach ($customers as $customer) {
-
-        \Illuminate\Support\Facades\DB::table('customer_rewards')->insert([
-            [
-                'customer_id' => $customer->id,
-                'low' => 0,
-                'high' => 100,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 0.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 101,
-                'high' => 250,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 251,
-                'high' => 500,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 501,
-                'high' => 1000,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 1000,
-                'high' => 1000000,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 0,
-                'high' => 100,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 1,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 101,
-                'high' => 250,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 251,
-                'high' => 500,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 501,
-                'high' => 1000,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 1000,
-                'high' => 1000000,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ]
-
-
-        ]);
-
+        $customer->update([
+                'custom_reward_type' => 'default',
+            ]);
     }
 
     dd('done');
