@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\customerReward;
+use App\Models\CustomerReward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
