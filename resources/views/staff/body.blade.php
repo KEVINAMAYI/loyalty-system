@@ -753,13 +753,19 @@
                 $("#edit_rewards").val(customer_data[0].rewards);
                 $("#edit_gender").val(customer_data[0].gender);
 
-                const options = $("#organizations");
+                const organizationOptions = $("#organizations");
+                const rewardTypeOptions = $("#custom_reward_type");
+                rewardTypeOptions.append($("<option />").val('organization').text('Organization'));
+                rewardTypeOptions.append($("<option />").val('customer').text('Customer'));
+                $(`option[value=${customer_data[0].custom_reward_type}]`).attr('selected','selected');
+
 
                 organizations.forEach((organization) => {
-                    console.log(organizations);
-                    options.append($("<option />").val(organization.id).text(organization.name));
+                    organizationOptions.append($("<option />").val(organization.id).text(organization.name));
+
                 });
 
+                $(`option[value=${customer_data[0].organization_id}]`).attr('selected','selected');
                 $('#edit-customer-modal').modal('show');
 
             },
@@ -1072,14 +1078,14 @@
             url: "/organization-rewards/" + organization_reward_id,
             success: (data) => {
 
-                $('.lower_range').val(data.rewardformat.low)
-                $('.higher_range').val(data.rewardformat.high)
+                // $('.lower_range').val(data.rewardformat.low)
+                // $('.higher_range').val(data.rewardformat.high)
                 $('.reward_per_litre').val(data.rewardformat.shillings_per_litre)
                 $('.monthly').val(data.rewardformat.period.split(" ")[0])
                 $('.reward_year').val(data.rewardformat.period.split(" ")[1])
                 $("#editOrganizationRewardModel").modal('show');
                 $("#organizational_reward_id").val(organization_reward_id);
-                $('#editOrganizationRewardForm').attr('action', '/organization-rewards/'+organization_reward_id);
+                $('#editOrganizationRewardForm').attr('action', '/organization-rewards/' + organization_reward_id);
 
             },
             error: function (data) {
@@ -1112,7 +1118,7 @@
                 $('.reward_year').val(data.rewardformat.period.split(" ")[1])
                 $("#editCustomerRewardModel").modal('show');
                 $("#customer_reward_id").val(customer_reward_id);
-                $('#editCustomerRewardForm').attr('action', '/customer-rewards/'+customer_reward_id);
+                $('#editCustomerRewardForm').attr('action', '/customer-rewards/' + customer_reward_id);
 
             },
             error: function (data) {
@@ -1689,7 +1695,7 @@
         let confirmation_value = `Are you sure you want to print discount details`;
         if (confirm(confirmation_value) == true) {
             let automatic_discount_id = $(this).attr('id');
-            window.location.href = '/automatic-discount-pdf/'+automatic_discount_id;
+            window.location.href = '/automatic-discount-pdf/' + automatic_discount_id;
             localStorage.clear();
             localStorage.setItem('automatic_discount_id', automatic_discount_id);
         }
@@ -1750,7 +1756,7 @@
         }
     });
 
-    $('.editOrganizationBtn').on('click',function(){
+    $('.editOrganizationBtn').on('click', function () {
 
         const organization_id = $(this).attr('id');
         console.log(organization_id);

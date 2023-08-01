@@ -97,8 +97,8 @@
                             <div class="form-holder mb-4 form-holder-2">
                                 <label style="font-weight:bold; color:white;">Organization</label>
                                 <select name="organization_id" id="organizationID" class="form-control">
-                                    @foreach($organizations as $organization)
                                     <option value="0">No Organization</option>
+                                    @foreach($organizations as $organization)
                                     <option value="{{ $organization->id }}">{{ $organization->name }}</option>
                                     @endforeach
                                 </select>

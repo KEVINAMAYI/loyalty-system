@@ -33,19 +33,14 @@ class OrganizationRewardController extends Controller
         if (Auth::user()->major_role == 'Admin') {
             // validate customer enrollment details
             $request->validate([
-                'lower_range' => ['required'],
-                'higher_range' => ['required'],
                 'reward_per_litre' => ['required'],
                 'month' => ['required'],
                 'reward_year' => ['required'],
-
             ]);
 
             $data = $request->all();
 
             $organization_reward->update([
-                'low' => $data['lower_range'],
-                'high' => $data['higher_range'],
                 'shillings_per_litre' => $data['reward_per_litre'],
                 'period' => $data['month'] . ' ' . $data['reward_year']
             ]);

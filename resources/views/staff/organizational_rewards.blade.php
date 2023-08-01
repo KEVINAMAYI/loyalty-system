@@ -5,7 +5,7 @@
          navbar-scroll="true">
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
-                <h3 class="font-weight-bolder mb-0">{{ $organization->name }}</h3>
+                <h3 class="font-weight-bolder mb-0">{{ ucfirst($organization->name) }} Rewards </h3>
             </nav>
         </div>
     </nav>
@@ -35,11 +35,6 @@
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
-
-                    <div class="container">
-                        <p style="margin-bottom:5px; font-weight:bold; font-size:24px;">Petrol Rewards</p>
-
-                    </div>
                     <div class="container-fluid py-4">
                         <div class="row">
                             <div class="col-12">
@@ -53,11 +48,7 @@
                                             <tr>
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Range
-                                                </th>
-                                                <th
-                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                    Reward Type
+                                                    Product
                                                 </th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -65,7 +56,7 @@
                                                 </th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Reward Period
+                                                    Month
                                                 </th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -79,19 +70,12 @@
                                                     <td class="align-middle text-center text-sm">
                                                         <p style="text-align:left; padding-left:20px;"
                                                            class="text-xs font-weight-bold mb-0">
-                                                            {{ $petrol_reward_format->low }}
-                                                            - {{ $petrol_reward_format->high }}
+                                                            Petrol
                                                         </p>
-                                                    </td>
-
-                                                    <td class="align-middle text-center text-sm">
-                                                   <span class="text-secondary text-xs font-weight-bold">
-                                                    {{ $petrol_reward_format->reward_type }}
-                                                 </span>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
                                                   <span class="text-secondary text-xs font-weight-bold">
-                                                          {{ $petrol_reward_format->shillings_per_litre }}
+                                                          KES {{ $petrol_reward_format->shillings_per_litre }} / LITRE
                                                    </span>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
@@ -100,7 +84,8 @@
                                              </span>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
-                                                        <button id="{{ $petrol_reward_format->id }}" style="border:0px; background-color:#3875b6;"
+                                                        <button id="{{ $petrol_reward_format->id }}"
+                                                                style="border:0px; background-color:#3875b6;"
                                                                 class=" badge editorganizationRewardBtn badge-sm">edit
                                                         </button>
                                                         {{-- <a href="/delete-cooperate-employee/" class="badge badge-sm bg-gradient-danger">delete</a> --}}
@@ -114,11 +99,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="container">
-                        <p style="margin-bottom:5px; font-weight:bold; font-size:24px;">Diesel Rewards</p>
-                    </div>
-
                     <div class="container-fluid py-4">
                         <div class="row">
                             <div class="col-12">
@@ -132,11 +112,7 @@
                                             <tr>
                                                 <th
                                                     class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Range
-                                                </th>
-                                                <th
-                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                    Reward Type
+                                                    Product
                                                 </th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -144,7 +120,7 @@
                                                 </th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                    Reward Period
+                                                    Month
                                                 </th>
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -158,19 +134,13 @@
                                                     <td class="align-middle text-center text-sm">
                                                         <p style="text-align:left; padding-left:20px;"
                                                            class="text-xs font-weight-bold mb-0">
-                                                            {{ $diesel_reward_format->low }}
-                                                            - {{ $diesel_reward_format->high }}
+                                                            Diesel
                                                         </p>
                                                     </td>
 
                                                     <td class="align-middle text-center text-sm">
-                                                   <span class="text-secondary text-xs font-weight-bold">
-                                                    {{ $diesel_reward_format->reward_type }}
-                                                 </span>
-                                                    </td>
-                                                    <td class="align-middle text-center text-sm">
                                                   <span class="text-secondary text-xs font-weight-bold">
-                                                          {{ $diesel_reward_format->shillings_per_litre }}
+                                                          KES {{ $diesel_reward_format->shillings_per_litre }} / LITRE
                                                    </span>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
@@ -179,7 +149,8 @@
                                              </span>
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
-                                                        <button id="{{ $diesel_reward_format->id }}" style="border:0px; background-color:#3875b6;"
+                                                        <button id="{{ $diesel_reward_format->id }}"
+                                                                style="border:0px; background-color:#3875b6;"
                                                                 class=" badge editorganizationRewardBtn badge-sm">edit
                                                         </button>
                                                         {{-- <a href="/delete-cooperate-employee/" class="badge badge-sm bg-gradient-danger">delete</a> --}}
@@ -201,7 +172,7 @@
 
 
     {{-- edit monthly rewards --}}
-    <form id="editOrganizationRewardForm"  method="POST">
+    <form id="editOrganizationRewardForm" method="POST">
         @csrf
         @method('PUT')
         <div class="modal fade" id="editOrganizationRewardModel" tabindex="-1" aria-labelledby="edit-monthly-reward"
@@ -218,18 +189,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-holder form-holder-2 mb-2">
-                            <label for="regno">Lower Range(Ltrs)</label></br>
-                            <input id="staffname"
-                                   style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
-                                   type="number" name="lower_range" class="lower_range" placeholder="100">
-                        </div>
-                        <div class="form-holder form-holder-2 mb-2">
-                            <label for="regno">Higher Range(Ltrs)</label></br>
-                            <input id="staffname"
-                                   style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
-                                   type="number" name="higher_range" class="higher_range" placeholder="200">
-                        </div>
+{{--                        <div class="form-holder form-holder-2 mb-2">--}}
+{{--                            <label for="regno">Lower Range(Ltrs)</label></br>--}}
+{{--                            <input id="staffname"--}}
+{{--                                   style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "--}}
+{{--                                   type="number" name="lower_range" class="lower_range" placeholder="100">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-holder form-holder-2 mb-2">--}}
+{{--                            <label for="regno">Higher Range(Ltrs)</label></br>--}}
+{{--                            <input id="staffname"--}}
+{{--                                   style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "--}}
+{{--                                   type="number" name="higher_range" class="higher_range" placeholder="200">--}}
+{{--                        </div>--}}
                         <div class="form-holder form-holder-2 mb-2">
                             <label for="regno">Reward Per Litre(KES)</label></br>
                             <input id="staffname"

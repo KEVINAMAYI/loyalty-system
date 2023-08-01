@@ -87,87 +87,13 @@ class OrganizationController extends Controller
             ],
             [
                 'organization_id' => $organization->id,
-                'low' => 101,
-                'high' => 250,
-                'reward_type' => 'organization',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'organization_id' => $organization->id,
-                'low' => 251,
-                'high' => 500,
-                'reward_type' => 'organization',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'organization_id' => $organization->id,
-                'low' => 501,
-                'high' => 1000,
-                'reward_type' => 'organization',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'organization_id' => $organization->id,
-                'low' => 1000,
-                'high' => 1000000,
-                'reward_type' => 'organization',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'organization_id' => $organization->id,
                 'low' => 0,
                 'high' => 100,
                 'reward_type' => 'organization',
                 'shillings_per_litre' => 1,
                 'period' => 'July 2023',
                 'product_type' => 'Diesel'
-            ],
-            [
-                'organization_id' => $organization->id,
-                'low' => 101,
-                'high' => 250,
-                'reward_type' => 'organization',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ],
-            [
-                'organization_id' => $organization->id,
-                'low' => 251,
-                'high' => 500,
-                'reward_type' => 'organization',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ],
-            [
-                'organization_id' => $organization->id,
-                'low' => 501,
-                'high' => 1000,
-                'reward_type' => 'organization',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ],
-            [
-                'organization_id' => $organization->id,
-                'low' => 1000,
-                'high' => 1000000,
-                'reward_type' => 'organization',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
             ]
-
-
         ]);
     }
 

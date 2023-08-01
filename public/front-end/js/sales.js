@@ -437,7 +437,7 @@ $(function () {
         //get rewards
         $.ajax({
             type: 'get',
-            url: "/reward-format/" + product_text + '/' + customerID + '/'+litres_bought,
+            url: "/reward-format/" + product_text + '/' + customerID + '/' + litres_bought,
             success: (data) => {
 
                 // get Rewards format
@@ -533,17 +533,25 @@ $(function () {
                     reward_format_to_use = {};
                     console.log(rewards_format);
 
+
                     // get reward format details for rewards that are not corporate
                     rewards_format.forEach(reward_format => {
 
-                        if ((litres >= reward_format.low) && (litres <= reward_format.high) && (reward_format.reward_type !== 'credit') && (reward_format.reward_type !== 'prepaid')) {
 
-                            reward_percentage = parseFloat(reward_format.shillings_per_litre);
-                            reward_type = reward_format.reward_type;
-                            reward_format_to_use[reward_type] = reward_percentage;
-                            reward_format_length = Object.keys(reward_format_to_use).length;
+                        if ((reward_format.reward_type === 'customer') || (reward_format.reward_type === 'organization')) {
+
+                            reward_format_to_use[reward_format.reward_type] = parseFloat(reward_format.shillings_per_litre);
+
+                        } else {
+                            if ((litres >= reward_format.low) && (litres <= reward_format.high) && (reward_format.reward_type !== 'credit') && (reward_format.reward_type !== 'prepaid')) {
+
+                                reward_percentage = parseFloat(reward_format.shillings_per_litre);
+                                reward_type = reward_format.reward_type;
+                                reward_format_to_use[reward_type] = reward_percentage;
+                                reward_format_length = Object.keys(reward_format_to_use).length;
 
 
+                            }
                         }
 
                     });
@@ -552,7 +560,6 @@ $(function () {
 
                 console.log(reward_format_to_use);
                 let customer_rewards = localStorage.getItem('customer_rewards');
-
 
 
                 /*
@@ -770,7 +777,7 @@ $(function () {
             // get rewards
             $.ajax({
                 type: 'get',
-                url: "/reward-format/" + product_text + '/' + customerID + '/'+ litres,
+                url: "/reward-format/" + product_text + '/' + customerID + '/' + litres,
                 success: (data) => {
 
                     // get Rewards format
