@@ -40,4 +40,9 @@ class Customer extends Model
         return $this->hasMany(Discount::class,'customer_id');
     }
 
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
+    }
+
 }

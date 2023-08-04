@@ -209,6 +209,7 @@ $(function () {
 
                 customer = data.customer;
                 vehicles = data.vehicles;
+                organization = data.organization;
                 customerID = customer[0].id;
 
 
@@ -262,6 +263,14 @@ $(function () {
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Customer :</span>
                         <span class="customer-type">${customer[0].reward_type_to_use}</span>
+                        </p>
+                        <p class="card-text">
+                        <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Organization :</span>
+                        <span class="organization-name">${ organization == '' ? 'None' : organization.name }</span>
+                        </p>
+                        <p class="card-text">
+                        <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Organization Discount :</span>
+                        <span class="organization-discount">${ organization == '' ? 'Petrol' : organization.discount[0].product_type }:${ organization == '' ? 'None' : organization.discount[0].shillings_per_litre }, ${ organization == '' ? 'Diesel' : organization.discount[1].product_type } :${ organization == '' ? 'None' : organization.discount[1].shillings_per_litre }</span>
                         </p>
                         <p class="card-text authorized-amount-paragraph">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Authorized Amount :</span>
@@ -417,7 +426,6 @@ $(function () {
 
         });
 
-        return false;
 
     });
 
@@ -536,7 +544,6 @@ $(function () {
 
                     // get reward format details for rewards that are not corporate
                     rewards_format.forEach(reward_format => {
-
 
                         if ((reward_format.reward_type === 'customer') || (reward_format.reward_type === 'organization')) {
 

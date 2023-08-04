@@ -1980,45 +1980,38 @@ class CustomerController extends Controller
      * Get customer data to be used in sales.
      *
      * @param \App\Models\Request $request
-     * @return view with customer and vehicle data
+     * @return \Illuminate\Http\JsonResponse with customer and vehicle data
      */
     public function getCustomerData(Request $request)
     {
 
         $data = $request->all();
+        $organization_data = array();
 
-        //  $vehicle = Vehicle::where('vehicle_registration','=',$string = str_replace(' ', '', $data['id_number']))->get();
-        $vehicle = Vehicle::where('vehicle_registration', '=', $data['id_number'])->get();
+        $vehicles = Vehicle::where('vehicle_registration', '=', $data['id_number'])->get();
 
-        if (count($vehicle) > 0) {
-
-            $customer = Customer::where('id', '=', $vehicle[0]->customer_id)->get();
-
-            if (($customer[0]->purchase_status == 'complete') || ($customer[0]->status == 'Rejected') || ($customer[0]->status == 'Pending')) {
-                $vehicle = [];
-            } else {
-                $vehicles = Vehicle::where('customer_id', '=', $customer[0]->id)->get();
-
-            }
-
-
+        if (count($vehicles) > 0) {
+            $customer = Customer::with('organization')->where('id', '=', $vehicles[0]->customer_id)->get();
         } else {
-
-
-            $customer = Customer::where('id_number', '=', $data['id_number'])->orWhere('phone_number', '=', $data['id_number'])->get();
-
-            if (($customer[0]->purchase_status == 'complete') || ($customer[0]->status == 'Rejected') || ($customer[0]->status == 'Pending')) {
-                $vehicle = [];
-            } else {
-                $vehicles = Vehicle::where('customer_id', '=', $customer[0]->id)->get();
-            }
-
-
+            $customer = Customer::with('organization')->where('id_number', '=', $data['id_number'])->orWhere('phone_number', '=', $data['id_number'])->get();
         }
+
+        if (!is_null($customer[0]->organization)) {
+            $organization_data['name'] = $customer[0]->organization->name;
+            $organization_data['discount'] = $customer[0]->organization->rewards;
+        }
+
+        if (($customer[0]->purchase_status == 'complete') || ($customer[0]->status == 'Rejected') || ($customer[0]->status == 'Pending')) {
+            $vehicles = [];
+        } else {
+            $vehicles = Vehicle::where('customer_id', '=', $customer[0]->id)->get();
+        }
+
 
         return response()->json([
             'customer' => $customer,
-            'vehicles' => $vehicles
+            'vehicles' => $vehicles,
+            'organization' => $organization_data
         ]);
 
 
@@ -2097,87 +2090,13 @@ class CustomerController extends Controller
             ],
             [
                 'customer_id' => $customer->id,
-                'low' => 101,
-                'high' => 250,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 251,
-                'high' => 500,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 501,
-                'high' => 1000,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 1000,
-                'high' => 1000000,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 1.69,
-                'period' => 'July 2023',
-                'product_type' => 'Petrol'
-            ],
-            [
-                'customer_id' => $customer->id,
                 'low' => 0,
                 'high' => 100,
                 'reward_type' => 'customer',
                 'shillings_per_litre' => 1,
                 'period' => 'July 2023',
                 'product_type' => 'Diesel'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 101,
-                'high' => 250,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 251,
-                'high' => 500,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 501,
-                'high' => 1000,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
-            ],
-            [
-                'customer_id' => $customer->id,
-                'low' => 1000,
-                'high' => 1000000,
-                'reward_type' => 'customer',
-                'shillings_per_litre' => 2,
-                'period' => 'July 2023',
-                'product_type' => 'Diesel'
             ]
-
-
         ]);
     }
 }

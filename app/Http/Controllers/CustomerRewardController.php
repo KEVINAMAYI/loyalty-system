@@ -31,8 +31,6 @@ class CustomerRewardController extends Controller
 
             // validate customer enrollment details
             $request->validate([
-                'lower_range' => ['required'],
-                'higher_range' => ['required'],
                 'reward_per_litre' => ['required'],
                 'month' => ['required'],
                 'reward_year' => ['required'],
@@ -41,8 +39,6 @@ class CustomerRewardController extends Controller
             $data = $request->all();
 
             $customer_reward->update([
-                'low' => $data['lower_range'],
-                'high' => $data['higher_range'],
                 'shillings_per_litre' => $data['reward_per_litre'],
                 'period' => $data['month'] . ' ' . $data['reward_year']
             ]);

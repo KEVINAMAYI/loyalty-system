@@ -60,6 +60,11 @@
                                         <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Enrolled By
+
+                                        </th>
+                                        <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Organization
                                         </th>
 
                                         <th style="border-bottom:1px solid rgb(200, 195, 195);"
@@ -88,7 +93,10 @@
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $customer->enrolled_by }}</span>
                                             </td>
-
+                                            <td class="align-middle text-center text-sm">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold">{{ is_null($customer->organization) ? 'No Organization' : $customer->organization->name }}</span>
+                                            </td>
                                             <td class="align-middle text-center text-sm">
                                                     <span style="cursor:pointer;" id="{{ $customer->id }}"
                                                           class="morecustomerdetails badge badge-sm bg-gradient-secondary">more
@@ -122,6 +130,10 @@
                                         <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Enrolled By
+                                        </th>
+                                        <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Organization
                                         </th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">

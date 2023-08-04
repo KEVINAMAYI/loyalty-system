@@ -1111,8 +1111,6 @@
             url: "/customer-rewards/" + customer_reward_id,
             success: (data) => {
 
-                $('.lower_range').val(data.rewardformat.low)
-                $('.higher_range').val(data.rewardformat.high)
                 $('.reward_per_litre').val(data.rewardformat.shillings_per_litre)
                 $('.monthly').val(data.rewardformat.period.split(" ")[0])
                 $('.reward_year').val(data.rewardformat.period.split(" ")[1])
