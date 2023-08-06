@@ -144,7 +144,7 @@ $(function () {
 
 
             //execute amount and image check on the second step
-            if (currentIndex == 1) {
+            if ((currentIndex === 1) && (newIndex === 2)) {
 
                 let amount_paid = parseInt($('#amount_paid').val());
                 let amount_payable = parseInt($('#amount_payable').val());
@@ -165,8 +165,6 @@ $(function () {
 
                 } else {
                     console.log("amount paid is equal to amount payable");
-
-
                 }
 
 
@@ -182,6 +180,31 @@ $(function () {
     isSubmitting = false;
     let discount = 0;
     let customerID = 0;
+
+    $.ajax({
+        type: 'get',
+        url: "get-status",
+        success: (data) => {
+
+            data.organization_reward_status.status === 'enabled' ?
+                localStorage.setItem('allowOrganizationReward','enabled'):
+                localStorage.setItem('allowOrganizationReward','disabled');
+
+           data.customer_reward_status.status === 'enabled' ?
+               localStorage.setItem('allowCustomerReward','enabled'):
+               localStorage.setItem('allowCustomerReward','disabled');
+
+            data.bulk_reward_status.status === 'enabled' ?
+                localStorage.setItem('allowBulkReward','enabled'):
+                localStorage.setItem('allowBulkReward','disabled');
+
+        },
+        error: function (data) {
+
+            console.log(data);
+
+        }
+    });
 
     //get data to be used for sales
     $("#databtn").on('click', function (e) {
@@ -577,10 +600,10 @@ $(function () {
                     $('#amount_payable').val(total_amount);
 
                     //rewards
-                    new_customer_rewards = parseInt(customer_rewards) + (reward_format_to_use['customer'] * litres);
+                    new_customer_rewards = localStorage.getItem('allowCustomerReward') === 'enabled' ? parseInt(customer_rewards) + (reward_format_to_use['customer'] * litres) : parseInt(customer_rewards);
                     $('#sales-reward-balance').text(new_customer_rewards.toFixed(2));
                     new_customer_rewards.toFixed(2);
-                    rewards_awarded = (reward_format_to_use['customer'] * litres).toFixed(2);
+                    rewards_awarded = localStorage.getItem('allowCustomerReward') === 'enabled' ? (reward_format_to_use['customer'] * litres).toFixed(2) : 0;
 
                     //get current day
                     date = new Date();
@@ -593,6 +616,7 @@ $(function () {
                     localStorage.setItem('new_customer_rewards', new_customer_rewards);
 
                     console.log(rewards_awarded);
+                    console.log(localStorage.getItem('allowCustomerReward'));
 
                 }
 
@@ -605,10 +629,10 @@ $(function () {
                     $('#amount_payable').val(total_amount);
 
                     //rewards
-                    new_customer_rewards = parseInt(customer_rewards) + (reward_format_to_use['organization'] * litres);
+                    new_customer_rewards = localStorage.getItem('allowOrganizationReward') === 'enabled' ? parseInt(customer_rewards) + (reward_format_to_use['organization'] * litres) : parseInt(customer_rewards) ;
                     $('#sales-reward-balance').text(new_customer_rewards.toFixed(2));
                     new_customer_rewards.toFixed(2);
-                    rewards_awarded = (reward_format_to_use['organization'] * litres).toFixed(2);
+                    rewards_awarded = localStorage.getItem('allowOrganizationReward') === 'enabled' ? (reward_format_to_use['organization'] * litres).toFixed(2) : 0;
 
                     //get current day
                     date = new Date();
@@ -621,6 +645,7 @@ $(function () {
                     localStorage.setItem('new_customer_rewards', new_customer_rewards);
 
                     console.log(rewards_awarded);
+                    console.log(localStorage.getItem('allowOrganizationReward'));
 
                 }
 
@@ -634,17 +659,16 @@ $(function () {
                     let customer_rewards = localStorage.getItem('customer_rewards');
 
                     //calculate amount payable with the rewards set only when the reward option is enabled
-                    let amount_to_pay = total_amount - (reward_format_to_use['bulk'] * litres);
+                    let amount_to_pay = localStorage.getItem('allowBulkReward') === 'enabled' ? total_amount - (reward_format_to_use['bulk'] * litres) : total_amount;
                     $('#amount_payable').val(Math.ceil(amount_to_pay));
                     rewards_used = 0;
 
-                    console.log(customer_rewards);
 
                     //bulk rewards
                     new_customer_rewards = parseInt(customer_rewards);
                     $('#sales-reward-balance').text(new_customer_rewards.toFixed(2));
                     new_customer_rewards = (Math.ceil(new_customer_rewards));
-                    rewards_awarded = (Math.floor(reward_format_to_use['bulk'] * litres));
+                    rewards_awarded = localStorage.getItem('allowBulkReward') === 'enabled' ? (Math.floor(reward_format_to_use['bulk'] * litres)) : 0;
 
                     //get current day
                     date = new Date();

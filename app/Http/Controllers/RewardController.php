@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reward;
 use App\Models\Products;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use App\Models\RewardFormat;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class RewardController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function getRewardDetails()
     {
@@ -56,13 +57,12 @@ class RewardController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function setStatus(Request $request)
     {
         $data = $request->all();
-
-        Reward::where('id', '=', 1)->update([
+        Status::where('reward_type',$data['reward_type'])->update([
             'status' => $data['status']
         ]);
 
@@ -75,14 +75,19 @@ class RewardController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getStatus()
     {
 
-        $reward = Reward::all();
+        $organization_reward_status = Status::where('reward_type','organization')->first();
+        $customer_reward_status = Status::where('reward_type','customer')->first();
+        $bulk_reward_status = Status::where('reward_type','bulk')->first();
+
         return response()->json([
-            'reward' => $reward,
+            'organization_reward_status' => $organization_reward_status,
+            'customer_reward_status' => $customer_reward_status,
+            'bulk_reward_status' => $bulk_reward_status,
         ]);
     }
 

@@ -271,58 +271,31 @@
     });
 
     //jQuery listen for checkbox change
-    $("#rewards_checkbox").change(function () {
+    $("#organizationRewardsCheckbox, #customerRewardsCheckbox, #bulkRewardsCheckbox").change(function () {
+
+        const reward_type = $(this).attr('reward_type');
+        let formData = new FormData();
+        formData.append('reward_type', reward_type);
+        formData.append('status', "disabled");
+
         if (this.checked) {
-
-            status = "enabled";
-            formData = new FormData();
-            formData.append('status', status);
-
-            $.ajax({
-                type: 'post',
-                url: "set-status",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: (data) => {
-
-                    swal("Good job!", "You have enabled using reward", "success");
-
-
-                },
-                error: function (data) {
-
-                    swal("Error!", "There was an error while performing the operstion", "error");
-
-                }
-            });
-
-        } else {
-
-            status = "disabled";
-            formData = new FormData();
-            formData.append('status', status);
-
-            $.ajax({
-                type: 'post',
-                url: "/set-status",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: (data) => {
-
-                    swal("Good job!", "You have disabled using reward", "success");
-
-                },
-                error: function (data) {
-
-                    swal("Error!", "There was an error while performing the operstion", "error");
-
-
-                }
-            });
-
+            formData.append('status', "enabled");
         }
+
+        $.ajax({
+            type: 'post',
+            url: "set-status",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: (data) => {
+                swal("Good job!", "Status changed successfully", "success");
+            },
+            error: function (data) {
+                swal("Error!", "There was an error while performing the operation", "error");
+
+            }
+        });
     });
 
     $('.editstaff').on('click', function () {
@@ -757,7 +730,7 @@
                 const rewardTypeOptions = $("#custom_reward_type");
                 rewardTypeOptions.append($("<option />").val('organization').text('Organization'));
                 rewardTypeOptions.append($("<option />").val('customer').text('Customer'));
-                $(`option[value=${customer_data[0].custom_reward_type}]`).attr('selected','selected');
+                $(`option[value=${customer_data[0].custom_reward_type}]`).attr('selected', 'selected');
 
 
                 organizations.forEach((organization) => {
@@ -765,7 +738,7 @@
 
                 });
 
-                $(`option[value=${customer_data[0].organization_id}]`).attr('selected','selected');
+                $(`option[value=${customer_data[0].organization_id}]`).attr('selected', 'selected');
                 $('#edit-customer-modal').modal('show');
 
             },
@@ -1229,17 +1202,25 @@
             url: "get-status",
             success: (data) => {
 
+                const organizationRewardStatusCheckbox = $('#organizationRewardsCheckbox');
+                const customerRewardStatusCheckbox = $('#customerRewardsCheckbox');
+                const bulkRewardStatusCheckbox = $('#bulkRewardsCheckbox');
 
-                if (data.reward[0].status == 'enabled') {
+                organizationRewardStatusCheckbox.prop('checked', false);
+                customerRewardStatusCheckbox.prop('checked', false);
+                bulkRewardStatusCheckbox.prop('checked', false);
 
-                    $('#rewards_checkbox').prop('checked', true);
-                } else {
-
-                    $('#rewards_checkbox').prop('checked', false);
-
-
+                if (data.organization_reward_status.status === 'enabled') {
+                    organizationRewardStatusCheckbox.prop('checked', true);
                 }
 
+                if (data.customer_reward_status.status === 'enabled') {
+                    customerRewardStatusCheckbox.prop('checked', true);
+                }
+
+                if (data.bulk_reward_status.status === 'enabled') {
+                    bulkRewardStatusCheckbox.prop('checked', true);
+                }
 
             },
             error: function (data) {

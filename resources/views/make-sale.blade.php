@@ -108,70 +108,6 @@
                                     <input type="number" id="liters_val" class="form-control" required>
                                 </div>
                             </div>
-                            @if ($rewards_details[0]->status == 'enabled')
-                                <p style="display:none; color:white; ">Use Rewards*</p>
-                                <div class="form-row"
-                                     style="display:none; padding-left:20px; margin-bottom:30px; margin-top:10px;">
-                                    <div class="form-check" style="margin-right:20px;">
-                                        <input class="usereward form-check-input" type="radio" value="yes"
-                                               name="usereward" checked>
-                                        <label style="color:white; font-weight:bold;" class="form-check-label"
-                                               for="gender">
-                                            Yes
-                                        </label>
-                                    </div>
-                                    <div class="form-check" style="margin-right:15px; margin-bottom:20px;">
-                                        <input class="usereward form-check-input" value="no" type="radio"
-                                               name="usereward" checked>
-                                        <label style="color:white; font-weight:bold;" class="form-check-label"
-                                               for="gender">
-                                            No
-                                        </label>
-                                    </div>
-                                    <div style="margin-left:0px;">
-                                        <label style="color:white; font-weight:bold;" class="form-check-label">
-                                            Rewards Available :
-                                        </label>
-                                        <span style="font-weight:bold; color:white; margin-leftt:10px; "
-                                              class="rewards-available">200</span>
-                                    </div>
-                                </div>
-                                <div style="display:none;" class="form-row">
-                                    <div class="form-holder form-holder-2">
-                                        <label for="firstname">Reward to Use (Ksh)</label>
-                                        <input type="number" min="0" placeholder="Enter Amount"
-                                               class="form-control" id="rewards" name="firstname">
-                                    </div>
-                                </div>
-                            @else
-                                <p style="display:none; color:white; display:none; ">Use Rewards*</p>
-                                <div  class="form-row"
-                                     style="display:none; padding-left:20px; margin-bottom:30px; margin-top:10px;">
-                                    <div class="form-check" style="margin-right:20px;">
-                                        <input class="usereward form-check-input" type="radio" value="yes"
-                                               name="usereward" >
-                                        <label style="color:white; font-weight:bold;" class="form-check-label"
-                                               for="gender">
-                                            Yes
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="usereward form-check-input" value="no" type="radio"
-                                               name="usereward" checked>
-                                        <label style="color:white; font-weight:bold;" class="form-check-label"
-                                               for="gender">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-row" style="display:none;">
-                                    <div class="form-holder form-holder-2">
-                                        <label for="firstname">Reward to Use(Ksh)</label>
-                                        <input type="number" min="0" placeholder="Enter Amount"
-                                               class="form-control" id="rewards" name="firstname">
-                                    </div>
-                                </div>
-                            @endif
                             <p
                                 style="margin-left:10px; margin-bottom:20px; margin-top:20px; font-weight:bold; color:white;">
                                 Amount Payable </p>
@@ -235,11 +171,6 @@
                                     </label>
                                 </div>
                             </div>
-
-
-
-                            <input type="hidden" name="reward_percentage" id="reward_percentage"
-                                   value={{ $rewards_details[0]->percentage }}>
                         </div>
                     </section>
                     <!-- SECTION 3 -->

@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reward extends Model
+class Status extends Model
 {
+
     use HasFactory;
+
+    protected  $table = 'status';
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +19,6 @@ class Reward extends Model
      */
     protected $fillable = [
         'status',
-        'percentage',
-        'petrol_litre_amount'
+        'reward_type',
     ];
 }

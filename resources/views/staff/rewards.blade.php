@@ -39,15 +39,41 @@
                         <div class="card-header pb-0">
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
-                            <div class="container">
-                                <p style="margin-bottom:5px; font-weight:bold; font-size:24px;">Enable/Disable Using
-                                    Rewards</p>
-                                <!-- Rounded switch -->
-                                <label class="switch">
-                                    <input type="checkbox" id="rewards_checkbox">
-                                    <span class="slider round"></span>
-                                </label>
+                            <div class="row ml-4">
+                                <div class="container col-lg-6">
+                                    <p style="margin-bottom:5px; margin-left:10px; font-weight:bold; font-size:20px;">Enable/Disable Organization
+                                        Rewards</p>
+                                    <!-- Rounded switch -->
+                                    <label class="switch ml-4">
+                                        <input type="checkbox" reward_type="organization" id="organizationRewardsCheckbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+
+                                <div class="container col-lg-6">
+                                    <p style="margin-bottom:5px; margin-left:10px; font-weight:bold; font-size:20px;">Enable/Disable Customer
+                                        Rewards</p>
+                                    <!-- Rounded switch -->
+                                    <label class="switch">
+                                        <input type="checkbox" reward_type="customer" id="customerRewardsCheckbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+
                             </div>
+
+                            <div style="margin-top:20px;" class="row">
+                                <div class="col-lg-6">
+                                    <p style="margin-bottom:5px; margin-left:10px; font-weight:bold; font-size:20px;">Enable/Disable Bulk
+                                        Rewards</p>
+                                    <!-- Rounded switch -->
+                                    <label class="switch">
+                                        <input type="checkbox" reward_type="bulk" id="bulkRewardsCheckbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="container-fluid py-4">

@@ -16,14 +16,13 @@ class SaleController extends Controller
     /**
      *
      *
-     * @return vkiew
+     * @return vkiew|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function makeSale()
     {
 
         $fuel_details = Products::all();
-        $reward_details = Reward::all();
-        return view('make-sale')->with(['rewards_details' => $reward_details,'fuel_details' => $fuel_details]);
+        return view('make-sale')->with(['fuel_details' => $fuel_details]);
 
     }
 
