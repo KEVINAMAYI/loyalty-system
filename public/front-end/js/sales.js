@@ -1102,6 +1102,7 @@ $(function () {
 
         $('#progress').css('display', '');
 
+        console.log(localStorage.getItem('bulk_rewards'));
         const selectedFile = document.getElementById('image').files[0];
         // const product = localStorage.getItem('product');
         const last_name = localStorage.getItem('last_name');
@@ -1111,7 +1112,7 @@ $(function () {
         const phone_number = localStorage.getItem('phone_number');
         const used_rewards = localStorage.getItem('used_rewards');
         const amount_payable = localStorage.getItem('amount_payable');
-        const rewards_awarded = localStorage.getItem('bulk_rewards') == '' ? localStorage.getItem('rewards_awarded') : localStorage.getItem('bulk_rewards');
+        const rewards_awarded = localStorage.getItem('bulk_rewards') == null ? localStorage.getItem('rewards_awarded') : localStorage.getItem('bulk_rewards');
         const bulk_rewards = localStorage.getItem('bulk_rewards');
         const new_customer_rewards = localStorage.getItem('new_customer_rewards');
         const vehicle_registration = localStorage.getItem('vehicle_registration');
