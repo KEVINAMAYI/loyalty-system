@@ -97,6 +97,9 @@
                                             </span>
                                             <span class="float-left badge badge-sm bg-gradient-info"><a href="{{ route('edit-organization-rewards',$organization->id) }}" class="text-white" id="{{ $organization->id }}">set rewards
                                             </a></span>
+                                            <a href="organization-sales/{{ $organization->id }}" style="background-color:#f9a14d;"
+                                                  class="float-left btn editOrganizationBtn badge badge-sm bg-gradient-warning">sales
+                                            </a>
                                             <form style="display:inline;" action="{{ route('organizations.destroy',$organization->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

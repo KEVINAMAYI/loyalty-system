@@ -151,9 +151,7 @@
                                             @endif
                                         @else
                                             <td class="text-sm">
-                                                <span style="cursor:pointer;"
-                                                      phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="badge
-                                                      badge-sm bg-gradient-success">{{ $sale->status }}</span>
+                                                <span style="cursor:pointer;"  phone_number={{ $sale->phone_number }} sale_id={{ $sale->id }}   class="badge badge-sm bg-gradient-success">{{ $sale->status }}</span>
                                             </td>
                                         @endif
 

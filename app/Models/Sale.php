@@ -34,7 +34,10 @@ class Sale extends Model
         'sold_by',
         'rewards_balance',
         'status',
-        'reason'
+        'reason',
+        'organization_id',
+        'litres_sold',
+        'bulk_rewards'
     ];
 
 

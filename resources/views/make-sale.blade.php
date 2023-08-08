@@ -209,6 +209,11 @@
                                                   class="card-subtitle mb-2 text-white">Amount Paid:</span>
                                         <span id="sales-amount-paid"></span>
                                     </p>
+                                    <p class="card-text">
+                                            <span style="color:white; font-weight:bold;"
+                                                  class="card-subtitle mb-2 text-white">Litres Sold:</span>
+                                        <span id="sales-litres-bought"></span>
+                                    </p>
 
                                     <p class="card-text">
                                             <span style="color:white; font-weight:bold;"

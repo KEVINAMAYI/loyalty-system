@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateOrganizationRequest;
 use App\Models\Customer;
 use App\Models\Organization;
 use App\Models\OrganizationReward;
+use App\Models\Sale;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -69,6 +70,17 @@ class OrganizationController extends Controller
             return view('staff.organizational_rewards', compact('organization', 'petrol_reward_formats', 'diesel_reward_formats'));
         }
         return redirect()->back();
+    }
+
+
+    public function getOrganizationSales($organization_id)
+    {
+        $sales = Sale::where('organization_id', $organization_id)->orderBy('created_at', 'DESC')->get();
+        $litres_sold = $sales->sum('litres_sold');
+        $amount_paid = $sales->sum('amount_paid');
+        $reward_sum = $sales->sum('rewards_awarded');
+        $bulk_reward_sum = $sales->sum('bulk_rewards');
+        return view('staff.organization_sales', compact('sales','reward_sum','bulk_reward_sum','litres_sold','amount_paid'));
     }
 
 

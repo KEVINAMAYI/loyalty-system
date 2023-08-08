@@ -98,6 +98,9 @@
                                     <thead>
                                         <tr>
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Vehicle Registration</th>
+                                            <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Name</th>
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
@@ -106,9 +109,6 @@
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Rewards Awarded</th>
-                                            <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Vehicle Registration</th>
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Amount</th>
@@ -125,6 +125,10 @@
                                         @foreach ($sales as $sale)
                                             <tr>
                                                 <td class="text-sm">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
+                                                </td>
+                                                <td class="text-sm">
                                                     <p class="text-xs font-weight-bold mb-0">{{ $sale->first_name }}
                                                         {{ $sale->last_name }}</p>
                                                 </td>
@@ -135,10 +139,6 @@
                                                 <td class="text-sm">
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $sale->rewards_awarded }}</span>
-                                                </td>
-                                                <td class="text-sm">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
                                                 </td>
                                                 <td class="text-sm">
                                                     <span
@@ -159,6 +159,9 @@
                                     <tfoot>
                                         <tr>
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Vehicle Registration</th>
+                                            <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Name</th>
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
@@ -167,9 +170,6 @@
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Rewards Awarded</th>
-                                            <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Vehicle Registration</th>
                                             <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Amount</th>

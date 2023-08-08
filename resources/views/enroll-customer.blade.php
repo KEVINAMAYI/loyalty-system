@@ -71,11 +71,11 @@
 								<div class="form-row">
 									<div class="form-holder">
 										<label for="password">Phone Number*</label>
-										<input type="number" minlength="10" maxlength="12" placeholder="Enter Phone Number" class="form-control" id="phonenumber" name="phonenumber" required >
+										<input type="number" onwheel="return false;" minlength="10" maxlength="12" placeholder="Enter Phone Number" class="form-control" id="phonenumber" name="phonenumber" required >
 									</div>
 									<div class="form-holder">
 										<label for="confirm_password">ID Number*</label>
-										<input type="number" minlength="7" maxlength="8" placeholder="Enter ID Number" class="form-control" id="idnumber" name="idnumber" required>
+										<input type="number" onwheel="return false;" minlength="7" maxlength="8" placeholder="Enter ID Number" class="form-control" id="idnumber" name="idnumber" required>
 									</div>
 								</div>
 								{{-- <div class="form-row">

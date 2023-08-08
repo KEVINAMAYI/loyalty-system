@@ -422,7 +422,10 @@ class CustomerController extends Controller
             'status' => "Pending",
             'approved_by' => Auth::user()->name,
             'reason' => "No reason",
-            'product' => $data['product_text']
+            'product' => $data['product_text'],
+            'organization_id' => $data['organization_id'],
+            'litres_sold' => $data['litres_sold'],
+            'bulk_rewards' => $data['bulk_rewards']
         ]);
 
 
@@ -1997,6 +2000,7 @@ class CustomerController extends Controller
         }
 
         if (!is_null($customer[0]->organization)) {
+            $organization_data['id'] = $customer[0]->organization->id;
             $organization_data['name'] = $customer[0]->organization->name;
             $organization_data['discount'] = $customer[0]->organization->rewards;
         }

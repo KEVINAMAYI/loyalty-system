@@ -146,6 +146,7 @@ $(function () {
             //execute amount and image check on the second step
             if ((currentIndex === 1) && (newIndex === 2)) {
 
+                $('#sales-litres-bought').text($('#liters_val').val());
                 let amount_paid = parseInt($('#amount_paid').val());
                 let amount_payable = parseInt($('#amount_payable').val());
                 const selectedFile = document.getElementById('image').files;
@@ -187,16 +188,16 @@ $(function () {
         success: (data) => {
 
             data.organization_reward_status.status === 'enabled' ?
-                localStorage.setItem('allowOrganizationReward','enabled'):
-                localStorage.setItem('allowOrganizationReward','disabled');
+                localStorage.setItem('allowOrganizationReward', 'enabled') :
+                localStorage.setItem('allowOrganizationReward', 'disabled');
 
-           data.customer_reward_status.status === 'enabled' ?
-               localStorage.setItem('allowCustomerReward','enabled'):
-               localStorage.setItem('allowCustomerReward','disabled');
+            data.customer_reward_status.status === 'enabled' ?
+                localStorage.setItem('allowCustomerReward', 'enabled') :
+                localStorage.setItem('allowCustomerReward', 'disabled');
 
             data.bulk_reward_status.status === 'enabled' ?
-                localStorage.setItem('allowBulkReward','enabled'):
-                localStorage.setItem('allowBulkReward','disabled');
+                localStorage.setItem('allowBulkReward', 'enabled') :
+                localStorage.setItem('allowBulkReward', 'disabled');
 
         },
         error: function (data) {
@@ -234,6 +235,9 @@ $(function () {
                 vehicles = data.vehicles;
                 organization = data.organization;
                 customerID = customer[0].id;
+                organizationID = organization == '' ? '' : organization.id;
+                console.log(organization);
+                localStorage.setItem('organization_id', organizationID);
 
 
                 $('#redeemable_rewards').text(`${customer[0].rewards}`);
@@ -289,11 +293,11 @@ $(function () {
                         </p>
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Organization :</span>
-                        <span class="organization-name">${ organization == '' ? 'None' : organization.name }</span>
+                        <span class="organization-name">${organization == '' ? 'None' : organization.name}</span>
                         </p>
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Organization Discount :</span>
-                        <span class="organization-discount">${ organization == '' ? 'Petrol' : organization.discount[0].product_type }:${ organization == '' ? 'None' : organization.discount[0].shillings_per_litre }, ${ organization == '' ? 'Diesel' : organization.discount[1].product_type } :${ organization == '' ? 'None' : organization.discount[1].shillings_per_litre }</span>
+                        <span class="organization-discount">${organization == '' ? 'Petrol' : organization.discount[0].product_type}:${organization == '' ? 'None' : organization.discount[0].shillings_per_litre}, ${organization == '' ? 'Diesel' : organization.discount[1].product_type} :${organization == '' ? 'None' : organization.discount[1].shillings_per_litre}</span>
                         </p>
                         <p class="card-text authorized-amount-paragraph">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Authorized Amount :</span>
@@ -614,6 +618,7 @@ $(function () {
                     localStorage.setItem('sale_start_date', start_date);
                     localStorage.setItem('sale_end_date', end_date);
                     localStorage.setItem('new_customer_rewards', new_customer_rewards);
+                    localStorage.setItem('organization_id', '');
 
                     console.log(rewards_awarded);
                     console.log(localStorage.getItem('allowCustomerReward'));
@@ -629,7 +634,7 @@ $(function () {
                     $('#amount_payable').val(total_amount);
 
                     //rewards
-                    new_customer_rewards = localStorage.getItem('allowOrganizationReward') === 'enabled' ? parseInt(customer_rewards) + (reward_format_to_use['organization'] * litres) : parseInt(customer_rewards) ;
+                    new_customer_rewards = localStorage.getItem('allowOrganizationReward') === 'enabled' ? parseInt(customer_rewards) + (reward_format_to_use['organization'] * litres) : parseInt(customer_rewards);
                     $('#sales-reward-balance').text(new_customer_rewards.toFixed(2));
                     new_customer_rewards.toFixed(2);
                     rewards_awarded = localStorage.getItem('allowOrganizationReward') === 'enabled' ? (reward_format_to_use['organization'] * litres).toFixed(2) : 0;
@@ -643,7 +648,7 @@ $(function () {
                     localStorage.setItem('sale_start_date', start_date);
                     localStorage.setItem('sale_end_date', end_date);
                     localStorage.setItem('new_customer_rewards', new_customer_rewards);
-
+                    console.log(localStorage.getItem('organization_id'));
                     console.log(rewards_awarded);
                     console.log(localStorage.getItem('allowOrganizationReward'));
 
@@ -668,7 +673,7 @@ $(function () {
                     new_customer_rewards = parseInt(customer_rewards);
                     $('#sales-reward-balance').text(new_customer_rewards.toFixed(2));
                     new_customer_rewards = (Math.ceil(new_customer_rewards));
-                    rewards_awarded = localStorage.getItem('allowBulkReward') === 'enabled' ? (Math.floor(reward_format_to_use['bulk'] * litres)) : 0;
+                    bulk_rewards = localStorage.getItem('allowBulkReward') === 'enabled' ? (Math.floor(reward_format_to_use['bulk'] * litres)) : 0;
 
                     //get current day
                     date = new Date();
@@ -710,6 +715,7 @@ $(function () {
                     localStorage.setItem('sale_start_date', start_date);
                     localStorage.setItem('sale_end_date', end_date);
                     localStorage.setItem('new_customer_rewards', new_customer_rewards);
+                    localStorage.setItem('organization_id', '');
 
                     console.log(rewards_awarded);
 
@@ -744,6 +750,8 @@ $(function () {
                     $('#sales-rewards-awarded').text(rewards_awarded);
                     localStorage.setItem('sale_start_date', start_date);
                     localStorage.setItem('sale_end_date', end_date);
+                    localStorage.setItem('organization_id', '');
+
                     console.log(rewards_awarded)
 
                 }
@@ -752,6 +760,7 @@ $(function () {
                 localStorage.setItem('new_customer_rewards', new_customer_rewards);
                 localStorage.setItem('used_rewards', rewards_used);
                 localStorage.setItem('rewards_awarded', rewards_awarded);
+                localStorage.setItem('bulk_rewards', bulk_rewards);
 
 
             },
@@ -820,6 +829,7 @@ $(function () {
                     var litres = parseFloat($("#liters_val").val());
                     var new_customer_rewards = 0;
                     var rewards_awarded = 0;
+                    var bulk_rewards = 0;
                     var rewards_used = 0;
                     firstsale = localStorage.getItem('firstsale');
 
@@ -986,17 +996,17 @@ $(function () {
                         new_customer_rewards = parseInt(customer_rewards) - 0;
                         $('#sales-reward-balance').text(new_customer_rewards.toFixed(2));
                         new_customer_rewards.toFixed(2);
-                        rewards_awarded = (reward_format_to_use['bulk'] * litres).toFixed(2);
+                        bulk_rewards = (reward_format_to_use['bulk'] * litres).toFixed(2);
 
                         //get current day
                         date = new Date();
                         start_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
                         end_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 
-                        $('#sales-rewards-awarded').text(rewards_awarded);
+                        $('#sales-rewards-awarded').text(bulk_rewards);
                         localStorage.setItem('sale_start_date', start_date);
                         localStorage.setItem('sale_end_date', end_date);
-                        console.log(rewards_awarded)
+                        console.log(bulk_rewards)
 
                     }
 
@@ -1026,6 +1036,7 @@ $(function () {
                         localStorage.setItem('sale_start_date', start_date);
                         localStorage.setItem('sale_end_date', end_date);
                         localStorage.setItem('new_customer_rewards', new_customer_rewards);
+
 
                         console.log(new_customer_rewards);
                         console.log(rewards_awarded);
@@ -1100,11 +1111,14 @@ $(function () {
         const phone_number = localStorage.getItem('phone_number');
         const used_rewards = localStorage.getItem('used_rewards');
         const amount_payable = localStorage.getItem('amount_payable');
-        const rewards_awarded = localStorage.getItem('rewards_awarded');
+        const rewards_awarded = localStorage.getItem('bulk_rewards') == '' ? localStorage.getItem('rewards_awarded') : localStorage.getItem('bulk_rewards');
+        const bulk_rewards = localStorage.getItem('bulk_rewards');
         const new_customer_rewards = localStorage.getItem('new_customer_rewards');
         const vehicle_registration = localStorage.getItem('vehicle_registration');
         const sale_start_date = localStorage.getItem('sale_start_date');
         const sale_end_date = localStorage.getItem('sale_end_date');
+        const organization_id = localStorage.getItem('organization_id');
+
         const sold_by = $('#sales-person-name').text();
         const pump = $('#pump').val();
         const pump_side = $('#pump_side').val();
@@ -1130,12 +1144,15 @@ $(function () {
         formData.append('vehicle_registration', vehicle_registration);
         formData.append('new_customer_rewards', new_customer_rewards);
         formData.append('rewards_awarded', rewards_awarded);
+        formData.append('bulk_rewards', bulk_rewards);
         formData.append('sale_start_date', sale_start_date);
         formData.append('sale_end_date', sale_end_date);
         formData.append('sold_by', sold_by);
         formData.append('product_text', product_text);
         formData.append('sales_type', sales_type);
         formData.append('litres_sold', litres_sold);
+        formData.append('organization_id', organization_id);
+        formData.append('litres_sold', $('#liters_val').val());
 
 
         console.log(sold_by);

@@ -53,6 +53,7 @@ Route::group(['middleware' => ['staff', 'optimizeImages']], function () {
 
     //back end routes
     Route::post('/get-organization-data', [CustomerController::class, 'getRegisteredCorporateDetails']);
+    Route::get('/organization-sales/{organization_id}', [OrganizationController::class, 'getOrganizationSales']);
     Route::get('/staff-dashboard', [CustomerController::class, 'staffDashboard']);
     Route::get('/corporates', [CustomerController::class, 'getRegisteredCorporates']);
     Route::get('/edit-organization-rewards/{organization}', [OrganizationController::class, 'editOrganizationRewards'])->name('edit-organization-rewards');

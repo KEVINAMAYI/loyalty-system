@@ -1555,6 +1555,37 @@
 
     });
 
+    $('#organization_sales_table').DataTable({
+        "columns": [
+            {"type": "string"},
+            {"type": "string"},
+            {"type": "string"},
+            {"type": "string"},
+            {"type": "string"},
+            {"type": "string"},
+            {"type": "string"},
+            {"type": "string"},
+        ],
+        dom: 'Bfrtip',
+        language: {
+            searchBuilder: {
+                button: 'Filter',
+            }
+        },
+        buttons: [
+            'copy', 'csv', 'pdf', 'print', 'searchBuilder',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ]
+
+    });
+
     $('#corporates_table').DataTable({
         dom: 'Bfrtip',
         buttons: [
