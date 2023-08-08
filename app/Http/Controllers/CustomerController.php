@@ -425,7 +425,7 @@ class CustomerController extends Controller
             'product' => $data['product_text'],
             'organization_id' => $data['organization_id'],
             'litres_sold' => $data['litres_sold'],
-            'bulk_rewards' => is_null($data['bulk_rewards']) ? 0 : $data['bulk_rewards']
+            'bulk_rewards' => $data['bulk_rewards'] ? 0 : $data['bulk_rewards']
         ]);
 
 
