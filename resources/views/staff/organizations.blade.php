@@ -14,24 +14,10 @@
 
 
         {{-- display success message on a successful action --}}
-        @if(Session::has('success'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('success') }}
-            </div>
-        @endif
+        <div style="display:none" class="alert alert-success" role="alert">
 
-        {{-- display error on top of the form --}}
-        @if ($errors->any())
-            <div class="alert alert-danger" role="alert">
-                <ul class="list-group">
-                    @foreach ($errors->all() as $error )
-                        <li class="list-group-item">
-                            {{ $error }}
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        </div>
+
 
         <button type="button" style="background-color:#f9a14d;" class="btn btn-primary btn-md" data-bs-toggle="modal"
                 data-bs-target="#addOrganizationModal"><i class="fa-solid fa-plus"></i>
@@ -93,20 +79,30 @@
                                         </td>
                                         <td class="text-sm">
                                             <span id="{{ $organization->id }}" style="background-color:#f9a14d;"
-                                                    class="float-left btn editOrganizationBtn badge badge-sm bg-gradient-primary">edit
+                                                  class="float-left btn editOrganizationBtn badge badge-sm bg-gradient-primary">edit
                                             </span>
-                                            <span class="float-left badge badge-sm bg-gradient-info"><a href="{{ route('edit-organization-rewards',$organization->id) }}" class="text-white" id="{{ $organization->id }}">set rewards
+                                            <span class="float-left badge badge-sm bg-gradient-info"><a
+                                                    href="{{ route('edit-organization-rewards',$organization->id) }}"
+                                                    class="text-white" id="{{ $organization->id }}">set rewards
                                             </a></span>
-                                            <a href="organization-sales/{{ $organization->id }}" style="background-color:#f9a14d;"
-                                                  class="float-left btn editOrganizationBtn badge badge-sm bg-gradient-warning">sales
+                                            <a href="organization-sales/{{ $organization->id }}"
+                                               style="background-color:#f9a14d;"
+                                               class="float-left btn editOrganizationBtn badge badge-sm bg-gradient-warning">sales
                                             </a>
-                                            <form style="display:inline;" action="{{ route('organizations.destroy',$organization->id) }}" method="POST">
+                                            <form style="display:inline;"
+                                                  action="{{ route('organizations.destroy',$organization->id) }}"
+                                                  method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <span
-                                                        class="float-left btn  badge badge-sm bg-gradient-danger">delete
+                                                    class="float-left btn  badge badge-sm bg-gradient-danger">delete
                                                 </span>
                                             </form>
+                                            <span style="background-color:#f9a14d;"
+                                                  organization_id="{{ $organization->id }}" data-toggle="modal"
+                                                  data-target="#uploadOrganizationCustomersModal"
+                                                  class="float-left btn uploadCustomerBtn  badge badge-sm bg-gradient-primary">upload customers
+                                            </span>
 
                                         </td>
                                     </tr>
@@ -157,7 +153,7 @@
                             <label for="regno">Name</label></br>
                             <input
                                 style="width:100%; padding:5px; border-radius:8px; border-color: rgb(240, 235, 235); border-width:1px; "
-                                type="text" name="name"  placeholder="Makiga">
+                                type="text" name="name" placeholder="Makiga">
                         </div>
                         <div class="form-holder form-holder-2 mt-4 mb-4">
                             <label for="regno">Description</label></br>
@@ -166,7 +162,7 @@
                                 type="text" name="description" placeholder="Sacco">
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" style="background-color:#f9a14d; color:white;" type="button"
                                     class="btn">Add Organization
                             </button>
@@ -213,6 +209,47 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </form>
+
+
+    <!--  edit  employees modal -->
+    <form id="uploadOrganizationCustomersForm" action="{{ route('upload-customers') }}" method="post"
+          enctype="multipart/form-data">
+        @csrf
+        <div class="modal fade" id="uploadOrganizationCustomersModal" tabindex="-1" aria-labelledby="staff-modal"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="uploadOrganizationCustomersModalLabel">Upload Customers</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-holder form-holder-2 mb-2">
+                            <label for="regno">Customers File</label></br>
+                            <input
+                                style="width:100%; padding:5px;"
+                                type="file" name="customers_csv" id="customersCSV">
+                        </div>
+                        <div class="form-group">
+                            <div class="progress"
+                            ">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                 role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                                 style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="organization" id="organizationID">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" style="background-color:#f9a14d; color:white;" type="button"
+                                class="btn">Upload Customers
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </form>
 

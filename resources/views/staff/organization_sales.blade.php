@@ -5,7 +5,7 @@
          navbar-scroll="true">
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
-                <h6 class="font-weight-bolder mb-0">Organization Sales</h6>
+                <h3 class="font-weight-bolder mb-0"> {{ ucfirst($organization->name) }}</h3>
             </nav>
         </div>
     </nav>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\UploadCustomersJob;
 use App\Models\CustomerReward;
 use App\Models\Organization;
 use App\Models\OrganizationReward;
@@ -2102,5 +2103,60 @@ class CustomerController extends Controller
                 'product_type' => 'Diesel'
             ]
         ]);
+    }
+
+    public function uploadCustomers(Request $request)
+    {
+
+        if ($request->has('customers_csv')) {
+
+            $csv = file($request->customers_csv);
+            $chunks = array_chunk($csv, 10000);
+
+            foreach ($chunks as $key => $chunk) {
+                $customersList = array_map('str_getcsv', $chunk);
+                if ($key == 0) {
+                    unset($customersList[0]);
+                }
+
+                foreach ($customersList as $customerList) {
+
+                    //  create a new customer
+                    $customer = Customer::create([
+                        'first_name' => $customerList[0],
+                        'last_name' => $customerList[1],
+                        'gender' => 'male',
+                        'email' => "customer-email",
+                        'phone_number' => '0'.substr($customerList[2],3),
+                        'id_number' => $customerList[3],
+                        'rewards' => 0,
+                        'organization_id' => $request->input('organization'),
+                        'custom_reward_type' => $customerList[4],
+                        'enrolled_by' => Auth::user()->name,
+                        'status' => "Accepted"
+                    ]);
+
+
+                    //update customer vehicle image
+                    Vehicle::create([
+                        'customer_id' => $customer->id,
+                        'vehicle_category' => $customerList[5],
+                        'vehicle_type' => $customerList[6],
+                        'vehicle_registration' => strtoupper($customerList[7]),
+                        'fuel_type' => $customerList[8],
+                        'image_url' => "Not Uploaded"
+                    ]);
+                }
+
+                return response()->json([
+                    'message' => 'Customers Uploaded Successfully'
+                ]);
+
+            }
+
+            return response()->json([
+                'message' => 'There was an error Uploading Customers'
+            ]);
+        }
     }
 }

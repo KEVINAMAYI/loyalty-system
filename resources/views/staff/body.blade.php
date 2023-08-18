@@ -240,6 +240,8 @@
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
 <script src="https://cdn.datatables.net/searchbuilder/1.3.4/js/dataTables.searchBuilder.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+
 <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -1791,6 +1793,43 @@
         });
     });
 
+
+    $('.uploadCustomerBtn').on('click',function(){
+        const organizationId = $(this).attr('organization_id');
+        $('#organizationID').val(organizationId);
+        $('#uploadOrganizationCustomersModal').modal('show');
+    })
+
+
+    //progress bar
+    $('#uploadOrganizationCustomersForm').ajaxForm({
+        beforeSend: function () {
+            var percentage = '0';
+        },
+        uploadProgress: function (event, position, total, percentComplete) {
+            var percentage = percentComplete;
+            $('.progress .progress-bar').css("width", percentage + '%', function () {
+                return $(this).attr("aria-valuenow", percentage) + "%";
+            })
+        },
+        complete: function (response) {
+
+            $('#uploadOrganizationCustomersModal').modal('hide');
+            const alert = $('.alert');
+            alert.text(response.responseJSON.message);
+            alert.css("display", "");
+
+            new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    alert.alert('close');
+                    resolve();
+                }, 3000);
+            }).then(function (value) {
+                location.reload();
+            });
+        }
+
+    });
 
 </script>
 </body>
