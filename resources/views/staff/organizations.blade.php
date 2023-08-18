@@ -213,7 +213,7 @@
     </form>
 
 
-    <!--  edit  employees modal -->
+    <!--  upload organization customers employees modal -->
     <form id="uploadOrganizationCustomersForm" action="{{ route('upload-customers') }}" method="post"
           enctype="multipart/form-data">
         @csrf
@@ -230,7 +230,7 @@
                             <label for="regno">Customers File</label></br>
                             <input
                                 style="width:100%; padding:5px;"
-                                type="file" name="customers_csv" id="customersCSV">
+                                type="file" name="customers_csv" id="customersCSV" required>
                         </div>
                         <div class="form-group">
                             <div class="progress"
