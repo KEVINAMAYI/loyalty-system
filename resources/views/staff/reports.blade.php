@@ -51,7 +51,7 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2 pr-2 pl-3">
                         <div class="table-responsive p-0">
-                            <table data-ordering="false" id="manual_discount_report_table"
+                            <table data-ordering="false" id="organization_discount_report_table"
                                    class="table align-items-center mb-0">
                                 <thead>
                                 <tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\UploadCustomersJob;
 use App\Models\CustomerReward;
+use App\Models\Discount;
 use App\Models\Organization;
 use App\Models\OrganizationReward;
 use http\Env\Response;
@@ -30,6 +31,25 @@ use Illuminate\Support\Facades\Log;
 
 class CustomerController extends Controller
 {
+
+    public function updateSalesType(){
+        $automaticdiscounts = AutomaticDiscount::all();
+        $discounts = Discount::all();
+
+        foreach ($automaticdiscounts as $automaticdiscount){
+            Sale::where('phone_number',$automaticdiscount->customer_phone)
+                ->where('rewards_awarded',$automaticdiscount->discount)->update([
+                    'sales_type' => 'bulk'
+                ]);
+        }
+
+
+        foreach ($discounts as $discount){
+            Sale::where('amount_payable',$discount->amount)->update([
+                    'sales_type' => 'customer'
+                ]);
+        }
+    }
 
     public function getReports()
     {

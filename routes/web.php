@@ -49,6 +49,7 @@ Route::group(['middleware' => ['staff', 'optimizeImages']], function () {
         return view('choose-option');
     });
 
+    Route::get('/update-type', [CustomerController::class, 'updateSalesType']);
     Route::get('/enroll-customer', [CustomerController::class, 'enrollNewCustomer']);
     Route::get('/reports', [CustomerController::class, 'getReports']);
     Route::post('/upload-customers', [CustomerController::class, 'uploadCustomers'])->name('upload-customers');
