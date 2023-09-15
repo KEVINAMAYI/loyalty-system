@@ -31,6 +31,12 @@ use Illuminate\Support\Facades\Log;
 class CustomerController extends Controller
 {
 
+    public function getReports()
+    {
+        $sales = Sale::all();
+        return view('staff.reports',compact('sales'));
+    }
+
     public function enrollNewCustomer()
     {
         $organizations = Organization::all();
@@ -426,7 +432,8 @@ class CustomerController extends Controller
             'product' => $data['product_text'],
             'organization_id' => $data['organization_id'],
             'litres_sold' => $data['litres_sold'],
-            'bulk_rewards' => $data['bulk_rewards'] ? 0 : $data['bulk_rewards']
+            'bulk_rewards' => $data['bulk_rewards'] ? 0 : $data['bulk_rewards'],
+            'sales_type' => $sales_type
         ]);
 
 

@@ -103,6 +103,7 @@
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ is_null($sale->bulk_rewards) ? 0 : $sale->bulk_rewards }}</span>
                                         </td>
+                                    </tr>
                                 @endforeach
 
                                 </tbody>

@@ -37,7 +37,8 @@ class Sale extends Model
         'reason',
         'organization_id',
         'litres_sold',
-        'bulk_rewards'
+        'bulk_rewards',
+        'sales_type'
     ];
 
 

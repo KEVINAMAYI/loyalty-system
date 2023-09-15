@@ -82,6 +82,14 @@
                     <span class="nav-link-text ms-1">Rewards & Products</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link  "href="/reports">
+                    <i class="fa-solid fa-file"></i>
+                    <span class="nav-link-text ms-1">Reports</span>
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link  " href="/choose-option">
                     <i class="fa-solid fa-hand"></i>

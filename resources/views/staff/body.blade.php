@@ -1417,6 +1417,38 @@
 
     });
 
+    $('#manual_discount_report_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ],
+
+    });
+
+    $('#automatic_discount_report_table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'excel',
+                text: 'Excel Export Search Results',
+                className: 'btn btn-default',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            }
+        ],
+
+    });
+
     $('#organization_table').DataTable({
         dom: 'Bfrtip',
         buttons: [

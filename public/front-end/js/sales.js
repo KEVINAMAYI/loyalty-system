@@ -601,6 +601,7 @@ $(function () {
                  */
                 if ('customer' in reward_format_to_use) {
 
+                    localStorage.setItem('sales_type', 'customer');
                     $('#amount_payable').val(total_amount);
 
                     //rewards
@@ -631,6 +632,7 @@ $(function () {
               */
                 if ('organization' in reward_format_to_use) {
 
+                    localStorage.setItem('sales_type', 'organization');
                     $('#amount_payable').val(total_amount);
 
                     //rewards
@@ -693,6 +695,7 @@ $(function () {
                  */
                 if ('credit' in reward_format_to_use) {
 
+                    localStorage.setItem('sales_type', 'credit');
                     let customer_rewards = localStorage.getItem('customer_rewards');
 
                     //calculate amount payable with the rewards set only when the reward option is enabled
@@ -727,6 +730,7 @@ $(function () {
                  */
                 if ('prepaid' in reward_format_to_use) {
 
+                    localStorage.setItem('sales_type', 'prepaid');
                     let customer_rewards = localStorage.getItem('customer_rewards');
 
                     //calculate amount payable with the rewards set only when the reward option is enabled
@@ -958,6 +962,7 @@ $(function () {
                      */
                     if ('organization' in reward_format_to_use) {
 
+                        localStorage.setItem('sales_type', 'organization');
                         $('#amount_payable').val(total_amount);
 
                         //rewards
@@ -983,6 +988,7 @@ $(function () {
 
                     if ('bulk' in reward_format_to_use) {
 
+                        localStorage.setItem('sales_type', 'bulk');
                         let customer_rewards = localStorage.getItem('customer_rewards');
 
                         //calculate amount payable with the rewards set only when the reward option is enabled
@@ -1012,6 +1018,7 @@ $(function () {
 
                     if ('credit' in reward_format_to_use) {
 
+                        localStorage.setItem('sales_type', 'credit');
                         let customer_rewards = localStorage.getItem('customer_rewards');
 
                         console.log(customer_rewards);
@@ -1045,6 +1052,7 @@ $(function () {
 
                     if ('prepaid' in reward_format_to_use) {
 
+                        localStorage.setItem('sales_type', 'prepaid');
                         let customer_rewards = localStorage.getItem('customer_rewards');
 
                         //calculate amount payable with the rewards set only when the reward option is enabled
