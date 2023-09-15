@@ -125,7 +125,7 @@
                                             </td>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ date('H-m-i', strtotime($sale->created_at ))}}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ date('h:i A', strtotime($sale->created_at ))}}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
@@ -320,7 +320,7 @@
                                             </td>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ date('H-m-i', strtotime($sale->created_at ))}}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ date('h:i A', strtotime($sale->created_at ))}}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
@@ -511,7 +511,7 @@
                                             </td>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ date('H-m-i', strtotime($sale->created_at ))}}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ date('h:i A', strtotime($sale->created_at ))}}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
