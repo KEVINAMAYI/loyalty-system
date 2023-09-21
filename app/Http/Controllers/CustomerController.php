@@ -43,7 +43,6 @@ class CustomerController extends Controller
                 ]);
         }
 
-
         foreach ($discounts as $discount){
             Sale::where('amount_payable',$discount->amount)->update([
                     'sales_type' => 'customer'
@@ -53,7 +52,7 @@ class CustomerController extends Controller
 
     public function getReports()
     {
-        $sales = Sale::all();
+        $sales = Sale::latest()->get();
         return view('staff.reports',compact('sales'));
     }
 

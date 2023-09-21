@@ -64,10 +64,6 @@
                                         Transaction Date
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
-                                        Transaction Time
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Attendant Name
                                     </th>
@@ -114,18 +110,14 @@
                                 @foreach ( $sales as $sale )
                                     @if($sale->sales_type == 'organization')
 
-                                <tr>
-                                 <td class="text-sm">
+                                        <tr>
+                                            <td class="text-sm">
                                     <span
                                         class="text-secondary text-xs font-weight-bold">{{ App\Models\Organization::where('id', $sale->organization_id)->value('name')}}</span>
-                                </td>
-                                    <td class="text-sm">
-                                    <span
-                                        class="text-secondary text-xs font-weight-bold">{{ date('d-m-Y', strtotime($sale->created_at ))}}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ date('h:i A', strtotime($sale->created_at ))}}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ date('d-m-Y h:i A', strtotime($sale->created_at ))}}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
@@ -161,7 +153,7 @@
                                             </td>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $sale->amount_paid }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
@@ -184,10 +176,6 @@
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
                                         Transaction Date
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
-                                        Transaction Time
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
@@ -264,10 +252,6 @@
                                         Transaction Date
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
-                                        Transaction Time
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Attendant Name
                                     </th>
@@ -316,27 +300,19 @@
                                         <tr>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ date('d-m-Y', strtotime($sale->created_at ))}}</span>
-                                            </td>
-                                            <td class="text-sm">
-                                            <span
-                                                class="text-secondary text-xs font-weight-bold">{{ date('h:i A', strtotime($sale->created_at ))}}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ date('d-m-Y h:i A', strtotime($sale->created_at ))}}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $sale->sold_by }}</span>
                                             </td>
-{{--                                            <td class="text-sm">--}}
-{{--                                            <span--}}
-{{--                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump }}</span>--}}
-{{--                                            </td>--}}
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump_side }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump }}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump_side }}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
@@ -356,7 +332,7 @@
                                             </td>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $sale->amount_paid }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
@@ -375,10 +351,6 @@
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
                                         Transaction Date
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
-                                        Transaction Time
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
@@ -455,10 +427,6 @@
                                         Transaction Date
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
-                                        Transaction Time
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Attendant Name
                                     </th>
@@ -507,27 +475,19 @@
                                         <tr>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ date('d-m-Y', strtotime($sale->created_at ))}}</span>
-                                            </td>
-                                            <td class="text-sm">
-                                            <span
-                                                class="text-secondary text-xs font-weight-bold">{{ date('h:i A', strtotime($sale->created_at ))}}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ date('d-m-Y h:i A', strtotime($sale->created_at ))}}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $sale->sold_by }}</span>
                                             </td>
-                                            {{--                                            <td class="text-sm">--}}
-                                            {{--                                            <span--}}
-                                            {{--                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump }}</span>--}}
-                                            {{--                                            </td>--}}
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump_side }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump }}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump_side }}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
@@ -547,7 +507,7 @@
                                             </td>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $sale->amount_paid }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
@@ -566,10 +526,6 @@
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
                                         Transaction Date
-                                    </th>
-                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
-                                        class="text-uppercase text-secondary text-left text-xxs font-weight-bolder ps-2">
-                                        Transaction Time
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">

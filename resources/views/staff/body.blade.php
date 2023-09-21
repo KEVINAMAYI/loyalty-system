@@ -1420,13 +1420,44 @@
     $('#manual_discount_report_table').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'copy',
+                title: function(){
+                    var CopyTitle = 'Manual Discount';
+                    return printTitle
+                }
+            },
+            {
+                extend: 'csv',
+                title: function(){
+                    var CSVTitle = 'Manual Discount';
+                    return CSVTitle
+                }
+            },
+            {
+                extend: 'print',
+                title: function(){
+                    var printTitle = 'Manual Discount';
+                    return printTitle
+                }
+            },
+            {
+                extend: 'pdf',
+                title: function(){
+                    var PDFTitle = 'Manual Discount';
+                    return PDFTitle
+                }
+            },
             {
                 extend: 'excel',
                 text: 'Excel Export Search Results',
                 className: 'btn btn-default',
                 exportOptions: {
                     columns: 'th:not(:last-child)'
+                },
+                title: function(){
+                    var ExcelTitle = 'Manual Discount';
+                    return ExcelTitle
                 }
             }
         ],
@@ -1436,13 +1467,44 @@
     $('#automatic_discount_report_table').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'copy',
+                title: function(){
+                    var CopyTitle = 'Automatic Discount';
+                    return printTitle
+                }
+            },
+            {
+                extend: 'csv',
+                title: function(){
+                    var CSVTitle = 'Automatic Discount';
+                    return CSVTitle
+                }
+            },
+            {
+                extend: 'print',
+                title: function(){
+                    var printTitle = 'Automatic Discount';
+                    return printTitle
+                }
+            },
+            {
+                extend: 'pdf',
+                title: function(){
+                    var PDFTitle = 'Automatic Discount';
+                    return PDFTitle
+                }
+            },
             {
                 extend: 'excel',
                 text: 'Excel Export Search Results',
                 className: 'btn btn-default',
                 exportOptions: {
                     columns: 'th:not(:last-child)'
+                },
+                title: function(){
+                    var ExcelTitle = 'Automatic Discount';
+                    return ExcelTitle
                 }
             }
         ],
@@ -1453,18 +1515,50 @@
     $('#organization_discount_report_table').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'pdf', 'print',
+            {
+                extend: 'copy',
+                title: function(){
+                    var CopyTitle = 'Organization Discount';
+                    return printTitle
+                }
+            },
+            {
+                extend: 'csv',
+                title: function(){
+                    var CSVTitle = 'Organization Discount';
+                    return CSVTitle
+                }
+            },
+            {
+                extend: 'print',
+                title: function(){
+                    var printTitle = 'Organization Discount';
+                    return printTitle
+                }
+            },
+            {
+                extend: 'pdf',
+                title: function(){
+                    var PDFTitle = 'Organization Discount';
+                    return PDFTitle
+                }
+            },
             {
                 extend: 'excel',
                 text: 'Excel Export Search Results',
                 className: 'btn btn-default',
                 exportOptions: {
                     columns: 'th:not(:last-child)'
+                },
+                title: function(){
+                    var ExcelTitle = 'Organization Discount';
+                    return ExcelTitle
                 }
             }
         ],
 
     });
+
 
     $('#organization_table').DataTable({
         dom: 'Bfrtip',
