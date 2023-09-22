@@ -129,11 +129,11 @@
                                             {{--                                            </td>--}}
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump_side }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump }}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $sale->vehicle_registration }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $sale->pump_side }}</span>
                                             </td>
                                             <td class="text-sm">
                                             <span
