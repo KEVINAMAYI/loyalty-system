@@ -69,7 +69,7 @@
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Amount Redeemed
                                     </th>
-                                    @if(auth()->user()->major_role == 'Admin')
+                                    @if((Auth::user()->major_role == 'Supervisor') || (Auth::user()->major_role == 'Admin'))
                                         <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                             class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                             Approver
@@ -105,7 +105,7 @@
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $discount->amount }}</span>
                                         </td>
-                                        @if(auth()->user()->major_role == 'Admin')
+                                        @if((Auth::user()->major_role == 'Supervisor') || (Auth::user()->major_role == 'Admin'))
                                             <td class="text-sm">
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $discount->approver }}</span>
@@ -162,7 +162,7 @@
                                         class="text-left text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Amount Redeemed
                                     </th>
-                                    @if(auth()->user()->major_role == 'Admin')
+                                    @if((Auth::user()->major_role == 'Supervisor') || (Auth::user()->major_role == 'Admin'))
                                         <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                             class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                             Approver
