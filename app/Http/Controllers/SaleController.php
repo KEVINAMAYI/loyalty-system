@@ -51,7 +51,7 @@ class SaleController extends Controller
      */
     public function getSales()
     {
-        if((Auth::user()->major_role == 'Admin'))
+        if((Auth::user()->major_role == 'Admin') || (Auth::user()->major_role == 'Supervisor'))
         {
             $sales  = Sale::orderBy('created_at','DESC')->get();
             return view('staff.sales')->with(['sales' => $sales]);

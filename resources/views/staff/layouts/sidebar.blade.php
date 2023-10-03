@@ -50,7 +50,7 @@
                     <span class="nav-link-text ms-1">Authorized Purchases</span>
                 </a>
             </li>
-            @if(auth()->user()->major_role == 'Admin')
+            @if(auth()->user()->major_role == 'Admin' || auth()->user()->major_role == 'Admin')
             <li class="nav-item">
                 <a class="nav-link  "href="/sales">
                     <i class="fa-solid fa-dollar"></i>
