@@ -480,7 +480,7 @@ class CustomerController extends Controller
             'sales_type' => $sales_type
         ]);
 
-        $message = "Dear " . $data['first_name'] . "thankyou for fueling " . $data['litres_sold'] . " ltrs = " . $data['rewards_awarded'] . " points @ Ola Gitaru. This month you have accumulated a total of " . $data['new_customer_rewards'] . " points.  All points are reedemable for fuel at the beggining of every month. Thankyou for your business. Please visit us again soon.";
+        $message = "Dear " . $data['first_name'] . ", thankyou for fueling " . $data['litres_sold'] . " ltrs = " . $data['rewards_awarded'] . " points @ Ola Gitaru. This month you have accumulated a total of " . $data['new_customer_rewards'] . " points.  All points are reedemable for fuel at the beggining of every month. Thankyou for your business. Please visit us again soon.";
 
         //if the sales_type is defined as bulk
         if ($sales_type == 'bulk') {
@@ -497,7 +497,7 @@ class CustomerController extends Controller
 
             $message = "Dear " . $data['first_name'] . ", thankyou for fueling " . $data['litres_sold'] . " ltrs @ Ola Gitaru. You are entitled to a discount of Kshs. " . $data['rewards_awarded'] . ". Thankyou for your business. Please Fuel with us again soon.";
         }
-        
+
         $this->sendSms($message, $data['phone_number']);
 
         return response()->json([
