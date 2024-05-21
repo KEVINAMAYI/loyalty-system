@@ -33,6 +33,7 @@ class Customer extends Model
         'organization_id',
         'custom_reward_type',
         'status',
+        'customer_type',
     ];
 
     public  function discounts(): \Illuminate\Database\Eloquent\Relations\HasMany

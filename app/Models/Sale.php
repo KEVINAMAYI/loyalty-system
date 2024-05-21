@@ -38,7 +38,8 @@ class Sale extends Model
         'organization_id',
         'litres_sold',
         'bulk_rewards',
-        'sales_type'
+        'sales_type',
+        'customer_type'
     ];
 
 

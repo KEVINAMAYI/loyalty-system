@@ -434,6 +434,7 @@ class CustomerController extends Controller
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'phone_number' => $data['phone_number'],
+            'customer_type' => $data['customer_type'],
             'vehicle_registration' => $data['vehicle_registration'],
             'rewards_used' => $data['used_rewards'],
             'rewards_awarded' => $data['rewards_awarded'],
@@ -1819,6 +1820,7 @@ class CustomerController extends Controller
             'id_number' => 'required|min:7|max:8|unique:customers',
             'category' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string', 'max:255'],
+            'customer_type' => ['required', 'string', 'max:255'],
             'regno' => ['required', 'string', 'max:255', 'unique:vehicles,vehicle_registration'],
         ]);
 
@@ -1836,7 +1838,8 @@ class CustomerController extends Controller
             'organization_id' => intval($data['organization']),
             'custom_reward_type' => intval($data['organization']) == 0 ? 'customer' : 'organization',
             'enrolled_by' => Auth::user()->name,
-            'status' => "Accepted"
+            'status' => "Accepted",
+            'customer_type' => $data['customer_type']
         ]);
 
 
@@ -1883,7 +1886,8 @@ class CustomerController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone_number' => 'required|regex:(^07)|digits:10',
             'id_number' => 'required|min:7|max:8',
-            'rewards' => 'integer'
+            'rewards' => 'integer',
+            'customer_type' => ['required', 'string', 'max:255'],
         ]);
 
 
@@ -1901,6 +1905,7 @@ class CustomerController extends Controller
             'rewards' => $data['rewards'],
             'organization_id' => $data['organization_id'],
             'custom_reward_type' => $data['custom_reward_type'],
+            'customer_type' => $data['customer_type'],
         ]);
 
 

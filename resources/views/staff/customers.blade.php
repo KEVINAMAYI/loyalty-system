@@ -270,9 +270,16 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-holder col-lg-12 col-md-12 col-sm-12 form-holder-2 mb-4">
+                            <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2 mb-4">
                                 <label for="reward_type">Organization</label></br>
                                 <select name="organization_id" id="organizations" class="form-control">
+                                </select>
+                            </div>
+                            <div class="form-holder col-lg-6 col-md-12 col-sm-12 form-holder-2 mb-4">
+                                <label for="customer_type">Customer Type</label></br>
+                                <select name="customer_type" id="customer_type" class="form-control">
+                                    <option value="frequent_customer">Frequent Customer</option>
+                                    <option value="bulk_customer">Bulk Customer</option>
                                 </select>
                             </div>
                         </div>

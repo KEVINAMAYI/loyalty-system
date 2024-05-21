@@ -288,8 +288,8 @@ $(function () {
                         <span>${customer[0].rewards}</span>
                         </p>
                         <p class="card-text">
-                        <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Customer :</span>
-                        <span class="customer-type">${customer[0].reward_type_to_use}</span>
+                        <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Customer Type:</span>
+                        <span id="customer_type" class="customer-type">${customer[0].customer_type}</span>
                         </p>
                         <p class="card-text">
                         <span style="color:white; font-weight:bold;" class="card-subtitle mb-2 text-white"">Organization :</span>
@@ -322,9 +322,14 @@ $(function () {
 
 
                     } else {
-                        $('.customer-type').text('Normal');
+
+                        $('.customer-type').text('Not Set');
                         $('.authorized-amount-paragraph').hide();
 
+                        if (!(customer[0].customer_type === null)){
+                            $('.customer-type').text(customer[0].customer_type.toUpperCase().replace('_','').replace('CUSTOMER',''));
+                            $('.authorized-amount-paragraph').hide();
+                        }
 
                     }
 
@@ -434,6 +439,7 @@ $(function () {
 
                     localStorage.setItem('first_name', customer[0].first_name);
                     localStorage.setItem('last_name', customer[0].last_name);
+                    localStorage.setItem('customer_type', customer[0].customer_type);
                     localStorage.setItem('phone_number', customer[0].phone_number);
                     localStorage.setItem('customer_id', customer[0].id);
                     localStorage.setItem('customer_rewards', customer[0].rewards);
@@ -596,9 +602,9 @@ $(function () {
                 let customer_rewards = localStorage.getItem('customer_rewards');
 
 
-                /*
-                 * Calculate  customer bulk rewards and total
-                 */
+                    /*
+                     * Calculate  customer bulk rewards and total
+                     */
                 if ('customer' in reward_format_to_use) {
 
                     localStorage.setItem('sales_type', 'customer');
@@ -1127,6 +1133,7 @@ $(function () {
         const sale_start_date = localStorage.getItem('sale_start_date');
         const sale_end_date = localStorage.getItem('sale_end_date');
         const organization_id = localStorage.getItem('organization_id');
+        const customer_type = localStorage.getItem('customer_type');
 
         const sold_by = $('#sales-person-name').text();
         const pump = $('#pump').val();
@@ -1161,8 +1168,10 @@ $(function () {
         formData.append('sales_type', sales_type);
         formData.append('litres_sold', litres_sold);
         formData.append('organization_id', organization_id);
+        formData.append('customer_type', customer_type);
         formData.append('litres_sold', $('#liters_val').val());
 
+        console.log(customer_type);
 
         console.log(sold_by);
         console.log(pump);

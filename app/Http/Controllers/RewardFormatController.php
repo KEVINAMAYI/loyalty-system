@@ -17,24 +17,24 @@ class RewardFormatController extends Controller
      */
     public function getRewardFormat($product_type, Customer $customer, $litres_bought)
     {
+        $rewards_format = RewardFormat::where('product_type', $product_type)->get();
 
-        $rewards_format = null;
+        if ($customer->customer_type != 'bulk_customer') {
 
-        if ($litres_bought < 100 ) {
-            if ($customer->custom_reward_type == 'organization') {
-                $rewards_format = OrganizationReward::where('product_type', $product_type)
-                    ->where('organization_id', $customer->organization_id)
-                    ->get();
+            $rewards_format = $this->getCustomRewardType($customer, $product_type);
+        }
+
+
+        if ($litres_bought > 100) {
+
+            if (($customer->customer_type == 'bulk_customer') || ($customer->customer_type == '')) {
+                $rewards_format = RewardFormat::where('product_type', $product_type)->get();
             }
 
-            if ($customer->custom_reward_type == 'customer') {
-                $rewards_format = CustomerReward::where('product_type', $product_type)
-                    ->where('customer_id', $customer->id)
-                    ->get();
-            }
-        } else {
+            if (($customer->customer_type == 'frequent_customer')) {
 
-            $rewards_format = RewardFormat::where('product_type', $product_type)->get();
+                $rewards_format = $this->getCustomRewardType($customer, $product_type);
+            }
 
         }
 
@@ -42,6 +42,29 @@ class RewardFormatController extends Controller
             'rewards_format' => $rewards_format
         ]);
     }
+
+
+    public function getCustomRewardType($customer, $product_type)
+    {
+
+        $rewards_format = null;
+
+        if ($customer->custom_reward_type == 'organization') {
+            $rewards_format = OrganizationReward::where('product_type', $product_type)
+                ->where('organization_id', $customer->organization_id)
+                ->get();
+        }
+
+        if ($customer->custom_reward_type == 'customer') {
+            $rewards_format = CustomerReward::where('product_type', $product_type)
+                ->where('customer_id', $customer->id)
+                ->get();
+        }
+
+        return $rewards_format;
+
+    }
+
 
     /**
      * Show the form for creating a new resource.

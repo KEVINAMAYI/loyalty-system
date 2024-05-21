@@ -55,8 +55,7 @@ $(function(){
             var regno = $('#regno').val();
             var type = $('#type').val();
             var fuel_type = $('#fuel_type').val();
-
-
+            var customer_type = $('#customer_type').val();
 
 
             $.ajaxSetup({
@@ -127,7 +126,6 @@ $(function(){
 
 
 
-
             }
 
             $("#form-register").validate().settings.ignore = ":disabled,:hidden";
@@ -158,8 +156,9 @@ $(function(){
         formData.append('category',$('#category').val());
         formData.append('type',$('#type').val());
         formData.append('regno',$('#regno').val());
+        formData.append('customer_type',$('#customer_type').val());
 
-        console.log($('#organization').val());
+        console.log($('#customer_type').val());
 
 
         $.ajax({

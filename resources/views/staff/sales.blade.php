@@ -84,6 +84,10 @@
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
+                                        Customer Type
+                                    </th>
+                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Status
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
@@ -126,6 +130,10 @@
                                         <td class="text-sm">
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $sale->phone_number }}</span>
+                                        </td>
+                                        <td class="text-sm">
+                                            <span
+                                                class="text-secondary text-xs font-weight-bold">{{ str_replace('_','',str_replace('CUSTOMER','',strtoupper($sale->customer_type)))  }}</span>
                                         </td>
                                         @if((Auth::user()->major_role == 'Supervisor') || (Auth::user()->major_role == 'Admin'))
                                             @if($sale->status == 'Accepted')
@@ -195,6 +203,10 @@
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
                                         Phone
+                                    </th>
+                                    <th style="border-bottom:1px solid rgb(200, 195, 195);"
+                                        class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">
+                                        Customer Type
                                     </th>
                                     <th style="border-bottom:1px solid rgb(200, 195, 195);"
                                         class="text-uppercase text-left text-secondary text-xxs font-weight-bolder ps-2">

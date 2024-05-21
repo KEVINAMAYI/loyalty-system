@@ -747,6 +747,7 @@
                 $("#edit_email").val(customer_data[0].email);
                 $("#edit_rewards").val(customer_data[0].rewards);
                 $("#edit_gender").val(customer_data[0].gender);
+                $("#customer_type").val(customer_data[0].customer_type);
 
                 const organizationOptions = $("#organizations");
                 const rewardTypeOptions = $("#custom_reward_type");
@@ -883,6 +884,7 @@
         const gender = $("#edit_gender").val()
         const organization_id = $("#organizations").val()
         const custom_reward_type = $("#custom_reward_type").val()
+        const customer_type = $("#customer_type").val()
 
         formData.append('first_name', first_name);
         formData.append('last_name', last_name);
@@ -893,6 +895,7 @@
         formData.append('gender', gender);
         formData.append('organization_id', organization_id);
         formData.append('custom_reward_type', custom_reward_type);
+        formData.append('customer_type', customer_type);
         formData.append('id', id);
 
         $.ajax({
@@ -1694,6 +1697,7 @@
             {"type": "string"},
             {"type": "num-fmt"},
             {"type": "num-fmt"},
+            {"type": "string"},
             {"type": "string"},
             {"type": "string"},
             {"type": "string"},
