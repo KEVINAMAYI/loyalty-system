@@ -32,28 +32,29 @@ use Illuminate\Support\Facades\Log;
 class CustomerController extends Controller
 {
 
-    public function updateSalesType(){
+    public function updateSalesType()
+    {
         $automaticdiscounts = AutomaticDiscount::all();
         $discounts = Discount::all();
 
-        foreach ($automaticdiscounts as $automaticdiscount){
-            Sale::where('phone_number',$automaticdiscount->customer_phone)
-                ->where('rewards_awarded',$automaticdiscount->discount)->update([
-                    'sales_type' => 'bulk'
-                ]);
+        foreach ($automaticdiscounts as $automaticdiscount) {
+            Sale::where('phone_number', $automaticdiscount->customer_phone)
+                ->where('rewards_awarded', $automaticdiscount->discount)->update([
+                        'sales_type' => 'bulk'
+                    ]);
         }
 
-        foreach ($discounts as $discount){
-            Sale::where('amount_payable',$discount->amount)->update([
-                    'sales_type' => 'customer'
-                ]);
+        foreach ($discounts as $discount) {
+            Sale::where('amount_payable', $discount->amount)->update([
+                'sales_type' => 'customer'
+            ]);
         }
     }
 
     public function getReports()
     {
         $sales = Sale::latest()->get();
-        return view('staff.reports',compact('sales'));
+        return view('staff.reports', compact('sales'));
     }
 
     public function enrollNewCustomer()
@@ -173,7 +174,8 @@ class CustomerController extends Controller
                     'account_type' => 'prepaid',
                     'corporate_status' => 'inactive'
 
-                ]);;
+                ]);
+                ;
                 break;
             default:
                 echo "No account type chosen";
@@ -240,7 +242,7 @@ class CustomerController extends Controller
     {
 
 
-        $curl = curl_init();
+        /* $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://api.emalify.com/v1/oauth/token',
             CURLOPT_RETURNTRANSFER => true,
@@ -264,41 +266,64 @@ class CustomerController extends Controller
         $access_token = json_decode($curl_response);
 
         curl_close($curl);
+        return $access_token->access_token; */
+
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.onfonmedia.co.ke/v1/sms/SendBulkSMS ',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => '{
+                "client_id" : "eprenstn",
+                "client_secret" : "ZsCeQrqXK4dFWagMbfl3S2NUo9v1H6T7I5AY0DcjxEmOz8BL",
+                "grant_type" : "client_credentials"
+                    }',
+            CURLOPT_HTTPHEADER => array(
+                'Accept: application/json',
+                'Content-Type: application/json'
+            ),
+        ));
+        $curl_response = curl_exec($curl);
+        $access_token = json_decode($curl_response);
+
+        curl_close($curl);
         return $access_token->access_token;
     }
 
     //send SMS using emalify
     public function sendSms($message, $phone_number)
     {
-        $token = $this->smsToken();
 
-        $url = "https://api.emalify.com/v1/projects/nvk85q40v8mjpdxz/sms/simple/send";
-        $post_fields = array(
-            'to' => [$phone_number],
-            "message" => $message,
-            "from" => "KCT_LTD"
-        );
-        $body = json_encode($post_fields);
-
-        $curl = curl_init();
-        curl_setopt_array(
-            $curl,
-            array(
-                CURLOPT_URL => $url,
-                CURLOPT_HEADER => false,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_POST => true,
-                CURLOPT_POSTFIELDS => $body,
-                CURLOPT_HTTPHEADER => array(
-                    'Content-Type:application/json',
-                    'Authorization:Bearer ' . $token,
-                ),
-            )
+        $data = array('op' => 'pv',
+            'app' => 'ws',
+            'h' => '88f2ab70ca4d261ef1f1ad4e8e9c7816',
+            'u' => 'eprenstn1',
+            'to' => $phone_number,
+            'msg' => $message,
+            'from' => 'EPRENSTN'
         );
 
-        $response = curl_exec($curl);
-        Log::info($response);
-        return $response;
+        $data_string = json_encode($data);
+        $ch = curl_init('bulksms.webcom.co.ke?' . http_build_query($data));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Accept: application/json')
+        );
+
+        $res = curl_exec($ch);
+        Log::info($res);
+        return $res;
     }
 
 
@@ -456,6 +481,7 @@ class CustomerController extends Controller
             'sales_type' => $sales_type
         ]);
 
+        $message = "Dear " . $data['first_name'] . ", Thankyou for fueling " . $data['litres_sold'] . " ltrs = " . round($data['rewards_awarded']) . " points @ Ola Gitaru. This month you have accumulated a total of " . round($data['new_customer_rewards']) . " points.  All points are reedemable for fuel at the beginning of every month. Please visit us again soon.";
 
         //if the sales_type is defined as bulk
         if ($sales_type == 'bulk') {
@@ -469,7 +495,15 @@ class CustomerController extends Controller
                 "transaction_date" => Carbon::now()->format('Y-m-d H:i:m'),
                 "sales_id" => $sale->id
             ]);
+
+            $message = "Dear " . $data['first_name'] . ",
+            Thankyou for fueling " . $data['litres_sold'] .
+            " ltrs @ Ola Gitaru. You are entitled to a discount of Kshs.
+            " . round($data['rewards_awarded']) .
+            ". Please Fuel with us again soon.";
         }
+
+        $this->sendSms($message, $data['phone_number']);
 
         return response()->json([
             'data' => $request->all(),
@@ -1139,7 +1173,8 @@ class CustomerController extends Controller
                     } else {
 
                         //check if amount to prepaid account is furnished
-                        $user = $data['companies_id'];;
+                        $user = $data['companies_id'];
+                        ;
                         $account = Account::where('organization_id', '=', $data['companies_id'])
                             ->where('account_type', '=', 'credit')
                             ->get();
@@ -1304,7 +1339,8 @@ class CustomerController extends Controller
                 } else {
 
                     //check if amount to prepaid account is furnished
-                    $user = $data['companies_id'];;
+                    $user = $data['companies_id'];
+                    ;
                     $account = Account::where('organization_id', '=', $data['companies_id'])
                         ->where('account_type', '=', 'credit')
                         ->get();
@@ -1525,9 +1561,12 @@ class CustomerController extends Controller
     public function staffDashboard()
     {
         if (Auth::user()->major_role == 'Admin' || Auth::user()->major_role == 'Supervisor') {
-            $customers = Customer::latest()->take(20)->get();;
-            $sales = Sale::latest()->take(20)->get();;
-            $autorizedpurchases = AuthorizedPurchase::latest()->take(20)->get();;
+            $customers = Customer::latest()->take(20)->get();
+            ;
+            $sales = Sale::latest()->take(20)->get();
+            ;
+            $autorizedpurchases = AuthorizedPurchase::latest()->take(20)->get();
+            ;
             $employees_authorized_data = array();
 
             foreach ($autorizedpurchases as $autorizedpurchase) {
@@ -1632,8 +1671,8 @@ class CustomerController extends Controller
 
                 //send conmfirmation message
                 try {
-                    $message = "Dear " . $firstname . ", Sorry ! Your enrollment has failed. Please Review the reason and enrollment again";
-                    $this->sendSms($message, $receiversNumber);
+                    // $message = "Dear " . $firstname . ", Sorry ! Your enrollment has failed. Please Review the reason and enrollment again";
+                    // $this->sendSms($message, $receiversNumber);
 
                     session()->flash('success', 'Customer Rejected and  Message sent Successfully');
                     return redirect()->back();
@@ -1643,7 +1682,8 @@ class CustomerController extends Controller
                     session()->flash('success', 'Customer Rejected, there was an error while sending SMS');
                     return redirect()->back();
 
-                };
+                }
+                ;
 
             } else {
 
@@ -1659,7 +1699,7 @@ class CustomerController extends Controller
 
                 //send conmfirmation message
                 try {
-                    $message = "Dear " . $firstname . ", Congratulations! You have successfully enrolled to our fuel rewards program. Keep fuelling with us to earn redeemable discount rewards";
+                    $message = "Dear " . $firstname . ", Welcome to the Ola Gitaru frequent fueler discount program where every ltr you fuel accumulates points for cash back at the end of every month. Fuel with us, beat inflation.";
                     $this->sendSms($message, $receiversNumber);
 
                     session()->flash('success', 'Customer Approved and Confirmation Message sent Successfully');
@@ -2106,7 +2146,8 @@ class CustomerController extends Controller
         $petrol_reward_formats = CustomerReward::where('customer_id', $customer->id)
             ->where('product_type', 'petrol')->get();
         $diesel_reward_formats = CustomerReward::where('customer_id', $customer->id)
-            ->where('product_type', 'diesel')->get();;
+            ->where('product_type', 'diesel')->get();
+        ;
 
         return view('staff.customer_rewards', compact('customer', 'petrol_reward_formats', 'diesel_reward_formats'));
     }
@@ -2158,7 +2199,7 @@ class CustomerController extends Controller
                         'last_name' => $customerList[1],
                         'gender' => 'male',
                         'email' => "customer-email",
-                        'phone_number' => '0'.substr($customerList[2],3),
+                        'phone_number' => '0' . substr($customerList[2], 3),
                         'id_number' => $customerList[3],
                         'rewards' => 0,
                         'organization_id' => $request->input('organization'),
