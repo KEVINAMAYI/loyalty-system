@@ -1923,7 +1923,6 @@ class CustomerController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
             'phone_number' => 'required|regex:(^07)|digits:10',
             'id_number' => 'required|min:7|max:8',
             'rewards' => 'integer',
