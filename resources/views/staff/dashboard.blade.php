@@ -250,7 +250,8 @@
                                     </thead>
                                     <tbody>
                                     @forelse($authorized_purchases as $authorized_purchase)
-                                        <tr>
+                                        @if(isset($authorized_purchase[0][0]))
+                                            <tr>
                                             <td style="padding-left:20px;" class="align-middle text-left text-sm">
                                                 <p class="text-xs font-weight-bold mb-0">
                                                     {{ $authorized_purchase[0][0]->first_name }}
@@ -258,7 +259,8 @@
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $authorized_purchase[0][0]->id_number }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">
+                                                        {{ $authorized_purchase[0][0]->id_number }}</span>
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                     <span
@@ -287,6 +289,7 @@
                                                 </td>
                                             @endif
                                         </tr>
+                                        @endif
                                     @empty
                                         <tr>
                                             <td class="align-middle text-center text-sm">
